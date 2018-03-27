@@ -1,0 +1,25 @@
+{% extends "layouts/default.html" %}
+{% block content%}
+<section class="container">
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <article>
+                <p><a href="/products">back to products</a></p>
+                <header>
+                    <h1>{{data.product.title}}</h1>
+                </header>
+                <div class="row">
+                    <div class="col-md-6 col-lg-6">
+                        {% if data.product.image %}
+                        <img src="{{data.product.image.url}}" alt="" width="200">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+{% endblock %}
