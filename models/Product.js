@@ -17,4 +17,5 @@ Product.add({
     Manufacturer: {type: Types.Relationship, ref: 'ProductManufacturer', many: false }
 })
 
+Product.defaultColumns = 'title, ProductType, Manufacturer';
 Product.register();

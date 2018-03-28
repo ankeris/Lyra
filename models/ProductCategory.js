@@ -14,6 +14,6 @@ ProductCategory.add({
 });
 
 // ProductCategory.relationship({ ref: 'Post', path: 'posts', refPath: 'categories' });
-ProductCategory.relationship({ ref: 'Product', path: 'products', refPath: 'categories' });
+ProductCategory.relationship({ ref: 'Product', path: 'products', refPath: 'ProductType' });
 
 ProductCategory.register();

@@ -7,20 +7,21 @@ exports = module.exports = function (req, res) {
 	var locals = res.locals;
 
 	// Init locals
-	locals.section = 'blog';
-	locals.filters = {
-		category: req.params.category,
-	};
-	locals.data = {
+    locals.section = 'blog';
+
+    locals.data = {
 		posts: [],
 		categories: [],
-	};
+    };
+
+	locals.filters = {
+		category: req.params.category,
+    };
 
 	// Load all categories
 	view.on('init', function (next) {
 
 		keystone.list('ProductCategory').model.find().sort('name').exec(function (err, results) {
-
 			if (err || !results.length) {
 				return next(err);
 			}
@@ -29,9 +30,8 @@ exports = module.exports = function (req, res) {
 
 			// Load the counts for each category
 			async.each(locals.data.categories, function (category, next) {
-
 				keystone.list('Post').model.count().where('categories').in([category.id]).exec(function (err, count) {
-					category.postCount = count;
+                    category.postCount = count;
 					next(err);
 				});
 
@@ -71,7 +71,8 @@ exports = module.exports = function (req, res) {
 		if (locals.data.category) {
 			q.where('categories').in([locals.data.category]);
 		}
-
+        console.log(locals.data.category);
+        
 		q.exec(function (err, results) {
 			locals.data.posts = results;
 			next(err);

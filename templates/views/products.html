@@ -12,11 +12,16 @@
 	<div class="row">
 		<div class="col-md-12 col-lg-12">
 			<div class="row">
-				{% for product in products %}
+				{% for product in data.products.results %}
 				<div class="col-md-6 col-lg-6">
-					<h2>
+					{{product}}
+                    <h2>
 						<a href="/products/{{product.slug}}">{{product.slug}}</a>
 					</h2>
+                        {% for cat in product.categories %}
+                            <div>{{cat}}</div>
+                            <a href="/products/{{ cat.key }}">{{ cat.name }}</a>
+                        {% endfor %}
 					{% if product.image %}
 					<img src="{{product.image.secure_url}}" alt="" width="200px"> {% endif %}
 				</div>
@@ -30,9 +35,9 @@
 		<h2>Categories</h2>
 		<div class="list-group" style="margin-top: 70px;">
 			{% set class = ( "active" if not data.category else "" ) %}
-			<a href="/blog" class="{{ class }} list-group-item">All Categories</a>
+			<a href="/products" class="{{ class }} list-group-item">All Categories</a>
 			{% for cat in data.categories %} {% set class = ( "active" if data.category and data.category.id == cat.id else "" ) %}
-						<a href="/blog/{{ cat.key }}" class="{{ class }} list-group-item">{{ cat.name }}</a>
+						<a href="/products/{{ cat.key }}" class="{{ class }} list-group-item">{{ cat.name }}</a>
 			{% endfor %}
 		</div>
 	</div>
