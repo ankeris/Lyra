@@ -58,11 +58,12 @@ exports = module.exports = function(req, res) {
 			page: req.query.page || 1,
 			perPage: 10,
 			maxPages: 10,
-		}).populate('ProductType')
+		}).populate('ProductType Manufacturer')
 
 		if (locals.data.category) {
 			q.where('ProductType').in([locals.data.category]);
-		}
+        }
+
         console.log(locals.data.category);
 		q.exec(function (err, results) {
             locals.data.products = results;

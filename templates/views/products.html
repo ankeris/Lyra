@@ -14,16 +14,14 @@
 			<div class="row">
 				{% for product in data.products.results %}
 				<div class="col-md-6 col-lg-6">
-					{{product}}
                     <h2>
-						<a href="/products/{{product.slug}}">{{product.slug}}</a>
+						<a href="/products/{{product.Manufacturer.key}}/{{product.slug}}">{{product.slug}}</a>
 					</h2>
-                        {% for cat in product.categories %}
-                            <div>{{cat}}</div>
-                            <a href="/products/{{ cat.key }}">{{ cat.name }}</a>
-                        {% endfor %}
 					{% if product.image %}
 					<img src="{{product.image.secure_url}}" alt="" width="200px"> {% endif %}
+                    {% for cat in product.ProductType %}
+                        <a href="/products/{{ cat.key }}">{{ cat.name }}</a>
+                    {% endfor %}
 				</div>
 				{% endfor %}
 			</div>

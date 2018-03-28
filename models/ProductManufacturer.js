@@ -9,6 +9,6 @@ ProductManufacturer.add({
 });
 
 // ProductManufacturer.relationship({ ref: 'Post', path: 'posts', refPath: 'categories' });
-ProductManufacturer.relationship({ ref: 'Product', path: 'products', refPath: 'categories' });
+ProductManufacturer.relationship({ ref: 'Product', path: 'products', refPath: 'Manufacturer' });
 
 ProductManufacturer.register();
