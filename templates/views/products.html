@@ -1,20 +1,40 @@
 {% extends "layouts/default.html" %}
-{% block content%}
+
+{% block intro %}
+	<div class="container">
+		{% set title = ( data.category.name if data.category else "Product" ) %}
+		<h1>{{ title }}</h1>
+	</div>
+{% endblock %}
+
+{% block content %}
 <section class="container">
-    <h1>Products</h1>
-    <div class="row">
-        <div class="col-md-12 col-lg-12">
-            <div class="row">
-                {% for product in products %}
-                    <div class="col-md-4 col-lg-4">
-                        <h2><a href="/products/{{product.slug}}">{{product.slug}}</a></h2>
-                        {% if product.image %}
-                            <img src="{{product.image.secure_url}}" alt="" width="200px">
-                        {% endif %}
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-md-12 col-lg-12">
+			<div class="row">
+				{% for product in products %}
+				<div class="col-md-6 col-lg-6">
+					<h2>
+						<a href="/products/{{product.slug}}">{{product.slug}}</a>
+					</h2>
+					{% if product.image %}
+					<img src="{{product.image.secure_url}}" alt="" width="200px"> {% endif %}
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
 </section>
+{% if data.categories.length %}
+	<div class="col-sm-4 col-md-3">
+		<h2>Categories</h2>
+		<div class="list-group" style="margin-top: 70px;">
+			{% set class = ( "active" if not data.category else "" ) %}
+			<a href="/blog" class="{{ class }} list-group-item">All Categories</a>
+			{% for cat in data.categories %} {% set class = ( "active" if data.category and data.category.id == cat.id else "" ) %}
+						<a href="/blog/{{ cat.key }}" class="{{ class }} list-group-item">{{ cat.name }}</a>
+			{% endfor %}
+		</div>
+	</div>
+{% endif %}
 {% endblock %}

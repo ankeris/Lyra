@@ -11,11 +11,10 @@ let Product = new keystone.List('Product', {
 Product.add({
     title: {type: String, required: true},
     price: {type: Number},
-    qty: {type: Number},
     description: {type: Types.Html, wysiwyg: true, height: 300},
     image: {type: Types.CloudinaryImage},
-    publishedDate: {type: Date, default: Date.now},
-    categories: { type: Types.Relationship, ref: 'PostCategory', many: true }
+    ProductType: {type: Types.Relationship, ref: 'ProductCategory', many: true },
+    Manufacturer: {type: Types.Relationship, ref: 'ProductManufacturer', many: false }
 })
 
 Product.register();
