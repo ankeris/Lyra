@@ -58,9 +58,8 @@
 					{% endif %}
 					<div class="blog">
 						{% for post in data.posts.results %}
-                        <div style="color: red">{{post}}</div>
-                         {{ blogPost(post) }}
-                         {% endfor %}
+                        {{ blogPost(post) }}
+                        {% endfor %}
 					</div>
 					{% if data.posts.totalPages > 1 %}
 						<ul class="pagination">
