@@ -12,10 +12,10 @@ Product.add({
     title: {type: String, required: true},
     price: {type: Number},
     description: {type: Types.Html, wysiwyg: true, height: 300},
-    image: {type: Types.CloudinaryImage},
+    images: {type: Types.CloudinaryImages},
     ProductType: {type: Types.Relationship, ref: 'ProductCategory', many: true },
     Manufacturer: {type: Types.Relationship, ref: 'ProductManufacturer', many: false }
 })
 
-Product.defaultColumns = 'title, ProductType, Manufacturer';
+Product.defaultColumns = 'title, ProductType, Manufacturer, images';
 Product.register();

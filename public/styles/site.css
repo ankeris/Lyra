@@ -5821,6 +5821,10 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+.content-section {
+  max-width: 1124px;
+  margin: 0 auto; }
+
 #header {
   margin-top: 30px; }
 
@@ -5834,3 +5838,21 @@ button.close {
   display: block;
   max-width: 100%;
   height: auto; }
+
+.items-box {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap; }
+  .items-box .items-box__item {
+    flex-basis: 33%;
+    align-content: center;
+    text-align: center; }
+    .items-box .items-box__item .items-box__item--main-image {
+      background-size: cover;
+      margin: 0 auto;
+      border: 1px solid black;
+      height: 200px;
+      width: 200px; }
+  .items-box .items-box__item-images--item {
+    border: 1px solid black;
+    margin: 2px; }

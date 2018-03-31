@@ -2,32 +2,75 @@
 
 {% block intro %}
 	<div class="container">
-		{% set title = ( data.category.name if data.category else "Product" ) %}
+		{% set title = ( data.category.name if data.category else "Products" ) %}
 		<h1>{{ title }}</h1>
 	</div>
 {% endblock %}
 
 {% block content %}
-<section class="container">
-	<div class="row">
-		<div class="col-md-12 col-lg-12">
-			<div class="row">
-				{% for product in data.products.results %}
-				<div class="col-md-6 col-lg-6">
-                    <h2>
-						<a href="/products/{{product.Manufacturer.key}}/{{product.slug}}">{{product.slug}}</a>
-					</h2>
-					{% if product.image %}
-					<img src="{{product.image.secure_url}}" alt="" width="200px"> {% endif %}
-                    {% for cat in product.ProductType %}
-                        <a href="/products/{{ cat.key }}">{{ cat.name }}</a>
-                    {% endfor %}
-				</div>
-				{% endfor %}
-			</div>
-		</div>
+<section class="content-section products">
+	<div class="items-box">
+        {% for product in data.products.results %}
+        <div class="items-box__item">
+            <h2 class="items-box__item--title">
+                <a href="/products/{{product.Manufacturer.key}}/{{product.slug}}">{{product.title}}</a>
+            </h2>
+            {% if product.images %}
+                <!-- <img src="{{product.images[0].secure_url}}" alt="" width="200px" height="200px" style="border: 2px solid black"> -->
+                <div class="items-box__item--main-image" style="background-image: url('{{product.images[0].secure_url}}')"></div>
+                <figure class="items-box__item-images">
+                {% for image in product.images %}
+                    <img class="items-box__item-images--item" src="{{image.secure_url}}" alt=""
+                    width="50px" height="50px">
+                {% endfor %}
+                </figure>
+                {% for cat in product.ProductType %}
+                <a href="/products/{{ cat.key }}">{{ cat.name }}</a>
+                {% endfor %}
+            {% endif %}
+        </div>
+		{% endfor %}
 	</div>
 </section>
+{{data.products}}
+{% if data.products.totalPages > 1 %}
+	<ul class="pagination">
+		{% if data.products.previous %}
+			<li>
+				<a href="?page={{ data.products.previous }}">
+					<span class="glyphicon glyphicon-chevron-left"></span>
+				</a>
+			</li>
+		{% else %}
+			<li class="disabled">
+				<a href="?page=1">
+					<span class="glyphicon glyphicon-chevron-left"></span>
+				</a>
+			</li>
+		{% endif %}
+		{% for p in data.products.pages %} {% set class = ( "active" if data.products.currentPage == p else "" ) %}
+			<li class="{{ class }}">
+				{% set page = ( (data.products.totalPages if i else 1) if p == "..." else p ) %}
+				<a href="?page={{ page }}">{{ p }}</a>
+			</li>
+		{% endfor %}
+		{% if data.products.next %}
+			<li>
+				<a href="?page={{ data.products.next }}">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				</a>
+			</li>
+		{% else %}
+			<li class="disabled">
+				<a href="?page={{ data.products.totalPages }}">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				</a>
+			</li>
+		{% endif %}
+	</ul>
+{% endif %}
+
+
 {% if data.categories.length %}
 	<div class="col-sm-4 col-md-3">
 		<h2>Categories</h2>
@@ -35,7 +78,8 @@
 			{% set class = ( "active" if not data.category else "" ) %}
 			<a href="/products" class="{{ class }} list-group-item">All Categories</a>
 			{% for cat in data.categories %} {% set class = ( "active" if data.category and data.category.id == cat.id else "" ) %}
-						<a href="/products/{{ cat.key }}" class="{{ class }} list-group-item">{{ cat.name }}</a>
+						<a href="/products/{{ cat.key }}" class="{{ class }} list-group-item">{{ cat.name }}
+                        <b>{{cat.postCount}}</b></a>
 			{% endfor %}
 		</div>
 	</div>

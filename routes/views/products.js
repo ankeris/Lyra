@@ -11,10 +11,10 @@ exports = module.exports = function(req, res) {
         products: [],
         categories: []
     };
-
     locals.filters = {
 		category: req.params.category,
     };
+
 	// Load all categories
 	view.on('init', function (next) {
 
@@ -53,18 +53,15 @@ exports = module.exports = function(req, res) {
     // view.query('products', keystone.list('Product').model.find());
 
     view.on('init', function (next) {
-
 		var q = keystone.list('Product').paginate({
 			page: req.query.page || 1,
-			perPage: 10,
+			perPage: 9,
 			maxPages: 10,
 		}).populate('ProductType Manufacturer')
 
 		if (locals.data.category) {
 			q.where('ProductType').in([locals.data.category]);
         }
-
-        console.log(locals.data.category);
 		q.exec(function (err, results) {
             locals.data.products = results;
 			next(err);
