@@ -12,6 +12,8 @@
                     <div class="col-md-6 col-lg-6">
                         {% if data.product.image %}
                         <img src="{{data.product.image.url}}" alt="" width="200">
+                        {% endif %}
+                        {% if data.product.description %}
                         {{data.product.description|safe}}
                         {% endif %}
                     </div>

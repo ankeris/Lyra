@@ -5839,6 +5839,9 @@ button.close {
   max-width: 100%;
   height: auto; }
 
+.search-form {
+  text-align: center; }
+
 .items-box {
   width: 100%;
   display: flex;
@@ -5850,9 +5853,13 @@ button.close {
     .items-box .items-box__item .items-box__item--main-image {
       background-size: cover;
       margin: 0 auto;
+      background-color: #ebebeb;
       border: 1px solid black;
       height: 200px;
       width: 200px; }
   .items-box .items-box__item-images--item {
     border: 1px solid black;
     margin: 2px; }
+
+.cabasse {
+  background-color: #dfdfdf; }

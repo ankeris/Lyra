@@ -1,6 +1,7 @@
 let keystone = require('keystone');
 var async = require('async');
 
+
 exports = module.exports = function(req, res) {
     let view = new keystone.View(req, res);
     let locals = res.locals;
@@ -17,7 +18,6 @@ exports = module.exports = function(req, res) {
 
 	// Load all categories
 	view.on('init', function (next) {
-
 		keystone.list('ProductCategory').model.find().sort('name').exec(function (err, results) {
 			if (err || !results.length) {
 				return next(err);
@@ -57,17 +57,37 @@ exports = module.exports = function(req, res) {
 			page: req.query.page || 1,
 			perPage: 9,
 			maxPages: 10,
-		}).populate('ProductType Manufacturer')
+		}).populate('ProductType Manufacturer').sort('Manufacturer')
 
 		if (locals.data.category) {
 			q.where('ProductType').in([locals.data.category]);
         }
-		q.exec(function (err, results) {
-            locals.data.products = results;
-			next(err);
-		});
+
+        if(req.query.search) {
+            const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+            console.log(res);
+            q.find({slug: regex}, function(err, results){
+                console.log(results);
+                if(err){
+                    console.log(err);
+                } else {
+                    locals.data.products.results = results;
+                    next(err);
+                }
+            })
+        } else {
+            q.exec(function (err, results) {
+                console.log(results);
+                locals.data.products = results;
+                next(err);
+            });
+        }
 	});
 
 	// Render the view
 	view.render('products');
+};
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
