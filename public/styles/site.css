@@ -5846,13 +5846,12 @@ button.close {
   width: 100%;
   display: flex;
   flex-flow: row wrap; }
-  .items-box .items-box__item--manufacturer {
+  .items-box .items-box__item--separator {
     width: 100%;
     padding: 5px;
     background-color: black;
     color: white;
-    text-align: center;
-    border-radius: 5px; }
+    text-align: center; }
   .items-box .items-box__item {
     flex-basis: 100%;
     align-content: center;

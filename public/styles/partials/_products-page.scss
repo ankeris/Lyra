@@ -6,14 +6,12 @@
     display: flex;
     flex-flow: row wrap;
 
-    .items-box__item--manufacturer {
+    .items-box__item--separator {
         width: 100%;
         padding: 5px;
         background-color: black;
         color: white;
         text-align: center;
-        border-radius: 5px;
-        
     }
 
     .items-box__item {

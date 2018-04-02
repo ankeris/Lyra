@@ -33,7 +33,7 @@
 
 	<body>
 		{# HEADER #}
-		<div id="header" class="container">
+		<header id="header" class="container">
 			{# Customise your site"s navigation by changing the navLinks Array in ./routes/middleware.js
 			   ... or completely change this header to suit your design. #}
 			<div role="navigation" class="navbar navbar-default">
@@ -68,14 +68,10 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</header>
 
-		{# BODY #}
-		<div id="body">
-			{# NOTE:
-			   There is no .container wrapping class around body blocks to allow more flexibility in design.
-			   Remember to include it in your templates when you override the intro and content blocks! #}
-
+		{# Main content section #}
+		<main id="body">
 			{# The Intro block appears above flash messages (used for temporary information display) #}
 			{% block intro %}{% endblock %}
 
@@ -83,7 +79,7 @@
 			{{ FM.flashMessages(messages) }}
 
 			{% block content %}{% endblock %}
-		</div>
+		</main>
 
 
 		{# FOOTER #}

@@ -17,7 +17,7 @@ for (let i = 0; i < products.length; i++) {
 
 function createElementFromHTML(manufacturer) {
     let element = document.createElement('div');
-    element.setAttribute('class', 'items-box__item--manufacturer');
+    element.setAttribute('class', 'items-box__item--separator');
     element.innerHTML = manufacturer.trim();
     return element;
 }

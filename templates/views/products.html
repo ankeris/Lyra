@@ -20,28 +20,34 @@
     </form>
 
     <section class="content-section products">
+    {# items box wrapper #}
         <div class="items-box">
+            {# looping through products #}
             {% for product in data.products.results %}
+            {# some variables #}
             {% set manufacturerClass = product.Manufacturer.key %}
             {% set manufacturerName = product.Manufacturer.name %}
+            {# item block #}
+            {# class name set to key because it should be one word #}
             <div class="items-box__item {{manufacturerClass}}" manufacturer="{{manufacturerName}}">
                 <h2 class="items-box__item--title">
                     <a href="/products/{{product.Manufacturer.key}}/{{product.slug}}">{{product.title}}</a>
                 </h2>
-                {{product.Manufacturer.name}}                
+                <p>{{product.Manufacturer.name}}</p>
                 {% if product.images %}
-                    <!-- <img src="{{product.images[0].secure_url}}" alt="" width="200px" height="200px" style="border: 2px solid black"> -->
-                    <div class="items-box__item--main-image" style="background-image: url('{{product.images[0].secure_url}}')"></div>
+                    {# Highlighted image #}
+                    <div id="currentHighlight" class="items-box__item--main-image" style="background-image: url('{{product.images[0].secure_url}}')"></div>
+                    {# Extra image collection #}
                     <figure class="items-box__item-images">
                     {% for image in product.images %}
                         <img class="items-box__item-images--item" src="{{image.secure_url}}" alt=""
                         width="50px" height="50px">
                     {% endfor %}
                     </figure>
-                    {% for cat in product.ProductType %}
-                    <a href="/products/{{ cat.key }}">{{ cat.name }}</a>
-                    {% endfor %}
                 {% endif %}
+                {% for category in product.ProductType %}
+                    <a href="/products/{{ category.key }}">{{ category.name }}</a>
+                {% endfor %}
             </div>
             {% endfor %}
         </div>
@@ -97,5 +103,6 @@
             </div>
         </div>
     {% endif %}
-    <script src="/js/manual/listManufacturerProducts.js"></script>
+    <script src="/js/manual/separateManufacturers.js"></script>
+    <script src="/js/manual/highlightProduct.js"></script>
 {% endblock %}
