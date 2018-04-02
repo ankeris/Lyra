@@ -65,11 +65,9 @@ exports = module.exports = function(req, res) {
 
         if(req.query.search) {
             const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-            console.log(res);
             q.find({slug: regex}, function(err, results){
-                console.log(results);
                 if(err){
-                    console.log(err);
+                    alert(err);
                 } else {
                     locals.data.products.results = results;
                     next(err);
@@ -77,7 +75,6 @@ exports = module.exports = function(req, res) {
             })
         } else {
             q.exec(function (err, results) {
-                console.log(results);
                 locals.data.products = results;
                 next(err);
             });

@@ -1,5 +1,9 @@
 {% extends "layouts/default.html" %}
 
+{% block head %}
+	<title>Lyra produktai</title>
+{% endblock %}
+
 {% block intro %}
 	<div class="container">
 		{% set title = ( data.category.name if data.category else "Products" ) %}
@@ -9,20 +13,18 @@
 
 {% block content %}
     <form class="content-section search-form" action="/products" method="get">
-        <section>
-        {# <select>
-            <option value="volvo">Gamintojas</option>
-            <option value="saab">Produkto pavadinimas</option>
-        </select> #}
-        <input name="search" type="text" placeholder=". . .">
-        <input type="submit" value="Ieškoti">
+        <section class="search-box">
+            <input name="search" type="text" placeholder=". . .">
+            <input type="submit" value="Ieškoti">
         </section>
     </form>
+
     <section class="content-section products">
         <div class="items-box">
             {% for product in data.products.results %}
             {% set manufacturerClass = product.Manufacturer.key %}
-            <div class="items-box__item {{manufacturerClass}}">
+            {% set manufacturerName = product.Manufacturer.name %}
+            <div class="items-box__item {{manufacturerClass}}" manufacturer="{{manufacturerName}}">
                 <h2 class="items-box__item--title">
                     <a href="/products/{{product.Manufacturer.key}}/{{product.slug}}">{{product.title}}</a>
                 </h2>
@@ -44,6 +46,7 @@
             {% endfor %}
         </div>
     </section>
+
     {% if data.products.totalPages > 1 %}
         <ul class="pagination">
             {% if data.products.previous %}

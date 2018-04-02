@@ -1,7 +1,23 @@
-let som = document.querySelectorAll('.items-box__item');
+let products = document.querySelectorAll('.items-box__item');
+const parentEl = document.querySelector('.items-box');
 
-for (let i = 0; i <= som.length - 1; i++) {
-    console.log(som[i].getAttribute("class").split(' ')[1]);
+// loops through products
+for (let i = 0; i < products.length; i++) {
+    if(products[i - 1]) {
+        // if there is a previous product, check if the class name is same
+        if(!(products[i].getAttribute('class') == products[i - 1].getAttribute('class'))) {
+            let el = createElementFromHTML(products[i].getAttribute('manufacturer'));
+            parentEl.insertBefore(el, products[i]);
+        }   
+    } else {
+        let el = createElementFromHTML(products[i].getAttribute('manufacturer'));
+        parentEl.insertBefore(el, products[i]);
+    }
 }
 
-console.log(som);
+function createElementFromHTML(manufacturer) {
+    let element = document.createElement('div');
+    element.setAttribute('class', 'items-box__item--manufacturer');
+    element.innerHTML = manufacturer.trim();
+    return element;
+}

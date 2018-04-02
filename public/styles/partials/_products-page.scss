@@ -6,14 +6,24 @@
     display: flex;
     flex-flow: row wrap;
 
-    .items-box__item {
-        flex-basis: 33%;
-        align-content: center;
+    .items-box__item--manufacturer {
+        width: 100%;
+        padding: 5px;
+        background-color: black;
+        color: white;
         text-align: center;
+        border-radius: 5px;
+        
+    }
+
+    .items-box__item {
+        flex-basis: 100%;
+        align-content: center;
+        text-align: left;
+        border-bottom: 1px solid grey;
 
         .items-box__item--main-image {
             background-size: cover;
-            margin: 0 auto;
             background-color: rgb(235, 235, 235);
             border: 1px solid black;
             height: 200px;
@@ -25,8 +35,4 @@
             border: 1px solid black;
             margin: 2px;
     }
-}
-
-.cabasse {
-    background-color: rgb(223, 223, 223);
 }
