@@ -12,14 +12,14 @@
 {% endblock %}
 
 {% block content %}
-    <form class="content-section search-form" action="/products" method="get">
+    <form class="search-form" action="/products" method="get">
         <section class="search-box">
             <input name="search" type="text" placeholder=". . .">
             <input type="submit" value="Ieškoti">
         </section>
     </form>
 
-    <section class="content-section products">
+    <section class="products">
     {# items box wrapper #}
         <div class="items-box">
             {# looping through products #}

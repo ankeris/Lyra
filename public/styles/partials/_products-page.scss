@@ -32,5 +32,12 @@
         .items-box__item-images--item {
             border: 1px solid black;
             margin: 2px;
+            cursor: pointer;
     }
+}
+
+.fade-in {
+    opacity: 0.2;
+    position: relative;
+    animation: fadeIn 0.5s ease-in 1 forwards;
 }
