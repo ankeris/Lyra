@@ -14,13 +14,14 @@
   },
   "devDependencies": {
     "browser-sync-webpack-plugin": "^2.2.2",
-    "eslint": "3.15.0",
+    "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-keystone": "3.0.0",
+    "eslint-plugin-import": "^2.10.0",
     "eslint-plugin-react": "^5.1.1",
     "webpack": "^4.4.1"
   },
   "scripts": {
     "lint": "eslint .",
-    "start": "node keystone.js"
+    "start": "node keystone.js & webpack"
   }
 }

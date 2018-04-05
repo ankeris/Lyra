@@ -1,0 +1,26 @@
+.map {
+    width: 100%;
+    min-height: 45vh;
+    border-radius: 20px;
+}
+
+.contact {
+    display: flex;
+
+    .contact-form {
+        display: flex;
+        flex-flow: wrap row;
+
+        .form-group {
+            flex-basis: 100%;
+
+            label {
+                width: 100%;
+
+                input {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

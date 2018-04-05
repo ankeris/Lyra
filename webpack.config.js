@@ -2,8 +2,13 @@ var path = require('path');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
-	// Since webpack 4 we will need to set in what mode webpack is running
-	mode: 'development',
+    mode: 'development',
+    watch: true,
+    entry: './public/js/manual/separateManufacturers.js',
+    output: {
+      path: path.resolve('./public/js/', 'dist'),
+      filename: 'bundle.js'
+    },
     plugins: [
         new BrowserSyncPlugin({
           // browse to http://localhost:3000/ during development,
@@ -12,5 +17,5 @@ module.exports = {
           port: 3000,
           server: { baseDir: ['public'] }
         })
-      ]
+    ]
 };
