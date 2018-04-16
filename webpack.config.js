@@ -15,7 +15,8 @@ module.exports = {
           // ./public directory is being served
           host: 'localhost',
           port: 3000,
-          server: { baseDir: ['public'] }
+          files: ['./templates/views/*.html'],
+          server: { baseDir: ['templates'] },
         })
     ]
 };
