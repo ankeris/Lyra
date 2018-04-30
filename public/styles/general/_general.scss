@@ -2,3 +2,12 @@
 @import 'mixins';
 @import 'layout';
 @import 'animations';
+
+@font-face {
+    font-family: AzoSans;
+    src: url('/fonts/azosans-light.otf');
+}
+
+* {
+    font-family: AzoSans;
+}
