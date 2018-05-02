@@ -14,7 +14,8 @@ Product.add({
     description: {type: Types.Html, wysiwyg: true, height: 300},
     images: {type: Types.CloudinaryImages},
     ProductType: {type: Types.Relationship, ref: 'ProductCategory', many: true },
-    Manufacturer: {type: Types.Relationship, ref: 'ProductManufacturer', many: false }
+    Manufacturer: {type: Types.Relationship, ref: 'ProductManufacturer', many: false },
+    Highlight: {type: Types.Boolean},
 })
 
 Product.defaultColumns = 'title, ProductType, Manufacturer, images';
