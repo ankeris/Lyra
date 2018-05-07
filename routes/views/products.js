@@ -12,6 +12,7 @@ exports = module.exports = function(req, res) {
         products: [],
         categories: []
     };
+
     locals.filters = {
 		category: req.params.category,
     };
@@ -61,13 +62,21 @@ exports = module.exports = function(req, res) {
 		if (locals.data.category) {
 			q.where('ProductType').in([locals.data.category]);
         }
-
         if(req.query.search) {
             const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-            q.find({slug: regex}, function(err, results){
-                if(err){
-                    alert(err);
+            q.find({
+                $or: [
+                    {'slug': regex},
+                    {'title': regex},
+                    {'description': regex},
+                    {'Manufacturer.name': regex}
+                ]
+            }, function(err, results) {
+                if(err) {
+                    next(err);
                 } else {
+                    console.log(regex);
+                    console.log(results);
                     locals.data.products.results = results;
                     next(err);
                 }
@@ -76,7 +85,7 @@ exports = module.exports = function(req, res) {
             q.exec(function (err, results) {
                 locals.data.products = results;
                 next(err);
-            });
+            })
         }
 	});
 

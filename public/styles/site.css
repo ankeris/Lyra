@@ -5891,7 +5891,7 @@ button.close {
     width: 100%;
     height: 300px;
     overflow: auto;
-    border: 1px solid black; }
+    border: 2px solid #e0e0e0; }
 
 .items-box__item--title {
   background-color: rgba(255, 255, 255, 0.8);

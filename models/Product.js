@@ -5,7 +5,7 @@ let Product = new keystone.List('Product', {
     map: {name: 'title'},
     singular: 'Product',
     plural: 'Products',
-    autokey: {path: 'slug', from: 'title', unique: true}
+    autokey: {path: 'slug', from: 'title', unique: true},
 });
 
 Product.add({
