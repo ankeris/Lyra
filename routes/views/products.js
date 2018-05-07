@@ -51,7 +51,6 @@ exports = module.exports = function(req, res) {
 
     // Load the products
     // view.query('products', keystone.list('Product').model.find());
-
     view.on('init', function (next) {
 		var q = keystone.list('Product').paginate({
 			page: req.query.page || 1,
