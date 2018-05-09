@@ -17,7 +17,7 @@ exports = module.exports = function(req, res) {
 		category: req.params.category,
     };
 
-	// Load all categories
+	// Load all categories for side navigation
 	view.on('init', function (next) {
 		keystone.list('ProductCategory').model.find().sort('name').exec(function (err, results) {
 			if (err || !results.length) {
@@ -26,7 +26,7 @@ exports = module.exports = function(req, res) {
 
             locals.data.categories = results;
 
-			//Load the counts for each category
+			//Load the counts for each category (counts how much products every category contains)
 			async.each(locals.data.categories, function (category, next) {
 				keystone.list('Product').model.count().where('ProductType').in([category.id]).exec(function (err, count) {
                     category.postCount = count;
@@ -38,7 +38,7 @@ exports = module.exports = function(req, res) {
 		});
     });
 
-    // Load the current category filter
+    // Load the products for current category
     view.on('init', function (next) {
     		if (req.params.category) {
 			keystone.list('ProductCategory').model.findOne({ key: locals.filters.category }).exec(function (err, result) {
@@ -51,17 +51,18 @@ exports = module.exports = function(req, res) {
     });
 
     // Load the products
-    // view.query('products', keystone.list('Product').model.find());
     view.on('init', function (next) {
 		var q = keystone.list('Product').paginate({
 			page: req.query.page || 1,
 			perPage: 9,
 			maxPages: 10,
-		}).populate('ProductType Manufacturer').sort('Manufacturer')
+        })
+        q.populate('Manufacturer').sort('Manufacturer')
 
 		if (locals.data.category) {
 			q.where('ProductType').in([locals.data.category]);
         }
+
         if(req.query.search) {
             const regex = new RegExp(escapeRegex(req.query.search), 'gi');
             q.find({
@@ -96,3 +97,4 @@ exports = module.exports = function(req, res) {
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
+

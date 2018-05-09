@@ -1,0 +1,10 @@
+header {
+    width: 100%;
+    background-color: map-get($color, darkgrey);
+    a {
+        color: map-get($color, white)
+    }
+    .icon-bar {
+        background-color: white;
+    }
+}

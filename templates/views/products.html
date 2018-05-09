@@ -5,19 +5,34 @@
 {% endblock %}
 
 {% block intro %}
-	<div class="container">
 		{% set title = ( data.category.name if data.category else "Products" ) %}
-		<h1>{{ title }}</h1>
-	</div>
+        <div class="title">
+            <h3>{{ title }}</h3>
+        </div>
 {% endblock %}
 
 {% block content %}
-    <form class="search-form" action="/products" method="get">
-        <section class="search-box">
-            <input name="search" type="text" placeholder=". . .">
-            <input type="submit" value="Ieškoti">
-        </section>
-    </form>
+<form class="search-form content-section" action="/products" method="get">
+    <section class="search-box">
+        <input class="search-input" name="search" type="text" placeholder="search for product. . .">
+        <button class="search-submit" type="submit">
+    </section>
+</form>
+
+<div class="products-wrapper content-section">
+    {% if data.categories.length %}
+        <aside class="side-nav">
+            <div class="side-nav__list-box">
+                {% set class = ( "active" if not data.category else "" ) %}
+                <a href="/products" class="{{ class }} side-nav__list-box--item">All Categories</a>
+                {% for cat in data.categories %} {% set class = ( "active" if data.category and data.category.id == cat.id else "" ) %}
+                            <a href="/products/{{ cat.key }}" class="{{ class }} side-nav__list-box--item">{{ cat.name }}
+                            <b>{{cat.postCount}}</b></a>
+                {% endfor %}
+            </div>
+        </aside>
+    {% endif %}
+
     {# items box wrapper #}
     <section class="products">
             {# looping through products #}
@@ -31,16 +46,16 @@
                     {% if product.images %}
                         {# Main image #}
                         <div class="items-box__item--main-image" style="background-image: url('{{product.images[0].secure_url}}')">
-                            <h4 class="items-box__item--title">
+                            <h5 class="items-box__item--title">
                                 {{manufacturerName}} - {{product.title}}
-                            </h4>
+                            </h5>
                         </div>
                     {% endif %}
                 </div>
             </a>
             {% endfor %}
-            
     </section>
+</div>
 
     {% if data.products.totalPages > 1 %}
         <ul class="pagination">
@@ -79,19 +94,7 @@
         </ul>
     {% endif %}
 
-    {% if data.categories.length %}
-        <div class="col-sm-4 col-md-3">
-            <h2>Categories</h2>
-            <div class="list-group" style="margin-top: 70px;">
-                {% set class = ( "active" if not data.category else "" ) %}
-                <a href="/products" class="{{ class }} list-group-item">All Categories</a>
-                {% for cat in data.categories %} {% set class = ( "active" if data.category and data.category.id == cat.id else "" ) %}
-                            <a href="/products/{{ cat.key }}" class="{{ class }} list-group-item">{{ cat.name }}
-                            <b>{{cat.postCount}}</b></a>
-                {% endfor %}
-            </div>
-        </div>
-    {% endif %}
+    
     {# <script src="/js/manual/separateManufacturers.js"></script> #}
     {# <script src="/js/manual/highlightProduct.js"></script> #}
 {% endblock %}

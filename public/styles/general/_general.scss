@@ -11,3 +11,11 @@
 * {
     font-family: AzoSans;
 }
+
+a {
+    color: map-get($color, blue)
+}
+
+.title {
+    text-align: center;
+}

@@ -3,9 +3,9 @@
     display: flex;
     position: relative;
     /* The image used */
-    background-image: url('/images/highlighted.jpg');
+    background-image: url('/images/highlighted2.png');
     /* Set a specific height */
-    min-height: 40vh; 
+    min-height: 70vh; 
 
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
@@ -15,7 +15,6 @@
     background-position: bottom;
     // box-shadow: inset 0 -10px 15px -10px #000000;
     box-shadow: inset 0 0 10px #000000;
-    margin: 50px 0;
     h1 {
         position: absolute;
         bottom: 0;
