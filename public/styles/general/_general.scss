@@ -19,3 +19,7 @@ a {
 .title {
     text-align: center;
 }
+
+b {
+    color: map-get($color, blue)
+}

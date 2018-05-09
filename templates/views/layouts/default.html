@@ -33,9 +33,8 @@
 
 	<body>
 		{# HEADER #}
+        <div class="fakenav"></div>
 		<header>
-			{# Customise your site"s navigation by changing the navLinks Array in ./routes/middleware.js
-			   ... or completely change this header to suit your design. #}
 				<div class="content-section">
 					<div class="navbar-header">
 						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
@@ -81,9 +80,11 @@
 
 
 		{# FOOTER #}
-		<footer id="footer" class="container">
+		<footer id="footer">
+            <section class="content-section">
+			<p>Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.</p>            
+            </section>
 			{# You don"t _have_ to include a link saying your site is powered by KeystoneJS, but we appreciate it! #}
-			<p>Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.</p>
 		</footer>
 
 		<script src="/js/jquery/jquery-1.11.3.min.js"></script>

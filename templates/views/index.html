@@ -6,39 +6,23 @@
 
 {% block content %}
     <section id="manifesto">
-        <h1>We sell audio</h1>
+        <h3 class="message">We sell <b>unique</b> audio equipment</h3>
+        <div class="logo"></div>
     </section>
 
-	<section class="content-section">
-		<div class="jumbotron">
-			<img src="/images/logo.svg" width="160">
-			<h1>Welcome</h1>
-			<p>This is your new <a href="http://keystonejs.com" target="_blank">KeystoneJS</a> website.</p>
-			<p>
-				It includes the latest versions of
-				<a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>
-				and <a href="http://www.jquery.com/" target="_blank">jQuery</a>.
-			</p>
-			<p>Visit the <a href="http://keystonejs.com/guide" target="_blank">Getting Started</a> guide to learn how to customise it.</p>
-			<hr>
-			{% if user and user.canAccessKeystone %}
-				<p>
-					<a href="/keystone" class="btn btn-lg btn-primary">Open the Admin UI</a>
-				</p>
-			{% else %}
-				<p>Under maintenance</p>
-				<p>
-					<a href="/keystone/signin" style="margin-right: 10px" class="btn btn-lg btn-primary">Sign in</a>
-					to use the Admin UI.
-				</p>
-			{% endif %}
-			<hr>
-			<p>
-				Remember to <a href="https://github.com/keystonejs/keystone" target="_blank">Star KeystoneJS on GitHub</a> and
-				<a href="https://twitter.com/keystonejs" target="_blank">follow @keystonejs</a> on twitter for updates.
-			</p>
-            <p></p>
-		</div>
+	<section class="highlighted content-section">
+			<div class="highlighted__box">
+            <h1 class="highlighted__box--title">Newest products</h1>
+            {% for product in products %}
+            {{product}}
+            {% endfor %}
+            </div>
 	</section>
+
+    <figure class="mini-navigation content-section">
+        <a href="/products/" class="mini-navigation__button">All products</a>
+        <a href="" class="mini-navigation__button">Discounted products</a>
+    </figure>
+
     {# <script src="/js/manual/index.js"></script> #}
 {% endblock %}
