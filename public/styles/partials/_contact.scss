@@ -1,7 +1,7 @@
 .map {
     width: 100%;
     min-height: 45vh;
-    border-radius: 20px;
+    margin: 25px 0;
 }
 
 .contact {
@@ -22,5 +22,33 @@
                 }
             }
         }
+    }
+}
+
+.contact-box {
+    display: flex;
+    flex-wrap: wrap;
+
+    .contact-box__item--text {
+        flex-basis: 50%;
+    }
+
+    .contact-box__item--image-1 {
+        flex-basis: 50%;
+        min-height: 250px;        
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        background-image: url('/images/contact1.png')
+    }
+    .contact-box__item--image-2 {
+        flex-basis: 50%;
+        min-height: 250px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        background-image: url('/images/contact2.png')
     }
 }

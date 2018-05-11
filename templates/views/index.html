@@ -9,20 +9,60 @@
         <h3 class="message">We sell <b>unique</b> audio equipment</h3>
         <div class="logo"></div>
     </section>
-
-	<section class="highlighted content-section">
-			<div class="highlighted__box">
-            <h1 class="highlighted__box--title">Newest products</h1>
+    <figure class="title">
+    <h2 class="content-section">Nauji produktai</h2>    
+    </figure>
+	<section class="highlighted-products content-section">
+            {# looping through products #}
             {% for product in products %}
-            {{product}}
+            {# product variables #}
+            {% set manufacturerKey = product.Manufacturer.key %}
+            {% set manufacturerName = product.Manufacturer.name %}
+
+            <a href="/products/{{manufacturerKey}}/{{product.slug}}" class="items-box__item">
+                <div manufacturer="{{manufacturerName}}">
+                    {% if product.images %}
+                        <div class="items-box__item--main-image" style="background-image: url('{{product.images[0].secure_url}}')">
+                            <h5 class="items-box__item--title">
+                                {{manufacturerName}} - {{product.title}}
+                            </h5>
+                        </div>
+                    {% endif %}
+                </div>
+            </a>
             {% endfor %}
-            </div>
-	</section>
+    </section>
 
     <figure class="mini-navigation content-section">
         <a href="/products/" class="mini-navigation__button">All products</a>
         <a href="" class="mini-navigation__button">Discounted products</a>
     </figure>
+
+    <figure class="title">
+        <h3>Come and bring your favorite <b>cd</b> or <b>record</b></h3>
+    </figure>
+
+    <section class="maps">
+        <div class="map"></div>
+    </section>
+
+    <section class="contact-box content-section">
+    <div class="contact-box__item--text">
+        <h4 class="title">Contact information</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat turpis vel vulputate pharetra. Nunc in risus iaculis, accumsan urna vitae, vulputate diam. Nam et libero ut purus fringilla porttitor</p>
+    </div>
+    <div class="contact-box__item--image-1"></div>
+    <div class="contact-box__item--image-2"></div>
+    <div class="contact-box__item--text">
+        <h4 class="title">About Lyra</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat turpis vel vulputate pharetra. Nunc in risus iaculis, accumsan urna vitae, vulputate diam. Nam et libero ut purus fringilla porttitor</p>
+    </div>
+    </section>
+
+    <script src="/js/manual/googleMaps.js"></script>    
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHC5LsJZzajICjsHR3XHkXfzZqppGwYwA&callback=initMap">
+    </script>
 
     {# <script src="/js/manual/index.js"></script> #}
 {% endblock %}
