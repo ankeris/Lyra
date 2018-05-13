@@ -1,13 +1,15 @@
 var keystone = require('keystone');
+let Types = keystone.Field.Types;
 
 var ProductManufacturer = new keystone.List('ProductManufacturer', {
 	autokey: { from: 'name', path: 'key', unique: true },
 });
 
 ProductManufacturer.add({
-	name: { type: String, required: true },
+    name: { type: String, required: true },
+	image: { type: Types.CloudinaryImage },    
 });
-console.log('hi');
+
 // ProductManufacturer.relationship({ ref: 'Post', path: 'posts', refPath: 'categories' });
 ProductManufacturer.relationship({ ref: 'Product', path: 'products', refPath: 'Manufacturer' });
 

@@ -1,0 +1,50 @@
+.partners, .presentation {
+    text-align: center;
+
+    .partners__item, .presentation__item {
+        margin: 0;
+        padding: 5px 0;
+    }
+
+    .clickable__block {
+        cursor: pointer;
+        background-color: blue;
+        padding: 5% 50px;
+    }
+
+    .partners__button, .presentation__button {
+        width: 30px;
+        height: 30px;
+        background-color: black;
+        background-repeat: no-repeat;
+        background-size: 30px;
+        margin: 0 auto;
+    }
+
+    ul {
+        padding: 5% 5% 0 5%;
+
+        li {
+            display: inline-block;
+            width: 28%;
+            padding-bottom: 10px;
+
+            img {
+                width: 100px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .partners, .presentation {
+        text-align: center;
+
+        ul {
+            li {
+                display: inline-block;
+                width: 40%;
+            }
+        }
+    }
+}

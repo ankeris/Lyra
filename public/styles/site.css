@@ -6052,3 +6052,35 @@ header {
 
 .fakenav {
   height: 50px; }
+
+.partners, .presentation {
+  text-align: center; }
+  .partners .partners__item, .partners .presentation__item, .presentation .partners__item, .presentation .presentation__item {
+    margin: 0;
+    padding: 5px 0; }
+  .partners .clickable__block, .presentation .clickable__block {
+    cursor: pointer;
+    background-color: blue;
+    padding: 5% 50px; }
+  .partners .partners__button, .partners .presentation__button, .presentation .partners__button, .presentation .presentation__button {
+    width: 30px;
+    height: 30px;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    margin: 0 auto; }
+  .partners ul, .presentation ul {
+    padding: 5% 5% 0 5%; }
+    .partners ul li, .presentation ul li {
+      display: inline-block;
+      width: 28%;
+      padding-bottom: 10px; }
+      .partners ul li img, .presentation ul li img {
+        width: 100px; }
+
+@media screen and (max-width: 600px) {
+  .partners, .presentation {
+    text-align: center; }
+    .partners ul li, .presentation ul li {
+      display: inline-block;
+      width: 40%; } }

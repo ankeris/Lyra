@@ -69,15 +69,12 @@ exports = module.exports = function(req, res) {
                 $or: [
                     {'slug': regex},
                     {'title': regex},
-                    {'description': regex},
-                    {'Manufacturer.name': regex}
+                    {'description': regex}
                 ]
             }, function(err, results) {
                 if(err) {
                     next(err);
                 } else {
-                    console.log(regex);
-                    console.log(results);
                     locals.data.products.results = results;
                     next(err);
                 }
