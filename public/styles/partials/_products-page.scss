@@ -2,6 +2,7 @@
     display: flex;
     flex-wrap: wrap;
 }
+
 .search-form {
     max-width: 450px;
     margin: 20px auto;
@@ -36,6 +37,7 @@
         }
     }
 }
+
 .products {
     display: flex;
     flex-basis: 75%;
@@ -55,10 +57,11 @@
         width: 100%;
         height: 240px;
         overflow: auto;
-        // border: 2px solid rgb(224, 224, 224);
+        &:hover {
+            @include hover(black, 1px);
+        }
     }
 }
-
 
 .items-box__item--title {
     background-color: rgba($color: white, $alpha: 0.8);
