@@ -57,56 +57,45 @@
     </section>
 </div>
 
-    {% if data.products.totalPages > 1 %}
-        <ul class="pagination">
-            {% if data.products.previous %}
-                <li>
-                    <a href="?page={{ data.products.previous }}">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </a>
-                </li>
-            {% else %}
-                <li class="disabled">
-                    <a href="?page=1">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </a>
-                </li>
-            {% endif %}
-            {% for p in data.products.pages %} {% set class = ( "active" if data.products.currentPage == p else "" ) %}
-                <li class="{{ class }}">
-                    {% set page = ( (data.products.totalPages if i else 1) if p == "..." else p ) %}
-                    <a href="?page={{ page }}">{{ p }}</a>
-                </li>
-            {% endfor %}
-            {% if data.products.next %}
-                <li>
-                    <a href="?page={{ data.products.next }}">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                    </a>
-                </li>
-            {% else %}
-                <li class="disabled">
-                    <a href="?page={{ data.products.totalPages }}">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                    </a>
-                </li>
-            {% endif %}
-        </ul>
-    {% endif %}
+{% if data.products.totalPages > 1 %}
+<section class="content-section">
+    <ul class="pagination">
+        {% if data.products.previous %}
+            <li>
+                <a href="?page={{ data.products.previous }}">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </li>
+        {% else %}
+            <li class="disabled">
+                <a href="?page=1">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </li>
+        {% endif %}
+        {% for p in data.products.pages %} {% set class = ( "active" if data.products.currentPage == p else "" ) %}
+            <li class="{{ class }}">
+                {% set page = ( (data.products.totalPages if i else 1) if p == "..." else p ) %}
+                <a href="?page={{ page }}">{{ p }}</a>
+            </li>
+        {% endfor %}
+        {% if data.products.next %}
+            <li>
+                <a href="?page={{ data.products.next }}">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </li>
+        {% else %}
+            <li class="disabled">
+                <a href="?page={{ data.products.totalPages }}">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</section>
+{% endif %}
 
+{% include 'partials/manufacturers.html' %}
 
-    {# <script src="/js/manual/separateManufacturers.js"></script> #}
-    {# <script src="/js/manual/highlightProduct.js"></script> #}
 {% endblock %}
-
-                    {# Extra image collection #}
-                    {# <figure class="items-box__item-images">
-                    {% for image in product.images %}
-                        <img class="items-box__item-images--item" src="{{image.secure_url}}" alt=""
-                        width="50px" height="50px">
-                    {% endfor %}
-                    </figure> #}
-
-                    {# {% for category in product.ProductType %}
-                    <a href="/products/{{ category.key }}">{{ category.name }}</a>
-                    {% endfor %} #}

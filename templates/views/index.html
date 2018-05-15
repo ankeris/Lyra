@@ -59,24 +59,8 @@
     </div>
     </section>
 
-    <section class="manufacturers  content-section">
-        <div class="clickable__block">
-            <h3 class="partners__item">Brands we offer</h3>
-            <img src="/images/dropdown.svg" alt="" class="dropdownSVG">
-        </div>
+    {% include 'partials/manufacturers.html' %}
 
-        <section style="display: none;">
-        <ul class="">
-            {% for manufacturer in manufacturers %}
-            <li>
-                <a href="#" class="manufacturers-box_item">
-                    <img src="{{manufacturer.image.secure_url}}" alt="">
-                </a>
-            </li>
-            {% endfor %}
-        </ul>
-        </section>
-    </section>
     <script src="/js/manual/googleMaps.js"></script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHC5LsJZzajICjsHR3XHkXfzZqppGwYwA&callback=initMap">

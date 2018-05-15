@@ -1,17 +1,19 @@
 // effect variable
 const opacity = 0.4;
-// loop through all products (parent elements (wrappers))
-for (product of products) {
-    const [highlighted, allProds] = [product.querySelector('#currentHighlight'), product.querySelectorAll('.items-box__item-images--item')]
-    //loop through inner Extra Image Collection block
-    allProds.forEach(image => {
-        image.addEventListener('click', imageClicked => {
-            allProds.forEach(element => (element.style.opacity = 1)); //resets the opacity when toggle
-            highlighted.setAttribute("style", `background-image: url(${imageClicked.target.src})`);
-            highlighted.classList.add('fade-in');
-            // reset classname for highlighted element
-            setTimeout(() => highlighted.classList.remove('fade-in'), 500);
-            imageClicked.target.style.opacity = opacity;
-        });
-    });
+
+const highlighted = document.querySelector('#currentHighlight');
+const images = document.querySelectorAll('.items-box__item-images--item');
+
+images[0].style.opacity = opacity;
+
+images.forEach(img => img.addEventListener('click', changeImage));
+
+function changeImage(newImage) {
+    images.forEach(img => (img.style.opacity = 1))
+    highlighted.style.backgroundImage = `url('${newImage.target.src}')`;
+    highlighted.classList.add('fade-in');
+    newImage.target.style.opacity = opacity;
+    setTimeout(() => highlighted.classList.remove("fade-in"), 500);
 }
+
+console.log(highlighted.style.backgroundImage);

@@ -4,28 +4,37 @@
 	<title>Lyra - {{data.product.title}}</title>
 {% endblock %}
 
-{% block content%}
-<section class="container">
-    <div class="row">
-        <div class="col-md-12 col-lg-12">
-            <article>
-                <p><a href="/products">back to products</a></p>
-                <h1>{{data.product.title}}</h1>
-                <div class="row">
-                    <div class="col-md-6 col-lg-6">
-                        {% if data.product.image %}
-                        <img src="{{data.product.image.url}}" alt="" width="200">
-                        {% endif %}
-                        {% if data.product.description %}
-                        {{data.product.description|safe}}
-                        {% endif %}
-                    </div>
-                    <div class="col-md-6 col-lg-6">
-                        
-                    </div>
-                </div>
-            </article>
-        </div>
-    </div>
+{% block content %}
+
+{% include 'partials/search.html' %}
+
+<section class="product content-section">
+    <figure class="title">
+        <h3>{{data.product.title}}</h3>
+    </figure>
+
+    <section class="product-gallery">
+        {# Highlighted image #}
+        <div id="currentHighlight" class="items-box__item--main-image" style="background-image: url('{{data.product.images[0].secure_url}}')"></div>
+        {# Extra image collection #}
+        <figure class="items-box__item-images">
+        {% for image in data.product.images %}
+            <img class="items-box__item-images--item" src="{{image.secure_url}}" alt="">
+        {% endfor %}
+        </figure>
+    </section>
+
+    <article>
+        <p><a href="/products">back to products</a></p>
+        <h1>{{data.product.title}}</h1>
+                {% if data.product.image %}
+                <img src="{{data.product.image.url}}" alt="" width="200">
+                {% endif %}
+                {% if data.product.description %}
+                {{data.product.description|safe}}
+                {% endif %}
+    </article>
 </section>
+
+<script src="/js/manual/highlightProduct.js"></script>
 {% endblock %}
