@@ -9,10 +9,11 @@
 {% include 'partials/search.html' %}
 
 <section class="product content-section">
+<p><a href="/products">back to products</a></p>
     <figure class="title">
         <h3>{{data.product.title}}</h3>
     </figure>
-
+{% if data.product.images.length >= 1 %}
     <section class="product-gallery">
         {# Highlighted image #}
         <div id="currentHighlight" class="items-box__item--main-image" style="background-image: url('{{data.product.images[0].secure_url}}')"></div>
@@ -23,18 +24,34 @@
         {% endfor %}
         </figure>
     </section>
+{% else %}
+<h4>Sorry, there are no images of this product</h4>
+{% endif %}
 
-    <article>
-        <p><a href="/products">back to products</a></p>
-        <h1>{{data.product.title}}</h1>
-                {% if data.product.image %}
-                <img src="{{data.product.image.url}}" alt="" width="200">
-                {% endif %}
-                {% if data.product.description %}
-                {{data.product.description|safe}}
-                {% endif %}
+    <section class="description-nav">
+        <a class="description-nav__button normal active">Description</a>
+        <a class="description-nav__button technical">Technical description</a>
+    </section>
+
+    <article class="description-normal">
+        <h5>{{data.product.title}} aprašymas</h5>
+        {% if data.product.description %}
+        <div class="description-normal__text-box">
+        {{data.product.description|safe}}
+        </div>
+        {% endif %}
+    </article>
+
+    <article class="description-technical hidden">
+        <h5>{{data.product.title}} techninis aprašymas</h5>
+        {% if data.product.TechnicalDescription %}
+        <div class="description-normal__text-box">        
+        {{data.product.TechnicalDescription|safe}}
+        </div>
+        {% endif %}
     </article>
 </section>
 
+<script src="/js/manual/description.js"></script>
 <script src="/js/manual/highlightProduct.js"></script>
 {% endblock %}

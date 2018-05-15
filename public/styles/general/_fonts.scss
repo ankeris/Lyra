@@ -1,0 +1,29 @@
+@font-face {
+    font-family: AzoSans;
+    src: url('/fonts/azosans-light.otf');
+}
+
+* {
+    font-family: AzoSans;
+}
+p {
+    line-height: 1.5em;    
+}
+
+body {
+    font-size: 12pt;
+    line-height: 1.25em;
+}
+
+h1 {
+    font-size: 3em;
+}
+h2 {
+    font-size: 2.25em;
+}
+h3 {
+    font-size: 1.75em;
+}
+h4, h5, h6 {
+    font-size: 1.125em;
+}

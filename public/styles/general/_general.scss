@@ -2,15 +2,7 @@
 @import 'mixins';
 @import 'layout';
 @import 'animations';
-
-@font-face {
-    font-family: AzoSans;
-    src: url('/fonts/azosans-light.otf');
-}
-
-* {
-    font-family: AzoSans;
-}
+@import 'fonts';
 
 a {
     color: map-get($color, blue);
@@ -38,4 +30,8 @@ b {
 .rotate {
     transform: rotate(180deg);
     transition-duration: 1s;
+}
+
+.hidden {
+    display: none;
 }

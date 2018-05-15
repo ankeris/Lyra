@@ -12,16 +12,45 @@
         .items-box__item-images {
             .items-box__item-images--item {
                 cursor: pointer;
-                width: 7vh;
+                width: 8vh;
                 height: 50px;
-                border: 1px solid black;
+                border: 1px solid map-get($color, black);
                 object-fit: cover;
                 margin: 0 -2px;
             }
         }
     }
+    .description-normal__text-box {
+        max-width: 500px;
+    }
 }
 .fade-in {
     opacity: 0;
     animation: fadeIn 0.5s ease-in 1 forwards;    
+}
+
+.description-nav {
+    display: flex;
+    text-align: center;
+
+    .description-nav__button {
+        cursor: pointer;
+        flex-basis: 50%;        
+        background-color: map-get($color, darkgrey);
+        color: white;
+        margin: 25px 0;
+        padding: 16px;
+        &:hover {
+            @include hover(blue);
+        }
+    }
+
+    .active {
+        background-color: white;
+        color: black;
+        border-bottom: 0;
+        border-top: 1px solid map-get($color, darkgrey);
+        border-left: 1px solid map-get($color, darkgrey);
+        border-right: 1px solid map-get($color, darkgrey);
+    }
 }

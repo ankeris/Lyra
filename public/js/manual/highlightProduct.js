@@ -1,5 +1,5 @@
 // effect variable
-const opacity = 0.4;
+const opacity = 0.5;
 
 const highlighted = document.querySelector('#currentHighlight');
 const images = document.querySelectorAll('.items-box__item-images--item');
