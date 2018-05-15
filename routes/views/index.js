@@ -10,7 +10,7 @@ exports = module.exports = function (req, res) {
     locals.section = 'home';
 
     view.query('manufacturers', keystone.list('ProductManufacturer').model.find());
-    view.query('products', keystone.list('Product').model.find({Highlight: true}).sort('publishedDate').limit(4).populate('Manufacturer'));
+    view.query('products', keystone.list('Product').model.find({Highlight: true}).sort('publishedDate').limit(4).populate('Manufacturer ProductType'));
 	// Render the view
 	view.render('index');
 };

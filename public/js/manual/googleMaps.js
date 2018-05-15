@@ -21,4 +21,4 @@ function initMap() {
       });
 }
 let contentString = '<div id="content"><h4 id="firstHeading" class="firstH' +
-        'eading">Salonas Lyra</h4><div id="bodyContent"><p>Kęstučio g. 26, Vilnius</p><p>Tel.: (+370 5) 262 35 96</p><p></p></div>I - V - 10:00 - 19:00 val. VI - 10:00 - 15:00 val</div>';
+        'eading">Salonas Lyra</h4><div id="bodyContent"><p>Kęstučio g. 26, Vilnius</p><p><a href="tel:+37052623596">Tel.: (+370 5) 262 35 96</a></p><p></p></div>I - V - 10:00 - 19:00 val. VI - 10:00 - 15:00 val</div>';

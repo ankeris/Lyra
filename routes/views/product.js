@@ -6,11 +6,13 @@ exports = module.exports = function(req, res) {
 
     locals.section = 'products';
     locals.filters = {
-        product: req.params.product
+        product: req.params.product,
+        category: req.params.category
     }
 
     locals.data = {
-        products: []
+        products: [],
+        relatedproducts: [],
     }
 
     view.on('init', function(next) {
@@ -24,6 +26,24 @@ exports = module.exports = function(req, res) {
         });
     });
 
+    view.on('init', function(next){
+        keystone.list('ProductCategory').model.findOne({ key: locals.filters.category }).exec(function (err, result) {
+            locals.data.category = result;
+            next(err);
+        });
+    });
+
+    view.on('init', function(next){
+        let r = keystone.list('Product').model
+        .find()
+        .where('ProductType').in([locals.data.category])
+        .where('slug').ne([locals.filters.product])
+        .populate('Manufacturer ProductType')
+        .exec(function (err, result) {
+            locals.data.relatedproducts = result;
+            next(err);
+        });
+    });
 	// Render the view
 	view.render('product');
 }
