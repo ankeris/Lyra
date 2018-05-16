@@ -6,6 +6,7 @@
 
 a {
     color: map-get($color, blue);
+    font-weight: lighter;
     &:hover {
         text-decoration: none;
     }

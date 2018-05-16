@@ -12,11 +12,11 @@
         .items-box__item-images {
             .items-box__item-images--item {
                 cursor: pointer;
-                width: 8vh;
+                width: 10vh;
                 height: 50px;
-                border: 1px solid map-get($color, black);
-                object-fit: cover;
-                margin: 0 -2px;
+                // border: 1px solid map-get($color, black);
+                object-fit: contain;
+                margin: 0 5px;
             }
         }
     }
