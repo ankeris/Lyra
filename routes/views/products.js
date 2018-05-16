@@ -57,7 +57,7 @@ exports = module.exports = function(req, res) {
 			perPage: 9,
 			maxPages: 10,
         })
-        q.populate('Manufacturer').sort('Manufacturer')
+        q.populate('Manufacturer ProductType').sort('Manufacturer')
 
 		if (locals.data.category) {
 			q.where('ProductType').in([locals.data.category]);
@@ -75,6 +75,7 @@ exports = module.exports = function(req, res) {
                 if(err) {
                     next(err);
                 } else {
+                    console.log(results);
                     locals.data.products.results = results;
                     next(err);
                 }

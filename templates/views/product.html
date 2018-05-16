@@ -6,12 +6,14 @@
 
 {% block content %}
 
+
+<p class="content-section"><a href="/products">back to products</a></p>
+
 {% include 'partials/search.html' %}
 
 <section class="product content-section">
-<p><a href="/products">back to products</a></p>
 <figure class="title">
-    <h3>{{data.product.title}}</h3>
+    <h3>{{data.product.title}} - {{data.product.price}}€</h3>
 </figure>
 
 {% if data.product.images.length >= 1 %}
@@ -79,6 +81,8 @@
             </a>
             {% endfor %}
     </section>
+
+{# {% include 'partials/googlemaps.html' %} #}
 
 <script src="/js/manual/description.js"></script>
 <script src="/js/manual/highlightProduct.js"></script>

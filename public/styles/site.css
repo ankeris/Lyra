@@ -5879,6 +5879,9 @@ a {
   text-align: center;
   margin: 40px 0; }
 
+.center {
+  text-align: center; }
+
 b {
   color: #448AA6; }
 
@@ -6042,7 +6045,7 @@ b {
 .product .product-gallery {
   text-align: center; }
   .product .product-gallery .items-box__item--main-image {
-    margin: 0 auto;
+    margin: 5px auto;
     max-width: 670px;
     background-size: contain;
     background-repeat: no-repeat;
