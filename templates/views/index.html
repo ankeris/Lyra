@@ -6,17 +6,17 @@
 
 {% block content %}
     <section id="manifesto">
-        <h3 class="message">We sell <b>unique</b> audio equipment</h3>
+        <h3 class="message">{{globaldata.manifesto.phrase1}}<b>{{globaldata.manifesto.strongword}}</b> {{globaldata.manifesto.phrase2}}</h3>
         <div class="logo"></div>
     </section>
     <figure class="mini-navigation content-section">
-        <a href="/products/" class="mini-navigation__button">All products</a>
-        <a href="" class="mini-navigation__button">Discounted products</a>
+        <a href="/products/" class="mini-navigation__button">{{globaldata.mini_nav.button1}}</a>
+        <a href="" class="mini-navigation__button">{{globaldata.mini_nav.button2}}</a>
     </figure>
     {# <figure class="title">
     <h3 class="content-section">Nauji produktai</h3>    
     </figure> #}
-    
+    {{globaldata.title}}
 	<section class="highlighted-products content-section">
             {# looping through products #}
             {% for product in products %}
@@ -47,13 +47,13 @@
 
     <section class="contact-box content-section">
     <div class="contact-box__item--text">
-        <h4 class="title">Contact information</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat turpis vel vulputate pharetra. Nunc in risus iaculis, accumsan urna vitae, vulputate diam. Nam et libero ut purus fringilla porttitor</p>
+        <h4 class="title">About Lyra</h4>
+        <p>Lyra buvo įkūrta 1997-aisiais ir jos įkurimą lėmė aistra geram garsui, leidžiančiam kokybiškai mėgautis muzika ir giliai pasinerti į įvairiausius muzikos kūrinius ir jų atlikimus. Nuo pat įsikūrimo mūsų tikslas buvo pasiūlyti geriausią garso techniką, todėl metams bėgant mes įgijome ne tik milžinišką patirtį, bet ir surinkome į mūsų kolekciją geriausių gamintojų geriausius gaminius.</p>
     </div>
     <div class="contact-box__item--image-1"></div>
     <div class="contact-box__item--image-2"></div>
     <div class="contact-box__item--text">
-        <h4 class="title">About Lyra</h4>
+        <h4 class="title">Contact information</h4>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat turpis vel vulputate pharetra. Nunc in risus iaculis, accumsan urna vitae, vulputate diam. Nam et libero ut purus fringilla porttitor</p>
     </div>
     </section>

@@ -20,7 +20,7 @@ keystone.init({
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': '.html',
-	'custom engine': cons.nunjucks,
+    'custom engine': cons.nunjucks,
 
 	'auto update': true,
 	'session': true,
@@ -38,8 +38,11 @@ keystone.set('locals', {
 	_: require('lodash'),
 	env: keystone.get('env'),
 	utils: keystone.utils,
-	editable: keystone.content.editable,
+    editable: keystone.content.editable,
+    globaldata: require('./public/globaldata.json'),
 });
+
+keystone.set('port', 8080);
 
 // Load your project's Routes
 keystone.set('routes', require('./routes'));
