@@ -6,7 +6,7 @@
 
 {% block content %}
     <section id="manifesto">
-        <h3 class="message">{{globaldata.manifesto.phrase1}}<b>{{globaldata.manifesto.strongword}}</b> {{globaldata.manifesto.phrase2}}</h3>
+        <h3 class="message">{{globaldata.manifesto.phrase1}} <b>{{globaldata.manifesto.strongword}}</b> {{globaldata.manifesto.phrase2}}</h3>
         <div class="logo"></div>
     </section>
     <figure class="mini-navigation content-section">
@@ -40,21 +40,24 @@
     </section>
 
     <figure class="title">
-        <h3>Come and bring your favorite <b>cd</b> or <b>record</b></h3>
+        <h3>{{globaldata.invitation.sentence1}} <b>{{globaldata.invitation.strongword1}}</b> {{globaldata.invitation.sentence2}}<b> {{globaldata.invitation.strongword2}}</b></h3>
     </figure>
 
     {% include 'partials/googlemaps.html' %}
 
     <section class="contact-box content-section">
     <div class="contact-box__item--text">
-        <h4 class="title">About Lyra</h4>
-        <p>Lyra buvo įkūrta 1997-aisiais ir jos įkurimą lėmė aistra geram garsui, leidžiančiam kokybiškai mėgautis muzika ir giliai pasinerti į įvairiausius muzikos kūrinius ir jų atlikimus. Nuo pat įsikūrimo mūsų tikslas buvo pasiūlyti geriausią garso techniką, todėl metams bėgant mes įgijome ne tik milžinišką patirtį, bet ir surinkome į mūsų kolekciją geriausių gamintojų geriausius gaminius.</p>
+        <h4 class="title">{{globaldata.about.title1}}</h4>
+        <p>{{globaldata.about.description1}}</p>
     </div>
     <div class="contact-box__item--image-1"></div>
     <div class="contact-box__item--image-2"></div>
     <div class="contact-box__item--text">
-        <h4 class="title">Contact information</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat turpis vel vulputate pharetra. Nunc in risus iaculis, accumsan urna vitae, vulputate diam. Nam et libero ut purus fringilla porttitor</p>
+        <h4 class="title">{{globaldata.about.title2}}</h4>
+        <p>{{globaldata.about.description2}}</p>
+        {{globaldata.about.working_hr1}}<br>
+        {{globaldata.about.working_hr2}}<br>
+        {{globaldata.about.working_hr3}}</p>
     </div>
     </section>
 
