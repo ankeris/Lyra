@@ -8,9 +8,9 @@
 
 {% block content %}
 	{% if enquirySubmitted %}
-		<h3>Thanks for getting in touch.</h3>
+		<h3>Ačiū, greitu metu perskaitysime jūsų žinutę</h3>
 	{% else %}
-		<div class="contact">
+		<div class="contact content-section">
 			<form method="post" class="contact-form">
 				<input type="hidden" name="action" value="contact">
 				{% set class = ( "has-error" if validationErrors.name else "" ) %}
@@ -59,24 +59,12 @@
 		</div>
 	{% endif %}
 
-    <section class="maps">
-        <div class="map"></div>
-    </section>
+<figure class="title">
+    <h3>{{globaldata.invitation.sentence1}} <b>{{globaldata.invitation.strongword1}}</b> {{globaldata.invitation.sentence2}}<b> {{globaldata.invitation.strongword2}}</b></h3>
+</figure>
 
-    <script>
-      function initMap() {
-        var uluru = {lat: 54.693871, lng: 25.250628};
-        var map = new google.maps.Map(document.querySelector('.map'), {
-          zoom: 15,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHC5LsJZzajICjsHR3XHkXfzZqppGwYwA&callback=initMap">
-    </script>
+{% include 'partials/contact.html' %}
+
+{% include 'partials/googlemaps.html' %}
+
 {% endblock %}

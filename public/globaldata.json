@@ -1,4 +1,7 @@
 {
+    "titles": {
+        "products": "Lyra produktai"
+    },
     "manifesto": {
         "phrase1": "Mes parduodame",
         "strongword": "unikalią",
@@ -22,8 +25,9 @@
         "working_hr1": "Pirmadieniais - Penktadieniais: 10:00 - 19:00 val.",
         "working_hr2": "Šeštadieniais: 10:00 - 15:00 val.",
         "working_hr3": "Sekmadieniais nedirbame"
-        
-    }
+    },
+
+    "brands": "Siūlome šiuos prekių ženklus"
 }
 
 
