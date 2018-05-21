@@ -1,13 +1,22 @@
 {% extends "layouts/default.html" %}
 
 {% block intro %}
-	<div class="container">
-		<h1>brands</h1>
-	</div>
+	<figure class="title">
+		<h1>Brands</h1>
+	</figure>
 {% endblock %}
 
 {% block content %}
-	<div class="content-section">
-		<p>content</p>
-	</div>
+	<section class="manufacturers content-section">
+    {# Manufacturers are hidden default #}
+    <ul class="">
+        {% for manufacturer in manufacturers %}
+        <li>
+            <a href="#" class="manufacturers-box_item">
+                <img src="{{manufacturer.image.secure_url}}" alt="">
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    </section>
 {% endblock %}

@@ -3,6 +3,23 @@
     flex-wrap: wrap;
 }
 
+.sort-bar__box {
+    margin-bottom: 50px;
+    margin-top: 50px;
+    border-bottom: 3px solid whitesmoke;
+    text-align: right;
+    .sort-bar__box--button {
+        height: 35px;
+        text-align: center;
+        border-radius: none;
+        border: none;
+        &:hover {
+            @include hover(blue, 1px);
+            cursor: pointer;
+        }
+    }
+}
+
 .search-form {
     max-width: 450px;
     margin: 20px auto;

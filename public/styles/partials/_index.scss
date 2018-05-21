@@ -54,6 +54,11 @@
     .items-box__item {
         flex-basis: 45%;
         margin: 30px 0;
+        text-align: center;
+        .items-box__item--description {
+            font-family: AzoSansThin;
+            margin: 5px;
+        }
     }
 
     .items-box__item--main-image {

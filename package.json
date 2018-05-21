@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "async": "2.1.4",
+    "connect-mongo": "^2.0.1",
     "consolidate": "0.14.5",
     "dotenv": "4.0.0",
     "jquery": "^3.3.1",

@@ -21,6 +21,7 @@ keystone.init({
 	'views': 'templates/views',
 	'view engine': '.html',
     'custom engine': cons.nunjucks,
+    'session store': 'connect-mongo',
 
 	'auto update': true,
 	'session': true,

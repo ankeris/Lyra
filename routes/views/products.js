@@ -10,11 +10,12 @@ exports = module.exports = function(req, res) {
 
     locals.data = {
         products: [],
-        categories: []
+        categories: [],
+        sort: req.query.filterlist
     };
 
     locals.filters = {
-		category: req.params.category,
+        category: req.params.category,
     };
 
 	// Load all categories for side navigation
@@ -52,16 +53,26 @@ exports = module.exports = function(req, res) {
 
     // Load the products
     view.on('init', function (next) {
-		var q = keystone.list('Product').paginate({
+		let q = keystone.list('Product').paginate({
 			page: req.query.page || 1,
 			perPage: 9,
 			maxPages: 10,
         })
-        q.populate('Manufacturer ProductType').sort('Manufacturer')
+        q.populate('Manufacturer ProductType').sort(getSort());
 
 		if (locals.data.category) {
 			q.where('ProductType').in([locals.data.category]);
         }
+
+        function getSort() {
+            if (req.query.filterlist == "price-high") {
+                return {'price': -1};
+            } else if (req.query.filterlist == "price-low") {
+                return {'price': 1};
+            }
+        }
+            // console.log(req.query.filterlist);
+            // populate.sort(req.query.filterlist);
 
         if(req.query.search) {
             const regex = new RegExp(escapeRegex(req.query.search), 'gi');
@@ -69,7 +80,6 @@ exports = module.exports = function(req, res) {
                 $or: [
                     {'slug': regex},
                     {'title': regex},
-                    {'description': regex}
                 ]
             }, function(err, results) {
                 if(err) {
@@ -88,7 +98,7 @@ exports = module.exports = function(req, res) {
         }
 	});
     // Additionally query manufacturers for section
-    view.query('manufacturers', keystone.list('ProductManufacturer').model.find());    
+    view.query('manufacturers', keystone.list('ProductManufacturer').model.find());
 	// Render the view
 	view.render('products');
 };

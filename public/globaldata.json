@@ -27,7 +27,11 @@
         "working_hr3": "Sekmadieniais nedirbame"
     },
 
-    "brands": "Siūlome šiuos prekių ženklus"
+    "brands": "Siūlome šiuos prekių ženklus",
+
+    "product": {
+        "relatedTitle": "Susiję produktai"
+    }
 }
 
 

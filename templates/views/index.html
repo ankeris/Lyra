@@ -26,17 +26,18 @@
             {% set manufacturerName = product.Manufacturer.name %}
             {% set productTypeKey = product.ProductType[0].key %}
 
-            <a href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}" class="items-box__item">
+            <div class="items-box__item">
+            <a href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
                 <div manufacturer="{{manufacturerName}}">
                     {% if product.images %}
+                        {# Main image #}
                         <div class="items-box__item--main-image" style="background-image: url('{{product.images[0].secure_url}}')">
-                            <h5 class="items-box__item--title">
-                                {{manufacturerName}} - {{product.title}}
-                            </h5>
                         </div>
                     {% endif %}
                 </div>
             </a>
+            <p class="items-box__item--description">{{manufacturerName}} {{product.title}} <br>{{product.price}}€</p>
+            </div>
             {% endfor %}
     </section>
 

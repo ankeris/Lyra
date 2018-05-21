@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block intro %}
-		{% set title = ( data.category.name if data.category else "Produktai" ) %}
-        <div class="title">
-            <h3>{{ title }}</h3>
-        </div>
+	{% set title = ( data.category.name if data.category else "Produktai" ) %}
+    <div class="title">
+        <h3>{{ title }}</h3>
+    </div>
 {% endblock %}
 
 {% block content %}
@@ -18,6 +18,18 @@
         <button class="search-submit" type="submit">
     </section>
 </form>
+<h1>{{data.sort}}</h1>
+<figure class="sort-bar__box content-section">
+    <form action="/products" method="get">
+        <select name="filterlist" class="sort-bar__box--button" onchange="this.form.submit()">
+            <option>Rūšiuoti pagal</option>
+            <option value="price-high">Kaina: aukščiausia</option>
+            <option value="price-low">Kaina: žemiausia</option>
+            <option value="title-a">Pavadinimas: A-Ž</option>
+            <option value="title-z">Pavadinimas: Ž-A</option>
+        </select>
+    </form>
+</figure>
 
 <div class="products-wrapper content-section">
     {% if data.categories.length %}
@@ -27,7 +39,7 @@
                 <a href="/products" class="{{ class }} side-nav__list-box--item">All Categories</a>
                 {% for cat in data.categories %} {% set class = ( "active" if data.category and data.category.id == cat.id else "" ) %}
                             <a href="/products/{{ cat.key }}" class="{{ class }} side-nav__list-box--item">{{ cat.name }}
-                            <b>{{cat.postCount}}</b></a>
+                            <small>{{cat.postCount}}</small></a>
                 {% endfor %}
             </div>
         </aside>
@@ -41,6 +53,7 @@
             {% set manufacturerKey = product.Manufacturer.key %}
             {% set manufacturerName = product.Manufacturer.name %}
             {% set productTypeKey = product.ProductType[0].key %}
+
             <div class="items-box__item">
             <a href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
                 <div manufacturer="{{manufacturerName}}">

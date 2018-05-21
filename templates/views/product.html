@@ -6,14 +6,15 @@
 
 {% block content %}
 
-<p class="content-section"><a href="/products">back to products</a></p>
+<p class="content-section"><a href="/products">Grįžti</a></p>
 
 {% include 'partials/search.html' %}
 
 <section class="product content-section">
-<figure class="title">
-    <h3>{{data.product.title}} - {{data.product.price}}€</h3>
-</figure>
+
+    <figure class="title">
+        <h3>{{data.product.title}} - {{data.product.price}}€</h3>
+    </figure>
 
 {% if data.product.images.length >= 1 %}
     <section class="product-gallery">
@@ -31,8 +32,8 @@
 {% endif %}
 
     <section class="description-nav">
-        <a class="description-nav__button normal active">Description</a>
-        <a class="description-nav__button technical">Technical description</a>
+        <a class="description-nav__button normal active">Aprašymas</a>
+        <a class="description-nav__button technical">Techninis aprašymas</a>
     </section>
 
     <article class="description-normal">
@@ -55,7 +56,7 @@
 </section>
 
 <figure class="title">
-    <h3>Related products</h3>
+    <h3>{{globaldata.product.relatedTitle}}</h3>
 </figure>
 
 <section class="products related-products content-section">
