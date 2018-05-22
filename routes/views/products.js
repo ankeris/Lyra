@@ -14,6 +14,8 @@ exports = module.exports = function(req, res) {
         sort: req.query.filterlist
     };
 
+    console.log(req.query);
+
     locals.filters = {
         category: req.params.category,
     };
@@ -61,7 +63,7 @@ exports = module.exports = function(req, res) {
         q.populate('Manufacturer ProductType').sort(getSort());
 
 		if (locals.data.category) {
-			q.where('ProductType').in([locals.data.category]);
+			q.where('ProductType').in([locals.data.category]).sort(getSort());
         }
 
         function getSort() {

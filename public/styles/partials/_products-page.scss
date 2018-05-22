@@ -60,12 +60,13 @@
     display: flex;
     flex-basis: 75%;
     flex-wrap: wrap;
-    justify-content: space-between;
+    align-items: start;
 
     .items-box__item {
         flex-basis: 30%;
-        margin: 30px 0;
+        margin: 30px 1.6%;
         text-align: center;
+        flex-shrink: 1;
         .items-box__item--description {
             font-family: AzoSansThin;
             margin: 5px;

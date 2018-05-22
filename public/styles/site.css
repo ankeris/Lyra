@@ -6049,11 +6049,12 @@ b {
   display: flex;
   flex-basis: 75%;
   flex-wrap: wrap;
-  justify-content: space-between; }
+  align-items: start; }
   .products .items-box__item {
     flex-basis: 30%;
-    margin: 30px 0;
-    text-align: center; }
+    margin: 30px 1.6%;
+    text-align: center;
+    flex-shrink: 1; }
     .products .items-box__item .items-box__item--description {
       font-family: AzoSansThin;
       margin: 5px; }

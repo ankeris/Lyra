@@ -18,13 +18,23 @@
         <button class="search-submit" type="submit">
     </section>
 </form>
-<h1>{{data.sort}}</h1>
+
 <figure class="sort-bar__box content-section">
+    {% if data.category %}
+    <form action="/products/{{data.category.key}}" method="get">
+    {% else %}
     <form action="/products" method="get">
+    {% endif %}
         <select name="filterlist" class="sort-bar__box--button" onchange="this.form.submit()">
+            {% if data.sort == "price-high" %}
+            <option>Kaina: aukščiausia</option>
+            {% elif data.sort == "price-low" %}
+            <option>Kaina: žemiausia</option>
+            {% else %}
             <option>Rūšiuoti pagal</option>
-            <option value="price-high">Kaina: aukščiausia</option>
-            <option value="price-low">Kaina: žemiausia</option>
+            {% endif %}
+            {% if data.sort != "price-high" %}<option value="price-high">Kaina: aukščiausia</option> {% endif %}
+            {% if data.sort != "price-low" %}<option value="price-low">Kaina: žemiausia</option> {% endif %}
             <option value="title-a">Pavadinimas: A-Ž</option>
             <option value="title-z">Pavadinimas: Ž-A</option>
         </select>
@@ -75,13 +85,13 @@
     <ul class="pagination">
         {% if data.products.previous %}
             <li>
-                <a href="?page={{ data.products.previous }}">
+                <a href="?page={{ data.products.previous }}&filterlist={{data.sort}}">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </li>
         {% else %}
             <li class="disabled">
-                <a href="?page=1">
+                <a href="?page=1&filterlist={{data.sort}}">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </li>
@@ -89,12 +99,12 @@
         {% for p in data.products.pages %} {% set class = ( "active" if data.products.currentPage == p else "" ) %}
             <li class="{{ class }}">
                 {% set page = ( (data.products.totalPages if i else 1) if p == "..." else p ) %}
-                <a href="?page={{ page }}">{{ p }}</a>
+                <a href="?page={{ page }}&filterlist={{data.sort}}">{{ p }}</a>
             </li>
         {% endfor %}
         {% if data.products.next %}
             <li>
-                <a href="?page={{ data.products.next }}">
+                <a href="?page={{ data.products.next }}&filterlist={{data.sort}}">
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </a>
             </li>
