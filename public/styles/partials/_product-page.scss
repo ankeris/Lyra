@@ -1,3 +1,16 @@
+.get-back {
+    margin-top: 35px;
+    a {
+        padding: 15px 30px;
+        color: map-get($color, white);
+        background-color: map-get($color, darkgrey);
+        border: 1px solid map-get($color, black);
+        &:hover {
+            @include hover(blue, 5px);
+        }
+    }
+}
+
 .product {
     .product-gallery {
         text-align: center;
@@ -20,8 +33,19 @@
             }
         }
     }
-    .description-normal__text-box {
-        max-width: 500px;
+
+    .product-description {
+        display: flex;
+        flex-wrap: nowrap;
+
+        .left-side {
+            flex-basis: 45%;
+            margin-right: 5%;
+        }
+        .right-side {
+            text-align: right;
+            flex-basis: 50%;
+        }
     }
 }
 
@@ -54,5 +78,35 @@
         border-top: 1px solid map-get($color, darkgrey);
         border-left: 1px solid map-get($color, darkgrey);
         border-right: 1px solid map-get($color, darkgrey);
+    }
+}
+
+.related-products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+
+    .items-box__item {
+        flex-basis: 17%;
+        margin: 20px 3%;
+        text-align: center;
+        flex-shrink: 1;
+        .items-box__item--description {
+            font-family: AzoSansThin;
+            margin: 5px;
+        }
+    }
+
+    .items-box__item--main-image {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        width: 100%;
+        height: 240px;
+        overflow: auto;
+        &:hover {
+            @include hover(black, 1px);
+        }
     }
 }

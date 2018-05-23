@@ -21,7 +21,10 @@ a {
 }
 
 b {
-    color: map-get($color, blue)
+    color: map-get($color, blue);
+}
+.brown {
+    color: map-get($color, brown);
 }
 
 .dropdownSVG {

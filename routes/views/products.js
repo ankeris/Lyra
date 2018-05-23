@@ -63,7 +63,8 @@ exports = module.exports = function(req, res) {
         q.populate('Manufacturer ProductType').sort(getSort());
 
 		if (locals.data.category) {
-			q.where('ProductType').in([locals.data.category]).sort(getSort());
+            q.where('ProductType').in([locals.data.category]).sort(getSort());
+            console.log('hi');
         }
 
         function getSort() {
@@ -73,8 +74,6 @@ exports = module.exports = function(req, res) {
                 return {'price': 1};
             }
         }
-            // console.log(req.query.filterlist);
-            // populate.sort(req.query.filterlist);
 
         if(req.query.search) {
             const regex = new RegExp(escapeRegex(req.query.search), 'gi');

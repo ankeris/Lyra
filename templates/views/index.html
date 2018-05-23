@@ -14,9 +14,7 @@
         <a href="/products/" class="mini-navigation__button">{{globaldata.mini_nav.button1}}</a>
         <a href="" class="mini-navigation__button">{{globaldata.mini_nav.button2}}</a>
     </figure>
-    {# <figure class="title">
-    <h3 class="content-section">Nauji produktai</h3>    
-    </figure> #}
+
     {{globaldata.title}}
 	<section class="highlighted-products content-section">
             {# looping through products #}
@@ -36,7 +34,7 @@
                     {% endif %}
                 </div>
             </a>
-            <p class="items-box__item--description">{{manufacturerName}} {{product.title}} <br>{{product.price}}€</p>
+            <p class="items-box__item--description">{{manufacturerName}} - {{product.title}} <br>{{product.price}}€</p>
             </div>
             {% endfor %}
     </section>

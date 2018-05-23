@@ -31,12 +31,13 @@
             {% elif data.sort == "price-low" %}
             <option>Kaina: žemiausia</option>
             {% else %}
-            <option>Rūšiuoti pagal</option>
+            <option>Rūšiuoti pagal</option>            
+            {% endif %}
+            {% if data.sort %}
+            <option>Aktualumas</option>
             {% endif %}
             {% if data.sort != "price-high" %}<option value="price-high">Kaina: aukščiausia</option> {% endif %}
             {% if data.sort != "price-low" %}<option value="price-low">Kaina: žemiausia</option> {% endif %}
-            <option value="title-a">Pavadinimas: A-Ž</option>
-            <option value="title-z">Pavadinimas: Ž-A</option>
         </select>
     </form>
 </figure>
@@ -54,7 +55,6 @@
             </div>
         </aside>
     {% endif %}
-
     {# items box wrapper #}
     <section class="products">
             {# looping through products #}
@@ -74,13 +74,13 @@
                     {% endif %}
                 </div>
             </a>
-            <p class="items-box__item--description">{{manufacturerName}} {{product.title}} <br>{{product.price}}€</p>
+            <p class="items-box__item--description">{{manufacturerName}} - {{product.title}} <br>{{product.price}}€</p>
             </div>
             {% endfor %}
     </section>
 </div>
-
-{% if data.products.totalPages > 1 %}
+{{data.products.results.length}}
+{% if (data.products.totalPages > 1) and (data.products.results.length >= 9) %}
 <section class="content-section center">
     <ul class="pagination">
         {% if data.products.previous %}

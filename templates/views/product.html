@@ -6,7 +6,9 @@
 
 {% block content %}
 
-<p class="content-section"><a href="/products">Grįžti</a></p>
+<div class="get-back content-section">
+    <a href="/products">Atgal</a>
+</div>
 
 {% include 'partials/search.html' %}
 
@@ -36,21 +38,28 @@
         <a class="description-nav__button technical">Techninis aprašymas</a>
     </section>
 
-    <article class="description-normal">
-        <h5>{{data.product.title}} aprašymas</h5>
-        {% if data.product.description %}
-        <div class="description-normal__text-box">
-        {{data.product.description|safe}}
+    <article class="product-description description-normal">
+        <div class="left-side">
+            <h5>{{data.product.title}}</h5>
+            <br>
+            <h6>Gamintojas: <b class="brown">{{data.product.Manufacturer.name}}</b></h6>
+            <br>
+            {% if data.product.description %}
+            {{data.product.description|safe}}
+            {% endif %}
         </div>
-        {% endif %}
+        <div class="right-side">
+        Dėl šio produkto prašome susisiekti numeriu:
+        <p><a href="tel:+37052623596">Tel.: (+370 5) 262 35 96</a></p>
+        arba
+        <p><a href="/contact/">Asmenine žinute kontaktų puslapyje</a></p>
+        </div>
     </article>
 
     <article class="description-technical hidden">
         <h5>{{data.product.title}} techninis aprašymas</h5>
         {% if data.product.TechnicalDescription %}
-        <div class="description-normal__text-box">        
         {{data.product.TechnicalDescription|safe}}
-        </div>
         {% endif %}
     </article>
 </section>
@@ -59,7 +68,7 @@
     <h3>{{globaldata.product.relatedTitle}}</h3>
 </figure>
 
-<section class="products related-products content-section">
+<section class="related-products content-section">
             {# looping through products #}
             {% for relatedproduct in data.relatedproducts %}
             {# product variables #}
@@ -67,18 +76,17 @@
             {% set manufacturerName = relatedproduct.Manufacturer.name %}
             {% set productTypeKey = relatedproduct.ProductType[0].key %}
 
-            <a href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{relatedproduct.slug}}" class="items-box__item">
+            <div class="items-box__item">
+            <a href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{relatedproduct.slug}}">
                 <div manufacturer="{{manufacturerName}}">
                     {% if relatedproduct.images %}
                         {# Main image #}
-                        <div class="items-box__item--main-image" style="background-image: url('{{relatedproduct.images[0].secure_url}}')">
-                            <h5 class="items-box__item--title">
-                                {{manufacturerName}} - {{relatedproduct.title}}
-                            </h5>
-                        </div>
+                        <div class="items-box__item--main-image" style="background-image: url('{{relatedproduct.images[0].secure_url}}')"></div>
                     {% endif %}
                 </div>
             </a>
+            <p>{{manufacturerName}} - {{relatedproduct.title}}</p>
+            </div>
             {% endfor %}
     </section>
 
