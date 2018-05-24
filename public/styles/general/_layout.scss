@@ -5,14 +5,6 @@
 	z-index: 1;
 }
 
-#footer {
-	width: 100%;
-	margin: 0 auto;
-	border-top: 1px solid #eeeeee;
-	padding-top: 30px;
-	background-color: map-get($color, darkgrey);
-}
-
 .gallery-image img {
 	display: block;
 	max-width: 100%;
@@ -21,6 +13,6 @@
 
 @media screen and (max-width: 1123px) {
 	.content-section {
-        width: 95%;
-    }
+		width: 95%;
+	}
 }

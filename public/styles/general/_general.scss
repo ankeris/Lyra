@@ -3,42 +3,42 @@
 @import 'layout';
 @import 'animations';
 @import 'fonts';
-
 a {
-    color: map-get($color, blue);
-    &:hover {
-        text-decoration: none;
-    }
+	color: map-get($color, blue);
+	&:hover {
+		text-decoration: none;
+	}
 }
 
 .title {
-    text-align: center;
-    margin: 40px 0;
+	text-align: center;
+	margin: 40px 0;
 }
 
 .center {
-    text-align: center;
+	text-align: center;
 }
 
 b {
-    color: map-get($color, blue);
+	color: map-get($color, blue);
 }
+
 .brown {
-    color: map-get($color, brown);
+	color: map-get($color, brown);
 }
 
 .dropdownSVG {
-    fill: white;
-    width: 50px;
-    margin: 10px;
-    transition-duration: 1s;
+	fill: white;
+	width: 50px;
+	margin: 10px;
+	transition-duration: 1s;
 }
 
 .rotate {
-    transform: rotate(180deg);
-    transition-duration: 1s;
+	transform: rotate(180deg);
+	transition-duration: 1s;
 }
 
 .hidden {
-    display: none;
+	display: none;
 }

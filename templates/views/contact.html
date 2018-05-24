@@ -1,8 +1,8 @@
 {% extends "layouts/default.html" %}
 
 {% block intro %}
-	<div class="container">
-		<h1>Contact Us</h1>
+	<div class="title">
+		<h2>Susisiekite su mumis</h2>
 	</div>
 {% endblock %}
 
@@ -33,18 +33,6 @@
 						<input type="text" name="phone" value="{{ formData.phone }}" placeholder="(optional)">
 					</label>
 				</div>
-				{% set class = ( "has-error" if validationErrors.enquiryType else "" ) %}
-				<div class="form-group {{ class }}">
-					<label>
-						<span>What are you contacting us about?</span>
-						<select name="enquiryType">
-							<option value="">(select one)</option>
-							{% for type in enquiryTypes %}
-								{% set selected = ( 'selected="selected"' if formData.enquiryType == type.value else "" ) %}
-								<option value="{{type.value}}" {{ selected }}>{{ type.label }}</option>
-							{% endfor %}
-						</select>
-				</div>
 				{% set class = ( "has-error" if validationErrors.message else "" ) %}
 				<div class="form-group {{ class }}">
 					<label>
@@ -52,8 +40,8 @@
 						<textarea name="message" placeholder="Leave us a message..." rows="4">{{ formData.message }}</textarea>
 					</label>
 				</div>
-				<div class="form-actions">
-					<button type="submit" class="btn btn-primary">Send</button>
+				<div class="confirm-button">
+					<button type="submit">Siūsti</button>
 				</div>
 			</form>
 		</div>

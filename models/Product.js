@@ -20,5 +20,5 @@ Product.add({
     Highlight: {type: Types.Boolean},
 })
 
-Product.defaultColumns = 'title, ProductType, Manufacturer, images, TechnicalDescription';
+Product.defaultColumns = 'title, ProductType, Manufacturer, images, Highlight';
 Product.register();

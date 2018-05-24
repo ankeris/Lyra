@@ -1,0 +1,26 @@
+footer {
+	width: 100%;
+	margin: 0 auto;
+	border-top: 1px solid #eeeeee;
+	padding: 40px;
+	background-color: map-get($color, darkgrey);
+	p {
+		color: map-get($color, white);
+	}
+	.content-section {
+		display: flex;
+		.footer__right-side-box {
+			flex-basis: 50%;
+			text-align: right;
+			a img {
+                margin-left: 10px;
+                margin-bottom: 10px;
+				width: 70px;
+				height: 70px;
+			}
+		}
+		.footer__left-side-box {
+			flex-basis: 50%;
+		}
+	}
+}

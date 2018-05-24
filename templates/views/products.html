@@ -79,7 +79,6 @@
             {% endfor %}
     </section>
 </div>
-{{data.products.results.length}}
 {% if (data.products.totalPages > 1) and (data.products.results.length >= 9) %}
 <section class="content-section center">
     <ul class="pagination">
@@ -96,7 +95,8 @@
                 </a>
             </li>
         {% endif %}
-        {% for p in data.products.pages %} {% set class = ( "active" if data.products.currentPage == p else "" ) %}
+        {% for p in data.products.pages %}
+        {% set class = ( "active" if data.products.currentPage == p else "" ) %}
             <li class="{{ class }}">
                 {% set page = ( (data.products.totalPages if i else 1) if p == "..." else p ) %}
                 <a href="?page={{ page }}&filterlist={{data.sort}}">{{ p }}</a>

@@ -79,12 +79,7 @@
 
 
 		{# FOOTER #}
-		<footer id="footer">
-            <section class="content-section">
-			<p>Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.</p>            
-            </section>
-			{# You don"t _have_ to include a link saying your site is powered by KeystoneJS, but we appreciate it! #}
-		</footer>
+		{% include '../partials/footer.html' %}
 
 		<script src="/js/jquery/jquery-1.11.3.min.js"></script>
         <script src="/js/manual/manufacturersList.js"></script>
@@ -98,9 +93,6 @@
 			<script src="/keystone/js/content/editor.js"></script>
 		{% endif %}
 
-		{# Add scripts that are globally required by your site here. #}
-
-		{# Include template-specific javascript files by extending the js block #}
 		{% block js %}{% endblock %}
 	</body>
 </html>
