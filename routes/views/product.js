@@ -31,10 +31,11 @@ exports = module.exports = function (req, res) {
 		keystone.list('ProductCategory').model.findOne({
 			key: locals.filters.category
 		}).exec(function (err, result) {
-			locals.data.category = result;
+            locals.data.category = result;
 			next(err);
 		});
-	});
+    });
+
 	view.on('init', function (next) {
 		let r = keystone.list('Product').model
 			.find()

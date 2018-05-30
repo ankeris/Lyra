@@ -22,7 +22,7 @@ exports.initLocals = function (req, res, next) {
 		{ label: 'Naujienos', key: 'home', href: '/' },
 		{ label: 'Produktai', key: 'products', href: '/products' },
         { label: 'Kontaktai', key: 'contact', href: '/contact' },
-		{ label: 'Prekių ženklai', key: 'brands', href: '/brands' },
+        { label: 'Prekių ženklai', key: 'brands', href: '/brands' },
 	];
 	res.locals.user = req.user;
 	next();

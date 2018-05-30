@@ -28,7 +28,6 @@ exports = module.exports = function(req, res) {
             }
 
             locals.data.categories = results;
-
 			//Load the counts for each category (counts how much products every category contains)
 			async.each(locals.data.categories, function (category, next) {
 				keystone.list('Product').model.count().where('ProductType').in([category.id]).exec(function (err, count) {

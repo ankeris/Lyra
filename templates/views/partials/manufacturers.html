@@ -1,4 +1,4 @@
-<section class="manufacturers  content-section">
+<section class="manufacturers content-section">
     <div class="clickable__block">
         <h3 class="partners__item">{{globaldata.brands}}</h3>
         <img src="/images/dropdown.svg" alt="" class="dropdownSVG">
@@ -8,7 +8,7 @@
     <ul class="">
         {% for manufacturer in manufacturers %}
         <li>
-            <a href="#" class="manufacturers-box_item">
+            <a href="brands/{{manufacturer.key}}" class="manufacturers-box_item">
                 <img src="{{manufacturer.image.secure_url}}" alt="">
             </a>
         </li>

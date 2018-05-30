@@ -1,0 +1,34 @@
+{% extends "layouts/default.html" %}
+
+{% block intro %}
+	<figure class="title">
+		<h3>{{data.name}} produktai</h3>
+	</figure>
+{% endblock %}
+
+{% block content %}
+	<section class="content-section">
+    <section class="products">
+            {# looping through products #}
+            {% for product in data.products %}
+            {# product variables #}
+            {% set manufacturerKey = product.Manufacturer.key %}
+            {% set manufacturerName = product.Manufacturer.name %}
+            {% set productTypeKey = product.ProductType[0].key %}
+
+            <div class="items-box__item">
+            <a href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
+                <div manufacturer="{{manufacturerName}}">
+                    {% if product.images %}
+                        {# Main image #}
+                        <div class="items-box__item--main-image" style="background-image: url('{{product.images[0].secure_url}}')">
+                        </div>
+                    {% endif %}
+                </div>
+            </a>
+            <p class="items-box__item--description">{{manufacturerName}} - {{product.title}} <br>{{product.price}}€</p>
+            </div>
+            {% endfor %}
+    </section>
+    </section>
+{% endblock %}

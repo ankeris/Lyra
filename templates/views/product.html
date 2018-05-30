@@ -42,7 +42,7 @@
         <div class="left-side">
             <h5>{{data.product.title}}</h5>
             <br>
-            <h6>Gamintojas: <b class="brown">{{data.product.Manufacturer.name}}</b></h6>
+            <h6>Gamintojas: <a href="/brands/{{data.product.Manufacturer.key}}" class="brown">{{data.product.Manufacturer.name}}</a></h6>
             <br>
             {% if data.product.description %}
             {{data.product.description|safe}}
