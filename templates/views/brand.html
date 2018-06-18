@@ -2,12 +2,29 @@
 
 {% block intro %}
 	<figure class="title">
-		<h3>{{data.name}} produktai</h3>
+		{# <h3>{{data.name}} produktai</h3> #}
+        <img src="{{data.brand.image.secure_url}}" alt="">
 	</figure>
+    <figure class="content-section">
+    </figure>
 {% endblock %}
 
 {% block content %}
-	<section class="content-section">
+<section class="products-wrapper content-section">
+    {% if data.categories.length %}
+        <aside class="side-nav">
+            <div class="side-nav__list-box">
+                {% set class = ( "active" if not data.category else "" ) %}
+                <a href="/brands/{{data.brand.key}}" class="{{ class }} side-nav__list-box--item">All Categories</a>
+                {% for cat in data.categories %} {% set class = ( "active" if data.category and data.category.id == cat.id else "" ) %}
+                            {% if cat.postCount > 0 %}
+                            <a href="/brands/{{data.brand.key}}/{{ cat.key }}" class="{{ class }} side-nav__list-box--item">{{ cat.name }}
+                            <small>{{cat.postCount}}</small></a>
+                            {% endif %}
+                {% endfor %}
+            </div>
+        </aside>
+    {% endif %}
     <section class="products">
             {# looping through products #}
             {% for product in data.products %}
@@ -30,5 +47,5 @@
             </div>
             {% endfor %}
     </section>
-    </section>
+</section>
 {% endblock %}

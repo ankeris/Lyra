@@ -14,8 +14,6 @@ exports = module.exports = function(req, res) {
         sort: req.query.filterlist
     };
 
-    console.log(req.query);
-
     locals.filters = {
         category: req.params.category,
     };
@@ -40,7 +38,7 @@ exports = module.exports = function(req, res) {
 		});
     });
 
-    // Load the products for current category
+    // Load the current category Object
     view.on('init', function (next) {
     		if (req.params.category) {
 			keystone.list('ProductCategory').model.findOne({ key: locals.filters.category }).exec(function (err, result) {
@@ -60,10 +58,11 @@ exports = module.exports = function(req, res) {
 			maxPages: 10,
         })
         q.populate('Manufacturer ProductType').sort(getSort());
-
+        q.exec(function (err, results){
+            console.log(results);
+        })
 		if (locals.data.category) {
             q.where('ProductType').in([locals.data.category]).sort(getSort());
-            console.log('hi');
         }
 
         function getSort() {
@@ -85,7 +84,6 @@ exports = module.exports = function(req, res) {
                 if(err) {
                     next(err);
                 } else {
-                    console.log(results);
                     locals.data.products.results = results;
                     next(err);
                 }

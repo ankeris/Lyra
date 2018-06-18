@@ -79,7 +79,7 @@
             {% endfor %}
     </section>
 </div>
-{% if (data.products.totalPages > 1) and (data.products.results.length >= 9) %}
+{% if (data.products.totalPages > 1) %}
 <section class="content-section center">
     <ul class="pagination">
         {% if data.products.previous %}
