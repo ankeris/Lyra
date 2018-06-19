@@ -58,9 +58,7 @@ exports = module.exports = function(req, res) {
 			maxPages: 10,
         })
         q.populate('Manufacturer ProductType').sort(getSort());
-        q.exec(function (err, results){
-            console.log(results);
-        })
+
 		if (locals.data.category) {
             q.where('ProductType').in([locals.data.category]).sort(getSort());
         }

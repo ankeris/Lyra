@@ -6069,6 +6069,7 @@ b {
 
 .side-nav {
   flex-basis: 25%;
+  flex-flow: column row;
   margin: 30px 0; }
   .side-nav .active {
     background-color: #ececec; }

@@ -1,18 +1,16 @@
 //ajax
 // Load more products
-
 let currentPage = 1;
 
 function addNextPage(currentPage){
+
     currentPage++;
     let parameters = {
-          "currentPage": currentPage
-        };
+        "page": currentPage
+    };
 
-    $.get( "/products", parameters, function(data) {                                 
-        $.each(data, function (key) {
-            $(".products").append(data);
-        });
+    $.get("/products", parameters, function(data) {
+        $(".products").append($(data).find('.products .items-box__item'));
     });
 }
 
