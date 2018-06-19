@@ -1,0 +1,30 @@
+<figure class="sort-bar__box content-section">
+    {% if data.category %}
+    <form action="/products/{{data.category.key}}" method="get">
+    {% elif data.brand %}
+    <form action="/products/{{data.brand.key}}" method="get">
+    {% else %}
+    <form action="/products" method="get">
+    {% endif %}
+        <select name="filterlist" class="sort-bar__box--button" onchange="this.form.submit()">
+            <option>Gamintojas</option>
+            {% for manufacturer in manufacturers %}
+                    <option>{{manufacturer.name}}</option>
+            {% endfor %}
+        </select>
+        <select name="filterlist" class="sort-bar__box--button" onchange="this.form.submit()">
+            {% if data.sort == "price-high" %}
+            <option>Kaina: aukščiausia</option>
+            {% elif data.sort == "price-low" %}
+            <option>Kaina: žemiausia</option>
+            {% else %}
+            <option>Rūšiuoti pagal</option>            
+            {% endif %}
+            {% if data.sort %}
+            <option>Aktualumas</option>
+            {% endif %}
+            {% if data.sort != "price-high" %}<option value="price-high">Kaina: aukščiausia</option> {% endif %}
+            {% if data.sort != "price-low" %}<option value="price-low">Kaina: žemiausia</option> {% endif %}
+        </select>
+    </form>
+</figure>

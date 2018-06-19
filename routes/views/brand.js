@@ -16,7 +16,6 @@ exports = module.exports = function (req, res) {
         category: req.params.category
     }
 
-
     view.query('manufacturers', keystone.list('ProductManufacturer').model.find());
 
     view.on('init', function (next) {
@@ -57,7 +56,6 @@ exports = module.exports = function (req, res) {
         if (req.params.category) {
         keystone.list('ProductCategory').model.findOne({ key: locals.filters.category }).exec(function (err, result) {
             locals.data.category = result;
-            console.log(result);
             next(err);
         });
         } else {
@@ -66,23 +64,26 @@ exports = module.exports = function (req, res) {
     });
 
     view.on('init', function (next) {
-		let r = keystone.list('Product').model.find()
-            .populate('Manufacturer ProductType')
+		let r = keystone.list('Product').paginate({
+			page: req.query.page || 1,
+			perPage: 9,
+			maxPages: 10,
+        })
+        r.populate('Manufacturer ProductType')
 
-            r.where('Manufacturer').in([locals.data.brand]).exec(function (err, result) {
-		    	locals.data.products = result;
-                next(err);
-            });
+        r.where('Manufacturer').in([locals.data.brand]).exec(function (err, result) {
+            locals.data.products = result;
+            next(err);
+        });
 
         if (locals.data.category) {
             r.where('ProductType').in([locals.data.category]).exec(function (err, result) {
                 locals.data.products = result;
-                console.log(result);
                 next(err);
             });
         }
     });
-    
+
     // q.populate('Manufacturer ProductType').sort(getSort());
 
 	// Render the view

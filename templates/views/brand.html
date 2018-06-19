@@ -10,12 +10,15 @@
 {% endblock %}
 
 {% block content %}
+
+{% include 'partials/sort.html' %}
+
 <section class="products-wrapper content-section">
     {% if data.categories.length %}
         <aside class="side-nav">
             <div class="side-nav__list-box">
                 {% set class = ( "active" if not data.category else "" ) %}
-                <a href="/brands/{{data.brand.key}}" class="{{ class }} side-nav__list-box--item">All Categories</a>
+                <a href="/brands/{{data.brand.key}}" class="{{ class }} side-nav__list-box--item">Visi produktai</a>
                 {% for cat in data.categories %} {% set class = ( "active" if data.category and data.category.id == cat.id else "" ) %}
                             {% if cat.postCount > 0 %}
                             <a href="/brands/{{data.brand.key}}/{{ cat.key }}" class="{{ class }} side-nav__list-box--item">{{ cat.name }}
@@ -27,7 +30,7 @@
     {% endif %}
     <section class="products">
             {# looping through products #}
-            {% for product in data.products %}
+            {% for product in data.products.results %}
             {# product variables #}
             {% set manufacturerKey = product.Manufacturer.key %}
             {% set manufacturerName = product.Manufacturer.name %}
@@ -47,5 +50,16 @@
             </div>
             {% endfor %}
     </section>
+    {# Loading screen for products #}
+    <figure id="loading-content" class="canvas canvas6">
+        <div class="spinner6 p1"></div>
+        <div class="spinner6 p2"></div>
+        <div class="spinner6 p3"></div>
+        <div class="spinner6 p4"></div>
+    </figure>
 </section>
+<div class="variables" data-sort="{{data.sort}}" data-category="{{data.category.key}}" data-count="{{data.products.results.length}}" data-brand="{{data.brand.key}}"></div>
+<script src="/js/jquery/jquery-1.11.3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+<script src="/js/manual/loadmore.js"></script>
 {% endblock %}

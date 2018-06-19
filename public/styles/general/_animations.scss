@@ -6,34 +6,40 @@
 
 .fade-in {
     opacity: 0;
-	animation: fadeIn 0.5s ease-in 1 forwards;
+    animation: fadeIn 0.5s ease-in 1 forwards;
+    transition-duration: 0.5s;
+}
+@keyframes getBigger {
+    to {
+        margin: 25px auto;
+    }
 }
 
 // loading screen for products page
 .canvas {
-    margin: 25px auto;
+    margin: 0px auto;
+    animation: getBigger 0.5s ease-in 1 forwards;
     align-items: center;
     display: flex;
     justify-content: center;
     width: 10em;
-  }
-  
+}
   /* Spinner 6 starts here */
-  .spinner6 {
+.spinner6 {
     background: map-get($color, lightblue);
     border-radius: 30%;
     height: 1em;
     margin: .2em;
     width: 1em;
-  }
-  
-  .p1 {
+}
+
+.p1 {
     animation: fall 1s linear .3s infinite;
-  }
+}
   
-  .p2 {
+.p2 {
     animation: fall 1s linear .2s infinite;
-  }
+}
   
   .p3 {
     animation: fall 1s linear .1s infinite;
@@ -43,17 +49,17 @@
     animation: fall 1s linear infinite;
   }
   
-  @keyframes fall {
+@keyframes fall {
     0% {
-      transform: translateY(-15px);
+        transform: translateY(-15px);
     }
     25%, 75% {
-      transform: translateY(0);
+        transform: translateY(0);
     }
     100% {
-      transform: translateY(-15px);
+        transform: translateY(-15px);
     }
-  }
+}
   /* Spinner 6 ends here */
   
   @media (max-width: 600px) {

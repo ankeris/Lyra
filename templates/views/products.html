@@ -12,46 +12,32 @@
 {% endblock %}
 
 {% block content %}
-<form class="search-form content-section" action="/products" method="get">
-    <section class="search-box">
-        <input class="search-input" name="search" type="text" placeholder="search for a product...">
-        <button class="search-submit" type="submit">
-    </section>
-</form>
-<figure class="sort-bar__box content-section">
-    {% if data.category %}
-    <form action="/products/{{data.category.key}}" method="get">
-    {% else %}
-    <form action="/products" method="get">
-    {% endif %}
-        <select name="filterlist" class="sort-bar__box--button" onchange="this.form.submit()">
-            {% if data.sort == "price-high" %}
-            <option>Kaina: aukščiausia</option>
-            {% elif data.sort == "price-low" %}
-            <option>Kaina: žemiausia</option>
-            {% else %}
-            <option>Rūšiuoti pagal</option>            
-            {% endif %}
-            {% if data.sort %}
-            <option>Aktualumas</option>
-            {% endif %}
-            {% if data.sort != "price-high" %}<option value="price-high">Kaina: aukščiausia</option> {% endif %}
-            {% if data.sort != "price-low" %}<option value="price-low">Kaina: žemiausia</option> {% endif %}
-        </select>
-    </form>
-</figure>
+
+{% include 'partials/search.html' %}
+
+{% include 'partials/sort.html' %}
 
 <div class="products-wrapper content-section">
     {% if data.categories.length %}
         <aside class="side-nav">
-            <div class="side-nav__list-box">
                 {% set class = ( "active" if not data.category else "" ) %}
-                <a href="/products" class="{{ class }} side-nav__list-box--item">All Categories</a>
-                {% for cat in data.categories %} {% set class = ( "active" if data.category and data.category.id == cat.id else "" ) %}
-                            <a href="/products/{{ cat.key }}" class="{{ class }} side-nav__list-box--item">{{ cat.name }}
-                            <small>{{cat.postCount}}</small></a>
+                {# {% set hasSubCategories = ( "navigation-dropdown" if. . . else "" ) %} #}
+                <div class="manufacturers-dropdown navigation-dropdown">
+                    Gamintojai
+                    <img src="/images/dropdown.svg" alt="" class="dropdownSVG">
+                </div>
+                <section class="subcategory-box" style="display: none;">
+                {% for manufacturer in manufacturers %}
+                    <a href="/brands/{{manufacturer.key}}" class="subcategory-box__item">
+                        {{manufacturer.name}}
+                    </a>
                 {% endfor %}
-            </div>
+                </section>
+                <a href="/products" class="{{ class }} side-nav__list-box--item">Visi produktai</a>
+                {% for cat in data.categories %} {% set class = ( "active" if data.category and data.category.id == cat.id else "" ) %}
+                    <a href="/products/{{ cat.key }}" class="{{ class }} side-nav__list-box--item">{{ cat.name }}
+                    <small>{{cat.postCount}}</small></a>
+                {% endfor %}
         </aside>
     {% endif %}
     {# items box wrapper #}
@@ -63,7 +49,7 @@
             {% set manufacturerName = product.Manufacturer.name %}
             {% set productTypeKey = product.ProductType[0].key %}
 
-            <div class="items-box__item fade-in">
+            <div class="items-box__item fade-in appear">
             <a href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
                 <div manufacturer="{{manufacturerName}}">
                     {% if product.images %}
@@ -84,14 +70,11 @@
         <div class="spinner6 p3"></div>
         <div class="spinner6 p4"></div>
     </figure>
-
 </div>
 
 <div class="variables" data-sort="{{data.sort}}" data-category="{{data.category.key}}" data-count="{{data.products.results.length}}"></div>
 <script src="/js/jquery/jquery-1.11.3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
 <script src="/js/manual/loadmore.js"></script>
-
-{% include 'partials/manufacturers.html' %}
 
 {% endblock %}
