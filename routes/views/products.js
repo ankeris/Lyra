@@ -95,7 +95,7 @@ exports = module.exports = function(req, res) {
 	});
     // Additionally query manufacturers for section
     view.query('manufacturers', keystone.list('ProductManufacturer').model.find());
-	// Render the view
+    // Render the view
 	view.render('products');
 };
 

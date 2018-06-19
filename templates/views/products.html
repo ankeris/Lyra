@@ -18,7 +18,6 @@
         <button class="search-submit" type="submit">
     </section>
 </form>
-
 <figure class="sort-bar__box content-section">
     {% if data.category %}
     <form action="/products/{{data.category.key}}" method="get">
@@ -64,7 +63,7 @@
             {% set manufacturerName = product.Manufacturer.name %}
             {% set productTypeKey = product.ProductType[0].key %}
 
-            <div class="items-box__item">
+            <div class="items-box__item fade-in">
             <a href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
                 <div manufacturer="{{manufacturerName}}">
                     {% if product.images %}
@@ -78,46 +77,20 @@
             </div>
             {% endfor %}
     </section>
+    {# Loading screen for products #}
+    <figure id="loading-content" class="canvas canvas6">
+        <div class="spinner6 p1"></div>
+        <div class="spinner6 p2"></div>
+        <div class="spinner6 p3"></div>
+        <div class="spinner6 p4"></div>
+    </figure>
+
 </div>
-{% if (data.products.totalPages > 1) %}
-<section class="content-section center">
-    <ul class="pagination">
-        {% if data.products.previous %}
-            <li>
-                <a href="?page={{ data.products.previous }}&filterlist={{data.sort}}">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-            </li>
-        {% else %}
-            <li class="disabled">
-                <a href="?page=1&filterlist={{data.sort}}">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-            </li>
-        {% endif %}
-        {% for p in data.products.pages %}
-        {% set class = ( "active" if data.products.currentPage == p else "" ) %}
-            <li class="{{ class }}">
-                {% set page = ( (data.products.totalPages if i else 1) if p == "..." else p ) %}
-                <a href="?page={{ page }}&filterlist={{data.sort}}">{{ p }}</a>
-            </li>
-        {% endfor %}
-        {% if data.products.next %}
-            <li>
-                <a href="?page={{ data.products.next }}&filterlist={{data.sort}}">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                </a>
-            </li>
-        {% else %}
-            <li class="disabled">
-                <a href="?page={{ data.products.totalPages }}">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                </a>
-            </li>
-        {% endif %}
-    </ul>
-</section>
-{% endif %}
+
+<div class="variables" data-sort="{{data.sort}}" data-category="{{data.category.key}}" data-count="{{data.products.results.length}}"></div>
+<script src="/js/jquery/jquery-1.11.3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+<script src="/js/manual/loadmore.js"></script>
 
 {% include 'partials/manufacturers.html' %}
 

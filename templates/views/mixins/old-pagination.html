@@ -1,0 +1,39 @@
+{# {% if (data.products.totalPages > 1) %}
+<section class="content-section center">
+    <ul class="pagination">
+        {% if data.products.previous %}
+            <li>
+                <a href="?page={{ data.products.previous }}&filterlist={{data.sort}}">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </li>
+        {% else %}
+            <li class="disabled">
+                <a href="?page=1&filterlist={{data.sort}}">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </li>
+        {% endif %}
+        {% for p in data.products.pages %}
+        {% set class = ( "active" if data.products.currentPage == p else "" ) %}
+            <li class="{{ class }}">
+                {% set page = ( (data.products.totalPages if i else 1) if p == "..." else p ) %}
+                <a href="?page={{ page }}&filterlist={{data.sort}}">{{ p }}</a>
+            </li>
+        {% endfor %}
+        {% if data.products.next %}
+            <li>
+                <a href="?page={{ data.products.next }}&filterlist={{data.sort}}">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </li>
+        {% else %}
+            <li class="disabled">
+                <a href="?page={{ data.products.totalPages }}">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</section>
+{% endif %} #}

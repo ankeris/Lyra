@@ -5840,6 +5840,53 @@ button.close {
   to {
     opacity: 1; } }
 
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in 1 forwards; }
+
+.canvas {
+  margin: 25px auto;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 10em; }
+
+/* Spinner 6 starts here */
+.spinner6 {
+  background: #95c7dd;
+  border-radius: 30%;
+  height: 1em;
+  margin: .2em;
+  width: 1em; }
+
+.p1 {
+  animation: fall 1s linear .3s infinite; }
+
+.p2 {
+  animation: fall 1s linear .2s infinite; }
+
+.p3 {
+  animation: fall 1s linear .1s infinite; }
+
+.p4 {
+  animation: fall 1s linear infinite; }
+
+@keyframes fall {
+  0% {
+    transform: translateY(-15px); }
+  25%, 75% {
+    transform: translateY(0); }
+  100% {
+    transform: translateY(-15px); } }
+
+/* Spinner 6 ends here */
+@media (max-width: 600px) {
+  .container {
+    align-items: center;
+    flex-direction: column; }
+  .canvas {
+    margin: 1em; } }
+
 @font-face {
   font-family: AzoSansLight;
   src: url("/fonts/azosans-light.otf");
@@ -6145,10 +6192,6 @@ b {
   .product .product-description .right-side {
     text-align: right;
     flex-basis: 50%; }
-
-.fade-in {
-  opacity: 0;
-  animation: fadeIn 0.5s ease-in 1 forwards; }
 
 .description-nav {
   display: flex;
