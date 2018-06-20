@@ -6187,6 +6187,9 @@ b {
     cursor: pointer;
     flex-basis: 50%;
     background-color: #1f1f1f;
+    border-top: 1px solid #1f1f1f;
+    border-right: 1px solid #1f1f1f;
+    border-left: 1px solid #1f1f1f;
     color: white;
     margin: 25px 0;
     padding: 16px;
@@ -6196,7 +6199,6 @@ b {
   .description-nav .active {
     background-color: white;
     color: black;
-    border-bottom: 0;
     border-top: 1px solid #1f1f1f;
     border-left: 1px solid #1f1f1f;
     border-right: 1px solid #1f1f1f; }

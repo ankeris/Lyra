@@ -67,26 +67,26 @@
 </figure>
 
 <section class="related-products content-section">
-            {# looping through products #}
-            {% for relatedproduct in data.relatedproducts %}
-            {# product variables #}
-            {% set manufacturerKey = relatedproduct.Manufacturer.key %}
-            {% set manufacturerName = relatedproduct.Manufacturer.name %}
-            {% set productTypeKey = relatedproduct.ProductType[0].key %}
+    {# looping through products #}
+    {% for relatedproduct in data.relatedproducts %}
+    {# product variables #}
+    {% set manufacturerKey = relatedproduct.Manufacturer.key %}
+    {% set manufacturerName = relatedproduct.Manufacturer.name %}
+    {% set productTypeKey = relatedproduct.ProductType[0].key %}
 
-            <div class="items-box__item">
-            <a href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{relatedproduct.slug}}">
-                <div manufacturer="{{manufacturerName}}">
-                    {% if relatedproduct.images %}
-                        {# Main image #}
-                        <div class="items-box__item--main-image" style="background-image: url('{{relatedproduct.images[0].secure_url}}')"></div>
-                    {% endif %}
-                </div>
-            </a>
-            <p>{{manufacturerName}} - {{relatedproduct.title}}</p>
-            </div>
-            {% endfor %}
-    </section>
+    <div class="items-box__item">
+    <a href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{relatedproduct.slug}}">
+        <div manufacturer="{{manufacturerName}}">
+            {% if relatedproduct.images %}
+                {# Main image #}
+                <div class="items-box__item--main-image" style="background-image: url('{{relatedproduct.images[0].secure_url}}')"></div>
+            {% endif %}
+        </div>
+    </a>
+    <p>{{manufacturerName}} - {{relatedproduct.title}}</p>
+    </div>
+    {% endfor %}
+</section>
 
 {# {% include 'partials/googlemaps.html' %} #}
 
