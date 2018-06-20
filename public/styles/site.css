@@ -5880,7 +5880,8 @@ button.close {
 @keyframes fall {
   0% {
     transform: translateY(-15px); }
-  25%, 75% {
+  25%,
+  75% {
     transform: translateY(0); }
   100% {
     transform: translateY(-15px); } }
@@ -6054,8 +6055,11 @@ b {
       transition: 380ms cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
 .navbar,
-.navbar-default {
-  z-index: 10; }
+.navbar-default,
+.navbar-collapse {
+  z-index: 10;
+  padding-right: 15px;
+  padding-left: 0; }
 
 @media screen and (max-width: 700px) {
   .highlighted-products {
@@ -6078,7 +6082,7 @@ b {
 .sort-bar__box {
   margin-bottom: 50px;
   margin-top: 50px;
-  border-bottom: 3px solid whitesmoke;
+  border-bottom: 3px solid #e6e6e6;
   text-align: right; }
   .sort-bar__box .sort-bar__box--button {
     height: 35px;
@@ -6089,6 +6093,8 @@ b {
       box-shadow: inset 0 0 0 1px #448AA6;
       transition: 380ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
       cursor: pointer; }
+  .sort-bar__box select {
+    background-color: #e6e6e6; }
 
 .products {
   display: flex;
@@ -6122,43 +6128,6 @@ b {
   padding: 5px;
   text-align: center; }
 
-.side-nav {
-  flex-basis: 25%;
-  flex-flow: column row;
-  margin: 30px 0; }
-  .side-nav .manufacturers-dropdown {
-    background-color: #000000;
-    color: #fff;
-    cursor: pointer;
-    padding: 10px;
-    width: 82%; }
-    .side-nav .manufacturers-dropdown:hover {
-      box-shadow: inset 0 0 0 4px #448AA6;
-      transition: 380ms cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-    .side-nav .manufacturers-dropdown .dropdownSVG {
-      width: 20px;
-      margin: 2px;
-      float: right; }
-  .side-nav .active {
-    background-color: #ececec; }
-  .side-nav .side-nav__list-box--item {
-    padding: 10px;
-    width: 82%;
-    display: block; }
-    .side-nav .side-nav__list-box--item:hover {
-      background-color: #ececec; }
-  .side-nav .subcategory-box {
-    width: 82%;
-    font-size: 0.8em; }
-    .side-nav .subcategory-box .subcategory-box__item {
-      border-left: 1px solid #448AA6;
-      padding: 10px;
-      width: 90%;
-      display: block;
-      margin: 0 auto; }
-      .side-nav .subcategory-box .subcategory-box__item:hover {
-        background-color: #ececec; }
-
 @media screen and (max-width: 700px) {
   .products {
     display: flex;
@@ -6174,17 +6143,7 @@ b {
       overflow: auto; }
       .products .items-box__item--main-image:hover {
         box-shadow: inset 0 0 0 1px #000000;
-        transition: 380ms cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-  .side-nav {
-    flex-basis: 100%;
-    align-items: center;
-    justify-content: center;
-    flex-flow: column wrap;
-    align-content: center; }
-    .side-nav .side-nav__list-box--item {
-      width: 48%;
-      padding: 15px 0;
-      display: inline-block; } }
+        transition: 380ms cubic-bezier(0.175, 0.885, 0.32, 1.275); } }
 
 .get-back {
   margin-top: 35px; }
@@ -6490,3 +6449,58 @@ footer {
     width: 100%;
     min-height: 90vh;
     margin: 50px 0; } }
+
+.side-nav {
+  flex-basis: 25%;
+  flex-flow: column row;
+  margin: 30px 0; }
+  .side-nav .side-nav__box {
+    overflow-y: scroll;
+    max-height: 85vh; }
+    .side-nav .side-nav__box .side-nav__list-box--item {
+      padding: 10px;
+      width: 82%;
+      display: block; }
+      .side-nav .side-nav__box .side-nav__list-box--item:hover {
+        background-color: #e6e6e6; }
+    .side-nav .side-nav__box .manufacturers-dropdown {
+      background-color: #000000;
+      color: #fff;
+      cursor: pointer;
+      padding: 10px;
+      width: 82%; }
+      .side-nav .side-nav__box .manufacturers-dropdown:hover {
+        box-shadow: inset 0 0 0 4px #448AA6;
+        transition: 380ms cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+      .side-nav .side-nav__box .manufacturers-dropdown .dropdownSVG {
+        width: 20px;
+        margin: 2px;
+        float: right; }
+    .side-nav .side-nav__box .subcategory-box {
+      width: 82%;
+      font-size: 0.8em; }
+      .side-nav .side-nav__box .subcategory-box .subcategory-box__item {
+        border-left: 1px solid #448AA6;
+        padding: 10px;
+        width: 90%;
+        display: block;
+        margin: 0 auto; }
+        .side-nav .side-nav__box .subcategory-box .subcategory-box__item:hover {
+          background-color: #ececec; }
+  .side-nav .active {
+    background-color: #e6e6e6; }
+
+@media screen and (max-width: 700px) {
+  .side-nav {
+    flex-basis: 100%; }
+    .side-nav .side-nav__box {
+      align-items: center;
+      justify-content: center;
+      flex-flow: column wrap;
+      align-content: center; }
+      .side-nav .side-nav__box .side-nav__list-box--item {
+        width: 49%;
+        padding: 15px 0;
+        display: inline-block; }
+      .side-nav .side-nav__box .manufacturers-dropdown {
+        width: 100%; } }

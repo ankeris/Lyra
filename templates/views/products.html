@@ -18,28 +18,9 @@
 {% include 'partials/sort.html' %}
 
 <div class="products-wrapper content-section">
-    {% if data.categories.length %}
-        <aside class="side-nav">
-                {% set class = ( "active" if not data.category else "" ) %}
-                {# {% set hasSubCategories = ( "navigation-dropdown" if. . . else "" ) %} #}
-                <div class="manufacturers-dropdown navigation-dropdown">
-                    Gamintojai
-                    <img src="/images/dropdown.svg" alt="" class="dropdownSVG">
-                </div>
-                <section class="subcategory-box" style="display: none;">
-                {% for manufacturer in manufacturers %}
-                    <a href="/brands/{{manufacturer.key}}" class="subcategory-box__item">
-                        {{manufacturer.name}}
-                    </a>
-                {% endfor %}
-                </section>
-                <a href="/products" class="{{ class }} side-nav__list-box--item">Visi produktai</a>
-                {% for cat in data.categories %} {% set class = ( "active" if data.category and data.category.id == cat.id else "" ) %}
-                    <a href="/products/{{ cat.key }}" class="{{ class }} side-nav__list-box--item">{{ cat.name }}
-                    <small>{{cat.postCount}}</small></a>
-                {% endfor %}
-        </aside>
-    {% endif %}
+
+    {% include 'partials/sideNavigation.html' %}
+
     {# items box wrapper #}
     <section class="products">
             {# looping through products #}
@@ -64,12 +45,7 @@
             {% endfor %}
     </section>
     {# Loading screen for products #}
-    <figure id="loading-content" class="canvas canvas6">
-        <div class="spinner6 p1"></div>
-        <div class="spinner6 p2"></div>
-        <div class="spinner6 p3"></div>
-        <div class="spinner6 p4"></div>
-    </figure>
+    {% include 'partials/loadingspinner.html' %}
 </div>
 
 <div class="variables" data-sort="{{data.sort}}" data-category="{{data.category.key}}" data-count="{{data.products.results.length}}"></div>

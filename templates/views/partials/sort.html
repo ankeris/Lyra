@@ -6,12 +6,12 @@
     {% else %}
     <form action="/products" method="get">
     {% endif %}
-        <select name="filterlist" class="sort-bar__box--button" onchange="this.form.submit()">
+        {# <select name="filterlist" class="sort-bar__box--button" onchange="this.form.submit()">
             <option>Gamintojas</option>
             {% for manufacturer in manufacturers %}
                     <option>{{manufacturer.name}}</option>
             {% endfor %}
-        </select>
+        </select> #}
         <select name="filterlist" class="sort-bar__box--button" onchange="this.form.submit()">
             {% if data.sort == "price-high" %}
             <option>Kaina: aukščiausia</option>

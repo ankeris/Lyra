@@ -6,7 +6,7 @@
 .sort-bar__box {
 	margin-bottom: 50px;
 	margin-top: 50px;
-	border-bottom: 3px solid whitesmoke;
+	border-bottom: 3px solid map-get($color, lightgrey);
 	text-align: right;
 	.sort-bar__box--button {
 		height: 35px;
@@ -18,18 +18,21 @@
 			cursor: pointer;
 		}
 	}
+	select {
+		background-color: map-get($color, lightgrey);
+	}
 }
 
 .products {
 	display: flex;
 	flex-basis: 75%;
 	flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: start;
+	justify-content: space-between;
+	align-content: start;
 	.items-box__item {
 		flex-basis: 30%;
-        margin: 30px 0;
-        overflow: hidden;
+		margin: 30px 0;
+		overflow: hidden;
 		text-align: center;
 		flex-shrink: 1;
 		.items-box__item--description {
@@ -57,52 +60,6 @@
 	text-align: center;
 }
 
-.side-nav {
-    .manufacturers-dropdown {
-        background-color: map-get($color, black);
-        color: map-get($color, white);
-        cursor: pointer;
-        padding: 10px;
-        width: 82%;
-        &:hover {
-			@include hover(blue, 4px);
-        }
-        .dropdownSVG {
-            width: 20px;
-            margin: 2px;
-            float: right;
-        }
-    }
-    flex-basis: 25%;
-    flex-flow: column row;
-	margin: 30px 0;
-	.active {
-		background-color: #ececec;
-	}
-	.side-nav__list-box--item {
-		padding: 10px;
-		width: 82%;
-		display: block;
-		&:hover {
-			background-color: #ececec;
-		}
-    }
-    .subcategory-box {
-        width: 82%;
-        font-size: 0.8em;
-        .subcategory-box__item {
-            border-left: 1px solid map-get($color, blue);
-            padding: 10px;
-		    width: 90%;
-            display: block;
-            margin: 0 auto;
-            &:hover {
-                background-color: #ececec;
-            }
-        }
-    }
-}
-
 @media screen and (max-width: 700px) {
 	.products {
 		display: flex;
@@ -120,18 +77,6 @@
 			&:hover {
 				@include hover(black, 1px);
 			}
-		}
-	}
-	.side-nav {
-		flex-basis: 100%;
-		align-items: center;
-		justify-content: center;
-		flex-flow: column wrap;
-		align-content: center;
-		.side-nav__list-box--item {
-			width: 48%;
-			padding: 15px 0;
-			display: inline-block;
 		}
 	}
 }
