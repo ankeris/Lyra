@@ -9,7 +9,6 @@ $('.navigation-dropdown').click(function () {
 const el = document.querySelector('.side-nav__box');
 const elTop = el.getBoundingClientRect().top - document.body.getBoundingClientRect().top - 60;
 const mq = window.matchMedia("(max-width: 700px)");
-console.log(mq);
 
 window.addEventListener('scroll', function () {
     if (mq) {

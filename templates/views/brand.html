@@ -41,8 +41,8 @@
                 <div manufacturer="{{manufacturerName}}">
                     {% if product.images %}
                         {# Main image #}
-                        <div class="items-box__item--main-image" style="background-image: url('{{product.images[0].secure_url}}')">
-                        </div>
+                        <img class="items-box__item--main-image" src="{{product.images[0].secure_url}}">
+                        </img>
                     {% endif %}
                 </div>
             </a>

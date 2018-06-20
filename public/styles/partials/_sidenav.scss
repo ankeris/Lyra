@@ -1,10 +1,10 @@
 .side-nav {
 	flex-basis: 25%;
-    flex-flow: column row;
-    margin: 30px 0;
+	flex-flow: column row;
+	margin: 30px 0;
 	.side-nav__box {
 		overflow-y: scroll;
-        max-height: 85vh;
+		max-height: 85vh;
 		.side-nav__list-box--item {
 			padding: 10px;
 			width: 82%;
@@ -14,13 +14,13 @@
 			}
 		}
 		.manufacturers-dropdown {
-			background-color: map-get($color, black);
+			background-color: map-get($color, darkgrey);
 			color: map-get($color, white);
 			cursor: pointer;
 			padding: 10px;
 			width: 82%;
 			&:hover {
-				@include hover(blue, 4px);
+				@include hover(blue, 5px);
 			}
 			.dropdownSVG {
 				width: 20px;
@@ -42,27 +42,31 @@
 				}
 			}
 		}
-    }
-    .active {
-        background-color: map-get($color, lightgrey);
-    }
+	}
+	.active {
+		// border: 2px outset map-get($color, darkgrey);
+		// font-weight: bold;
+		// background-color: whitesmoke;
+		box-shadow: inset 0 0 10px #000000;
+	}
 }
+
 @media screen and (max-width: 700px) {
 	.side-nav {
-        flex-basis: 100%;
-        .side-nav__box {
-            align-items: center;
-            justify-content: center;
-            flex-flow: column wrap;
-            align-content: center;
-            .side-nav__list-box--item {
-                width: 49%;
-                padding: 15px 0;
-                display: inline-block;
-            }
-            .manufacturers-dropdown {
-                width: 100%;
-            }
-        }
-    }
+		flex-basis: 100%;
+		.side-nav__box {
+			align-items: center;
+			justify-content: center;
+			flex-flow: column wrap;
+			align-content: center;
+			.side-nav__list-box--item {
+				width: 49%;
+				padding: 15px 0;
+				display: inline-block;
+			}
+			.manufacturers-dropdown {
+				width: 100%;
+			}
+		}
+	}
 }

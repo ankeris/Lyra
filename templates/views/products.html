@@ -32,13 +32,11 @@
 
             <div class="items-box__item fade-in appear">
             <a href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
-                <div manufacturer="{{manufacturerName}}">
-                    {% if product.images %}
-                        {# Main image #}
-                        <div class="items-box__item--main-image" style="background-image: url('{{product.images[0].secure_url}}')">
-                        </div>
-                    {% endif %}
-                </div>
+                {% if product.images %}
+                    {# Main image #}
+                    <img class="items-box__item--main-image" src="{{product.images[0].secure_url}}">
+                    </img>
+                {% endif %}
             </a>
             <p class="items-box__item--description">{{product.title}} - {{manufacturerName}} <br>{{product.price}}€</p>
             </div>
@@ -51,6 +49,7 @@
 <div class="variables" data-sort="{{data.sort}}" data-category="{{data.category.key}}" data-count="{{data.products.results.length}}"></div>
 <script src="/js/jquery/jquery-1.11.3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+<script src="/js/imagesloaded/imagesloaded.pkgd.min.js"></script>
 <script src="/js/manual/loadmore.js"></script>
 
 {% endblock %}

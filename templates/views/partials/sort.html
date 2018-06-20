@@ -2,7 +2,7 @@
     {% if data.category %}
     <form action="/products/{{data.category.key}}" method="get">
     {% elif data.brand %}
-    <form action="/products/{{data.brand.key}}" method="get">
+    <form action="/brands/{{data.brand.key}}" method="get">
     {% else %}
     <form action="/products" method="get">
     {% endif %}
