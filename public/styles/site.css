@@ -6456,9 +6456,10 @@ footer {
     overflow-y: scroll;
     max-height: 85vh; }
     .side-nav .side-nav__box .side-nav__list-box--item {
-      padding: 10px;
+      padding: 11px;
       width: 82%;
-      display: block; }
+      display: block;
+      line-height: 1; }
       .side-nav .side-nav__box .side-nav__list-box--item:hover {
         background-color: #e6e6e6; }
     .side-nav .side-nav__box .manufacturers-dropdown {
@@ -6486,7 +6487,7 @@ footer {
         .side-nav .side-nav__box .subcategory-box .subcategory-box__item:hover {
           background-color: #ececec; }
   .side-nav .active {
-    box-shadow: inset 0 0 10px #000000; }
+    background-color: #e6e6e6; }
 
 @media screen and (max-width: 700px) {
   .side-nav {

@@ -82,16 +82,16 @@ exports = module.exports = function (req, res) {
 
 		function getSort() {
 			if (req.query.filterlist == "price-high") {
-				return { 'price': -1 };
+                return { 'price': -1 };
 			} else if (req.query.filterlist == "price-low") {
-				return { 'price': 1 };
+                return { 'price': 1 };
 			}
         }
 
 		if (locals.data.category) {
 			r.where('ProductType').in([locals.data.category]).exec(function (err, result) {
 				locals.data.products = result;
-				next(err);
+				// next(err);
 			});
 		}
 	});

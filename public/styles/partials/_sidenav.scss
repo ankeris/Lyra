@@ -6,9 +6,10 @@
 		overflow-y: scroll;
 		max-height: 85vh;
 		.side-nav__list-box--item {
-			padding: 10px;
+			padding: 11px;
 			width: 82%;
-			display: block;
+            display: block;
+            line-height: 1;
 			&:hover {
 				background-color: map-get($color, lightgrey);
 			}
@@ -44,10 +45,11 @@
 		}
 	}
 	.active {
-		// border: 2px outset map-get($color, darkgrey);
+        // border: 0.5px dotted map-get($color, darkgrey);
+        background-color: map-get($color, lightgrey);
 		// font-weight: bold;
 		// background-color: whitesmoke;
-		box-shadow: inset 0 0 10px #000000;
+        // box-shadow: inset 0 0 10px #000000;
 	}
 }
 
