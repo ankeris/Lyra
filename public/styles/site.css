@@ -6000,22 +6000,6 @@ b {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     margin: 0; }
-  #manifesto .logo {
-    position: absolute;
-    width: 120px;
-    height: 70px;
-    left: 50%;
-    top: 0;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-    background-image: url("/images/logo.svg");
-    background-size: contain;
-    background-size: 70%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 40px;
-    margin: 0; }
 
 .highlighted-products {
   display: flex;
@@ -6053,13 +6037,6 @@ b {
     .mini-navigation .mini-navigation__button:hover {
       box-shadow: inset 0 0 0 6px #448AA6;
       transition: 380ms cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-
-.navbar,
-.navbar-default,
-.navbar-collapse {
-  z-index: 10;
-  padding-right: 15px;
-  padding-left: 0; }
 
 @media screen and (max-width: 700px) {
   .highlighted-products {
@@ -6326,24 +6303,6 @@ b {
   .contact .contact-form {
     width: 100%; } }
 
-header {
-  width: 100%;
-  background-color: #1f1f1f;
-  position: fixed;
-  top: 0;
-  z-index: 1; }
-  header a {
-    color: #fff;
-    transition: 90ms; }
-    header a:hover {
-      transition: 90ms;
-      background-color: #8C543F; }
-  header .icon-bar {
-    background-color: white; }
-
-.fakenav {
-  height: 50px; }
-
 footer {
   width: 100%;
   margin: 0 auto;
@@ -6503,3 +6462,64 @@ footer {
         display: inline-block; }
       .side-nav .side-nav__box .manufacturers-dropdown {
         width: 100%; } }
+
+.navbar,
+.navbar-default,
+.navbar-collapse {
+  z-index: 10;
+  padding-right: 15px;
+  padding-left: 0; }
+
+header {
+  width: 100%;
+  background-color: #1f1f1f;
+  position: fixed;
+  top: 0;
+  z-index: 1; }
+  header a {
+    color: #fff;
+    transition: 1s;
+    transition-timing-function: ease; }
+    header a:hover {
+      transition: 90ms;
+      background-color: #fff; }
+  header .icon-bar {
+    background-color: white; }
+
+.fakenav {
+  height: 50px; }
+
+.logo {
+  position: absolute;
+  width: 120px;
+  height: 70px;
+  left: 50%;
+  top: 0;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  background-image: url("/images/logo.svg");
+  background-size: contain;
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 40px;
+  margin: 0; }
+
+.logoSmall {
+  position: absolute;
+  width: 80px;
+  height: 100%;
+  left: 50%;
+  top: 0;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  background-image: url("/images/logoWhite.svg");
+  background-size: contain;
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #1f1f1f;
+  margin: 0; }
+  .logoSmall:hover {
+    background-image: url("/images/logo.svg"); }

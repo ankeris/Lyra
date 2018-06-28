@@ -1,0 +1,68 @@
+.navbar,
+.navbar-default,
+.navbar-collapse {
+	z-index: 10;
+	padding-right: 15px;
+	padding-left: 0;
+}
+
+header {
+	width: 100%;
+	background-color: map-get($color, darkgrey);
+	position: fixed;
+	top: 0;
+	z-index: 1;
+	a {
+		color: map-get($color, white);
+        transition: 1s;
+        transition-timing-function: ease;
+		&:hover {
+			transition: 90ms;
+			background-color: map-get($color, white);
+		}
+	}
+	.icon-bar {
+		background-color: white;
+	}
+}
+
+.fakenav {
+	height: 50px;
+}
+
+.logo {
+	position: absolute;
+	width: 120px;
+	height: 70px;
+	left: 50%;
+	top: 0;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+	background-image: url('/images/logo.svg');
+	background-size: contain;
+	background-size: 70%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: rgba(255, 255, 255, 0.8);
+	padding: 40px;
+	margin: 0;
+}
+.logoSmall {
+    position: absolute;
+    width: 80px;
+    height: 100%;
+	left: 50%;
+	top: 0;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+	background-image: url('/images/logoWhite.svg');
+	background-size: contain;
+	background-size: 70%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: map-get($color, darkgrey);
+    margin: 0;
+    &:hover {
+	    background-image: url('/images/logo.svg');
+    }
+}

@@ -19,10 +19,16 @@ var _ = require('lodash');
 */
 exports.initLocals = function (req, res, next) {
 	res.locals.navLinks = [
-		{ label: 'Naujienos', key: 'home', href: '/' },
-		{ label: 'Produktai', key: 'products', href: '/products' },
-        { label: 'Kontaktai', key: 'contact', href: '/contact' },
+		// { label: 'Naujienos', key: 'home', href: '/' },
+        { label: 'Produktai', key: 'products', href: '/products' },
         { label: 'Prekių ženklai', key: 'brands', href: '/brands' },
+        { label: 'Pasiūlymai', key: 'pasiulymai', href: '/pasiulymai' },
+    ];
+    res.locals.navLinksTwo = [
+		// { label: 'Naujienos', key: 'home', href: '/' },
+        { label: 'Naujienos', key: 'naujienos', href: '/naujienos' },
+        { label: 'Apie mus', key: 'apiemus', href: '/apie-mus' },
+        { label: 'Kontaktai', key: 'contact', href: '/contact' },
 	];
 	res.locals.user = req.user;
 	next();

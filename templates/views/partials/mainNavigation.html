@@ -1,0 +1,33 @@
+{# Fake nav is there to push whole layout 50px down #}
+<div class="fakenav"></div>
+{# Actual Navigation #}
+<header class="main-navigation">
+	<div class="content-section">
+    {# burger menu #}
+        <a href="/" class="logo"></a>
+		<div class="navbar-header">
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+        <div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-left">
+				{% for link in navLinks %}
+					<li class="{{ 'active' if link.key == section else '' }}">
+						<a href="{{ link.href }}">{{ link.label }}</a>
+					</li>
+				{% endfor %}
+			</ul>
+            <ul class="nav navbar-nav navbar-right">
+				{% for link in navLinksTwo %}
+					<li class="{{ 'active' if link.key == section else '' }}">
+						<a href="{{ link.href }}">{{ link.label }}</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+    </div>
+</header>
