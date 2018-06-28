@@ -11,12 +11,19 @@ header {
 	background-color: map-get($color, darkgrey);
 	position: fixed;
 	top: 0;
-	z-index: 1;
-	a {
-		color: map-get($color, white);
-        transition: 1s;
+    z-index: 1;
+	.navigation__item {
+        padding: 15px 0;
+        list-style: none;
+    }
+	.navigation__item--button {
+        color: map-get($color, white);
+        padding: 15px;
+        height: 100%;
+		transition: 90ms;
         transition-timing-function: ease;
 		&:hover {
+		    color: map-get($color, blue);
 			transition: 90ms;
 			background-color: map-get($color, white);
 		}
@@ -32,11 +39,12 @@ header {
 
 .logo {
 	position: absolute;
-	width: 120px;
-	height: 70px;
+	width: 100px;
+	height: 60px;
 	left: 50%;
 	top: 0;
 	-webkit-transform: translateX(-50%);
+    transition: ease 1s;
 	transform: translateX(-50%);
 	background-image: url('/images/logo.svg');
 	background-size: contain;
@@ -44,13 +52,19 @@ header {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-color: rgba(255, 255, 255, 0.8);
-	padding: 40px;
-	margin: 0;
+	padding: 35px;
+    margin: 0;
+    &:hover {
+        background-image: url('/images/logo.svg');
+        background-color: map-get($color, white);
+        transition-duration: 90ms;
+	}
 }
+
 .logoSmall {
-    position: absolute;
-    width: 80px;
-    height: 100%;
+	position: absolute;
+	width: 80px;
+	height: 100%;
 	left: 50%;
 	top: 0;
 	-webkit-transform: translateX(-50%);
@@ -62,7 +76,43 @@ header {
 	background-position: center;
 	background-color: map-get($color, darkgrey);
     margin: 0;
-    &:hover {
-	    background-image: url('/images/logo.svg');
+    transition: ease 1s;
+	&:hover {
+        background-image: url('/images/logo.svg');
+        background-color: map-get($color, white);
+	}
+}
+
+.search-bar {
+    display: flex;
+	.search-bar__icon {
+        width: 50px;
+        height: 50px;
+            background-image: url('/images/search-icon-white.png');
+            background-size: cover;
+	        background-size: 40%;
+	        background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+        &:hover {
+            background-image: url('/images/search-icon-blue.png');
+        }
+    }
+    .navigation__search-form {
+        .navigation__search-form--search-input {
+            width: 130px;
+            height: 100%;
+            transition: ease 1s;
+            border: 0;
+        }
+        .hidden {
+            display: inherit !important;
+            transition: ease 1s;
+            height: 100%;
+            width: 0;
+            border: 0;
+            padding: 0;
+            opacity: 0.5;
+        }
     }
 }

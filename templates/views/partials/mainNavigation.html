@@ -14,20 +14,27 @@
 			</button>
 		</div>
         <div class="collapse navbar-collapse">
-			<ul class="nav navbar-nav navbar-left">
+			<ul class="navbar-nav navbar-left">
 				{% for link in navLinks %}
-					<li class="{{ 'active' if link.key == section else '' }}">
-						<a href="{{ link.href }}">{{ link.label }}</a>
+					<li class="navigation__item {{ 'active' if link.key == section else '' }}">
+						<a class="navigation__item--button" href="{{ link.href }}">{{ link.label }}</a>
 					</li>
 				{% endfor %}
 			</ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="navbar-nav navbar-right">
 				{% for link in navLinksTwo %}
-					<li class="{{ 'active' if link.key == section else '' }}">
-						<a href="{{ link.href }}">{{ link.label }}</a>
+					<li class="navigation__item {{ 'active' if link.key == section else '' }}">
+						<a class="navigation__item--button" href="{{ link.href }}">{{ link.label }}</a>
 					</li>
 				{% endfor %}
+                <li class="search-bar">
+                    <figure class="navigation__item--button search-bar__icon"></figure>
+                    <form class="navigation__search-form content-section" action="/products" method="get">
+                        <input id="search-input" class="hidden" name="search" type="text" placeholder="produktas">
+                    </form>
+                </li>
 			</ul>
+            
 		</div>
     </div>
 </header>
