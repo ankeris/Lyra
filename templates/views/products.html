@@ -26,7 +26,7 @@
     {# items box wrapper #}
     <section class="products">
             {# looping through products #}
-            {% for product in data.products.results %}
+            {% for product in data.products %}
             {# product variables #}
             {% set manufacturerKey = product.Manufacturer.key %}
             {% set manufacturerName = product.Manufacturer.name %}
