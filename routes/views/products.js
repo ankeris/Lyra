@@ -62,7 +62,17 @@ exports = module.exports = function (req, res) {
 		q.populate('Manufacturer ProductType').sort(getSort());
 
 		if (locals.data.category) {
-			q.where('ProductType').in([locals.data.category]).sort(getSort());
+			// q.where('ProductType').in([locals.data.category]).sort(getSort());
+			q.find({
+				'ProductType': locals.data.category
+			}).exec(function (err, result) {
+				if (err) {
+					next(err);
+				} else {
+					locals.data.products = getRidOfMetadata(result);
+					next(err);
+				}
+			})
 		}
 
 		function getSort() {
@@ -91,17 +101,14 @@ exports = module.exports = function (req, res) {
 				if (err) {
 					next(err);
 				} else {
-					locals.data.products.results = results;
+					locals.data.products.results = getRidOfMetadata(results);
 					next(err);
 				}
 			})
-		} else {
+		} else if (!locals.data.category) {
 			q.exec(function (err, results) {
 				// getting rid of metadata with "toObject()" from mongoose
-				let result = results.results;
-				result.forEach(r => {
-					locals.data.products.push(r.toObject());
-				});
+				locals.data.products = getRidOfMetadata(results);
 				next(err);
 			})
 		}
@@ -111,6 +118,15 @@ exports = module.exports = function (req, res) {
 	// Render the view
 	view.render('products');
 };
+
+function getRidOfMetadata(data) {
+	let result = data.results;
+	filteredResult = [];
+	result.forEach(r => {
+		filteredResult.push(r.toObject());
+	});
+	return filteredResult;
+}
 
 function escapeRegex(text) {
 	return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");

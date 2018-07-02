@@ -5977,6 +5977,13 @@ b {
 .hidden {
   display: none; }
 
+input[type=text] {
+  outline: none;
+  padding: 0 12px; }
+
+ul {
+  -webkit-padding-start: 0; }
+
 #manifesto {
   display: flex;
   position: relative;
