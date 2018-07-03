@@ -3,26 +3,6 @@
 	flex-wrap: wrap;
 }
 
-.sort-bar__box {
-	margin-bottom: 50px;
-	margin-top: 50px;
-	border-bottom: 3px solid map-get($color, lightgrey);
-	text-align: right;
-	.sort-bar__box--button {
-		height: 35px;
-		text-align: center;
-		border-radius: none;
-		border: none;
-		&:hover {
-			@include hover(blue, 1px);
-			cursor: pointer;
-		}
-	}
-	select {
-		background-color: map-get($color, lightgrey);
-	}
-}
-
 .products {
 	display: flex;
 	flex-basis: 75%;

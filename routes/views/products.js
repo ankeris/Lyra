@@ -16,8 +16,8 @@ exports = module.exports = function (req, res) {
 
 	locals.filters = {
 		category: req.params.category,
+		search: req.query.search
 	};
-
 	// Load all categories for side navigation
 	view.on('init', function (next) {
 		keystone.list('ProductCategory').model.find().sort('name').exec(function (err, results) {
@@ -97,11 +97,12 @@ exports = module.exports = function (req, res) {
 						'title': regex
 					},
 				]
-			}, function (err, results) {
+			}).exec(function (err, results) {
 				if (err) {
 					next(err);
 				} else {
-					locals.data.products.results = getRidOfMetadata(results);
+					// console.log(results);
+					locals.data.products = getRidOfMetadata(results);
 					next(err);
 				}
 			})
@@ -120,7 +121,12 @@ exports = module.exports = function (req, res) {
 };
 
 function getRidOfMetadata(data) {
-	let result = data.results;
+	let result;
+	if (data.results) {
+		result = data.results;
+	} else {
+		result = data;
+	}
 	filteredResult = [];
 	result.forEach(r => {
 		filteredResult.push(r.toObject());

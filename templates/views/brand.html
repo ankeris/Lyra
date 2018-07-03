@@ -1,5 +1,9 @@
 {% extends "layouts/default.html" %}
 
+{% block head %}
+	<title>Lyra | {{data.brand.name}}</title>
+{% endblock %}
+
 {% block intro %}
 	<figure class="title">
 		{# <h3>{{data.name}} produktai</h3> #}
@@ -41,9 +45,9 @@
     {% endif %}
     
     <section class="products">
-    {% if data.products.results %}
+    {% if data.products %}
             {# looping through products #}
-            {% for product in data.products.results %}
+            {% for product in data.products %}
             {# product variables #}
             {% set manufacturerKey = product.Manufacturer.key %}
             {% set manufacturerName = product.Manufacturer.name %}

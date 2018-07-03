@@ -6,11 +6,9 @@ exports = module.exports = function (req, res) {
 	var locals = res.locals;
 
 	locals.data = {
-        products: [],
-        sort: req.query.filterlist
+		products: [],
+		sort: req.query.filterlist
 	}
-
-	console.log(req.params);
 
 	locals.filters = {
 		brand: req.params.brand,
@@ -75,24 +73,31 @@ exports = module.exports = function (req, res) {
 		})
 		r.populate('Manufacturer ProductType').sort(getSort());
 
-		r.where('Manufacturer').in([locals.data.brand]).exec(function (err, result) {
-			locals.data.products = result;
-			next(err);
-		});
-
-		function getSort() {
-			if (req.query.filterlist == "price-high") {
-                return { 'price': -1 };
-			} else if (req.query.filterlist == "price-low") {
-                return { 'price': 1 };
-			}
-        }
+		if (!locals.data.category) {
+			r.find({
+				'Manufacturer': locals.data.brand,
+			}).exec(function (err, result) {
+				if (err) {
+					next(err);
+				} else {
+					locals.data.products = getRidOfMetadata(result);
+					next(err);
+				}
+			})
+		}
 
 		if (locals.data.category) {
-			r.where('ProductType').in([locals.data.category]).exec(function (err, result) {
-				locals.data.products = result;
-				// next(err);
-			});
+			r.find({
+				'ProductType': locals.data.category,
+				'Manufacturer': locals.data.brand
+			}).exec(function (err, result) {
+				if (err) {
+					next(err);
+				} else {
+					locals.data.products = getRidOfMetadata(result);
+					next(err);
+				}
+			})
 		}
 	});
 
@@ -100,4 +105,30 @@ exports = module.exports = function (req, res) {
 
 	// Render the view
 	view.render('brand');
+
+	function getSort() {
+		if (req.query.filterlist == "price-high") {
+			return {
+				'price': -1
+			};
+		} else if (req.query.filterlist == "price-low") {
+			return {
+				'price': 1
+			};
+		}
+	}
 };
+
+function getRidOfMetadata(data) {
+	let result;
+	if (data.results) {
+		result = data.results;
+	} else {
+		result = data;
+	}
+	filteredResult = [];
+	result.forEach(r => {
+		filteredResult.push(r.toObject());
+	});
+	return filteredResult;
+}

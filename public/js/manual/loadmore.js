@@ -15,44 +15,33 @@ function addNextPage() {
 	const category = document.querySelector('.variables').getAttribute('data-category');
 	const count = document.querySelector('.variables').getAttribute('data-count');
 	const brand = document.querySelector('.variables').getAttribute('data-brand');
+	const search = document.querySelector('.variables').getAttribute('data-search');
 
 	if (category) {
-		if (!AllProductsLoaded) {
-			$("#loading-content").show();
-			$.get("/products/" + category, parameters, function (data) {
-				$(".products").append($(data).find('.products .items-box__item'));
-				if ($(data).find('.products .items-box__item').length == 0) {
-					AllProductsLoaded = true;
-					$("#loading-content").hide();
-				}
-			});
-		}
-	} else if (!brand) {
-		if (!AllProductsLoaded) {
-			$("#loading-content").show();
-			$.get("/products", parameters, function (data) {
-				$(".products").append($(data).find('.products .items-box__item'));
-				if ($(data).find('.products .items-box__item').length == 0) {
-					AllProductsLoaded = true;
-					$("#loading-content").hide();
-				}
-			});
-		}
+		ajaxCall("/products/", category, parameters);
+	} else if (search) {
+		ajaxCall("/products?search=", search, parameters);
+	} else if (!brand) { // For default product page
+		ajaxCall("/products/", null, parameters);
 	} else if (brand) {
-		if (!AllProductsLoaded) {
-			$("#loading-content").show();
-			$.get("/brands/" + brand, parameters, function (data) {
-				$(".products").append($(data).find('.products .items-box__item'));
-				if ($(data).find('.products .items-box__item').length == 0) {
-					AllProductsLoaded = true;
-					$("#loading-content").hide();
-				}
-			});
-		}
+		ajaxCall("/brands/", brand, parameters);
 	}
 }
 
-let scrollNews = _.throttle(function (e) {
+function ajaxCall(link, variable, parameters) {
+	if (!AllProductsLoaded) {
+		$("#loading-content").show();
+		$.get(link + variable, parameters, function (data) {
+			$(".products").append($(data).find('.products .items-box__item'));
+			if ($(data).find('.products .items-box__item').length == 0) {
+				AllProductsLoaded = true;
+				$("#loading-content").hide();
+			}
+		});
+	}
+}
+
+const scrollNews = _.throttle(function (e) {
 	if ($(window).scrollTop() + $(window).height() > $(document).height() - 240) {
 		addNextPage();
 	}
