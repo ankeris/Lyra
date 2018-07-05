@@ -20,7 +20,7 @@ exports = module.exports = function (req, res) {
 	};
 	// Load all categories for side navigation
 	view.on('init', function (next) {
-		keystone.list('ProductCategory').model.find().sort('name').exec(function (err, results) {
+		keystone.list('ProductCategory').model.find().sort('name').populate('ChildCategoryOf').exec(function (err, results) {
 			if (err || !results.length) {
 				return next(err);
 			}

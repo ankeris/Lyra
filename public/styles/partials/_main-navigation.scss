@@ -25,8 +25,7 @@ header {
 		transition-timing-function: ease;
 		&:hover {
 			color: map-get($color, blue);
-			transition: 90ms;
-			background-color: map-get($color, white);
+			transition: 90ms; // background-color: map-get($color, white);
 		}
 	}
 	.icon-bar {

@@ -6451,8 +6451,7 @@ header {
     transition-timing-function: ease; }
     header .navigation__item--button:hover {
       color: #448AA6;
-      transition: 90ms;
-      background-color: #fff; }
+      transition: 90ms; }
   header .icon-bar {
     background-color: white; }
 
