@@ -11,6 +11,7 @@ exports = module.exports = function (req, res) {
 	locals.data = {
 		products: [],
 		categories: [],
+		subcategories: [],
 		sort: req.query.filterlist
 	};
 

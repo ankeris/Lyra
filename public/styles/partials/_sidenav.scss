@@ -23,11 +23,6 @@
 			&:hover {
 				@include hover(blue, 5px);
 			}
-			.dropdownSVG {
-				width: 20px;
-				margin: 2px;
-				float: right;
-			}
 		}
 		.subcategory-box {
 			width: 82%;
@@ -41,6 +36,13 @@
 				&:hover {
 					background-color: #ececec;
 				}
+			}
+		}
+		.navigation-dropdown {
+			.subcategory-box__item--svg {
+				width: 20px;
+				margin: 2px;
+				float: right;
 			}
 		}
 	}

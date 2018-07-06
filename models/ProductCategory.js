@@ -11,7 +11,7 @@ let ProductCategory = new keystone.List('ProductCategory', {
 		from: 'name',
 		path: 'key',
 		unique: true
-	},
+	}
 });
 
 ProductCategory.add({
@@ -25,6 +25,7 @@ ProductCategory.add({
 		many: false,
 		required: false,
 	},
+	IsParentCategory: Types.Boolean,
 });
 
 ProductCategory.relationship({
