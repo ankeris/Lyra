@@ -14,14 +14,32 @@
 				background-color: map-get($color, lightgrey);
 			}
 		}
-		.manufacturers-dropdown {
+		#manufacturers-dropdown {
 			background-color: map-get($color, darkgrey);
-			color: map-get($color, white);
-			cursor: pointer;
-			padding: 10px;
-			width: 82%;
+			.subcategory-box__item--text {
+				color: map-get($color, white);
+			}
 			&:hover {
 				@include hover(blue, 5px);
+				background-color: map-get($color, darkgrey);
+			}
+		}
+		.navigation-dropdown {
+			cursor: pointer;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			.subcategory-box__item--text {
+				flex-basis: 90%;
+				margin: 0;
+				color: map-get($color, blue);
+			}
+			.subcategory-box__item--svg {
+				flex-basis: 10%;
+				width: 14px;
+				height: 14px;
+				transition-duration: 1s;
 			}
 		}
 		.subcategory-box {
@@ -36,13 +54,6 @@
 				&:hover {
 					background-color: #ececec;
 				}
-			}
-		}
-		.navigation-dropdown {
-			.subcategory-box__item--svg {
-				width: 20px;
-				margin: 2px;
-				float: right;
 			}
 		}
 	}

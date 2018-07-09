@@ -1,9 +1,9 @@
 $('.navigation-dropdown')
 	.click(function () {
 		$(this)
-			.next('section')
+			.next('div')
 			.slideToggle('slow');
-		$('.subcategory-box__item--svg').toggleClass("rotate");
+		$(this.childNodes[3]).toggleClass("rotate");
 	});
 
 const el = document.querySelector('.side-nav__box');

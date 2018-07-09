@@ -21,17 +21,17 @@
     {% if data.categories.length %}
         <aside class="side-nav">
             <div class="side-nav__box">
-            <div class="manufacturers-dropdown navigation-dropdown">
-                    Gamintojai
-                    <img src="/images/dropdown.svg" alt="" class="dropdownSVG">
+                <div id="manufacturers-dropdown" class="side-nav__list-box--item navigation-dropdown ">
+                    <div class="subcategory-box__item--text">Gamintojai</div>
+                    <img class="subcategory-box__item--svg" src="/images/dropdown-blue.svg" alt="">
                 </div>
-                <section class="subcategory-box" style="display: none;">
+                <div class="subcategory-box" style="display: none;">
                 {% for manufacturer in manufacturers %}
                     <a href="/brands/{{manufacturer.key}}" class="subcategory-box__item">
                         {{manufacturer.name}}
                     </a>
                 {% endfor %}
-                </section>
+                </div>
                 {% set class = ( "active" if not data.category else "" ) %}
                 <a href="/brands/{{data.brand.key}}" class="{{ class }} side-nav__list-box--item">Visi produktai</a>
                 {% for cat in data.categories %} {% set class = ( "active" if data.category and data.category.id == cat.id else "" ) %}

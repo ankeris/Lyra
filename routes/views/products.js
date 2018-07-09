@@ -102,7 +102,6 @@ exports = module.exports = function (req, res) {
 				if (err) {
 					next(err);
 				} else {
-					// console.log(results);
 					locals.data.products = getRidOfMetadata(results);
 					next(err);
 				}
