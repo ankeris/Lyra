@@ -3,9 +3,12 @@
     <form action="/products/{{data.category.key}}" method="get">
     {% elif data.brand %}
     <form action="/brands/{{data.brand.key}}" method="get">
+    {% elif filters.search %}
+    <form action="/products/?search={{filters.search}}" method="get">
     {% else %}
-    <form action="/products" method="get">
+    <form action="/products/" method="get">
     {% endif %}
+        {# if we wanted to add sort by manufacturer... #}
         {# <select name="filterlist" class="sort-bar__box--button" onchange="this.form.submit()">
             <option>Gamintojas</option>
             {% for manufacturer in manufacturers %}
@@ -18,7 +21,7 @@
             {% elif data.sort == "price-low" %}
             <option>Kaina: žemiausia</option>
             {% else %}
-            <option>Rūšiuoti pagal</option>            
+            <option>Rūšiuoti pagal</option>
             {% endif %}
             {% if data.sort %}
             <option>Aktualumas</option>

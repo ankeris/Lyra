@@ -106,7 +106,9 @@ exports = module.exports = function (req, res) {
 					next(err);
 				}
 			})
-		} else if (!locals.data.category) {
+		}
+		// Default query when products page is opened
+		else if (!locals.data.category) {
 			q.exec(function (err, results) {
 				// getting rid of metadata with "toObject()" from mongoose
 				locals.data.products = getRidOfMetadata(results);
