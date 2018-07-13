@@ -6,9 +6,22 @@ $('.navigation-dropdown')
 		$(this.childNodes[3]).toggleClass("rotate");
 	});
 
+// hide Parent category if it has no sub categories ((this should be handled in server side))
+$(window).load(function () {
+	$('.navigation-dropdown').each(function (index, value) {
+		if (!$(this).next('div').children().length) {
+			$(this).addClass('hidden');
+		}
+	});
+});
+// if ($('.navigation-dropdown').next('div').has('a')) {
+//     console.log($('.navigation-dropdown'));
+// } else {
+//     $('.navigation-dropdown').addClass('hidden');
+// }
 const el = document.querySelector('.side-nav__box');
 
-// Change Navigation position to sticky While scrolling . . .  . .
+// Change Side Navigation position to sticky While scrolling . . . . .
 if (el) {
 	const elTop = el
 		.getBoundingClientRect()

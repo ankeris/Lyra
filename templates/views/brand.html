@@ -34,25 +34,16 @@
                 </div>
                 {% set class = ( "active" if not data.category else "" ) %}
                 <a href="/brands/{{data.brand.key}}" class="{{ class }} side-nav__list-box--item">Visi produktai</a>
-                
-
-                {# {% for cat in data.categories %} {% set class = ( "active" if data.category and data.category.id == cat.id else "" ) %}
-                    {% if cat.postCount > 0 %}
-                    <a href="/brands/{{data.brand.key}}/{{ cat.key }}" class="{{ class }} side-nav__list-box--item">{{ cat.name }}
-                    <small>{{cat.postCount}}</small></a>
-                    {% endif %}
-                {% endfor %} #}
-
 
                 {% for cat in data.categories %} 
                 {% set class = ( "active" if data.category and data.category.id == cat.id else "" ) %}
                 {% set dropdown = ( "navigation-dropdown" if cat.IsParentCategory else "" ) %}
                     {% if not cat.ChildCategoryOf %}
                         {% if cat.IsParentCategory %}
-                        <div class="{{ class }} {{dropdown}} side-nav__list-box--item">
-                            <div class="subcategory-box__item--text">{{ cat.name }} <small>{{cat.postCount}}</small></div>
-                            <img class="subcategory-box__item--svg" src="/images/dropdown-blue.svg" alt="">
-                        </div>
+                            <div class="{{ class }} {{dropdown}} side-nav__list-box--item">
+                                <div class="subcategory-box__item--text">{{ cat.name }} <small>{{cat.postCount}}</small></div>
+                                <img class="subcategory-box__item--svg" src="/images/dropdown-blue.svg" alt="">
+                            </div>
                         {% else %}
                             {% if cat.postCount > 0 %}
                             <a href="/brands/{{data.brand.key}}/{{ cat.key }}" class="{{ class }} {{dropdown}} side-nav__list-box--item">
@@ -66,10 +57,12 @@
                             {% for subCat in data.categories %}
                             {% set subClass = ( "active" if data.category and data.category.id == subCat.id else "" ) %}
                                 {% if cat.key === subCat.ChildCategoryOf.key %}
-                                    <a href="/brands/{{data.brand.key}}/{{ subCat.key }}" class="{{ subClass }} subcategory-box__item" data-parent="{{cat.key}}">
-                                    {{subCat.name}}
-                                    <small>{{subCat.postCount}}</small>
-                                    </a>
+                                    {% if subCat.postCount > 0 %}
+                                        <a href="/brands/{{data.brand.key}}/{{ subCat.key }}" class="{{ subClass }} subcategory-box__item" data-parent="{{cat.key}}">
+                                        {{subCat.name}}
+                                        <small>{{subCat.postCount}}</small>
+                                        </a>
+                                    {% endif %}
                                 {% endif %}
                             {% endfor %}
                             </div>
