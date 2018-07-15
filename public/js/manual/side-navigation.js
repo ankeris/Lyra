@@ -6,12 +6,21 @@ $('.navigation-dropdown')
 		$(this.childNodes[3]).toggleClass("rotate");
 	});
 
-// hide Parent category if it has no sub categories ((this should be handled in server side))
 $(document).ready(function () {
 	$('.navigation-dropdown').each(function (index, value) {
-		if (!$(this).next('div').children().length) {
-			$(this).next('div').remove();
+		let parentCategory = $(this);
+		let subCategoryBox = $(this).next('div');
+		// remove Parent category if it has no SubCategories ((it should be handled in server side))
+		if (!subCategoryBox.children().length) {
+			subCategoryBox.remove();
 			$(this).remove();
+		} else {
+			// if there are SubCategories, count all the products and display on Parent.
+			let AllProductsSum = 0;
+			subCategoryBox.children().each(function (index, value) {
+				AllProductsSum += Number($(value).children()[0].innerHTML);
+			});
+			$(parentCategory[0]).children()[0].children[0].innerHTML = AllProductsSum;
 		}
 	});
 });

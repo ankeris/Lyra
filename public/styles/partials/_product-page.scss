@@ -5,7 +5,6 @@
 		padding: 15px 30px;
 		color: map-get($color, white);
 		background-color: map-get($color, darkgrey);
-		border: 1px solid map-get($color, darkgrey);
 		&:hover {
 			@include hover(blue, 5px);
 		}
@@ -53,14 +52,14 @@
 	.description-nav__button {
 		cursor: pointer;
 		flex-basis: 50%;
-        background-color: map-get($color, darkgrey);
-        border-top: 1px solid map-get($color, darkgrey);
-        border-right: 1px solid map-get($color, darkgrey);
-        border-left: 1px solid map-get($color, darkgrey);
+		background-color: map-get($color, darkgrey);
+		border-top: 1px solid map-get($color, darkgrey);
+		border-right: 1px solid map-get($color, darkgrey);
+		border-left: 1px solid map-get($color, darkgrey);
 		color: white;
 		margin: 25px 0;
 		padding: 16px;
-        transition-duration: 1s;
+		transition-duration: 1s;
 		&:hover {
 			transition-duration: 1s;
 		}

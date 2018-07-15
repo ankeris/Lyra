@@ -3,13 +3,14 @@
             <div class="side-nav__box">
                 {% set class = ( "active" if not data.category else "" ) %}
                 <div id="manufacturers-dropdown" class="side-nav__list-box--item navigation-dropdown ">
-                    <div class="subcategory-box__item--text">Gamintojai</div>
+                    <div class="subcategory-box__item--text">Gamintojai <small style="display: none"></small></div>
                     <img class="subcategory-box__item--svg" src="/images/dropdown-blue.svg" alt="">
                 </div>
                 <div class="subcategory-box" style="display: none;">
                 {% for manufacturer in manufacturers %}
                     <a href="/brands/{{manufacturer.key}}" class="subcategory-box__item">
                         {{manufacturer.name}}
+                        <small></small>
                     </a>
                 {% endfor %}
                 </div>
@@ -18,11 +19,11 @@
                 {% for cat in data.categories %} 
                 {% set class = ( "active" if data.category and data.category.id == cat.id else "" ) %}
                 {% set dropdown = ( "navigation-dropdown" if cat.IsParentCategory else "" ) %}
+                {% set ChildCategoryOfActive = "display: block;" if data.category.ChildCategoryOf.key == cat.key else "display: none;" %}
                     {% if not cat.ChildCategoryOf %}
-                    {% set ChildCategoryOfActive = "display: block;" if data.category.ChildCategoryOf.key == cat.key else "display: none;" %}
                         {% if cat.IsParentCategory %}
                         <div class="{{ class }} {{dropdown}} side-nav__list-box--item" data-category="{{cat.name}}">
-                            <div class="subcategory-box__item--text">{{ cat.name }} <small>{{cat.postCount}}</small></div>
+                            <div class="subcategory-box__item--text">{{ cat.name }} <small></small></div>
                             <img class="subcategory-box__item--svg" src="/images/dropdown-blue.svg" alt="">
                         </div>
                         {% else %}

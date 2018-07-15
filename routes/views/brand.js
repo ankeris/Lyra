@@ -55,7 +55,7 @@ exports = module.exports = function (req, res) {
 		if (req.params.category) {
 			keystone.list('ProductCategory').model.findOne({
 				key: locals.filters.category
-			}).exec(function (err, result) {
+			}).populate('ChildCategoryOf').exec(function (err, result) {
 				locals.data.category = result;
 				next(err);
 			});

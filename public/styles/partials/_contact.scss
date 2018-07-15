@@ -1,38 +1,12 @@
 .confirm-button {
-    margin: 0 auto;
-    button {
-        background-color: map-get($color, darkgrey);
-        color: map-get($color, white);
-        color: 1px solid map-get($color, darkgrey);
-        padding: 10px 40px;
-        &:hover {
-            @include hover(blue);
-        }
-    }
-}
-
-.contact {
-    display: flex;
-	.contact-form {
-        width: 70%;
-        margin: 0 auto;
-		display: flex;
-		flex-flow: wrap row;
-		.form-group {
-			flex-basis: 100%;
-			label {
-                width: 100%;
-                span {
-                    width: 100%;
-                }
-				input, textarea {
-                    width: 100%;
-                    border: 1px solid map-get($color, brown);
-                }
-                input {
-                    min-height: 40px;
-                }
-			}
+	margin: 0 auto;
+	button {
+		background-color: map-get($color, darkgrey);
+		color: map-get($color, white);
+		color: 1px solid map-get($color, darkgrey);
+		padding: 10px 40px;
+		&:hover {
+			@include hover(blue);
 		}
 	}
 }
@@ -66,9 +40,9 @@
 
 @media screen and (max-width: 700px) {
 	.contact-box {
-        flex-wrap: wrap-reverse;
+		flex-wrap: wrap-reverse;
 		.contact-box__item--text {
-            flex-basis: 100%;
+			flex-basis: 100%;
 		}
 		.contact-box__item--image-1 {
 			flex-basis: 100%;
@@ -76,11 +50,10 @@
 		.contact-box__item--image-2 {
 			flex-basis: 100%;
 		}
-    }
-
-    .contact {
-        .contact-form {
-            width: 100%;
-        }
-    }
+	}
+	.contact {
+		.contact-form {
+			width: 100%;
+		}
+	}
 }

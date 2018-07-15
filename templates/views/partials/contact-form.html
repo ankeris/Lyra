@@ -1,0 +1,50 @@
+<form class="contact-form content-section" method="post">
+    <input type="hidden" name="action" value="contact">
+    <div class="contact-form__leftbox">
+        <input class="contact-form__leftbox--input" type="text" name="name.full" value="{{ formData["name.full"] }}" placeholder="Vardas">
+        <input class="contact-form__leftbox--input middle" type="email" name="email" value="{{ formData.email }}" placeholder="Email adresas">
+        <input class="contact-form__leftbox--input" type="text" name="phone" value="{{ formData.phone }}" placeholder="Telefonas (nebūtina)">
+    </div>
+    <div class="contact-form__rightbox">
+        <textarea class="contact-form__rightbox--textarea" name="message" type="text" placeholder="Žinutė"></textarea>
+    </div>
+    <div class="confirm-button">
+		<button type="submit">Siūsti</button>
+	</div>
+</form>
+
+{# <div class="contact content-section">
+			<form method="post" class="contact-form">
+				<input type="hidden" name="action" value="contact">
+				{% set class = ( "has-error" if validationErrors.name else "" ) %}
+				<div class="form-group {{ class }}">
+					<label>
+						<span>Name</span>
+						<input type="text" name="name.full" value="{{ formData["name.full"] }}">
+					</label>
+				</div>
+				{% set class = ( "has-error" if validationErrors.email else "" ) %}
+				<div class="form-group {{ class }}">
+					<label>
+						<span>Email</span>
+						<input type="email" name="email" value="{{ formData.email }}">
+					</label>
+				</div>
+				<div class="form-group">
+					<label>
+						<span>Phone</span>
+						<input type="text" name="phone" value="{{ formData.phone }}" placeholder="(optional)">
+					</label>
+				</div>
+				{% set class = ( "has-error" if validationErrors.message else "" ) %}
+				<div class="form-group {{ class }}">
+					<label>
+						<span>Message</span>
+						<textarea name="message" placeholder="Leave us a message..." rows="4">{{ formData.message }}</textarea>
+					</label>
+				</div>
+				<div class="confirm-button">
+					<button type="submit">Siūsti</button>
+				</div>
+			</form>
+		</div> #}

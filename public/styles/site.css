@@ -6117,8 +6117,7 @@ small {
   .get-back button {
     padding: 15px 30px;
     color: #fff;
-    background-color: #1f1f1f;
-    border: 1px solid #1f1f1f; }
+    background-color: #1f1f1f; }
     .get-back a:hover,
     .get-back button:hover {
       box-shadow: inset 0 0 0 5px #448AA6;
@@ -6241,25 +6240,6 @@ small {
     .confirm-button button:hover {
       box-shadow: inset 0 0 0 6px #448AA6;
       transition: 380ms cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-
-.contact {
-  display: flex; }
-  .contact .contact-form {
-    width: 70%;
-    margin: 0 auto;
-    display: flex;
-    flex-flow: wrap row; }
-    .contact .contact-form .form-group {
-      flex-basis: 100%; }
-      .contact .contact-form .form-group label {
-        width: 100%; }
-        .contact .contact-form .form-group label span {
-          width: 100%; }
-        .contact .contact-form .form-group label input, .contact .contact-form .form-group label textarea {
-          width: 100%;
-          border: 1px solid #8C543F; }
-        .contact .contact-form .form-group label input {
-          min-height: 40px; }
 
 .contact-box {
   display: flex;
@@ -6431,8 +6411,10 @@ footer {
         flex-basis: 50%;
         width: 50%;
         padding: 15px 10px; }
-      .side-nav .side-nav__box .subcategory-box__item {
-        flex-basis: 30%; } }
+      .side-nav .side-nav__box .subcategory-box {
+        width: 50%; }
+        .side-nav .side-nav__box .subcategory-box .subcategory-box__item {
+          flex-basis: 30%; } }
 
 .navbar,
 .navbar-default,
@@ -6553,3 +6535,32 @@ header {
   .sort-bar__box select {
     background-color: #1f1f1f;
     color: #fff; }
+
+.contact-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+  .contact-form .contact-form__leftbox {
+    flex-basis: 49%;
+    display: flex;
+    flex-direction: column; }
+    .contact-form .contact-form__leftbox .contact-form__leftbox--input {
+      padding: 10px; }
+    .contact-form .contact-form__leftbox .middle {
+      margin: 20px 0; }
+  .contact-form .contact-form__rightbox {
+    display: flex;
+    flex-basis: 49%; }
+    .contact-form .contact-form__rightbox .contact-form__rightbox--textarea {
+      flex-basis: 100%; }
+  .contact-form .confirm-button {
+    margin: 0 auto; }
+    .contact-form .confirm-button button {
+      background-color: #1f1f1f;
+      color: #fff;
+      color: 1px solid #1f1f1f;
+      padding: 10px 50px;
+      border: 0; }
+      .contact-form .confirm-button button:hover {
+        box-shadow: inset 0 0 0 6px #448AA6;
+        transition: 380ms cubic-bezier(0.175, 0.885, 0.32, 1.275); }
