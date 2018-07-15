@@ -43,12 +43,12 @@
 			}
 		}
 		.subcategory-box {
-			width: 82%;
+			width: 80%;
 			font-size: 0.8em;
 			.subcategory-box__item {
-				border-left: 1px solid map-get($color, blue);
-				padding: 10px;
 				width: 90%;
+				border-left: 1px solid map-get($color, blue);
+				padding: 10px; // width: 90%;
 				display: block;
 				margin: 0 auto;
 				&:hover {
@@ -69,17 +69,15 @@
 	.side-nav {
 		flex-basis: 100%;
 		.side-nav__box {
-			align-items: center;
-			justify-content: center;
+			display: flex;
 			flex-flow: column wrap;
-			align-content: center;
 			.side-nav__list-box--item {
-				width: 49%;
+				flex-basis: 50%;
+				width: 50%;
 				padding: 15px 10px;
-				display: inline-block;
 			}
-			.manufacturers-dropdown {
-				width: 100%;
+			.subcategory-box__item {
+				flex-basis: 30%;
 			}
 		}
 	}

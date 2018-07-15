@@ -19,8 +19,9 @@
                 {% set class = ( "active" if data.category and data.category.id == cat.id else "" ) %}
                 {% set dropdown = ( "navigation-dropdown" if cat.IsParentCategory else "" ) %}
                     {% if not cat.ChildCategoryOf %}
+                    {% set ChildCategoryOfActive = "display: block;" if data.category.ChildCategoryOf.key == cat.key else "display: none;" %}
                         {% if cat.IsParentCategory %}
-                        <div class="{{ class }} {{dropdown}} side-nav__list-box--item">
+                        <div class="{{ class }} {{dropdown}} side-nav__list-box--item" data-category="{{cat.name}}">
                             <div class="subcategory-box__item--text">{{ cat.name }} <small>{{cat.postCount}}</small></div>
                             <img class="subcategory-box__item--svg" src="/images/dropdown-blue.svg" alt="">
                         </div>
@@ -31,7 +32,7 @@
                         </a>
                         {% endif %}
                         {% if cat.IsParentCategory %}
-                            <div class="subcategory-box" style="display: none;">
+                            <div class="subcategory-box" style="{{ChildCategoryOfActive}}">
                             {% for subCat in data.categories %}
                             {% set subClass = ( "active" if data.category and data.category.id == subCat.id else "" ) %}
                                 {% if cat.key === subCat.ChildCategoryOf.key %}

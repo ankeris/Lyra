@@ -7,18 +7,15 @@ $('.navigation-dropdown')
 	});
 
 // hide Parent category if it has no sub categories ((this should be handled in server side))
-$(window).load(function () {
+$(document).ready(function () {
 	$('.navigation-dropdown').each(function (index, value) {
 		if (!$(this).next('div').children().length) {
-			$(this).addClass('hidden');
+			$(this).next('div').remove();
+			$(this).remove();
 		}
 	});
 });
-// if ($('.navigation-dropdown').next('div').has('a')) {
-//     console.log($('.navigation-dropdown'));
-// } else {
-//     $('.navigation-dropdown').addClass('hidden');
-// }
+
 const el = document.querySelector('.side-nav__box');
 
 // Change Side Navigation position to sticky While scrolling . . . . .
