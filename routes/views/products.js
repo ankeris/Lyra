@@ -19,6 +19,10 @@ exports = module.exports = function (req, res) {
 		category: req.params.category,
 		search: req.query.search
 	};
+	// res.cookie('window size', {
+	// 	wd: window.innerWidth
+	// });
+	console.log(req.body);
 	// Load all categories for side navigation
 	view.on('init', function (next) {
 		keystone.list('ProductCategory').model.find().sort('name').populate('ChildCategoryOf').exec(function (err, results) {

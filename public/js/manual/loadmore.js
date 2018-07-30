@@ -1,4 +1,4 @@
-//ajax
+// AJAX
 // Load more products
 let currentPage = 1;
 let AllProductsLoaded = false;

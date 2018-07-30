@@ -1,3 +1,7 @@
+.mobile-side-nav {
+	display: none;
+}
+
 .side-nav {
 	flex-basis: 25%;
 	flex-flow: column row;
@@ -67,21 +71,50 @@
 
 @media screen and (max-width: 700px) {
 	.side-nav {
-		flex-basis: 100%;
+		flex-basis: 80%;
+		margin: 0 auto;
 		.side-nav__box {
 			display: flex;
-			flex-flow: column wrap;
+			flex-flow: column;
+			max-height: unset;
 			.side-nav__list-box--item {
-				flex-basis: 50%;
-				width: 50%;
+				flex-basis: 100%;
+				width: 100%;
 				padding: 15px 10px;
 			}
 			.subcategory-box {
 				width: 50%;
+				flex-basis: 50%;
 				.subcategory-box__item {
 					flex-basis: 30%;
 				}
 			}
+		}
+	}
+	.mobile-side-nav {
+		background-color: map-get($color, darkgrey);
+		width: 80%;
+		margin: 0 auto;
+		cursor: pointer;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		padding: 11px;
+		&:hover {
+			@include hover(blue, 5px);
+			background-color: map-get($color, darkgrey);
+		}
+		.subcategory-box__item--text {
+			flex-basis: 90%;
+			margin: 0;
+			color: map-get($color, white);
+		}
+		.subcategory-box__item--svg {
+			flex-basis: 10%;
+			width: 14px;
+			height: 14px;
+			transition-duration: 1s;
 		}
 	}
 }

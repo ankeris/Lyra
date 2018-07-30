@@ -8,6 +8,7 @@
 		flex-direction: column;
 		.contact-form__leftbox--input {
 			padding: 10px;
+			border: 1px solid map-get($color, darkgrey); // border-radius: 8px;
 		}
 		.middle {
 			margin: 20px 0;
@@ -18,10 +19,12 @@
 		flex-basis: 49%;
 		.contact-form__rightbox--textarea {
 			flex-basis: 100%;
+			padding: 10px;
+			border: 1px solid map-get($color, darkgrey);
 		}
 	}
 	.confirm-button {
-		margin: 0 auto;
+		margin: 20px auto;
 		button {
 			background-color: map-get($color, darkgrey);
 			color: map-get($color, white);

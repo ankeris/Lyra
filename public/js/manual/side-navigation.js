@@ -23,6 +23,13 @@ $(document).ready(function () {
 			$(parentCategory[0]).children()[0].children[0].innerHTML = AllProductsSum;
 		}
 	});
+	const sideNavigation = document.querySelector('.side-nav');
+
+	window.addEventListener('resize', function (e) {
+		if (window.innerWidth <= 700) {
+			console.log($(sideNavigation).children()[0]);
+		};
+	})
 });
 
 const el = document.querySelector('.side-nav__box');
@@ -46,6 +53,8 @@ if (el) {
 			} else {
 				el.style.top = 'auto';
 			}
+		} else {
+			console.log('hi');
 		}
 	});
 }
