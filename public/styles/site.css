@@ -6066,12 +6066,16 @@ small {
   display: flex;
   flex-wrap: wrap; }
 
+#loading-content {
+  order: 4; }
+
 .products {
   display: flex;
   flex-basis: 75%;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-content: start; }
+  align-content: start;
+  order: 3; }
   .products .items-box__item {
     flex-basis: 30%;
     margin: 30px 0;
@@ -6095,6 +6099,8 @@ small {
   text-align: center; }
 
 @media screen and (max-width: 700px) {
+  .products-wrapper {
+    flex-direction: row-reverse; }
   .products {
     display: flex;
     flex-basis: 100%;
@@ -6345,7 +6351,8 @@ footer {
 .side-nav {
   flex-basis: 25%;
   flex-flow: column row;
-  margin: 30px 0; }
+  margin: 30px 0;
+  order: 2; }
   .side-nav .side-nav__box {
     overflow-y: scroll;
     max-height: 85vh; }
@@ -6395,8 +6402,10 @@ footer {
 
 @media screen and (max-width: 700px) {
   .side-nav {
+    display: none;
     flex-basis: 80%;
-    margin: 0 auto; }
+    margin: 0 auto;
+    order: 1; }
     .side-nav .side-nav__box {
       display: flex;
       flex-flow: column;
@@ -6537,10 +6546,12 @@ header {
     box-shadow: inset 0 0 7px #000000; }
 
 .sort-bar__box {
+  flex-basis: 100%;
   margin-bottom: 50px;
   margin-top: 50px;
   border-bottom: 2px solid #e6e6e6;
-  text-align: right; }
+  text-align: right;
+  order: 1; }
   .sort-bar__box .sort-bar__box--button {
     height: 35px;
     text-align: center;
@@ -6553,6 +6564,10 @@ header {
   .sort-bar__box select {
     background-color: #1f1f1f;
     color: #fff; }
+
+@media screen and (max-width: 700px) {
+  .sort-bar__box {
+    order: 2; } }
 
 .contact-form {
   display: flex;

@@ -6,6 +6,14 @@ $('.navigation-dropdown')
 		$(this.childNodes[3]).toggleClass("rotate");
 	});
 
+$('.mobile-side-nav')
+	.click(function () {
+		$(this)
+			.next('aside')
+			.slideToggle('slow');
+		$(this.childNodes[3]).toggleClass("rotate");
+	});
+
 $(document).ready(function () {
 	$('.navigation-dropdown').each(function (index, value) {
 		let parentCategory = $(this);
@@ -23,12 +31,12 @@ $(document).ready(function () {
 			$(parentCategory[0]).children()[0].children[0].innerHTML = AllProductsSum;
 		}
 	});
-	const sideNavigation = document.querySelector('.side-nav');
+	// const sideNavigation = document.querySelector('.side-nav');
 
 	window.addEventListener('resize', function (e) {
-		if (window.innerWidth <= 700) {
-			console.log($(sideNavigation).children()[0]);
-		};
+		if (window.innerWidth >= 700) {
+			$('.side-nav').removeAttr("style");
+		}
 	})
 });
 

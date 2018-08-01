@@ -6,6 +6,7 @@
 	flex-basis: 25%;
 	flex-flow: column row;
 	margin: 30px 0;
+	order: 2;
 	.side-nav__box {
 		overflow-y: scroll;
 		max-height: 85vh;
@@ -71,8 +72,10 @@
 
 @media screen and (max-width: 700px) {
 	.side-nav {
+		display: none;
 		flex-basis: 80%;
 		margin: 0 auto;
+		order: 1;
 		.side-nav__box {
 			display: flex;
 			flex-flow: column;

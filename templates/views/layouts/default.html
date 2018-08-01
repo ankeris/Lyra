@@ -5,7 +5,6 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-
 		<link rel="shortcut icon" href="/images/lyra-icon.png" type="image/x-icon">
 
 		{# Customise the stylesheet in /public/styles/site.sass #}
@@ -25,7 +24,6 @@
 
 	<body>
 		{# HEADER > Nav #}
-
         {% include 'partials/mainNavigation.html' %}
 
 		{# Main content section #}
@@ -39,7 +37,6 @@
 			{% block content %}{% endblock %}
 		</main>
 
-
 		{# FOOTER #}
 		{% include '../partials/footer.html' %}
 
@@ -47,6 +44,7 @@
         <script src="/js/manual/manufacturersList.js"></script>
         <script src="/js/manual/side-navigation.js"></script>
         <script src="/js/manual/main-navigation.js"></script>
+        <script src="/js/manual/responsive.js"></script>
 		{# Customise which Bootstrap javascript files are served by including
 			them specifically here, instead of bootstrap-3.3.5.min.js #}
 		<script src="/js/bootstrap/bootstrap-3.3.5.min.js"></script>
