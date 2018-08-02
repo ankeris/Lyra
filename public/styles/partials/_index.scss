@@ -30,7 +30,7 @@
 	flex-wrap: wrap;
 	justify-content: space-between;
 	.items-box__item {
-		flex-basis: 45%;
+		flex-basis: 20%;
 		margin: 30px 0;
 		text-align: center;
 		.items-box__item--description {
@@ -47,25 +47,50 @@
 		height: 350px;
 		overflow: auto;
 		&:hover {
-			@include hover(black,
-			1px);
+			transform: scale(1.02);
+			transition-duration: 90ms;
 		}
 	}
 }
 
 .mini-navigation {
 	display: flex;
-	text-align: center;
+	align-items: center;
+	justify-content: space-between;
+	margin: 25px auto;
 	.mini-navigation__button {
-		flex-basis: 50%;
-		background-color: map-get($color, darkgrey);
-		color: white;
 		margin: 25px 0;
-		padding: 16px;
-		border: 1px solid white;
-		&:hover {
-			@include hover(blue);
+		flex-basis: 30%;
+		text-align: center;
+		background-position: bottom;
+		background-repeat: no-repeat; // background-size: cover;
+		background-size: 120%;
+		background-position: center;
+		color: white;
+		padding-top: 10%;
+		padding-bottom: 10%;
+		font-size: 18pt;
+		transition-duration: 1s;
+		span {
+			background-color: rgba($color: #000000, $alpha: 0.3);
+			padding: 10px;
+			border-radius: 5px;
 		}
+		&:hover {
+			@include hover(darkgrey);
+			opacity: 0.8;
+			background-size: 130%;
+			transition-duration: 1s;
+		}
+	}
+	.button1 {
+		background-image: url('/images/mini-nav1.png'); // background-image: url('/images/highlighted2.png');
+	}
+	.button2 {
+		background-image: url('/images/mini-nav2.png'); // background-image: url('/images/highlighted2.png');
+	}
+	.button3 {
+		background-image: url('/images/mini-nav3.png'); // background-image: url('/images/highlighted2.png');
 	}
 }
 

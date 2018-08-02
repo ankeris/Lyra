@@ -1,35 +1,37 @@
-.navbar,
-.navbar-default,
-.navbar-collapse {
-	z-index: 10;
-	padding-right: 15px;
-	padding-left: 0;
-}
-
-header {
-	width: 100%;
+.main-navigation {
+	width: 100%; // background-color: rgba($color: map-get($color, lightgrey), $alpha: 0.8);
 	background-color: map-get($color, darkgrey);
 	position: fixed;
 	top: 0;
-	z-index: 1;
-	.navigation__item {
+	height: 50px;
+	z-index: 99;
+	.main-navigation__box {
 		list-style: none;
-		height: 50px;
+		margin: 0;
+		padding: 0;
 		display: flex;
-	}
-	.navigation__item--button {
-		color: map-get($color, white);
-		padding: 13px;
-		height: 50px;
-		transition: 90ms;
-		transition-timing-function: ease;
-		&:hover {
-			color: map-get($color, blue);
-			transition: 90ms; // background-color: map-get($color, white);
+		flex-direction: row;
+		justify-content: space-between;
+		.navigation__item {
+			// padding: 15px 10px;
+		}
+		.navigation__item--button {
+			font-family: "AzoSansThin"; // color: map-get($color, darkgrey);
+			font-size: 10pt;
+			color: map-get($color, white);
+			transition: 90ms;
+			transition-timing-function: ease;
+			text-decoration: none;
+			display: block;
+			padding: 15px 10px;
+			&:hover {
+				color: map-get($color, blue);
+				transition: 90ms; // background-color: map-get($color, white);
+			}
 		}
 	}
-	.icon-bar {
-		background-color: white;
+	.main-navigation__burger {
+		display: none;
 	}
 }
 
@@ -37,57 +39,13 @@ header {
 	height: 50px;
 }
 
-.logo {
-	position: absolute;
-	width: 100px;
-	height: 60px;
-	left: 50%;
-	top: 0;
-	-webkit-transform: translateX(-50%);
-	transition: ease 1s;
-	transform: translateX(-50%);
-	background-image: url("/images/logo.svg");
-	background-size: contain;
-	background-size: 70%;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-color: rgba(255, 255, 255, 0.8);
-	padding: 35px;
-	margin: 0;
-	&:hover {
-		background-image: url("/images/logo.svg");
-		background-color: map-get($color, white);
-		transition-duration: 90ms;
-	}
-}
-
-.logoSmall {
-	position: absolute;
-	width: 80px;
-	height: 100%;
-	left: 50%;
-	top: 0;
-	-webkit-transform: translateX(-50%);
-	transform: translateX(-50%);
-	background-image: url("/images/logoWhite.svg");
-	background-size: contain;
-	background-size: 70%;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-color: map-get($color, darkgrey);
-	margin: 0;
-	transition: ease 1s;
-	&:hover {
-		background-image: url("/images/logo.svg");
-		background-color: map-get($color, white);
-	}
-}
-
 .search-bar {
 	display: flex;
+	margin: 0;
+	padding: 0;
+	align-content: center;
 	.search-bar__icon {
-		width: 50px;
-		height: 50px;
+		width: 40px;
 		background-image: url("/images/search-icon-white.png");
 		background-size: cover;
 		background-size: 40%;
@@ -99,8 +57,9 @@ header {
 		}
 	}
 	.navigation__search-form {
+		width: auto;
 		.navigation__search-form--search-input {
-			width: 130px;
+			width: 110px;
 			height: 100%;
 			transition: ease 1s;
 			border: 0;
@@ -115,5 +74,46 @@ header {
 			opacity: 0.5;
 			box-shadow: inset 0 0 7px #000000;
 		}
+	}
+}
+
+@media screen and (max-width: 760px) {
+	.main-navigation {
+		width: 70px;
+		height: 70px;
+		border-bottom-right-radius: 100%;
+		.main-navigation__burger {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			width: 35px;
+			height: 35px;
+			margin: 10px;
+			.main-navigation__burger--stripe {
+				flex-basis: 20%;
+				background-color: white;
+				border-radius: 2px;
+			}
+		}
+		.main-navigation__box {
+			display: none;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			flex-direction: column;
+			.navigation__item--button {
+				font-family: "AzoSansThin"; // color: map-get($color, darkgrey);
+				font-size: 10pt;
+				display: block;
+				padding: 15px 10px;
+				&:hover {
+					color: map-get($color, blue);
+					transition: 90ms; // background-color: map-get($color, white);
+				}
+			}
+		}
+	}
+	.fakenav {
+		display: none;
 	}
 }

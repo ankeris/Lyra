@@ -3,38 +3,24 @@
 {# Actual Navigation #}
 <header class="main-navigation">
 	<div class="content-section">
-    {# burger menu #}
-        <a href="/" class="logo"></a>
-		<div class="navbar-header">
-			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-		</div>
-        <div class="collapse navbar-collapse">
-			<ul class="navbar-nav navbar-left">
-				{% for link in navLinks %}
-					<li class="navigation__item {{ 'active' if link.key == section else '' }}">
-						<a class="navigation__item--button" href="{{ link.href }}">{{ link.label }}</a>
-					</li>
-				{% endfor %}
-			</ul>
-            <ul class="navbar-nav navbar-right">
-				{% for link in navLinksTwo %}
-					<li class="navigation__item {{ 'active' if link.key == section else '' }}">
-						<a class="navigation__item--button" href="{{ link.href }}">{{ link.label }}</a>
-					</li>
-				{% endfor %}
-                <li class="search-bar">
-                    <figure class="navigation__item--button search-bar__icon"></figure>
-                    <form class="navigation__search-form content-section" action="/products/" method="get">
-                        <input id="search-input" class="hidden" name="search" type="text" placeholder="produktas">
-                    </form>
-                </li>
-			</ul>
-            
-		</div>
+        {# burger menu #}
+        <figure class="main-navigation__burger">
+            <div class="main-navigation__burger--stripe"></div>
+            <div class="main-navigation__burger--stripe"></div>
+            <div class="main-navigation__burger--stripe"></div>
+        </figure>
+		<ul class="main-navigation__box">
+		    {% for link in navLinks %}
+		    	<li class="navigation__item {{ 'active' if link.key == section else '' }}">
+		    		<a class="navigation__item--button" href="{{ link.href }}">{{ link.label }}</a>
+		    	</li>
+		    {% endfor %}
+            <li class="navigation__item search-bar">
+                <div class="navigation__item--button search-bar__icon"></div>
+                <form class="navigation__search-form content-section" action="/products/" method="get">
+                    <input id="search-input" class="hidden" name="search" type="text" placeholder="produktas">
+                </form>
+            </li>
+		</ul>
     </div>
 </header>
