@@ -1,8 +1,7 @@
 .sort-bar__box {
 	flex-basis: 100%;
-	margin-bottom: 50px;
-	margin-top: 50px;
-	border-bottom: 2px solid map-get($color, lightgrey);
+	margin-bottom: 50px; // margin-top: 50px;
+	border-bottom: 1px solid map-get($color, lightgrey);
 	text-align: right;
 	order: 1;
 	.sort-bar__box--button {
@@ -16,8 +15,9 @@
 		}
 	}
 	select {
-		background-color: map-get($color, darkgrey);
-		color: map-get($color, white);
+		background-color: map-get($color, white);
+		border: 1px solid map-get($color, darkgrey);
+		color: map-get($color, darkgrey);
 	}
 }
 

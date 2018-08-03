@@ -12,7 +12,6 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center; // box-shadow: inset 0 -10px 15px -10px #000000;
-	box-shadow: inset 0 0 10px #000000;
 	.message {
 		position: absolute;
 		left: 50%;
@@ -69,12 +68,13 @@
 		color: white;
 		padding-top: 10%;
 		padding-bottom: 10%;
-		font-size: 18pt;
+		font-size: 16pt;
 		transition-duration: 1s;
 		span {
 			background-color: rgba($color: #000000, $alpha: 0.3);
 			padding: 10px;
 			border-radius: 5px;
+			font-family: 'AzoSansThin';
 		}
 		&:hover {
 			@include hover(darkgrey);

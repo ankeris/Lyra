@@ -1,6 +1,6 @@
 .main-navigation {
-	width: 100%; // background-color: rgba($color: map-get($color, lightgrey), $alpha: 0.8);
-	background-color: map-get($color, darkgrey);
+	width: 100%;
+	background-color: rgba($color: map-get($color, white), $alpha: 1); // background-color: map-get($color, darkgrey);
 	position: fixed;
 	top: 0;
 	height: 50px;
@@ -16,9 +16,9 @@
 			// padding: 15px 10px;
 		}
 		.navigation__item--button {
-			font-family: "AzoSansThin"; // color: map-get($color, darkgrey);
-			font-size: 10pt;
-			color: map-get($color, white);
+			font-family: "AzoSansLight";
+			color: map-get($color, darkgrey);
+			font-size: 10pt; // color: map-get($color, white);
 			transition: 90ms;
 			transition-timing-function: ease;
 			text-decoration: none;
@@ -46,7 +46,7 @@
 	align-content: center;
 	.search-bar__icon {
 		width: 40px;
-		background-image: url("/images/search-icon-white.png");
+		background-image: url("/images/search-icon-black.png");
 		background-size: cover;
 		background-size: 40%;
 		background-repeat: no-repeat;

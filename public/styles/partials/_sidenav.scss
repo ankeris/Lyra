@@ -15,6 +15,8 @@
 			width: 82%;
 			display: block;
 			line-height: 1;
+			color: map-get($color, black);
+			font-family: 'AzoSansThin';
 			&:hover {
 				background-color: map-get($color, lightgrey);
 			}
@@ -38,12 +40,13 @@
 			.subcategory-box__item--text {
 				flex-basis: 90%;
 				margin: 0;
-				color: map-get($color, blue);
+				color: map-get($color, black);
+				font-family: 'AzoSansThin';
 			}
 			.subcategory-box__item--svg {
-				flex-basis: 10%;
-				width: 14px;
-				height: 14px;
+				flex-basis: 10%; // height: 14px;
+				width: 10px;
+				margin: 2px;
 				transition-duration: 1s;
 			}
 		}
