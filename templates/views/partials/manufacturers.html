@@ -5,11 +5,11 @@
     </div>
     {# Manufacturers are hidden default #}
     <section style="display: none;">
-    <ul class="">
+    <ul class="manufacturers__listbox">
         {% for manufacturer in manufacturers %}
-        <li>
+        <li class="manufacturers__listbox--item">
             <a href="brands/{{manufacturer.key}}" class="manufacturers-box_item">
-                <img src="{{manufacturer.logo.secure_url}}" alt="">
+                <img src="{{manufacturer.SmallPreviewImage.secure_url}}" alt="">
             </a>
         </li>
         {% endfor %}

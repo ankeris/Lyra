@@ -81,7 +81,9 @@
 	.main-navigation {
 		width: 70px;
 		height: 70px;
-		border-bottom-right-radius: 100%;
+        border-bottom-right-radius: 100%;
+        border-bottom: 1px solid map-get($color, darkgrey);
+        border-right: 1px solid map-get($color, darkgrey);
 		.main-navigation__burger {
 			display: flex;
 			flex-direction: column;
@@ -91,7 +93,7 @@
 			margin: 10px;
 			.main-navigation__burger--stripe {
 				flex-basis: 20%;
-				background-color: white;
+				background-color: map-get($color, darkgrey);
 				border-radius: 2px;
 			}
 		}

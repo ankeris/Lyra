@@ -6318,36 +6318,32 @@ footer {
 
 .manufacturers {
   text-align: center;
-  margin: 50px auto; }
-  .manufacturers .partners__item,
-  .manufacturers .presentation__item {
-    margin: 0;
-    padding: 5px 0; }
-  .manufacturers .clickable__block {
-    cursor: pointer;
-    background-color: #1f1f1f;
-    padding: 3% 50px;
-    color: #fff; }
-    .manufacturers .clickable__block:hover {
-      box-shadow: inset 0 0 0 8px #448AA6;
-      transition: 380ms cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-  .manufacturers .partners__button,
-  .manufacturers .presentation__button {
-    width: 30px;
-    height: 30px;
-    background-color: black;
-    background-repeat: no-repeat;
-    background-size: 30px;
-    margin: 0 auto; }
-  .manufacturers ul {
-    padding: 0; }
-    .manufacturers ul li {
-      display: inline-block;
-      width: 33%;
-      padding-bottom: 10px;
-      margin: 15px 0; }
-      .manufacturers ul li img {
-        width: 150px; }
+  margin: 50px auto;
+  transition-duration: 1s; }
+  .manufacturers .manufacturers__listbox {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    transition-duration: 1s; }
+    .manufacturers .manufacturers__listbox .manufacturers__listbox--item {
+      margin: 10px 5px;
+      -webkit-filter: grayscale(100%);
+      /* Safari 6.0 - 9.0 */
+      filter: grayscale(100%);
+      transition-duration: 1s; }
+      .manufacturers .manufacturers__listbox .manufacturers__listbox--item img {
+        padding-top: 10%;
+        padding-bottom: 0;
+        transition-duration: 1s; }
+      .manufacturers .manufacturers__listbox .manufacturers__listbox--item:hover {
+        transition-duration: 1s;
+        -webkit-filter: grayscale(0%);
+        /* Safari 6.0 - 9.0 */
+        filter: grayscale(0%);
+        filter: saturate(1); }
 
 @media screen and (max-width: 600px) {
   .partners,
@@ -6538,7 +6534,9 @@ footer {
   .main-navigation {
     width: 70px;
     height: 70px;
-    border-bottom-right-radius: 100%; }
+    border-bottom-right-radius: 100%;
+    border-bottom: 1px solid #1f1f1f;
+    border-right: 1px solid #1f1f1f; }
     .main-navigation .main-navigation__burger {
       display: flex;
       flex-direction: column;
@@ -6548,7 +6546,7 @@ footer {
       margin: 10px; }
       .main-navigation .main-navigation__burger .main-navigation__burger--stripe {
         flex-basis: 20%;
-        background-color: white;
+        background-color: #1f1f1f;
         border-radius: 2px; }
     .main-navigation .main-navigation__box {
       display: none;

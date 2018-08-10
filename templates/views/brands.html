@@ -13,12 +13,12 @@
 {% block content %}
 	<section class="manufacturers content-section">
     {# Manufacturers are hidden default #}
-    <ul class="">
+    <ul class="manufacturers__listbox">
         {% for manufacturer in manufacturers %}
-        <li>
-            {{manufacturer}}
-            <a href="brands/{{manufacturer.key}}" class="manufacturers-box_item">
-                <img src="{{manufacturer.logo.secure_url}}" alt="">
+        <li class="manufacturers__listbox--item">
+            {# {{manufacturer}} #}
+            <a href="brands/{{manufacturer.key}}" class="">
+                <img src="{{manufacturer.SmallPreviewImage.secure_url}}" alt="">
             </a>
         </li>
         {% endfor %}
