@@ -57,3 +57,13 @@ small {
 	font-size: 0.7em;
 	font-family: 'AzoSansThin';
 }
+
+button:active,
+button:focus,
+a:focus,
+button:active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
