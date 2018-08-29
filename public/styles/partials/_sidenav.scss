@@ -10,9 +10,10 @@
 	.side-nav__box {
 		overflow-y: scroll;
 		max-height: 85vh;
+		margin-right: 13%;
 		.side-nav__list-box--item {
 			padding: 11px;
-			width: 82%;
+			width: 100%;
 			display: block;
 			line-height: 1;
 			color: map-get($color, black);
@@ -83,6 +84,7 @@
 			display: flex;
 			flex-flow: column;
 			max-height: unset;
+			margin-right: 0;
 			.side-nav__list-box--item {
 				flex-basis: 100%;
 				width: 100%;
