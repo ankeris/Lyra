@@ -1,9 +1,10 @@
-$('.navigation-dropdown')
+$('.subcategory-box__item--svg')
 	.click(function () {
 		$(this)
+			.parent()
 			.next('div')
 			.slideToggle('slow');
-		$(this.childNodes[3]).toggleClass("rotate");
+		$(this).toggleClass("rotate");
 	});
 
 $('.mobile-side-nav')
@@ -23,7 +24,7 @@ $(document).ready(function () {
 			subCategoryBox.remove();
 			$(this).remove();
 		} else {
-			// if there are SubCategories, count all the products and display on Parent.
+			// if there are SubCategories, count all the products and display number on Parent
 			let AllProductsSum = 0;
 			subCategoryBox.children().each(function (index, value) {
 				AllProductsSum += Number($(value).children()[0].innerHTML);

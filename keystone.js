@@ -13,7 +13,6 @@ var nunjucks = require('nunjucks');
 keystone.init({
     'name': 'acme',
     'brand': 'acme',
-
     'sass': 'public',
     'static': 'public',
     'favicon': 'public/favicon.ico',
@@ -25,7 +24,7 @@ keystone.init({
     'auto update': true,
     'session': true,
     'auth': true,
-    'user model': 'User'
+    'user model': 'User',
 });
 
 // Load your project's Models
@@ -43,7 +42,6 @@ keystone.set('locals', {
 });
 
 keystone.set('port', 8080);
-
 // Load your project's Routes
 keystone.set('routes', require('./routes'));
 
