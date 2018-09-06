@@ -34,8 +34,7 @@ exports = module.exports = function (req, res) {
 				}
 
 				locals.data.categories = results;
-				// Load the counts for each category (counts how much products every category
-				// contains)
+				// Load the counts for each category (counts how much products every category contains)
 				async.each(locals.data.categories, function (category, next) {
 					keystone
 						.list('Product')
@@ -86,9 +85,8 @@ exports = module.exports = function (req, res) {
 			.sort(getSort());
 
 		if (locals.data.category) {
-			// q.where('ProductType').in([locals.data.category]).sort(getSort());
-			q
-				.find({
+			if (!locals.data.category.IsParentCategory) {
+			q.find({
 					'ProductType': locals.data.category
 				})
 				.exec(function (err, result) {
@@ -99,8 +97,25 @@ exports = module.exports = function (req, res) {
 						next(err);
 					}
 				})
+			} else if (locals.data.category.IsParentCategory) {
+				keystone.list('ProductCategory').model.find({'ChildCategoryOf': locals.data.category})
+				.exec(function (err, result) {
+					q.find({
+						'ProductType': { $in: result }
+					}).exec(function (err, result) {
+						if (err) {
+							next(err);
+						} else {
+							locals.data.products = getRidOfMetadata(result);
+							next(err);
+						}
+					})
+				})
+			}
+			// Load products of all children categories of parent category
+			
 		}
-
+		
 		function getSort() {
 			if (req.query.filterlist == "price-high") {
 				return {

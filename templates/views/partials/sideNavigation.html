@@ -6,19 +6,18 @@
         <aside class="side-nav">
             <div class="side-nav__box">
                 {% set class = ( "active" if not data.category else "" ) %}
-                <div id="manufacturers-dropdown" class="side-nav__list-box--item navigation-dropdown ">
+                <div id="manufacturers-dropdown">
                     <div class="subcategory-box__item--text">Gamintojai <small style="display: none"></small></div>
                     <img class="subcategory-box__item--svg" src="/images/dropdown-blue.svg" alt="">
                 </div>
                 <div class="subcategory-box" style="display: none;">
                 {% for manufacturer in manufacturers %}
                     <a href="/brands/{{manufacturer.key}}" class="subcategory-box__item">
-                        {{manufacturer.name}}
+                        <span>{{manufacturer.name}}</span>
                         <small></small>
                     </a>
                 {% endfor %}
                 </div>
-
                 <a href="/products" class="{{ class }} side-nav__list-box--item">Visi produktai</a>
                 {% for cat in data.categories %} 
                 {% set class = ( "active" if data.category and data.category.id == cat.id else "" ) %}
@@ -26,13 +25,13 @@
                 {% set ChildCategoryOfActive = "display: block;" if data.category.ChildCategoryOf.key == cat.key else "display: none;" %}
                     {% if not cat.ChildCategoryOf %}
                         {% if cat.IsParentCategory %}
-                        <div class="{{ class }} {{dropdown}} side-nav__list-box--item" data-category="{{cat.name}}">
-                            <div class="subcategory-box__item--text">{{ cat.name }} <small></small></div>
+                        <div class="{{ class }} {{dropdown}}" data-category="{{cat.name}}">
+                            <a href="/products/{{ cat.key }}" class="subcategory-box__item--text">{{ cat.name }} <small></small></a>
                             <img class="subcategory-box__item--svg" src="/images/IconDown.svg" alt="">
                         </div>
                         {% else %}
                         <a href="/products/{{ cat.key }}" class="{{ class }} {{dropdown}} side-nav__list-box--item">
-                            {{ cat.name }}
+                            <span class="subcategory-box__item--text">{{ cat.name }}</span>
                             <small>{{cat.postCount}}</small>
                         </a>
                         {% endif %}

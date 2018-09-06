@@ -32,7 +32,9 @@ $(document).ready(function () {
 			$(parentCategory[0]).children()[0].children[0].innerHTML = AllProductsSum;
 		}
 	});
-	// const sideNavigation = document.querySelector('.side-nav');
+	const active = $('.active')[1];
+	// If subcategory is selected, the SVG is rotated on page load
+	$(active).parent().prev('div').children('.subcategory-box__item--svg').toggleClass("rotate");
 
 	window.addEventListener('resize', function (e) {
 		if (window.innerWidth >= 700) {

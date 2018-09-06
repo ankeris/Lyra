@@ -1,6 +1,6 @@
 .main-navigation {
 	width: 100%;
-	background-color: rgba($color: map-get($color, white), $alpha: 1); // background-color: map-get($color, darkgrey);
+	background-color: rgba($color: map-get($color, white), $alpha: 0.85); // background-color: map-get($color, darkgrey);
 	position: fixed;
 	top: 0;
 	height: 50px;

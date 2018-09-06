@@ -26,9 +26,10 @@
 	}
 	.items-box__item--main-image {
 		object-fit: contain;
-		width: 100%;
+		width: 90%;
 		height: 240px;
 		transition-duration: 90ms;
+		// border-radius: 100%;
 		&:hover {
 			transform: scale(1.02);
 			transition-duration: 90ms;

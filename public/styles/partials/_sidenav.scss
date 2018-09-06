@@ -19,13 +19,35 @@
 			color: map-get($color, black);
 			font-family: 'AzoSansThin';
 			&:hover {
-				background-color: map-get($color, lightgrey);
+				text-decoration: underline;
+				cursor: pointer;
+			}
+			.subcategory-box__item--text {
+				flex-basis: 90%;
+				margin: 0;
+				color: map-get($color, black);
+				font-family: 'AzoSansThin';
 			}
 		}
 		#manufacturers-dropdown {
 			background-color: map-get($color, darkgrey);
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			line-height: 1;
 			.subcategory-box__item--text {
 				color: map-get($color, white);
+				flex-basis: 90%;
+				margin: 0;
+				font-family: 'AzoSansThin';
+				padding: 11px;
+			}
+			.subcategory-box__item--svg {
+				width: 35px;
+				flex-basis: 10%;
+				padding: 11px;
+				transition-duration: 400ms;
 			}
 			&:hover {
 				@include hover(blue, 5px);
@@ -33,23 +55,28 @@
 			}
 		}
 		.navigation-dropdown {
-			cursor: pointer;
 			display: flex;
 			flex-direction: row;
 			align-items: center;
-			justify-content: center;
+			justify-content: space-between;
+			line-height: 1;
 			.subcategory-box__item--text {
 				flex-basis: 90%;
 				margin: 0;
+				padding: 11px;
 				color: map-get($color, black);
 				font-family: 'AzoSansThin';
+				&:hover {
+					text-decoration: underline;
+					cursor: pointer;
+				}
 			}
 			.subcategory-box__item--svg {
-				flex-basis: 5%; // height: 14px;
-				width: 10px;
-				margin-left: 7px;
-				padding: 5px 0;
+				width: 32px;
+				flex-basis: 10%;
+				padding: 14px 10px;
 				transition-duration: 400ms;
+				cursor: pointer;
 			}
 		}
 		.subcategory-box {
