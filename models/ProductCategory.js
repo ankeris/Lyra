@@ -34,6 +34,6 @@ ProductCategory.relationship({
 	refPath: 'ProductType'
 });
 
-ProductCategory.defaultColumns = 'name, ChildCategoryOf';
+ProductCategory.defaultColumns = 'name, ChildCategoryOf, IsParentCategory';
 
 ProductCategory.register();

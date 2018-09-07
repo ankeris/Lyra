@@ -31,7 +31,7 @@
             {% set manufacturerName = product.Manufacturer.name %}
             {% set productTypeKey = product.ProductType[0].key %}
 
-            <div class="items-box__item fade-in appear">
+            <div class="items-box__item fade-in">
             <a href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
                 {% if product.images %}
                     {# Main image #}

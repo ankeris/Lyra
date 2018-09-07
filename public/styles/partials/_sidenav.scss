@@ -7,23 +7,23 @@
 	flex-flow: column row;
 	margin: 30px 0;
 	order: 2;
+	font-weight: 300;
 	.side-nav__box {
 		overflow-y: scroll;
 		max-height: 85vh;
 		margin-right: 13%;
+		&::-webkit-scrollbar {
+			width: 0;
+		}
 		.side-nav__list-box--item {
 			padding: 11px;
 			display: block;
 			line-height: 1;
 			color: map-get($color, black);
 			&:hover {
-				text-decoration: underline;
+				color: map-get($color, blue);
+				transition: 90ms;
 				cursor: pointer;
-			}
-			.subcategory-box__item--text {
-				flex-basis: 90%;
-				margin: 0;
-				color: map-get($color, black);
 			}
 		}
 		#manufacturers-dropdown {
@@ -63,7 +63,8 @@
 				padding: 11px;
 				color: map-get($color, black);
 				&:hover {
-					text-decoration: underline;
+					color: map-get($color, blue);
+					transition: 90ms;
 					cursor: pointer;
 				}
 			}
@@ -80,17 +81,16 @@
 			}
 		}
 		.subcategory-box {
+			margin-left: 5%;
 			width: 80%;
 			font-size: 0.8em;
 			.subcategory-box__item {
 				width: 90%;
-				border-left: 1px solid map-get($color, blue);
+				border-left: 1px solid map-get($color, darkgrey);
+				color: map-get($color, darkgrey);
 				padding: 10px; // width: 90%;
 				display: block;
 				margin: 0 auto;
-				&:hover {
-					background-color: #ececec;
-				}
 			}
 		}
 	}

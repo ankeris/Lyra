@@ -1,4 +1,4 @@
-const searchIcon = document.querySelector('.search-bar__icon');
+const searchIcon = document.querySelector('.search-bar');
 const searchInput = document.querySelector('#search-input');
 
 searchIcon.addEventListener('click', () => {

@@ -39,20 +39,8 @@
 .search-bar {
 	display: flex;
 	margin: 0;
-	padding: 0;
+	padding: 15px;
 	align-content: center;
-	.search-bar__icon {
-		width: 40px;
-		background-image: url("/images/search-icon-black.png");
-		background-size: cover;
-		background-size: 40%;
-		background-repeat: no-repeat;
-		background-position: center;
-		cursor: pointer;
-		&:hover {
-			background-image: url("/images/search-icon-blue.png");
-		}
-	}
 	.navigation__search-form {
 		width: auto;
 		.navigation__search-form--search-input {

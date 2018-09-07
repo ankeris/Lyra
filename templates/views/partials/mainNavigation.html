@@ -1,3 +1,4 @@
+{% from "mixins/macros.html" import searchIcon %}
 {# Fake nav is there to push whole layout 50px down #}
 <div class="fakenav"></div>
 {# Actual Navigation #}
@@ -19,7 +20,7 @@
 		    	</li>
 		    {% endfor %}
             <li class="navigation__item search-bar">
-                <div class="navigation__item--button search-bar__icon"></div>
+                {{ searchIcon("#1f1f1f", "#448AA6") }}
                 <form class="navigation__search-form content-section" action="/products/" method="get">
                     <input id="search-input" class="hidden" name="search" type="text" placeholder="produktas">
                 </form>

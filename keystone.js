@@ -49,7 +49,6 @@ keystone.set('nav', {
     products: [
         'products', 'product-categories', 'product-manufacturers'
     ],
-    galleries: 'galleries',
     enquiries: 'enquiries',
     users: 'users'
 });
