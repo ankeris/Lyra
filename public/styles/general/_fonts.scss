@@ -1,26 +1,25 @@
 @font-face {
-	font-family: AzoSansLight;
+	font-family: 'AzoSans';
 	src: url('/fonts/azosans-light.otf');
-	font-weight: normal;
+	font-weight: 300;
 	font-style: normal;
 }
 
 @font-face {
-	font-family: AzoSansBold;
+	font-family: 'AzoSans';
 	src: url('/fonts/azosans-bold.otf');
 	font-weight: bold;
-	font-style: bold;
 }
 
 @font-face {
-	font-family: AzoSansThin;
+	font-family: 'AzoSans';
 	src: url('/fonts/azosans-thin.otf');
 	font-weight: thin;
-	font-style: thin;
 }
 
+
 * {
-	font-family: AzoSansLight;
+	font-family: 'AzoSans';
 }
 
 p {
@@ -31,7 +30,6 @@ p {
 body {
 	font-size: 12pt;
 	line-height: 1.25em;
-	font-weight: normal;
 }
 
 h1,

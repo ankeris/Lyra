@@ -1,3 +1,4 @@
+@import url(normalize/normalize.css);
 .content-section {
   max-width: 1124px;
   margin: 0 auto;
@@ -72,25 +73,23 @@
     margin: 1em; } }
 
 @font-face {
-  font-family: AzoSansLight;
+  font-family: 'AzoSans';
   src: url("/fonts/azosans-light.otf");
-  font-weight: normal;
+  font-weight: 300;
   font-style: normal; }
 
 @font-face {
-  font-family: AzoSansBold;
+  font-family: 'AzoSans';
   src: url("/fonts/azosans-bold.otf");
-  font-weight: bold;
-  font-style: bold; }
+  font-weight: bold; }
 
 @font-face {
-  font-family: AzoSansThin;
+  font-family: 'AzoSans';
   src: url("/fonts/azosans-thin.otf");
-  font-weight: thin;
-  font-style: thin; }
+  font-weight: thin; }
 
 * {
-  font-family: AzoSansLight; }
+  font-family: 'AzoSans'; }
 
 p {
   line-height: 1.5em;
@@ -98,8 +97,7 @@ p {
 
 body {
   font-size: 12pt;
-  line-height: 1.25em;
-  font-weight: normal; }
+  line-height: 1.25em; }
 
 h1,
 h2,
@@ -124,14 +122,14 @@ h6 {
   font-size: 1.125em; }
 
 a {
-  color: #448AA6; }
+  color: #448AA6;
+  text-decoration: none; }
   a:hover {
-    text-decoration: none; }
+    text-decoration: underline; }
 
 .title {
   text-align: center;
-  margin: 50px 0;
-  font-family: 'AzoSansThin'; }
+  margin: 50px 0; }
 
 .center {
   text-align: center; }
@@ -163,8 +161,7 @@ ul {
   -webkit-padding-start: 0; }
 
 small {
-  font-size: 0.7em;
-  font-family: 'AzoSansThin'; }
+  font-size: 0.7em; }
 
 button:active,
 button:focus,
@@ -210,7 +207,6 @@ button:active {
     margin: 0px 1%;
     text-align: center; }
     .highlighted-products .items-box__item .items-box__item--description {
-      font-family: AzoSansThin;
       margin: 5px; }
     .highlighted-products .items-box__item .items-box__item--main-image {
       background-size: cover;
@@ -261,8 +257,7 @@ button:active {
     .mini-navigation .mini-navigation__button span {
       background-color: rgba(0, 0, 0, 0.3);
       padding: 10px;
-      border-radius: 5px;
-      font-family: 'AzoSansThin'; }
+      border-radius: 5px; }
     .mini-navigation .mini-navigation__button:hover {
       opacity: 0.9;
       background-size: 123%;
@@ -301,7 +296,6 @@ button:active {
     overflow: hidden;
     text-align: center; }
     .products .items-box__item .items-box__item--description {
-      font-family: AzoSansThin;
       margin: 5px; }
   .products .items-box__item--main-image {
     object-fit: contain;
@@ -407,7 +401,6 @@ button:active {
     text-align: center;
     flex-shrink: 1; }
     .related-products .items-box__item .items-box__item--description {
-      font-family: AzoSansThin;
       margin: 5px; }
   .related-products .items-box__item--main-image {
     background-size: cover;
@@ -441,7 +434,6 @@ button:active {
       margin: 20px 3%;
       text-align: center; }
       .related-products .items-box__item .items-box__item--description {
-        font-family: AzoSansThin;
         margin: 5px; }
     .related-products .items-box__item--main-image {
       background-size: cover;
@@ -597,19 +589,16 @@ footer {
     margin-right: 13%; }
     .side-nav .side-nav__box .side-nav__list-box--item {
       padding: 11px;
-      width: 100%;
       display: block;
       line-height: 1;
-      color: #000000;
-      font-family: 'AzoSansThin'; }
+      color: #000000; }
       .side-nav .side-nav__box .side-nav__list-box--item:hover {
         text-decoration: underline;
         cursor: pointer; }
       .side-nav .side-nav__box .side-nav__list-box--item .subcategory-box__item--text {
         flex-basis: 90%;
         margin: 0;
-        color: #000000;
-        font-family: 'AzoSansThin'; }
+        color: #000000; }
     .side-nav .side-nav__box #manufacturers-dropdown {
       background-color: #1f1f1f;
       display: flex;
@@ -621,12 +610,12 @@ footer {
         color: #fff;
         flex-basis: 90%;
         margin: 0;
-        font-family: 'AzoSansThin';
         padding: 11px; }
       .side-nav .side-nav__box #manufacturers-dropdown .subcategory-box__item--svg {
-        width: 35px;
+        width: 1px;
+        height: 10px;
+        padding: 12px;
         flex-basis: 10%;
-        padding: 11px;
         transition-duration: 400ms; }
       .side-nav .side-nav__box #manufacturers-dropdown:hover {
         box-shadow: inset 0 0 0 5px #448AA6;
@@ -642,17 +631,19 @@ footer {
         flex-basis: 90%;
         margin: 0;
         padding: 11px;
-        color: #000000;
-        font-family: 'AzoSansThin'; }
+        color: #000000; }
         .side-nav .side-nav__box .navigation-dropdown .subcategory-box__item--text:hover {
           text-decoration: underline;
           cursor: pointer; }
       .side-nav .side-nav__box .navigation-dropdown .subcategory-box__item--svg {
-        width: 32px;
+        width: 1px;
+        height: 8px;
+        padding: 12px;
         flex-basis: 10%;
-        padding: 14px 10px;
         transition-duration: 400ms;
         cursor: pointer; }
+        .side-nav .side-nav__box .navigation-dropdown .subcategory-box__item--svg:hover {
+          transform: rotate(90deg); }
     .side-nav .side-nav__box .subcategory-box {
       width: 80%;
       font-size: 0.8em; }
@@ -726,9 +717,9 @@ footer {
     flex-direction: row;
     justify-content: space-between; }
     .main-navigation .main-navigation__box .navigation__item--button {
-      font-family: "AzoSansLight";
       color: #1f1f1f;
       font-size: 10pt;
+      font-weight: 300;
       transition: 90ms;
       transition-timing-function: ease;
       text-decoration: none;
@@ -800,7 +791,6 @@ footer {
       padding: 0;
       flex-direction: column; }
       .main-navigation .main-navigation__box .navigation__item--button {
-        font-family: "AzoSansThin";
         font-size: 10pt;
         display: block;
         padding: 15px 10px; }

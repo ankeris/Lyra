@@ -4,8 +4,10 @@ $('.subcategory-box__item--svg')
 			.parent()
 			.next('div')
 			.slideToggle('slow');
-		$(this).toggleClass("rotate");
+		// $(this).toggleClass("rotate");
+		$(this).classList.add('newclass');
 	});
+
 
 $('.mobile-side-nav')
 	.click(function () {

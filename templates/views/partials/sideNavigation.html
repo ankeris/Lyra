@@ -1,3 +1,5 @@
+{% from "mixins/macros.html" import dropdownSvg %}
+
 {% if data.categories.length %}
         <div class="mobile-side-nav">
             <div class="subcategory-box__item--text">Kategorijos <small style="display: none"></small></div>
@@ -27,7 +29,7 @@
                         {% if cat.IsParentCategory %}
                         <div class="{{ class }} {{dropdown}}" data-category="{{cat.name}}">
                             <a href="/products/{{ cat.key }}" class="subcategory-box__item--text">{{ cat.name }} <small></small></a>
-                            <img class="subcategory-box__item--svg" src="/images/IconDown.svg" alt="">
+                            {{ dropdownSvg("#1f1f1f", "#448AA6") }}
                         </div>
                         {% else %}
                         <a href="/products/{{ cat.key }}" class="{{ class }} {{dropdown}} side-nav__list-box--item">

@@ -85,6 +85,7 @@ exports = module.exports = function (req, res) {
 			.sort(getSort());
 
 		if (locals.data.category) {
+			// Load products for basic categories (without subcategories)
 			if (!locals.data.category.IsParentCategory) {
 			q.find({
 					'ProductType': locals.data.category
@@ -97,7 +98,8 @@ exports = module.exports = function (req, res) {
 						next(err);
 					}
 				})
-			} else if (locals.data.category.IsParentCategory) {
+			} // Load products of all children categories of parent category
+			else if (locals.data.category.IsParentCategory) {
 				keystone.list('ProductCategory').model.find({'ChildCategoryOf': locals.data.category})
 				.exec(function (err, result) {
 					q.find({
@@ -112,8 +114,6 @@ exports = module.exports = function (req, res) {
 					})
 				})
 			}
-			// Load products of all children categories of parent category
-			
 		}
 		
 		function getSort() {

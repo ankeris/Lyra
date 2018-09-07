@@ -12,13 +12,10 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-		.navigation__item {
-			// padding: 15px 10px;
-		}
 		.navigation__item--button {
-			font-family: "AzoSansLight";
 			color: map-get($color, darkgrey);
-			font-size: 10pt; // color: map-get($color, white);
+			font-size: 10pt;
+			font-weight: 300;
 			transition: 90ms;
 			transition-timing-function: ease;
 			text-decoration: none;
@@ -104,7 +101,6 @@
 			padding: 0;
 			flex-direction: column;
 			.navigation__item--button {
-				font-family: "AzoSansThin"; // color: map-get($color, darkgrey);
 				font-size: 10pt;
 				display: block;
 				padding: 15px 10px;
