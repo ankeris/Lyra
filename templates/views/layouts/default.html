@@ -1,15 +1,13 @@
 {% import "mixins/flash-messages.html" as FM %}
 <!doctype html>
-<html>
+<html lang="lt" xml:lang="lt">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<link rel="shortcut icon" href="/images/lyra-icon.png" type="image/x-icon">
 
-		{# Customise the stylesheet in /public/styles/site.sass #}
 		<link href="/styles/site.css" rel="stylesheet">
-
+		<link rel="shortcut icon" href="/images/lyra-icon.png" type="image/x-icon">
 		{# This file provides the default styling for the KeystoneJS Content Editor #}
 		{% if user and user.canAccessKeystone %}
 			<link href="/keystone/styles/content/editor.min.css" rel="stylesheet">
@@ -46,19 +44,7 @@
         <script src="/js/manual/main-navigation.js"></script>
         <script src="/js/manual/responsive.js"></script>
         <script src="/js/manual/slick.min.js"></script>
-        <script type="text/javascript">
-        $('.highlighted-products').slick({
-            infinite: true,
-            autoplay: true,
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            prevArrow: '<button type="button" class="slick-prev"></button>',
-            nextArrow: '<button type="button" class="slick-next"></button>',
-        });
-    </script>
-		{# Customise which Bootstrap javascript files are served by including
-			them specifically here, instead of bootstrap-3.3.5.min.js #}
-		<script src="/js/bootstrap/bootstrap-3.3.5.min.js"></script>
+        <script src="/js/manual/slick.js"></script>
 
 		{# The KeystoneJS Content Editor provides support for ks-editable data attributes,
 			which generate links to edit content for users who can access Keystone #}

@@ -2,6 +2,7 @@
 
 {% block head %}
 	<title>Lyra | Gamintojai</title>
+    <meta name="Description" content="Geriausi gamintojai vienoje vietoje">
 {% endblock %}
 
 {% block intro %}
@@ -17,7 +18,7 @@
         {% for manufacturer in manufacturers %}
         <li class="manufacturers__listbox--item">
             {# {{manufacturer}} #}
-            <a href="brands/{{manufacturer.key}}" class="">
+            <a aria-label="{{manufacturer.name}}" href="brands/{{manufacturer.key}}" class="">
                 <img src="{{manufacturer.SmallPreviewImage.secure_url}}" alt="">
             </a>
         </li>

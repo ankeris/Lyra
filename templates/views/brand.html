@@ -1,7 +1,10 @@
 {% extends "layouts/default.html" %}
 
+{% from "mixins/macros.html" import dropdownSvg %}
+
 {% block head %}
 	<title>Lyra | {{data.brand.name}}</title>
+    <meta name="Description" content="{{data.brand.name}} garso aparatūra, prekės">
 {% endblock %}
 
 {% block intro %}
@@ -21,13 +24,13 @@
     {% if data.categories.length %}
         <aside class="side-nav">
             <div class="side-nav__box">
-                <div id="manufacturers-dropdown" class="side-nav__list-box--item navigation-dropdown ">
+                <div id="manufacturers-dropdown" class="navigation-dropdown ">
                     <div class="subcategory-box__item--text">Gamintojai <small style="display: none"></small></div>
                     <img class="subcategory-box__item--svg" src="/images/dropdown-blue.svg" alt="">
                 </div>
                 <div class="subcategory-box" style="display: none;">
                 {% for manufacturer in manufacturers %}
-                    <a href="/brands/{{manufacturer.key}}" class="subcategory-box__item">
+                    <a aria-label="{{manufacturer.name}}" href="/brands/{{manufacturer.key}}" class="subcategory-box__item">
                         {{manufacturer.name}}
                         <small></small>
                     </a>
@@ -42,9 +45,9 @@
                 {% set ChildCategoryOfActive = "display: block;" if data.category.ChildCategoryOf.key == cat.key else "display: none;" %}
                     {% if not cat.ChildCategoryOf %}
                         {% if cat.IsParentCategory %}
-                            <div class="{{ class }} {{dropdown}} side-nav__list-box--item">
-                                <div class="subcategory-box__item--text">{{ cat.name }} <small></small></div>
-                                <img class="subcategory-box__item--svg" src="/images/dropdown-blue.svg" alt="">
+                            <div class="{{ class }} {{dropdown}}">
+                                <a href="/brands/{{data.brand.key}}/{{ cat.key }}" class="subcategory-box__item--text">{{ cat.name }} <small></small></a>
+                                {{ dropdownSvg("#1f1f1f", "#448AA6") }}
                             </div>
                         {% else %}
                             {% if cat.postCount > 0 %}

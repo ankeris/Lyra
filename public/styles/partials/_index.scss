@@ -45,7 +45,7 @@
             background-position: center;
             background-size: 100%;
             width: 100%;
-            height: 350px;
+            height: 300px;
             overflow: auto;
             &:hover {
                 transform: scale(1.02);
@@ -61,7 +61,8 @@
 	    background-repeat: no-repeat;
 	    background-size: contain;
         transition-duration: 90ms;
-        border: none;
+		border: none;
+		cursor: pointer;
         &:hover {
             opacity: 0.6;
 			transition-duration: 90ms;

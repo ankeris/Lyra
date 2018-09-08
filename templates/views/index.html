@@ -1,6 +1,7 @@
 {% extends "layouts/default.html" %}
 
 {% block head %}
+    <meta name="Description" content="Kokybiškos garso aparatūros parduotuvė. Stereo sistemos, namų kino ir multiroom įranga.">
 	<title>{{ title|default("Lyra") }}</title>
 {% endblock %}
 
@@ -20,31 +21,9 @@
         <h3>{{globaldata.invitation.sentence1}} <span>{{globaldata.invitation.strongword1}}</span> {{globaldata.invitation.sentence2}}<b> {{globaldata.invitation.strongword2}}</b></h3>
     </figure>
     {% include 'partials/googlemaps.html' %}
-
-    {{globaldata.title}}
-	<section class="highlighted-products content-section">
-            {# looping through products #}
-            {% for product in products %}
-            {# product variables #}
-            {% set manufacturerKey = product.Manufacturer.key %}
-            {% set manufacturerName = product.Manufacturer.name %}
-            {% set productTypeKey = product.ProductType[0].key %}
-
-            <div class="items-box__item">
-            <a href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
-                <div manufacturer="{{manufacturerName}}">
-                    {% if product.images %}
-                        {# Main image #}
-                        <div class="items-box__item--main-image" style="background-image: url('{{product.images[0].secure_url}}')">
-                        </div>
-                    {% endif %}
-                </div>
-            </a>
-            <p class="items-box__item--description">{{manufacturerName}} - {{product.title}} <br>{{product.price}}€</p>
-            </div>
-            {% endfor %}
-    </section>
-
+    
+    {% include 'partials/highlighted.html' %}
+    
     {% include 'partials/manufacturers.html' %}
     {# <script src="/js/manual/index.js"></script> #}
 {% endblock %}

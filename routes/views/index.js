@@ -9,7 +9,7 @@ exports = module.exports = function (req, res) {
 	view.query('manufacturers', keystone.list('ProductManufacturer').model.find());
 	view.query('products', keystone.list('Product').model.find({
 		Highlight: true
-	}).sort('publishedDate').limit(4).populate('Manufacturer ProductType'));
+	}).sort('publishedDate').populate('Manufacturer ProductType'));
 
 	view.render('index');
 };

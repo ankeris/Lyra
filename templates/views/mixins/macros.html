@@ -10,13 +10,14 @@
 
 
 {% macro searchIcon(colorName, colorHover, className) %}
-    <svg class="{{className}}" version="1.0" xmlns="http://www.w3.org/2000/svg"
+    <svg class="svg" version="1.0" xmlns="http://www.w3.org/2000/svg"
     width="15.000000pt" height="15.000000pt" viewBox="0 0 2400.000000 2382.000000"
     preserveAspectRatio="xMidYMid meet">
     <defs>
     <style>
+        .svg {padding: 15px; cursor: pointer; transition-duration: 90ms;}
         .shape {fill:{{colorName}};} 
-        .search-bar:hover > .shape { fill: {{colorHover}}; transition-duration: 90ms; }
+        .svg:hover > .shape { fill: {{colorHover}}; transition-duration: 90ms; }
     </style>
     </defs>
     <g class="shape" transform="translate(0.000000,2382.000000) scale(0.100000,-0.100000)"

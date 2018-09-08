@@ -87,17 +87,36 @@ exports = module.exports = function (req, res) {
 		}
 
 		if (locals.data.category) {
-			r.find({
-				'ProductType': locals.data.category,
-				'Manufacturer': locals.data.brand
-			}).exec(function (err, result) {
-				if (err) {
-					next(err);
-				} else {
-					locals.data.products = getRidOfMetadata(result);
-					next(err);
-				}
-			})
+			// Load products for basic categories (without subcategories)
+			if (!locals.data.category.IsParentCategory) {
+				r.find({
+					'ProductType': locals.data.category,
+					'Manufacturer': locals.data.brand
+				}).exec(function (err, result) {
+					if (err) {
+						next(err);
+					} else {
+						locals.data.products = getRidOfMetadata(result);
+						next(err);
+					}
+				})
+			} // Load products of all children categories of parent category
+			else if (locals.data.category.IsParentCategory) {
+				keystone.list('ProductCategory').model.find({'ChildCategoryOf': locals.data.category})
+				.exec(function (err, result) {
+					r.find({
+						'ProductType': { $in: result },
+						'Manufacturer': locals.data.brand
+					}).exec(function (err, result) {
+						if (err) {
+							next(err);
+						} else {
+							locals.data.products = getRidOfMetadata(result);
+							next(err);
+						}
+					})
+				})
+			}
 		}
 	});
 

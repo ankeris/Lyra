@@ -3,18 +3,23 @@
 	src: url('/fonts/azosans-light.otf');
 	font-weight: 300;
 	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
 	font-family: 'AzoSans';
+	font-display: auto;
 	src: url('/fonts/azosans-bold.otf');
 	font-weight: bold;
+	font-display: swap;
 }
 
 @font-face {
 	font-family: 'AzoSans';
+	font-display: auto;
 	src: url('/fonts/azosans-thin.otf');
 	font-weight: thin;
+	font-display: swap;
 }
 
 
@@ -29,7 +34,7 @@ p {
 
 body {
 	font-size: 12pt;
-	line-height: 1.25em;
+	line-height: 1.5em;
 }
 
 h1,

@@ -6,6 +6,7 @@
     {% else %}
 	<title>{{globaldata.titles.products}}</title>
     {% endif %}
+    <meta name="Description" content="Garso aparatūros asortimentas, kruopščiai atrinkti kokybiški produktai">
 {% endblock %}
 
 {% block intro %}
@@ -32,10 +33,10 @@
             {% set productTypeKey = product.ProductType[0].key %}
 
             <div class="items-box__item fade-in">
-            <a href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
+            <a aria-label="{{product.title}}" href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
                 {% if product.images %}
                     {# Main image #}
-                    <img class="items-box__item--main-image" src="{{product.images[0].secure_url}}">
+                    <img class="items-box__item--main-image" alt="{{product.title}}" src="{{product.images[0].secure_url}}">
                     </img>
                 {% endif %}
             </a>
