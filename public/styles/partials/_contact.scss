@@ -2,9 +2,11 @@
 	display: flex;
 	flex-wrap: wrap;
 	margin: 25px auto;
+	
 	.contact-box__item--text {
 		flex-basis: 50%;
 		padding: 15px;
+		flex: 1;
 	}
 	.contact-box__item--image-1 {
 		flex-basis: 50%;
@@ -13,7 +15,7 @@
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: 100%;
-		background-image: url('/images/contact1.png')
+		background-image: url('/images/contact1.png');
 	}
 	.contact-box__item--image-2 {
 		flex-basis: 50%;
@@ -22,7 +24,7 @@
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: 100%;
-		background-image: url('/images/contact2.png')
+		background-image: url('/images/contact2.png');
 	}
 }
 

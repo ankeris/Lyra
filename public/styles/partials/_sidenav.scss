@@ -13,8 +13,9 @@
 		overflow-y: scroll;
 		max-height: 85vh;
 		margin-right: 13%;
-		&::-webkit-scrollbar {
+		&::-webkit-scrollbar, ::-webkit-resizer {
 			width: 0;
+			height: 0;
 		}
 		.side-nav__list-box--item {
 			padding: 11px;
