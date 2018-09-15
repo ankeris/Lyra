@@ -49,8 +49,9 @@
 </div>
 
 <div class="variables" data-sort="{{data.sort}}" data-category="{{data.category.key}}" data-count="{{data.products.results.length}}" data-search="{{filters.search}}"></div>
-<script src="/js/jquery/jquery-1.11.3.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
-<script src="/js/manual/loadmore.js"></script>
 
+{% endblock %}
+
+{% block js %}
+    <script src="/js/dist/products.bundle.js"></script>
 {% endblock %}

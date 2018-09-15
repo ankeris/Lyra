@@ -88,7 +88,8 @@
     </div>
     {% endfor %}
 </section>
+{% endblock %}
 
-<script src="/js/manual/description.js"></script>
-<script src="/js/manual/highlightProduct.js"></script>
+{% block js %}
+    <script src="/js/dist/product.bundle.js"></script>
 {% endblock %}

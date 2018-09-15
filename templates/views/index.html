@@ -16,7 +16,7 @@
         <a href="" class="mini-navigation__button button3"><span>{{globaldata.mini_nav.button3}}</span></a>
     </figure>
 
-    {% include 'partials/description.html' %}   
+    {% include 'partials/description.html' %}
 
     {# <figure class="title">
         <h3>{{globaldata.invitation.sentence1}} <span>{{globaldata.invitation.strongword1}}</span> {{globaldata.invitation.sentence2}} <span>{{globaldata.invitation.strongword2}}</span></h3>
@@ -27,4 +27,8 @@
     {% include 'partials/highlighted.html' %}
     
     {% include 'partials/manufacturers.html' %}
+{% endblock %}
+
+{% block js %}
+    <script src="/js/dist/index.bundle.js"></script>
 {% endblock %}

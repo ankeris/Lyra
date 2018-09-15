@@ -3,9 +3,9 @@
 require('dotenv').config();
 
 // Require keystone
-var keystone = require('keystone');
-var cons = require('consolidate');
-var nunjucks = require('nunjucks');
+const keystone = require('keystone');
+const cons = require('consolidate');
+const nunjucks = require('nunjucks');
 
 // Initialise Keystone with your project's configuration. See
 // http://keystonejs.com/guide/config for available options and documentation.

@@ -38,20 +38,14 @@
 		{# FOOTER #}
 		{% include '../partials/footer.html' %}
 
-		<script src="/js/jquery/jquery.min.js"></script>
-        <script src="/js/manual/manufacturersList.js"></script>
-        <script src="/js/manual/side-navigation.js"></script>
-        <script src="/js/manual/main-navigation.js"></script>
-        <script src="/js/manual/responsive.js"></script>
-        <script src="/js/manual/slick.min.js"></script>
-        <script src="/js/manual/slick.js"></script>
-
 		{# The KeystoneJS Content Editor provides support for ks-editable data attributes,
 			which generate links to edit content for users who can access Keystone #}
 		{% if user and user.canAccessKeystone %}
 			<script src="/keystone/js/content/editor.js"></script>
 		{% endif %}
 
+		<script src="/js/dist/global.bundle.js"></script>
+		
 		{% block js %}{% endblock %}
 	</body>
 </html>
