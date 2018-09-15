@@ -5,22 +5,25 @@
 	background-image: url('/images/highlighted2.png');
 	/* Set a specific height */
 	min-height: 95vh;
-	margin-bottom: 25px;
 	/* Create the parallax scrolling effect */
 	// background-attachment: fixed;
 	background-position: bottom;
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-position: center; // box-shadow: inset 0 -10px 15px -10px #000000;
+	background-position: center;
 	.message {
 		position: absolute;
-		left: 50%;
+		text-align: center;
+		left: 0;
 		bottom: 0;
-		-webkit-transform: translateX(-50%);
-		transform: translateX(-50%);
-		background-color: rgba(255, 255, 255, 0.8);
-		padding: 20px;
-		margin: 0; // box-shadow: inset 0 -10px 15px -10px #000000;
+		background-color: rgba(0, 0, 0, 0.5);
+		font-weight: 300;
+		font-size: 4em;
+		line-height: 1em;
+		color: map-get($color, white);
+		// border: 5px solid white;
+		padding: 50vh 25%;
+		margin: 0;
 	}
 }
 
@@ -74,47 +77,6 @@
     .slick-prev {
         transform: rotate(90deg);
     }
-}
-
-.mini-navigation {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin: 25px auto;
-	.mini-navigation__button {
-		margin: 25px 0;
-		flex-basis: 30%;
-		text-align: center;
-		background-position: bottom;
-		background-repeat: no-repeat; // background-size: cover;
-		background-size: 120%;
-		background-position: center;
-		color: white;
-		padding-top: 10%;
-		padding-bottom: 10%;
-		font-size: 16pt;
-		transition-duration: 1s;
-		span {
-			background-color: rgba($color: #000000, $alpha: 0.3);
-			padding: 10px;
-			border-radius: 5px;
-		}
-		&:hover {
-			// @include hover(darkgrey);
-			opacity: 0.9;
-			background-size: 123%;
-			transition-duration:90ms;
-		}
-	}
-	.button1 {
-		background-image: url('/images/mini-nav1.png'); // background-image: url('/images/highlighted2.png');
-	}
-	.button2 {
-		background-image: url('/images/mini-nav2.png'); // background-image: url('/images/highlighted2.png');
-	}
-	.button3 {
-		background-image: url('/images/mini-nav3.png'); // background-image: url('/images/highlighted2.png');
-	}
 }
 
 @media screen and (max-width: 700px) {

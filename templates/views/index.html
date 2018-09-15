@@ -7,25 +7,24 @@
 
 {% block content %}
     <section id="manifesto">
-        <h3 class="message">{{globaldata.manifesto.phrase1}} <b>{{globaldata.manifesto.strongword}}</b> {{globaldata.manifesto.phrase2}}</h3>
+        {# <h3 class="message">{{globaldata.manifesto.phrase1}} {{globaldata.manifesto.strongword}} {{globaldata.manifesto.phrase2}}</h3> #}
     </section>
 
-    <figure class="mini-navigation content-section">
+    <figure class="mini-navigation">
         <a href="/products/" class="mini-navigation__button button1"><span>{{globaldata.mini_nav.button1}}</span></a>
         <a href="" class="mini-navigation__button button2"><span>{{globaldata.mini_nav.button2}}</span></a>
         <a href="" class="mini-navigation__button button3"><span>{{globaldata.mini_nav.button3}}</span></a>
     </figure>
-    <figure class="title">
-        <h3>{{globaldata.invitation.sentence1}} <span>{{globaldata.invitation.strongword1}}</span> {{globaldata.invitation.sentence2}}<b> {{globaldata.invitation.strongword2}}</b></h3>
-    </figure>
+
+    {% include 'partials/description.html' %}   
+
+    {# <figure class="title">
+        <h3>{{globaldata.invitation.sentence1}} <span>{{globaldata.invitation.strongword1}}</span> {{globaldata.invitation.sentence2}} <span>{{globaldata.invitation.strongword2}}</span></h3>
+    </figure> #}
     
     {% include 'partials/googlemaps.html' %}
-
-    {% include 'partials/contact.html' %}
-    
     
     {% include 'partials/highlighted.html' %}
     
     {% include 'partials/manufacturers.html' %}
-    {# <script src="/js/manual/index.js"></script> #}
 {% endblock %}

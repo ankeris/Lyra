@@ -11,9 +11,6 @@
             <div class="main-navigation__burger--stripe"></div>
         </figure>
 		<ul class="main-navigation__box">
-            <li class="navigation__item {{ 'active' if link.key == section else '' }}">
-                <a href="/" class="navigation__item--button">LYRA</a>
-            </li>
 		    {% for link in navLinks %}
 		    	<li class="navigation__item {{ 'active' if link.key == section else '' }}">
 		    		<a class="navigation__item--button" href="{{ link.href }}">{{ link.label }}</a>

@@ -1,49 +1,53 @@
-.contact-box {
+.description-box {
 	display: flex;
 	flex-wrap: wrap;
-	margin: 25px auto;
-	
-	.contact-box__item--text {
-		flex-basis: 50%;
-		padding: 15px;
-		flex: 1;
+	background-image: url('/images/contact2.png');
+	height: 70vh;
+	background-position: bottom;
+	background-repeat: repeat; // background-size: cover;
+	background-size: 120%;
+	background-position: center;
+	color: map-get($color, white);
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+	justify-content: center;
+
+	.description-box__title {
+		width: 500px;
+		border-bottom: 20px solid map-get($color, blue);
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+		font-size: 4em;
+		div {
+			font-weight: thin;
+		}
 	}
-	.contact-box__item--image-1 {
-		flex-basis: 50%;
-		min-height: 250px;
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-position: center;
-		background-size: 100%;
-		background-image: url('/images/contact1.png');
-	}
-	.contact-box__item--image-2 {
-		flex-basis: 50%;
-		min-height: 250px;
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-position: center;
-		background-size: 100%;
-		background-image: url('/images/contact2.png');
+
+	.description-box__item--text {
+		max-width: 500px;
+		text-align: justify;
+		overflow: visible;
+		margin: 0;
 	}
 }
 
 @media screen and (max-width: 700px) {
-	.contact-box {
+	.description-box {
 		flex-wrap: wrap-reverse;
-		.contact-box__item--text {
-			flex-basis: 100%;
+		height: 80vh;
+		.description-box__title {
+			max-width: 90%;
+			border-bottom: 20px solid map-get($color, blue);
+			display: flex;
+			flex-flow: row nowrap;
+			  justify-content: space-between;
+			  font-size: 4em;
 		}
-		.contact-box__item--image-1 {
-			flex-basis: 100%;
-		}
-		.contact-box__item--image-2 {
-			flex-basis: 100%;
-		}
-	}
-	.contact {
-		.contact-form {
-			width: 100%;
+	
+		.description-box__item--text {
+			max-width: 90%;
 		}
 	}
 }
