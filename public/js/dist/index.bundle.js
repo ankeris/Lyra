@@ -104,7 +104,7 @@ eval("var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!\n * jQ
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("let $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\r\nlet slick = __webpack_require__(/*! ./slick.min.js */ \"./public/js/manual/index/slick.min.js\");\r\n\r\n$('.highlighted-products').slick({\r\n    infinite: true,\r\n    autoplay: true,\r\n    slidesToShow: 4,\r\n    slidesToScroll: 1,\r\n    prevArrow: '<button type=\"button\" class=\"slick-prev\" aria-label=\"slide previous\"></button>',\r\n    nextArrow: '<button type=\"button\" class=\"slick-next\" aria-label=\"slide next\"></button>',\r\n});\n\n//# sourceURL=webpack:///./public/js/manual/index/slick.js?");
+eval("let $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\r\nlet slick = __webpack_require__(/*! ./slick.min.js */ \"./public/js/manual/index/slick.min.js\");\r\n\r\n$('.highlighted-products').slick({\r\n\tinfinite: true,\r\n\tautoplay: true,\r\n\tslidesToShow: 4,\r\n\tslidesToScroll: 1,\r\n\tprevArrow: '<button type=\"button\" class=\"slick-prev\" aria-label=\"slide previous\"></button>',\r\n\tnextArrow: '<button type=\"button\" class=\"slick-next\" aria-label=\"slide next\"></button>',\r\n});\n\n//# sourceURL=webpack:///./public/js/manual/index/slick.js?");
 
 /***/ }),
 

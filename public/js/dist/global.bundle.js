@@ -104,7 +104,7 @@ eval("var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!\n * jQ
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("const searchIcon = document.querySelector('.search-bar');\r\nconst searchInput = document.querySelector('#search-input');\r\n\r\nsearchIcon.addEventListener('click', () => {\r\n\tsearchInput.classList.toggle(\"hidden\");\r\n\tsearchInput.classList.toggle(\"navigation__search-form--search-input\");\r\n\tif (searchInput.className == \"navigation__search-form--search-input\") {\r\n\t\tsearchInput.focus();\r\n\t}\r\n})\r\n\r\nwindow.addEventListener('resize', function (window) {\r\n\tconsole.log(window.target.innerWidth);\r\n})\r\n\r\n// const logo = document.querySelector('.main-navigation .logo');\r\n// window.addEventListener('scroll', () => {\r\n//     if (window.scrollY >= 30) {\r\n//         logo.className = \"logoSmall\";\r\n//     } else {\r\n//         logo.className = \"logo\";\r\n//     }\r\n// })\r\n\n\n//# sourceURL=webpack:///./public/js/manual/global/main-navigation.js?");
+eval("const searchIcon = document.querySelector('.search-bar');\r\nconst searchInput = document.querySelector('#search-input');\r\n\r\nsearchIcon.addEventListener('click', () => {\r\n\tsearchInput.classList.toggle('hidden');\r\n\tsearchInput.classList.toggle('navigation__search-form--search-input');\r\n\tif (searchInput.className == 'navigation__search-form--search-input') {\r\n\t\tsearchInput.focus();\r\n\t}\r\n});\r\n\r\nwindow.addEventListener('resize', function (window) {\r\n\tconsole.log(window.target.innerWidth);\r\n});\r\n\r\n// const logo = document.querySelector('.main-navigation .logo');\r\n// window.addEventListener('scroll', () => {\r\n//     if (window.scrollY >= 30) {\r\n//         logo.className = \"logoSmall\";\r\n//     } else {\r\n//         logo.className = \"logo\";\r\n//     }\r\n// })\r\n\n\n//# sourceURL=webpack:///./public/js/manual/global/main-navigation.js?");
 
 /***/ }),
 
@@ -115,7 +115,7 @@ eval("const searchIcon = document.querySelector('.search-bar');\r\nconst searchI
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("let $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\r\n\r\nif($('.clickable__block')) {\r\n    $('.clickable__block').click(function() {\r\n        $(this).next('section').slideToggle('slow');\r\n        $('.dropdownSVG').toggleClass(\"rotate\");\r\n        if ($(this).next('section').is(':visible')) {\r\n            $('html, body').animate({scrollTop: $(this).position().top}, 700);\r\n        }\r\n    });\r\n}\r\n\r\n\n\n//# sourceURL=webpack:///./public/js/manual/global/manufacturersList.js?");
+eval("let $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\r\n\r\nif($('.clickable__block')) {\r\n\t$('.clickable__block').click(function() {\r\n\t\t$(this).next('section').slideToggle('slow');\r\n\t\t$('.dropdownSVG').toggleClass('rotate');\r\n\t\tif ($(this).next('section').is(':visible')) {\r\n\t\t\t$('html, body').animate({scrollTop: $(this).position().top}, 700);\r\n\t\t}\r\n\t});\r\n}\r\n\r\n\n\n//# sourceURL=webpack:///./public/js/manual/global/manufacturersList.js?");
 
 /***/ }),
 

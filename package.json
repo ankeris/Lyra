@@ -27,7 +27,7 @@
     "webpack-dev-server": "^3.1.8"
   },
   "scripts": {
-    "lint": "eslint",
+    "lint": "eslint . --fix",
     "start": "node keystone.js | webpack --watch",
     "build": "webpack"
   }

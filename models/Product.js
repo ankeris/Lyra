@@ -25,7 +25,7 @@ Product.add({
 	Discount: {
 		type: Number,
 		collapse: true,
-		note: "Nuolaida (%) Procentais",
+		note: 'Nuolaida (%) Procentais',
 	},
 	description: {
 		type: Types.Html,
@@ -56,7 +56,7 @@ Product.add({
 	Highlight: {
 		type: Types.Boolean
 	}
-})
+});
 
 Product.defaultColumns = 'title, ProductType, Manufacturer, images, Highlight';
 Product.register();

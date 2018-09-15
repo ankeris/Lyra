@@ -6,7 +6,7 @@ $('.subcategory-box__item--svg')
 			.parent()
 			.next('div')
 			.slideToggle('slow');
-		$(this).toggleClass("rotate");
+		$(this).toggleClass('rotate');
 	});
 
 
@@ -15,7 +15,7 @@ $('.mobile-side-nav')
 		$(this)
 			.next('aside')
 			.slideToggle('slow');
-		$(this.childNodes[3]).toggleClass("rotate");
+		$(this.childNodes[3]).toggleClass('rotate');
 	});
 
 $(document).ready(function () {
@@ -37,13 +37,13 @@ $(document).ready(function () {
 	});
 	const active = $('.active')[1];
 	// If subcategory is selected, the SVG is rotated on page load
-	$(active).parent().prev('div').children('.subcategory-box__item--svg').toggleClass("rotate");
+	$(active).parent().prev('div').children('.subcategory-box__item--svg').toggleClass('rotate');
 
 	window.addEventListener('resize', function (e) {
 		if (window.innerWidth >= 700) {
-			$('.side-nav').removeAttr("style");
+			$('.side-nav').removeAttr('style');
 		}
-	})
+	});
 });
 
 const el = document.querySelector('.side-nav__box');
@@ -57,7 +57,7 @@ if (el) {
 		.getBoundingClientRect()
 		.top - 60;
 
-	const mq = window.matchMedia("(max-width: 700px)");
+	const mq = window.matchMedia('(max-width: 700px)');
 
 	window.addEventListener('scroll', function () {
 		if (mq) {

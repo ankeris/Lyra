@@ -2,16 +2,16 @@ const searchIcon = document.querySelector('.search-bar');
 const searchInput = document.querySelector('#search-input');
 
 searchIcon.addEventListener('click', () => {
-	searchInput.classList.toggle("hidden");
-	searchInput.classList.toggle("navigation__search-form--search-input");
-	if (searchInput.className == "navigation__search-form--search-input") {
+	searchInput.classList.toggle('hidden');
+	searchInput.classList.toggle('navigation__search-form--search-input');
+	if (searchInput.className == 'navigation__search-form--search-input') {
 		searchInput.focus();
 	}
-})
+});
 
 window.addEventListener('resize', function (window) {
 	console.log(window.target.innerWidth);
-})
+});
 
 // const logo = document.querySelector('.main-navigation .logo');
 // window.addEventListener('scroll', () => {

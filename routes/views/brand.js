@@ -8,12 +8,12 @@ exports = module.exports = function (req, res) {
 	locals.data = {
 		products: [],
 		sort: req.query.filterlist
-	}
+	};
 
 	locals.filters = {
 		brand: req.params.brand,
 		category: req.params.category
-	}
+	};
 
 	view.query('manufacturers', keystone.list('ProductManufacturer').model.find());
 
@@ -70,7 +70,7 @@ exports = module.exports = function (req, res) {
 			page: req.query.page || 1,
 			perPage: 9,
 			maxPages: 10,
-		})
+		});
 		r.populate('Manufacturer ProductType').sort(getSort());
 
 		if (!locals.data.category) {
@@ -83,7 +83,7 @@ exports = module.exports = function (req, res) {
 					locals.data.products = getRidOfMetadata(result);
 					next(err);
 				}
-			})
+			});
 		}
 
 		if (locals.data.category) {
@@ -99,23 +99,23 @@ exports = module.exports = function (req, res) {
 						locals.data.products = getRidOfMetadata(result);
 						next(err);
 					}
-				})
+				});
 			} // Load products of all children categories of parent category
 			else if (locals.data.category.IsParentCategory) {
 				keystone.list('ProductCategory').model.find({'ChildCategoryOf': locals.data.category})
-				.exec(function (err, result) {
-					r.find({
-						'ProductType': { $in: result },
-						'Manufacturer': locals.data.brand
-					}).exec(function (err, result) {
-						if (err) {
-							next(err);
-						} else {
-							locals.data.products = getRidOfMetadata(result);
-							next(err);
-						}
-					})
-				})
+					.exec(function (err, result) {
+						r.find({
+							'ProductType': { $in: result },
+							'Manufacturer': locals.data.brand
+						}).exec(function (err, result) {
+							if (err) {
+								next(err);
+							} else {
+								locals.data.products = getRidOfMetadata(result);
+								next(err);
+							}
+						});
+					});
 			}
 		}
 	});
@@ -126,11 +126,11 @@ exports = module.exports = function (req, res) {
 	view.render('brand');
 
 	function getSort() {
-		if (req.query.filterlist == "price-high") {
+		if (req.query.filterlist == 'price-high') {
 			return {
 				'price': -1
 			};
-		} else if (req.query.filterlist == "price-low") {
+		} else if (req.query.filterlist == 'price-low') {
 			return {
 				'price': 1
 			};

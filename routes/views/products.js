@@ -79,7 +79,7 @@ exports = module.exports = function (req, res) {
 				page: req.query.page || 1,
 				perPage: 9,
 				maxPages: 10
-			})
+			});
 		q
 			.populate('Manufacturer ProductType')
 			.sort(getSort());
@@ -87,41 +87,41 @@ exports = module.exports = function (req, res) {
 		if (locals.data.category) {
 			// Load products for basic categories (without subcategories)
 			if (!locals.data.category.IsParentCategory) {
-			q.find({
+				q.find({
 					'ProductType': locals.data.category
 				})
-				.exec(function (err, result) {
-					if (err) {
-						next(err);
-					} else {
-						locals.data.products = getRidOfMetadata(result);
-						next(err);
-					}
-				})
-			} // Load products of all children categories of parent category
-			else if (locals.data.category.IsParentCategory) {
-				keystone.list('ProductCategory').model.find({'ChildCategoryOf': locals.data.category})
-				.exec(function (err, result) {
-					q.find({
-						'ProductType': { $in: result }
-					}).exec(function (err, result) {
+					.exec(function (err, result) {
 						if (err) {
 							next(err);
 						} else {
 							locals.data.products = getRidOfMetadata(result);
 							next(err);
 						}
-					})
-				})
+					});
+			} // Load products of all children categories of parent category
+			else if (locals.data.category.IsParentCategory) {
+				keystone.list('ProductCategory').model.find({'ChildCategoryOf': locals.data.category})
+					.exec(function (err, result) {
+						q.find({
+							'ProductType': { $in: result }
+						}).exec(function (err, result) {
+							if (err) {
+								next(err);
+							} else {
+								locals.data.products = getRidOfMetadata(result);
+								next(err);
+							}
+						});
+					});
 			}
 		}
 		
 		function getSort() {
-			if (req.query.filterlist == "price-high") {
+			if (req.query.filterlist == 'price-high') {
 				return {
 					'price': -1
 				};
-			} else if (req.query.filterlist == "price-low") {
+			} else if (req.query.filterlist == 'price-low') {
 				return {
 					'price': 1
 				};
@@ -131,28 +131,28 @@ exports = module.exports = function (req, res) {
 		if (req.query.search) {
 			const regex = new RegExp(escapeRegex(req.query.search), 'gi');
 			q.find({
-					$or: [{
-						'slug': regex
-					}, {
-						'title': regex
-					}]
-				})
+				$or: [{
+					'slug': regex
+				}, {
+					'title': regex
+				}]
+			})
 				.exec(function (err, results) {
-						if (err) {
-							next(err);
-						} else {
-							locals.data.products = getRidOfMetadata(results);
-							next(err);
-						}
-					} // Default query when products page is opened
-				)
+					if (err) {
+						next(err);
+					} else {
+						locals.data.products = getRidOfMetadata(results);
+						next(err);
+					}
+				} // Default query when products page is opened
+				);
 		} else if (!locals.data.category) {
 			q
 				.exec(function (err, results) {
 					// getting rid of metadata with "toObject()" from mongoose
 					locals.data.products = getRidOfMetadata(results);
 					next(err);
-				})
+				});
 		}
 	});
 
@@ -177,5 +177,5 @@ function getRidOfMetadata(data) {
 }
 
 function escapeRegex(text) {
-	return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-};
+	return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+}
