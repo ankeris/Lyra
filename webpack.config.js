@@ -3,7 +3,7 @@ const glob = require('glob');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
-	mode: 'development', //add 'production' when deploy
+	mode: 'production', //add 'production' when deploy
 	// watch: true,
 	entry: {
 		global: glob.sync('./public/js/manual/global/*.js'),
