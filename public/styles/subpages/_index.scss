@@ -35,24 +35,26 @@
     align-items: center;
     .slick-list {
         flex-basis: 92%;
-    }
-    .items-box__item {
-        margin: 0px 1%;
-        text-align: center;
-        .items-box__item--description {
-            margin: 5px;
+        .slick-slide {
+            margin: 0px 1%;
         }
-        .items-box__item--main-image {
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 100%;
-            width: 100%;
-            height: 300px;
-            overflow: auto;
-            &:hover {
-                transform: scale(1.02);
-                transition-duration: 90ms;
+        .items-box__item {
+            text-align: center;
+            .items-box__item--description {
+                margin: 5px;
+            }
+            .items-box__item--main-image {
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 100%;
+                width: 100%;
+                height: 300px;
+                overflow: auto;
+                &:hover {
+                    transform: scale(1.02);
+                    transition-duration: 90ms;
+                }
             }
         }
     }

@@ -9,9 +9,8 @@ footer {
 	.content-section {
 		padding: 40px 0;
 		display: flex;
-		.footer__right-side-box {
-			flex-basis: 50%;
-			text-align: right;
+		.footer__box {
+			flex-basis: 33%;
 			a img {
                 margin-left: 10px;
                 margin-bottom: 10px;
@@ -19,8 +18,14 @@ footer {
 				height: 50px;
 			}
 		}
-		.footer__left-side-box {
-			flex-basis: 50%;
+		.footer__box--left {
+			text-align: left;
+		}
+		.footer__box--middle {
+			text-align: center;
+		}
+		.footer__box--right {
+			text-align: right;
 		}
 	}
 }

@@ -15,18 +15,18 @@ module.exports = {
 		path: path.resolve('./public/js/', 'dist'),
 		filename: '[name].bundle.js'
 	},
-	plugins: [
-		new BrowserSyncPlugin({
-			// browse to http://localhost:3000/ during development,
-			// ./public directory is being served
-			host: 'localhost',
-			port: 8080,
-			files: [
-				'./templates/views/**/*.html',
-				'./public/styles/**/*.scss',
-				'./public/js/manual/**/*.js'
-			],
-			proxy: 'http://localhost:8080/'
-		})
-	]
+	// plugins: [
+	// 	new BrowserSyncPlugin({
+	// 		// browse to http://localhost:3000/ during development,
+	// 		// ./public directory is being served
+	// 		host: 'localhost',
+	// 		port: 8080,
+	// 		files: [
+	// 			'./templates/views/**/*.html',
+	// 			'./public/styles/**/*.scss',
+	// 			'./public/js/manual/**/*.js'
+	// 		],
+	// 		proxy: 'http://localhost:8080/'
+	// 	})
+	// ]
 };

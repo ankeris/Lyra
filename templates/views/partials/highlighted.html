@@ -6,14 +6,12 @@
     {% set manufacturerName = product.Manufacturer.name %}
     {% set productTypeKey = product.ProductType[0].key %}
     <div class="items-box__item">
-    <a aria-label="{{product.title}}" href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
-        <div manufacturer="{{manufacturerName}}">
+    <a aria-label="{{product.title}}" title="{{product.title}}" href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
             {% if product.images %}
                 {# Main image #}
                 <div class="items-box__item--main-image" style="background-image: url('{{product.images[0].secure_url}}')">
                 </div>
             {% endif %}
-        </div>
     </a>
     <p class="items-box__item--description">{{manufacturerName}} - {{product.title}} <br>{{product.price}}€</p>
     </div>

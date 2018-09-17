@@ -33,7 +33,7 @@
             {% set productTypeKey = product.ProductType[0].key %}
 
             <div class="items-box__item fade-in">
-            <a aria-label="{{product.title}}" href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
+            <a aria-label="{{product.title}}" title="{{product.title}}" href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
                 {% if product.images %}
                     {# Main image #}
                     <img class="items-box__item--main-image" alt="{{product.title}}" src="{{product.images[0].secure_url}}">

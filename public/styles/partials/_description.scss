@@ -1,10 +1,10 @@
 .description-box {
 	background-image: url('/images/contact2.png');
 	height: 70vh;
-	background-position: 0;
 	background-attachment: fixed;
-	background-position: left;
-	animation: animatedBackground 45s ease-in-out infinite;
+	background-position: left bottom;
+	background-size: 135%;
+	animation: animatedBackground 25s linear infinite;
 	
 	color: map-get($color, white);
 	display: flex;

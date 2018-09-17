@@ -1,5 +1,5 @@
 let $ = require('jquery');
-let slick = require('./slick.min.js');
+let slick = require('slick-carousel');
 
 $('.highlighted-products').slick({
 	infinite: true,

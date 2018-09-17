@@ -8,17 +8,18 @@
     "consolidate": "0.14.5",
     "dotenv": "4.0.0",
     "imagesloaded": "^4.1.4",
+    "instafeed.js": "^1.4.1",
     "jquery": "^3.3.1",
-    "keystone": "4.0.0-beta.5",
+    "keystone": "^4.0.0",
     "lodash": "^4.13.1",
-    "node-sass": "4.5.0",
+    "node-sass": "^4.9.3",
     "node-sass-middleware": "0.11.0",
     "normalize.css": "^8.0.0",
     "nunjucks": "3.0.0",
-    "perfect-scrollbar": "^1.4.0"
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
-    "browser-sync": "^2.23.6",
+    "browser-sync": "^2.24.7",
     "browser-sync-webpack-plugin": "^2.2.2",
     "eslint": "^5.6.0",
     "eslint-config-keystone": "3.0.0",
