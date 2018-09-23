@@ -11,7 +11,7 @@ const userFeed = new Instafeed({
     sortBy: 'most-recent',
     template: `
     <div class="items-box__instagram-item">
-        <a href="{{link}}" target="_blank" aria-label="{{likes}} likes">
+        <a href="{{link}}" rel="noreferrer" target="_blank" aria-label="{{likes}} likes">
             <div class="items-box__item--main-image" style="background-image: url('{{image}}')">
                 <div class="items-box__item--text">{{caption}}</div>
             </div>
@@ -24,7 +24,6 @@ userFeed.run();
 $(document).ready(checkContainer);
 
 function checkContainer () {
-    console.log('trying again . . .')
     if($('.items-box__instagram-item').is(':visible')) {
         $('#instafeed').slick({
             infinite: true,

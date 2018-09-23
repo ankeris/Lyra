@@ -13,9 +13,10 @@
 	justify-content: center;
 	.description-box__title {
 		width: 500px;
+		margin: 5px;
 		// border-bottom: 20px solid map-get($color, darkgrey);
 		// background-color: ;
-		border-bottom: 10px solid map-get($color, darkgrey);
+		// border-bottom: 10px solid map-get($color, darkgrey);
 		display: flex;
 		flex-flow: row nowrap;
 		justify-content: space-between;
@@ -26,6 +27,8 @@
 	}
 
 	.description-box__item--text {
+		background-color: rgba(0, 0, 0, 0.4);
+		padding: 15px;
 		max-width: 500px;
 		text-align: justify;
 		overflow: visible;
@@ -39,7 +42,6 @@
 		height: 80vh;
 		.description-box__title {
 			max-width: 90%;
-			border-bottom: 20px solid map-get($color, blue);
 			display: flex;
 			flex-flow: row nowrap;
 			  justify-content: space-between;

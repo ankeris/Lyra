@@ -2,7 +2,7 @@
 	display: flex;
 	position: relative;
 	/* The image used */
-	background-image: url('/images/highlighted2.png');
+	background-image: url('/images/newmanifesto.jpg');
 	/* Set a specific height */
 	min-height: 95vh;
 	/* Create the parallax scrolling effect */
@@ -13,10 +13,12 @@
     background-position: center;
     display: flex;
     align-content: center;
+    justify-content: center;
     align-items: center;
 	.message {
-        width: 100%;
-        padding: 10% 0;
+        max-width: 750px;
+        word-spacing: 0.1em;
+        padding: 2%;
 		text-align: center;
 		background-color: rgba(0, 0, 0, 0.5);
 		font-weight: thin;
@@ -91,5 +93,13 @@
                 overflow: auto;
             }
         }
+    }
+    #manifesto {
+        min-height: 65vh;
+		.message {
+            max-width: 90%;
+            font-size: 2em;
+            line-height: 1.5em;
+		}
 	}
 }

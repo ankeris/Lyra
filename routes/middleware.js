@@ -37,17 +37,17 @@ exports.initLocals = function (req, res, next) {
 		},
 		{
 			label: 'PASIŪLYMAI',
-			key: 'pasiulymai',
+			key: 'specialoffers',
 			href: '/pasiulymai'
 		},
 		{
 			label: 'NAUJIENOS',
-			key: 'naujienos',
+			key: 'news',
 			href: '/naujienos'
 		},
 		{
 			label: 'APIE MUS',
-			key: 'apiemus',
+			key: 'aboutus',
 			href: '/apie-mus'
 		},
 		{

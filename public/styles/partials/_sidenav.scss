@@ -13,10 +13,6 @@
 		overflow-y: scroll;
 		max-height: 85vh;
 		margin-right: 13%;
-		// overflow: auto;
-		// position: relative;
-		// width: 480px;
-  		// height: 320px;
 		&::-webkit-scrollbar, ::-webkit-resizer {
 			width: 0;
 			height: 0;
@@ -27,7 +23,8 @@
 			line-height: 1;
 			color: map-get($color, black);
 			&:hover {
-				color: map-get($color, blue);
+				// color: map-get($color, blue);
+				text-shadow: 1px 0 0 map-get($color, darkgrey);
 				transition: 90ms;
 				cursor: pointer;
 			}
@@ -51,6 +48,7 @@
 				padding: 12px;
 				flex-basis: 10%;
 				transition-duration: 400ms;
+				cursor: pointer;
 			}
 			&:hover {
 				@include hover(blue, 5px);
@@ -69,7 +67,8 @@
 				padding: 11px;
 				color: map-get($color, black);
 				&:hover {
-					color: map-get($color, blue);
+					// color: map-get($color, blue);
+					text-shadow: 1px 0 0 map-get($color, darkgrey);
 					transition: 90ms;
 					cursor: pointer;
 				}
@@ -98,7 +97,8 @@
 				display: block;
 				margin: 0 auto;
 				&:hover {
-					color: map-get($color, blue);
+					// color: map-get($color, blue);
+					text-shadow: 1px 0 0 map-get($color, darkgrey);
 					transition: 90ms;
 					cursor: pointer;
 				}
