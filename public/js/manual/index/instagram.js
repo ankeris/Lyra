@@ -1,6 +1,5 @@
 const Instafeed = require('instafeed.js');
 let $ = require('jquery');
-import 'jquery';
 let slick = require('slick-carousel');
 
 const userFeed = new Instafeed({
@@ -25,6 +24,7 @@ userFeed.run();
 $(document).ready(checkContainer);
 
 function checkContainer () {
+    console.log('trying again . . .')
     if($('.items-box__instagram-item').is(':visible')) {
         $('#instafeed').slick({
             infinite: true,

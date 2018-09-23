@@ -13,7 +13,7 @@
 		padding-top: 10%;
 		padding-bottom: 10%;
 		font-size: 16pt;
-		letter-spacing: 0.3em;
+		letter-spacing: 0.2em;
 		transition-duration: 90ms;
 		span {
 			background-color: rgba($color: #000000, $alpha: 0.3);
@@ -44,6 +44,14 @@
 		flex-wrap: wrap;
 		.mini-navigation__button {
 			flex-basis: 100%;
+		}
+	}
+}
+@media screen and (max-width: 800px) {
+	.mini-navigation {
+		.mini-navigation__button {
+			font-size: 14pt;
+			letter-spacing: 0.2em;
 		}
 	}
 }

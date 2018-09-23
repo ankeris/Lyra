@@ -30,6 +30,7 @@
   "scripts": {
     "lint": "eslint . --fix",
     "start": "node keystone.js | webpack --watch",
-    "build": "webpack"
+    "build": "webpack",
+    "backend": "nodemon keystone.js"
   }
 }

@@ -40,6 +40,9 @@ b {
 .hidden {
 	display: none;
 }
+.invisible {
+	visibility: hidden;
+}
 
 input[type=text] {
 	outline: none;

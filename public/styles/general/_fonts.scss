@@ -3,7 +3,7 @@
 	src: url('/fonts/azosans-light.otf');
 	font-weight: 300;
 	font-style: normal;
-	font-display: swap;
+	font-display: fallback;
 }
 
 @font-face {
@@ -11,7 +11,7 @@
 	font-display: auto;
 	src: url('/fonts/azosans-bold.otf');
 	font-weight: bold;
-	font-display: swap;
+	font-display: fallback;
 }
 
 @font-face {
@@ -19,9 +19,8 @@
 	font-display: auto;
 	src: url('/fonts/azosans-thin.otf');
 	font-weight: thin;
-	font-display: swap;
+	font-display: fallback;
 }
-
 
 * {
 	font-family: 'AzoSans';

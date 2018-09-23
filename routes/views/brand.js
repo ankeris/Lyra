@@ -33,20 +33,27 @@ exports = module.exports = function (req, res) {
 			if (err || !results.length) {
 				return next(err);
 			}
-
-			locals.data.categories = results;
+			
+			locals.data.allCategories = results;
+			let categoriesToDisplay = [];
 			//Load the counts for each category (counts how much products every category contains)
-			async.each(locals.data.categories, function (category, next) {
+			async.each(locals.data.allCategories, function (category, next) {
 				keystone.list('Product').model.count()
 					.where('ProductType').in([category.id])
 					.where('Manufacturer').in([locals.data.brand])
 					.exec(function (err, count) {
 						category.postCount = count;
+						
+						if(category.postCount > 0) {
+							categoriesToDisplay.push(category);
+						}
 						next(err);
 					});
 			}, function (err) {
+				categoriesToDisplay.sort();
+				locals.data.categories = categoriesToDisplay;
 				next(err);
-			});
+			})
 		});
 	});
 
