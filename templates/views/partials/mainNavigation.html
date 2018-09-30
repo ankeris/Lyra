@@ -3,13 +3,6 @@
 <div class="fakenav"></div>
 {# Actual Navigation #}
 <header class="main-navigation">
-	<div class="content-section">
-        {# burger menu #}
-        <figure class="main-navigation__burger">
-            <div class="main-navigation__burger--stripe"></div>
-            <div class="main-navigation__burger--stripe"></div>
-            <div class="main-navigation__burger--stripe"></div>
-        </figure>
 		<ul class="main-navigation__box">
 		    {% for link in navLinks %}
 		    	<li class="navigation__item {{ 'active' if link.key == section else '' }}">
@@ -23,7 +16,11 @@
                 </form>
             </li>
 		</ul>
-    </div>
+    <figure class="main-navigation__burger">
+        <div class="main-navigation__burger--stripe"></div>
+        <div class="main-navigation__burger--stripe"></div>
+        <div class="main-navigation__burger--stripe"></div>
+    </figure>
 </header>
 <div class="container">
 </div>

@@ -33,3 +33,5 @@ acme
 .DS_Store
 
 .vscode/
+
+.public/js/dist/

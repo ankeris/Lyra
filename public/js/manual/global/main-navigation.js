@@ -1,4 +1,6 @@
-const searchIcon = document.querySelector('.search-bar');
+const $ = require('jquery');
+
+const searchIcon = document.querySelector('.search-bar .svg');
 const searchInput = document.querySelector('#search-input');
 
 searchIcon.addEventListener('click', () => {
@@ -9,15 +11,29 @@ searchIcon.addEventListener('click', () => {
 	}
 });
 
+const [stripe1, stripe2, stripe3] = [document.querySelectorAll('.main-navigation__burger--stripe')[0], document.querySelectorAll('.main-navigation__burger--stripe')[1], document.querySelectorAll('.main-navigation__burger--stripe')[2]];
+
 window.addEventListener('resize', function (window) {
-	console.log(window.target.innerWidth);
+	if(window.target.innerWidth >= 760) {
+		$(".main-navigation .main-navigation__box").removeAttr("style");
+		$(stripe1).attr('class', 'main-navigation__burger--stripe');
+		$(stripe2).attr('class', 'main-navigation__burger--stripe');
+		$(stripe3).attr('class', 'main-navigation__burger--stripe');
+	}
 });
 
-// const logo = document.querySelector('.main-navigation .logo');
-// window.addEventListener('scroll', () => {
-//     if (window.scrollY >= 30) {
-//         logo.className = "logoSmall";
-//     } else {
-//         logo.className = "logo";
-//     }
-// })
+$( ".main-navigation .main-navigation__burger" ).click(function() {
+	$( ".main-navigation .main-navigation__box" ).animate({
+		height: "toggle",
+		opacity: "toggle"
+	  }, {
+		progress: {
+			width: "linear",
+			height: "easeOutBounce"
+		}
+	});
+	console.log(document.querySelector('.main-navigation__burger--stripe'));
+	$(stripe1).toggleClass('stripe1');
+	$(stripe2).toggleClass('stripe2');
+	$(stripe3).toggleClass('invisible');
+});

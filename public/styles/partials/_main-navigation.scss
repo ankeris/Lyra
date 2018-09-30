@@ -6,8 +6,9 @@
 	height: 50px;
 	z-index: 99;
 	.main-navigation__box {
+		max-width: 1124px;
 		list-style: none;
-		margin: 0;
+		margin: 0 auto;
 		padding: 0;
 		display: flex;
 		flex-direction: row;
@@ -21,7 +22,7 @@
 			transition-timing-function: ease;
 			text-decoration: none;
 			display: block;
-			padding: 15px 10px;
+			padding: 13px 10px;
 			&:hover {
 				text-shadow: 1px 0 0 map-get($color, darkgrey);
 				-webkit-transition: all .5s;
@@ -51,19 +52,18 @@
 	display: flex;
 	margin: 0;
 	padding: 0;
-	align-content: center;
 	.navigation__search-form {
 		width: auto;
 		.navigation__search-form--search-input {
 			width: 110px;
-			height: 90%;
+			height: 100%;
 			transition: ease 1s;
 			border: 0;
 		}
 		.hidden {
 			display: inherit !important;
 			transition: ease 1s;
-			height: 90%;
+			height: 100%;
 			width: 0;
 			border: 0;
 			padding: 0;
@@ -75,30 +75,50 @@
 
 @media screen and (max-width: 760px) {
 	.main-navigation {
-		width: 70px;
-		height: 70px;
-        border-bottom-right-radius: 100%;
-        border-bottom: 1px solid map-get($color, darkgrey);
-        border-right: 1px solid map-get($color, darkgrey);
+		width: 100%;
+		cursor: pointer;
+		background-color: transparent;
 		.main-navigation__burger {
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-			width: 35px;
-			height: 30px;
-			margin: 7px;
+			width: 60px;
+			position: relative;
+			display: block;
+			border-bottom: 1px solid map-get($color, darkgrey);
+			border-right: 1px solid map-get($color, darkgrey);
+			padding: 4px;
+			background-color: rgba($color: map-get($color, white), $alpha: 0.85);
 			.main-navigation__burger--stripe {
-				flex-basis: 20%;
+				position: relative;
+				height: 4px;
+				width: 40px;
 				background-color: map-get($color, darkgrey);
 				border-radius: 2px;
+				margin: 8px;
+			}
+			.stripe1 {
+				transition-duration: 1s;
+				top: 12px;
+				transform: rotate(135deg);
+				background-color: orangered;
+			}
+			.stripe2 {
+				transition-duration: 1s;
+				transform: rotate(45deg);
+				background-color: orangered;
+			}
+			&:hover > .stripe2 {
+				background-color: red;
+			}
+			&:hover > .stripe1 {
+				background-color: red;
 			}
 		}
 		.main-navigation__box {
 			display: none;
 			list-style: none;
-			margin: 0;
+			width: 100%;
 			padding: 0;
 			flex-direction: column;
+			background-color: rgba($color: map-get($color, white), $alpha: 0.85);
 			.navigation__item--button {
 				font-size: 10pt;
 				display: block;
@@ -112,5 +132,16 @@
 	}
 	.fakenav {
 		display: none;
+	}
+	.search-bar {
+		.navigation__search-form {
+			width: 100%;
+			.navigation__search-form--search-input {
+				width: 100%;
+				height: 100%;
+				transition: ease 1s;
+				border: 0;
+			}
+		}
 	}
 }
