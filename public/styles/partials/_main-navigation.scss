@@ -24,16 +24,27 @@
 			display: block;
 			padding: 13px 10px;
 			&:hover {
-				text-shadow: 1px 0 0 map-get($color, darkgrey);
+				text-shadow:
+				-.3px -.3px 0 map-get($color, darkgrey),
+				.3px -.3px 0 map-get($color, darkgrey),
+				-.3px .3px 0 map-get($color, darkgrey),
+				.3px .3px 0 map-get($color, darkgrey);
 				-webkit-transition: all .5s;
 				-moz-transition: all .5s;
 				-o-transition: all .5s;
 				transition: all ease .5s;
 			}
 		}
+		.logo-nav__button {
+			height: 50px;
+		}
 	}
 	.active {
-		text-shadow: 1px 0 0 map-get($color, darkgrey);
+		text-shadow:
+		-.3px -.3px 0 map-get($color, darkgrey),
+		.3px -.3px 0 map-get($color, darkgrey),
+		-.3px .3px 0 map-get($color, darkgrey),
+		.3px .3px 0 map-get($color, darkgrey);
 		-webkit-transition: all .5s;
 		-moz-transition: all .5s;
 		-o-transition: all .5s;
@@ -48,7 +59,7 @@
 	height: 50px;
 }
 
-.search-bar {
+.search-bar, .logo-nav {
 	display: flex;
 	margin: 0;
 	padding: 0;
@@ -98,18 +109,16 @@
 				transition-duration: 1s;
 				top: 12px;
 				transform: rotate(135deg);
-				background-color: orangered;
 			}
 			.stripe2 {
 				transition-duration: 1s;
 				transform: rotate(45deg);
-				background-color: orangered;
 			}
 			&:hover > .stripe2 {
-				background-color: red;
+				background-color: map-get($color, blue);
 			}
 			&:hover > .stripe1 {
-				background-color: red;
+				background-color: map-get($color, blue);
 			}
 		}
 		.main-navigation__box {

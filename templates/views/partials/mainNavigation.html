@@ -1,9 +1,16 @@
 {% from "mixins/macros.html" import searchIcon %}
+{% from "mixins/macros.html" import logo %}
+
 {# Fake nav is there to push whole layout 50px down #}
 <div class="fakenav"></div>
 {# Actual Navigation #}
 <header class="main-navigation">
 		<ul class="main-navigation__box">
+            <li class="navigation__item logo-nav">
+		    	<a class="logo-nav__button" href="/">
+                    {{ logo("#1f1f1f", "#e6e6e6") }}
+                </a>
+		    </li>
 		    {% for link in navLinks %}
 		    	<li class="navigation__item {{ 'active' if link.key == section else '' }}">
 		    		<a class="navigation__item--button" href="{{ link.href }}">{{ link.label }}</a>

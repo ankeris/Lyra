@@ -23,9 +23,15 @@
 			line-height: 1;
 			color: map-get($color, black);
 			&:hover {
-				// color: map-get($color, blue);
-				text-shadow: 1px 0 0 map-get($color, darkgrey);
-				transition: 90ms;
+				text-shadow:
+				-.3px -.3px 0 map-get($color, darkgrey),
+				.3px -.3px 0 map-get($color, darkgrey),
+				-.3px .3px 0 map-get($color, darkgrey),
+				.3px .3px 0 map-get($color, darkgrey);
+				-webkit-transition: all .5s;
+				-moz-transition: all .5s;
+				-o-transition: all .5s;
+				transition: all ease .5s;
 				cursor: pointer;
 			}
 		}
@@ -67,9 +73,15 @@
 				padding: 11px;
 				color: map-get($color, black);
 				&:hover {
-					// color: map-get($color, blue);
-					text-shadow: 1px 0 0 map-get($color, darkgrey);
-					transition: 90ms;
+					text-shadow:
+					-.3px -.3px 0 map-get($color, darkgrey),
+					.3px -.3px 0 map-get($color, darkgrey),
+					-.3px .3px 0 map-get($color, darkgrey),
+					.3px .3px 0 map-get($color, darkgrey);
+					-webkit-transition: all .5s;
+					-moz-transition: all .5s;
+					-o-transition: all .5s;
+					transition: all ease .5s;
 					cursor: pointer;
 				}
 			}
@@ -88,7 +100,7 @@
 		.subcategory-box {
 			margin-left: 5%;
 			width: 80%;
-			font-size: 0.8em;
+			font-size: 0.9em;
 			.subcategory-box__item {
 				width: 90%;
 				border-left: 1px solid map-get($color, darkgrey);
@@ -97,9 +109,15 @@
 				display: block;
 				margin: 0 auto;
 				&:hover {
-					// color: map-get($color, blue);
-					text-shadow: 1px 0 0 map-get($color, darkgrey);
-					transition: 90ms;
+					text-shadow:
+					-.3px -.3px 0 map-get($color, darkgrey),
+					.3px -.3px 0 map-get($color, darkgrey),
+					-.3px .3px 0 map-get($color, darkgrey),
+					.3px .3px 0 map-get($color, darkgrey);
+					-webkit-transition: all .5s;
+					-moz-transition: all .5s;
+					-o-transition: all .5s;
+					transition: all ease .5s;
 					cursor: pointer;
 				}
 			}
