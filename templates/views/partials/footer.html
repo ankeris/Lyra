@@ -1,27 +1,45 @@
 {% from "mixins/macros.html" import instaLogo %}
 {% from "mixins/macros.html" import fbLogo %}
+{% from "mixins/macros.html" import checkBox %}
 
 <footer id="footer">
     <section class="content-section">
         <section class="footer__box footer__box--left">
-            <a href="/contact" >Kontaktai</a><br>
-            <a href="/brands" >Visi prekių ženklai</a>
-            <p>&copy; Lyra 2018 by <a href="https://github.com/ankeris" rel="noreferrer" target="_blank">JR</a></p>
+            <p>SALONAS „LYRA“</p>
+            <p>KĘSTUČIO G. 26</p>
+            <p>LT-08115 VILNIUS</p>
+            <br>
+            <p><a href="tel:+37052623596">(+370 5) 262 35 96</a></p>
+            <p><a href="mailto:info@lyra.lt">INFO@LYRA.LT</a></p>
         </section>
         <section class="footer__box footer__box--middle">
             <p>
             I - V: 10 - 19 <br>
             VI: 10 - 15 <br>
-            VII: nedirbame
+            VII: ---
             </p>
         </section>
         <section class="footer__box footer__box--right">
-            <a aria-label="facebook" rel="noreferrer" href="https://www.facebook.com/SalonasLyra/" target="_blank">
-                {{ fbLogo("#1f1f1f", "#448AA6") }}
-            </a>
-            <a aria-label="instagram" rel="noreferrer" href="https://www.instagram.com/salonas_lyra/" target="_blank">
-                {{ instaLogo("#1f1f1f", "#448AA6") }}
-            </a>
+            <form class="newsletter" method="post">
+                <div class="newsletter__box">
+                    <p class="newsletter__box--text">Naujienlaiškis</p>
+                    <div class="newsletter__box--input">
+                    <input type="email" name="email" value="{{ formData.email }}" placeholder="įveskite savo el. pašto adresą">
+                    </div>
+                    <label class="newsletter__box--button">
+                        <input type="submit" />
+                        {{ checkBox("#1f1f1f", "#448AA6") }}
+                    </label>
+                </div>
+            </form>
+            <div class="media-icons">
+                <a aria-label="facebook" rel="noreferrer" href="https://www.facebook.com/SalonasLyra/" target="_blank">
+                    {{ fbLogo("#1f1f1f", "#448AA6") }}
+                </a>
+                <a aria-label="instagram" rel="noreferrer" href="https://www.instagram.com/salonas_lyra/" target="_blank">
+                    {{ instaLogo("#1f1f1f", "#448AA6") }}
+                </a>
+            </div>
         </section>
     </section>
 </footer>

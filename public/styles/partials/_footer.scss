@@ -3,6 +3,7 @@ footer {
 	margin: 0 auto;
 	border-top: 1px solid #eeeeee;
 	background-color: map-get($color, white);
+	font-weight: 300;
 	p {
 		color: map-get($color, darkgrey);
 	}
@@ -25,7 +26,47 @@ footer {
 			text-align: center;
 		}
 		.footer__box--right {
-			text-align: right;
+			.newsletter {
+				width: 100%;
+				.newsletter__box {
+					display: flex;
+					flex-wrap: wrap;
+					.newsletter__box--text {
+						flex-basis: 100%;
+					}
+					.newsletter__box--input {
+						width: 85%;
+						// overflow: auto;
+						input {
+							width: 95%;
+							height: 30px;
+							padding: 0 5px;
+							margin: 0;
+							border-color: map-get($color, darkgrey);
+							border-width: 1px;
+							border-style: outset;
+							background-color: grey;
+							&::placeholder {
+								color: map-get($color, white);
+							}
+							&[type] {
+								color: map-get($color, white);
+							}
+						}
+					}
+					.newsletter__box--button {
+						width: 15%;
+						text-align: center;
+						cursor: pointer;
+					}
+					input[type="submit"] { display: none;}
+				}
+			}
+			.media-icons {
+				text-align: center;
+				margin: 20px;
+			}
 		}
+		
 	}
 }
