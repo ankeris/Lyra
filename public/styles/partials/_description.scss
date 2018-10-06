@@ -14,20 +14,18 @@
 	.description-box__title {
 		width: 500px;
 		margin: 5px;
-		// border-bottom: 20px solid map-get($color, darkgrey);
-		// background-color: ;
-		// border-bottom: 10px solid map-get($color, darkgrey);
 		display: flex;
 		flex-flow: row nowrap;
 		justify-content: space-between;
 		font-size: 4em;
+		z-index: 10;
 		div {
 			font-weight: thin;
 		}
 	}
 
 	.description-box__item--text {
-		background-color: rgba(0, 0, 0, 0.4);
+		background-color: rgba(0, 0, 0, 0.6);
 		padding: 15px;
 		max-width: 500px;
 		text-align: justify;

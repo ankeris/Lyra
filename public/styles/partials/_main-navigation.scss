@@ -86,28 +86,27 @@
 
 @media screen and (max-width: 760px) {
 	.main-navigation {
+		z-index: 999;
 		width: 100%;
 		cursor: pointer;
-		background-color: transparent;
+		background: transparent;
 		.main-navigation__burger {
-			width: 60px;
+			width: 45px;
 			position: relative;
 			display: block;
-			border-bottom: 1px solid map-get($color, darkgrey);
-			border-right: 1px solid map-get($color, darkgrey);
 			padding: 4px;
-			background-color: rgba($color: map-get($color, white), $alpha: 0.85);
+			background-color: rgba($color: map-get($color, darkgrey), $alpha: 0.85);
 			.main-navigation__burger--stripe {
 				position: relative;
-				height: 4px;
-				width: 40px;
-				background-color: map-get($color, darkgrey);
-				border-radius: 2px;
-				margin: 8px;
+				height: 2px;
+				width: 35px;
+				background-color: map-get($color, white);
+				border-radius:25px;
+				margin: 8px auto;
 			}
 			.stripe1 {
 				transition-duration: 1s;
-				top: 12px;
+				top: 10px;
 				transform: rotate(135deg);
 			}
 			.stripe2 {
@@ -127,13 +126,13 @@
 			width: 100%;
 			padding: 0;
 			flex-direction: column;
-			background-color: rgba($color: map-get($color, white), $alpha: 0.85);
+			background-color: rgba($color: map-get($color, white), $alpha: 0.9);
 			.navigation__item--button {
 				font-size: 10pt;
 				display: block;
 				padding: 15px 10px;
 				&:hover {
-					color: map-get($color, blue);
+					color: map-get($color, darkgrey);
 					transition: 90ms; // background-color: map-get($color, white);
 				}
 			}

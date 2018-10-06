@@ -26,7 +26,7 @@
 	.items-box__item--main-image {
 		object-fit: contain;
 		width: 90%;
-		height: 240px;
+		height: 270px;
 		transition-duration: 90ms;
 		// border-radius: 100%;
 		&:hover {
@@ -40,6 +40,14 @@
 	background-color: rgba($color: white, $alpha: 0.8);
 	padding: 5px;
 	text-align: center;
+}
+
+@media screen and (max-width: 925px) {
+	.products {
+		.items-box__item--main-image {
+			height: 220px;
+		}
+	}
 }
 
 @media screen and (max-width: 700px) {
@@ -65,3 +73,12 @@
 		}
 	}
 }
+@media screen and (max-width: 925px) {
+	.products {
+		.items-box__item--main-image {
+			height: 180px;
+		}
+	}
+}
+
+

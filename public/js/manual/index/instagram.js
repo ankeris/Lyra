@@ -37,7 +37,7 @@ function checkContainer () {
                 {
                     breakpoint: 2000,
                     settings: {
-                      slidesToShow: 5,
+                      slidesToShow: 6,
                       slidesToScroll: 1,
                       infinite: true,
                     }
@@ -45,13 +45,21 @@ function checkContainer () {
                 {
                     breakpoint: 1400,
                     settings: {
+                      slidesToShow: 5,
+                      slidesToScroll: 1,
+                      infinite: true,
+                    }
+                },
+                {
+                    breakpoint: 1200,
+                    settings: {
                       slidesToShow: 4,
                       slidesToScroll: 1,
                       infinite: true,
                     }
                 },
                 {
-                  breakpoint: 800,
+                  breakpoint: 940,
                   settings: {
                     slidesToShow: 3,
                     slidesToScroll: 1,
@@ -59,15 +67,22 @@ function checkContainer () {
                   }
                 },
                 {
-                    breakpoint: 600,
+                    breakpoint: 700,
                     settings: {
                       slidesToShow: 2,
                       slidesToScroll: 1,
                       infinite: true,
                     }
                 }
-              ]
-        })
+            ]
+        });
+
+        $(".items-box__item--text").each(
+            (index, value) => {
+                let array = value.innerText.split(" ");
+                value.innerText = array.filter(word => !word.startsWith('#')).join(' ');
+            }
+        );
     } else {
       setTimeout(checkContainer, 50); //wait 50 ms, then try again
     }

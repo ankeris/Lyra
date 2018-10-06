@@ -24,29 +24,29 @@
         margin: 0;
         text-align: center;
         .items-box__item--main-image {
-            background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
-            background-size: 100%;
+            background-size: cover;
             width: 100%;
-            height: 270px;
-            overflow: auto;
+            height: 250px;
+            overflow-x: hidden;
+            overflow-y: auto;
             position: relative;
             
             &:hover > .items-box__item--text {
                 color: map-get($color, white);
-                font-size: 0.9em;
-                width: 96%;
-                min-height: 100%;
+                font-size: 0.87em;
+                width: 95%;
+                height: 100%;
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                padding: 0 2%;
+                padding: 0 5%;
                 transform: translate(-50%, -50%);
-                background-color: map-get($color, darkgrey);
+                background-color: rgba($color: #000000, $alpha: 0.75);
                 text-align: start;
                 display: flex;
-                align-self: center;
+                align-self: stretch;
                 align-items: center;
                 animation: fadeIn 0.2s ease 1 forwards;
             }
