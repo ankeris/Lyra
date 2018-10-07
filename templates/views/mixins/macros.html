@@ -9,17 +9,17 @@
 {% endmacro %}
 
 {% macro searchIcon(colorName, colorHover, className) %}
-<svg class="svg" width="15.000000pt" height="15.000000pt" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2374.6 2359.97">
-<defs>
-<style>
-.shape1 {stroke:#000; stroke-miterlimit:10;stroke-width:30px;transition-duration: 1s}
-.svg {padding: 15px; cursor: pointer; transition-duration: 90ms;}
-.shape1 {fill:{{colorName}};} 
-.svg:hover > .shape1 { fill: {{colorHover}}; transition-duration: 1s; stroke-width:200px;}
-</style>
-</defs>
-<title>slim-search</title>
-<path class="shape1" d="M2349.71,2252.65l-658.38-658.38c143.82-166.16,230.84-382.84,230.84-619.84,0-523.33-424.24-947.57-947.57-947.57C451.68,26.85,27,451.51,27,974.42,27,1497.75,451.26,1922,974.59,1922c244.41,0,467.21-92.55,635.27-244.5l657.36,657.36a37.06,37.06,0,0,0,52.41,0l30.08-30.08A36.85,36.85,0,0,0,2349.71,2252.65ZM119.56,974.42c0-472.22,382.81-855,855-855s855,382.81,855,855-382.81,855-855,855S119.56,1446.64,119.56,974.42Z" transform="translate(-6.46 -6.29)"/></svg>
+    <svg class="svg" width="15.000000pt" height="15.000000pt" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2374.6 2359.97">
+    <defs>
+    <style>
+    .shape1 {stroke:#000; stroke-miterlimit:10;stroke-width:30px;transition-duration: 1s}
+    .svg {padding: 15px; cursor: pointer; transition-duration: 90ms;}
+    .shape1 {fill:{{colorName}};} 
+    .svg:hover > .shape1 { fill: {{colorHover}}; transition-duration: 1s; stroke-width:200px;}
+    </style>
+    </defs>
+    <title>slim-search</title>
+    <path class="shape1" d="M2349.71,2252.65l-658.38-658.38c143.82-166.16,230.84-382.84,230.84-619.84,0-523.33-424.24-947.57-947.57-947.57C451.68,26.85,27,451.51,27,974.42,27,1497.75,451.26,1922,974.59,1922c244.41,0,467.21-92.55,635.27-244.5l657.36,657.36a37.06,37.06,0,0,0,52.41,0l30.08-30.08A36.85,36.85,0,0,0,2349.71,2252.65ZM119.56,974.42c0-472.22,382.81-855,855-855s855,382.81,855,855-382.81,855-855,855S119.56,1446.64,119.56,974.42Z" transform="translate(-6.46 -6.29)"/></svg>
 {% endmacro %}
 
 
@@ -57,6 +57,40 @@
     <rect class="check-line" x="7.5" y="8.06" width="13.91" height="0.51" transform="translate(30.12 3.08) rotate(135)"/>
     <polygon class="check-box" points="17.69 5.96 17.69 17.69 0.55 17.69 0.55 0.55 17.69 0.55 17.69 1.35 18.23 1.35 18.23 0 0 0 0 18.23 18.23 18.23 18.23 5.96 17.69 5.96"/>
     </svg>
+{% endmacro %}
+
+{% macro loadingSpeakers(colorName, colorHover) %}
+<div class="loading-speakers-box">
+    <svg width="200px" id="frame" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80.65">
+    <defs>
+    <style>
+    .cls-1{fill:#1f1f1f;}
+    .cls-2{fill:#fff;stroke:#1f1f1f;stroke-miterlimit:10;stroke-width:1.3px;}
+    </style>
+    </defs>
+    <title>subwoofers</title>
+    <g id="speaker">
+    <path class="cls-1" d="M0,9.68V90.32H53V9.68ZM51.37,88.56H1.66V11.44H51.37Z" transform="translate(0 -9.68)"/>
+    <g id="mids">
+    <path class="cls-1" d="M26.52,43.59A20.26,20.26,0,1,0,46.78,63.85,20.26,20.26,0,0,0,26.52,43.59Zm0,39A18.73,18.73,0,1,1,45.25,63.85,18.73,18.73,0,0,1,26.52,82.58Z" transform="translate(0 -9.68)"/></g>
+    <g id="mids-inner">
+    <path class="cls-1" d="M26.52,46.84a17,17,0,1,0,17,17A17,17,0,0,0,26.52,46.84Zm0,32.73A15.72,15.72,0,1,1,42.24,63.85,15.72,15.72,0,0,1,26.52,79.57Z" transform="translate(0 -9.68)"/></g>
+    <circle id="highs" class="cls-2" cx="26.52" cy="15.73" r="6.72"/></g>
+    <g id="speaker-2" data-name="speaker">
+    <path class="cls-1" d="M73.48,9.68V90.32h53V9.68Zm51.37,78.88H75.14V11.44h49.71Z" transform="translate(0 -9.68)"/>
+    <g id="mids-2" data-name="mids">
+    <path class="cls-1" d="M100,43.59a20.26,20.26,0,1,0,20.26,20.26A20.26,20.26,0,0,0,100,43.59Zm0,39a18.73,18.73,0,1,1,18.73-18.73A18.73,18.73,0,0,1,100,82.58Z" transform="translate(0 -9.68)"/></g>
+    <g id="mids-inner-2" data-name="mids-inner">
+    <path class="cls-1" d="M100,46.84a17,17,0,1,0,17,17A17,17,0,0,0,100,46.84Zm0,32.73a15.72,15.72,0,1,1,15.72-15.72A15.72,15.72,0,0,1,100,79.57Z" transform="translate(0 -9.68)"/></g>
+    <circle id="highs-2" data-name="highs" class="cls-2" cx="100" cy="15.73" r="6.72"/></g>
+    <g id="speaker-3" data-name="speaker">
+    <path class="cls-1" d="M147,9.68V90.32h53V9.68Zm51.37,78.88H148.63V11.44h49.71Z" transform="translate(0 -9.68)"/>
+    <g id="mids-3" data-name="mids">
+    <path class="cls-1" d="M173.48,43.59a20.26,20.26,0,1,0,20.26,20.26A20.26,20.26,0,0,0,173.48,43.59Zm0,39a18.73,18.73,0,1,1,18.73-18.73A18.73,18.73,0,0,1,173.48,82.58Z" transform="translate(0 -9.68)"/></g>
+    <g id="mids-inner-3" data-name="mids-inner">
+    <path class="cls-1" d="M173.48,46.84a17,17,0,1,0,17,17A17,17,0,0,0,173.48,46.84Zm0,32.73a15.72,15.72,0,1,1,15.72-15.72A15.72,15.72,0,0,1,173.48,79.57Z" transform="translate(0 -9.68)"/></g>
+    <circle id="highs-3" data-name="highs" class="cls-2" cx="173.48" cy="15.73" r="6.72"/></g></svg>
+</div>
 {% endmacro %}
 
 {# Logos #}

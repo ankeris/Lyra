@@ -1,3 +1,4 @@
+{% from "mixins/macros.html" import loadingSpeakers %}
 {% extends "layouts/default.html" %}
 
 {% block head %}
@@ -17,10 +18,8 @@
 {% endblock %}
 
 {% block content %}
-
 <div class="products-wrapper content-section">
 {% include 'partials/sort.html' %}
-
     {% include 'partials/sideNavigation.html'%}
 
     {# items box wrapper #}
@@ -44,9 +43,10 @@
             </div>
             {% endfor %}
     </section>
-    {# Loading screen for products #}
-    {% include 'partials/loadingspinner.html' %}
 </div>
+{# Loading screen for products #}
+{{ loadingSpeakers("#1f1f1f", "#448AA6") }}
+{# {% include 'partials/loadingspinner.html' %} #}
 
 <div class="variables" data-sort="{{data.sort}}" data-category="{{data.category.key}}" data-count="{{data.products.results.length}}" data-search="{{filters.search}}"></div>
 

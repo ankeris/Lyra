@@ -1,5 +1,5 @@
 var keystone = require('keystone');
-var Enquiry = keystone.list('Enquiry');
+var Subscription = keystone.list('Enquiry');
 
 exports = module.exports = function (req, res) {
 
@@ -7,20 +7,21 @@ exports = module.exports = function (req, res) {
 	var locals = res.locals;
 
 	// Set locals
-	locals.section = 'contact';
 	locals.formData = req.body || {};
 	locals.validationErrors = {};
 	locals.enquirySubmitted = false;
 
+	console.log(locals.formData);
+	
 	// On POST requests, add the Enquiry item to the database
-	view.on('post', { action: 'contact' }, function (next) {
+	view.on('post', { action: 'index' }, function (next) {
 
-		var newEnquiry = new Enquiry.model();
-		var updater = newEnquiry.getUpdateHandler(req);
+		var newSubscription = new Subscription.model();
+		var updater = newSubscription.getUpdateHandler(req);
 		
 		updater.process(req.body, {
 			flashErrors: true,
-			fields: 'name, email, phone, message',
+			fields: 'email',
 			errorMessage: 'Įvyko klaida pildant formą',
 		}, function (err) {
 			if (err) {
@@ -31,6 +32,5 @@ exports = module.exports = function (req, res) {
 			next();
 		});
 	});
-
-	view.render('contact');
+	view.render('index');
 };

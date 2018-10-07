@@ -5,7 +5,7 @@ let _ = require('lodash');
 let currentPage = 1;
 let AllProductsLoaded = false;
 
-$('#loading-content').hide();
+$('.loading-speakers-box').hide();
 
 function addNextPage() {
 	currentPage++;
@@ -32,21 +32,25 @@ function addNextPage() {
 
 function ajaxCall(link, variable, parameters) {
 	if (!AllProductsLoaded) {
-		$('#loading-content').show();
+		$('.loading-speakers-box').show();
 		$.get(link + variable, parameters, function (data) {
 			$('.products').append($(data).find('.products .items-box__item'));
 			if ($(data).find('.products .items-box__item').length == 0) {
 				AllProductsLoaded = true;
-				$('#loading-content').hide();
+				$('.loading-speakers-box').hide();
 			}
 		});
 	}
 }
 
 const scrollNews = _.throttle(function (e) {
-	if ($(window).scrollTop() + $(window).height() > $(document).height() - 240) {
+	// if statement finds if user screen has scrolled to the bottom of products-wrapper box
+	if ($(window).scrollTop() + $(window).height() > $(".products-wrapper").offset().top + $(".products-wrapper").outerHeight(true)) {
 		addNextPage();
 	}
 }, 1000);
 
 window.addEventListener('scroll', scrollNews, false);
+
+//	if ($(window).scrollTop() + $(window).height() > $(document).height() - 300) {
+ 

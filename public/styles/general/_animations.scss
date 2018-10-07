@@ -33,43 +33,8 @@
 @keyframes getBigger {
 	to {
 		margin: 25px auto;
+		opacity: 1;
 	}
-}
-
-// loading screen for products page
-.canvas {
-	margin: 0px auto;
-	animation: getBigger 0.5s ease-in 1 forwards;
-	align-items: center;
-	display: flex;
-	justify-content: center;
-	width: 10em;
-}
-
-/* Spinner 6 starts here */
-
-.spinner6 {
-	background: map-get($color, lightblue);
-	border-radius: 30%;
-	height: 1em;
-	margin: .2em;
-	width: 1em;
-}
-
-.p1 {
-	animation: fall 1s linear .3s infinite;
-}
-
-.p2 {
-	animation: fall 1s linear .2s infinite;
-}
-
-.p3 {
-	animation: fall 1s linear .1s infinite;
-}
-
-.p4 {
-	animation: fall 1s linear infinite;
 }
 
 @keyframes fall {
