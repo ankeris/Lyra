@@ -49,7 +49,7 @@ keystone.set('nav', {
 	products: [
 		'products', 'product-categories', 'product-manufacturers'
 	],
-	enquiries: 'enquiries',
+	enquiries: ['enquiries', 'subscriptions'],
 	users: 'users'
 });
 

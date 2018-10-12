@@ -20,11 +20,15 @@
             </p>
         </section>
         <section class="footer__box footer__box--right">
+        {% if subSubmitted %}
+		<h5>Jūs sėkmingai prisijungėte prie naujienlaiškio</h5>
+        {% else %}
             <form class="newsletter" method="post">
                 <div class="newsletter__box">
                     <p class="newsletter__box--text">Naujienlaiškis</p>
                     <div class="newsletter__box--input">
-                    <input type="email" name="email" value="{{ formData.email }}" placeholder="įveskite savo el. pašto adresą">
+                        <input type="hidden" name="action" value="index">
+                        <input type="email" name="email" value="{{ formData.email }}" placeholder="įveskite savo el. pašto adresą">
                     </div>
                     <label class="newsletter__box--button">
                         <input type="submit" />
@@ -32,6 +36,7 @@
                     </label>
                 </div>
             </form>
+        {% endif %}
             <div class="media-icons">
                 <a aria-label="facebook" rel="noreferrer" href="https://www.facebook.com/SalonasLyra/" target="_blank">
                     {{ fbLogo("#1f1f1f", "#448AA6") }}

@@ -1,5 +1,5 @@
 var keystone = require('keystone');
-var Subscription = keystone.list('Enquiry');
+var Subscription = keystone.list('Subscription');
 
 exports = module.exports = function (req, res) {
 
@@ -9,7 +9,7 @@ exports = module.exports = function (req, res) {
 	// Set locals
 	locals.formData = req.body || {};
 	locals.validationErrors = {};
-	locals.enquirySubmitted = false;
+	locals.subSubmitted = false;
 
 	console.log(locals.formData);
 	
@@ -17,9 +17,9 @@ exports = module.exports = function (req, res) {
 	view.on('post', { action: 'index' }, function (next) {
 
 		var newSubscription = new Subscription.model();
-		var updater = newSubscription.getUpdateHandler(req);
+		var subUpdater = newSubscription.getUpdateHandler(req);
 		
-		updater.process(req.body, {
+		subUpdater.process(req.body, {
 			flashErrors: true,
 			fields: 'email',
 			errorMessage: 'Įvyko klaida pildant formą',
@@ -27,7 +27,7 @@ exports = module.exports = function (req, res) {
 			if (err) {
 				locals.validationErrors = err.errors;
 			} else {
-				locals.enquirySubmitted = true;
+				locals.subSubmitted = true;
 			}
 			next();
 		});

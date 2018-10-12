@@ -4,6 +4,7 @@ var Types = keystone.Field.Types;
 var Subscription = new keystone.List('Subscription', {
 	nocreate: true,
 	noedit: true,
+	map: { name: 'email' }
 });
 
 Subscription.add({
