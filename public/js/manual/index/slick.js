@@ -10,28 +10,28 @@ $('.highlighted-products').slick({
 	nextArrow: '<button type="button" class="slick-next" aria-label="slide next"></button>',
 	responsive: [
 		{
-			breakpoint: 1400,
+				breakpoint: 1200,
+				settings: {
+					slidesToShow: 4,
+					slidesToScroll: 1,
+					infinite: true,
+				}
+		},
+		{
+			breakpoint: 940,
 			settings: {
-			  slidesToShow: 4,
-			  slidesToScroll: 1,
-			  infinite: true,
+				slidesToShow: 3,
+				slidesToScroll: 1,
+				infinite: true,
 			}
 		},
 		{
-		  breakpoint: 800,
-		  settings: {
-			slidesToShow: 3,
-			slidesToScroll: 1,
-			infinite: true,
-		  }
-		},
-		{
-			breakpoint: 600,
-			settings: {
-			  slidesToShow: 2,
-			  slidesToScroll: 1,
-			  infinite: true,
-			}
+				breakpoint: 700,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 1,
+					infinite: true,
+				}
 		}
-	  ]
+]
 });

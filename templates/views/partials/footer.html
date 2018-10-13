@@ -4,47 +4,57 @@
 
 <footer id="footer">
     <section class="content-section">
-        <section class="footer__box footer__box--left">
-            <p>SALONAS „LYRA“</p>
-            <p>KĘSTUČIO G. 26</p>
-            <p>LT-08115 VILNIUS</p>
-            <br>
-            <p><a href="tel:+37052623596">(+370 5) 262 35 96</a></p>
-            <p><a href="mailto:info@lyra.lt">INFO@LYRA.LT</a></p>
-        </section>
-        <section class="footer__box footer__box--middle">
+    
+        <div class="footer__box footer__box--left">
+            <p>SALONAS „LYRA“<br>
+            KĘSTUČIO G. 26<br>
+            LT-08115 VILNIUS</p>
+        </div>
+
+        <div class="footer__box footer__box--middle">
             <p>
             I - V: 10 - 19 <br>
             VI: 10 - 15 <br>
             VII: ---
             </p>
-        </section>
-        <section class="footer__box footer__box--right">
-        {% if subSubmitted %}
-		<h5>Jūs sėkmingai prisijungėte prie naujienlaiškio</h5>
-        {% else %}
-            <form class="newsletter" method="post">
-                <div class="newsletter__box">
-                    <p class="newsletter__box--text">Naujienlaiškis</p>
-                    <div class="newsletter__box--input">
-                        <input type="hidden" name="action" value="index">
-                        <input type="email" name="email" value="{{ formData.email }}" placeholder="įveskite savo el. pašto adresą">
+        </div>
+
+        <div class="footer__box footer__box--right">
+            {% if formSubmitted %}
+            <h5>Jūs sėkmingai prisijungėte prie naujienlaiškio</h5>
+            {% elif emailExists %}
+            <h5>{{status.title}}</h5>
+            {% else %}
+                <form class="newsletter" method="post">
+                    <div class="newsletter__box">
+                        <p class="newsletter__box--text">Naujienlaiškis</p>
+                        <div class="newsletter__box--input">
+                            <input type="hidden" name="action" value="index">
+                            <input type="email" name="email" value="{{ formData.email }}" placeholder="įveskite savo el. pašto adresą">
+                        </div>
+                        <label class="newsletter__box--button">
+                            <input type="submit" />
+                            {{ checkBox("#1f1f1f", "#448AA6") }}
+                        </label>
                     </div>
-                    <label class="newsletter__box--button">
-                        <input type="submit" />
-                        {{ checkBox("#1f1f1f", "#448AA6") }}
-                    </label>
-                </div>
-            </form>
-        {% endif %}
+                </form>
+            {% endif %}
+            
+        </div>
+
+        <div class="footer__box footer__box--left">
+            <p><a href="tel:+37052623596">(+370 5) 262 35 96</a><br>
+            <a href="mailto:info@lyra.lt">INFO@LYRA.LT</a></p>
+        </div>
+        <div class="footer__box footer__box--right">
             <div class="media-icons">
-                <a aria-label="facebook" rel="noreferrer" href="https://www.facebook.com/SalonasLyra/" target="_blank">
-                    {{ fbLogo("#1f1f1f", "#448AA6") }}
-                </a>
-                <a aria-label="instagram" rel="noreferrer" href="https://www.instagram.com/salonas_lyra/" target="_blank">
-                    {{ instaLogo("#1f1f1f", "#448AA6") }}
-                </a>
+                    <a aria-label="facebook" rel="noreferrer" href="https://www.facebook.com/SalonasLyra/" target="_blank">
+                        {{ fbLogo("#1f1f1f", "#448AA6") }}
+                    </a>
+                    <a aria-label="instagram" rel="noreferrer" href="https://www.instagram.com/salonas_lyra/" target="_blank">
+                        {{ instaLogo("#1f1f1f", "#448AA6") }}
+                    </a>
             </div>
-        </section>
+        </div>
     </section>
 </footer>

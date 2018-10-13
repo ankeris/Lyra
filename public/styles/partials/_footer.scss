@@ -25,8 +25,13 @@ footer {
 			flex-basis: 23%;
 		}
 		.footer__box--middle {
-			text-align: center;
-			flex-basis: 15%;
+			justify-content: left;
+			// text-align: right;
+			flex-basis: 20%;
+			p {
+				width: 100px;
+				text-align: right;
+			}
 		}
 		.footer__box--right {
 			flex-basis: 40%;
@@ -35,8 +40,11 @@ footer {
 				.newsletter__box {
 					display: flex;
 					flex-wrap: wrap;
+					margin: 15px 0;
 					.newsletter__box--text {
 						flex-basis: 100%;
+						margin-top: 0;
+						margin-bottom: 5px;
 					}
 					.newsletter__box--input {
 						width: 85%;
@@ -44,11 +52,9 @@ footer {
 						input {
 							width: 95%;
 							height: 30px;
-							padding: 0 5px;
+							padding: 0 6px;
 							margin: 0;
-							border-color: map-get($color, darkgrey);
-							border-width: 1px;
-							border-style: outset;
+							border: none;
 							background-color: grey;
 							&::placeholder {
 								color: map-get($color, white);
@@ -69,6 +75,9 @@ footer {
 			.media-icons {
 				text-align: center;
 				margin: 20px;
+				a {
+					margin: 4px;
+				}
 			}
 		}
 	}
@@ -113,10 +122,6 @@ footer {
 								height: 30px;
 								padding: 0 5px;
 								margin: 0;
-								border-color: map-get($color, darkgrey);
-								border-width: 1px;
-								border-style: outset;
-								background-color: grey;
 								&::placeholder {
 									color: map-get($color, white);
 								}

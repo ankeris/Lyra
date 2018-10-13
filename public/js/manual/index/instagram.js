@@ -29,7 +29,7 @@ function checkContainer () {
             infinite: true,
             autoplay: false,
             slidesToShow: 6,
-            speed: 100,
+            speed: 200,
             slidesToScroll: 2,
             lazyLoad: 'ondemand',
             prevArrow: '<button type="button" class="slick-prev" aria-label="slide previous"></button>',

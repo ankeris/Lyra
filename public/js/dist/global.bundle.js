@@ -97,6 +97,17 @@ eval("var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!\n * jQ
 
 /***/ }),
 
+/***/ "./public/js/manual/global/footer.js":
+/*!*******************************************!*\
+  !*** ./public/js/manual/global/footer.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("// const form = document.querySelector('.newsletter');\r\n// console.log(form);\r\n\r\n// form.addEventListener('submit', function(event){ event.preventDefault()});\n\n//# sourceURL=webpack:///./public/js/manual/global/footer.js?");
+
+/***/ }),
+
 /***/ "./public/js/manual/global/main-navigation.js":
 /*!****************************************************!*\
   !*** ./public/js/manual/global/main-navigation.js ***!
@@ -104,7 +115,7 @@ eval("var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!\n * jQ
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\r\n\r\nconst searchIcon = document.querySelector('.search-bar .svg');\r\nconst searchInput = document.querySelector('#search-input');\r\n\r\nsearchIcon.addEventListener('click', () => {\r\n\tsearchInput.classList.toggle('hidden');\r\n\tsearchInput.classList.toggle('navigation__search-form--search-input');\r\n\tif (searchInput.className == 'navigation__search-form--search-input') {\r\n\t\tsearchInput.focus();\r\n\t}\r\n});\r\n\r\nconst [stripe1, stripe2, stripe3] = [document.querySelectorAll('.main-navigation__burger--stripe')[0], document.querySelectorAll('.main-navigation__burger--stripe')[1], document.querySelectorAll('.main-navigation__burger--stripe')[2]];\r\n\r\nwindow.addEventListener('resize', function (window) {\r\n\tif(window.target.innerWidth >= 760) {\r\n\t\t$(\".main-navigation .main-navigation__box\").removeAttr(\"style\");\r\n\t\t$(stripe1).attr('class', 'main-navigation__burger--stripe');\r\n\t\t$(stripe2).attr('class', 'main-navigation__burger--stripe');\r\n\t\t$(stripe3).attr('class', 'main-navigation__burger--stripe');\r\n\t}\r\n});\r\n\r\n$( \".main-navigation .main-navigation__burger\" ).click(function() {\r\n\t$( \".main-navigation .main-navigation__box\" ).animate({\r\n\t\theight: \"toggle\",\r\n\t\topacity: \"toggle\"\r\n\t  }, {\r\n\t\tprogress: {\r\n\t\t\twidth: \"linear\",\r\n\t\t\theight: \"easeOutBounce\"\r\n\t\t}\r\n\t});\r\n\tconsole.log(document.querySelector('.main-navigation__burger--stripe'));\r\n\t$(stripe1).toggleClass('stripe1');\r\n\t$(stripe2).toggleClass('stripe2');\r\n\t$(stripe3).toggleClass('invisible');\r\n});\r\n\n\n//# sourceURL=webpack:///./public/js/manual/global/main-navigation.js?");
+eval("const $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\r\n\r\nconst searchIcon = document.querySelector('.search-bar .svg');\r\nconst searchInput = document.querySelector('#search-input');\r\n\r\nsearchIcon.addEventListener('click', () => {\r\n\tsearchInput.classList.toggle('hidden');\r\n\tsearchInput.classList.toggle('navigation__search-form--search-input');\r\n\tif (searchInput.className == 'navigation__search-form--search-input') {\r\n\t\tsearchInput.focus();\r\n\t}\r\n});\r\n\r\nconst [stripe1, stripe2, stripe3] = [document.querySelectorAll('.main-navigation__burger--stripe')[0], document.querySelectorAll('.main-navigation__burger--stripe')[1], document.querySelectorAll('.main-navigation__burger--stripe')[2]];\r\n\r\nwindow.addEventListener('resize', function (window) {\r\n\tif(window.target.innerWidth >= 760) {\r\n\t\t$(\".main-navigation .main-navigation__box\").removeAttr(\"style\");\r\n\t\t$(stripe1).attr('class', 'main-navigation__burger--stripe');\r\n\t\t$(stripe2).attr('class', 'main-navigation__burger--stripe');\r\n\t\t$(stripe3).attr('class', 'main-navigation__burger--stripe');\r\n\t}\r\n});\r\n\r\n$( \".main-navigation .main-navigation__burger\" ).click(function() {\r\n\t$( \".main-navigation .main-navigation__box\" ).animate({\r\n\t\theight: \"toggle\",\r\n\t\topacity: \"toggle\"\r\n\t  }, {\r\n\t\tprogress: {\r\n\t\t\twidth: \"linear\",\r\n\t\t\theight: \"easeOutBounce\"\r\n\t\t}\r\n\t});\r\n\t$(stripe1).toggleClass('stripe1');\r\n\t$(stripe2).toggleClass('stripe2');\r\n\t$(stripe3).toggleClass('invisible');\r\n});\r\n\n\n//# sourceURL=webpack:///./public/js/manual/global/main-navigation.js?");
 
 /***/ }),
 
@@ -120,13 +131,13 @@ eval("let $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jqu
 /***/ }),
 
 /***/ 0:
-/*!*********************************************************************************************************!*\
-  !*** multi ./public/js/manual/global/main-navigation.js ./public/js/manual/global/manufacturersList.js ***!
-  \*********************************************************************************************************/
+/*!*********************************************************************************************************************************************!*\
+  !*** multi ./public/js/manual/global/footer.js ./public/js/manual/global/main-navigation.js ./public/js/manual/global/manufacturersList.js ***!
+  \*********************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! ./public/js/manual/global/main-navigation.js */\"./public/js/manual/global/main-navigation.js\");\nmodule.exports = __webpack_require__(/*! ./public/js/manual/global/manufacturersList.js */\"./public/js/manual/global/manufacturersList.js\");\n\n\n//# sourceURL=webpack:///multi_./public/js/manual/global/main-navigation.js_./public/js/manual/global/manufacturersList.js?");
+eval("__webpack_require__(/*! ./public/js/manual/global/footer.js */\"./public/js/manual/global/footer.js\");\n__webpack_require__(/*! ./public/js/manual/global/main-navigation.js */\"./public/js/manual/global/main-navigation.js\");\nmodule.exports = __webpack_require__(/*! ./public/js/manual/global/manufacturersList.js */\"./public/js/manual/global/manufacturersList.js\");\n\n\n//# sourceURL=webpack:///multi_./public/js/manual/global/footer.js_./public/js/manual/global/main-navigation.js_./public/js/manual/global/manufacturersList.js?");
 
 /***/ })
 

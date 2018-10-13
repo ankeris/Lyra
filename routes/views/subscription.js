@@ -9,27 +9,35 @@ exports = module.exports = function (req, res) {
 	// Set locals
 	locals.formData = req.body || {};
 	locals.validationErrors = {};
-	locals.subSubmitted = false;
-
-	console.log(locals.formData);
+	locals.status = {};
+	locals.formSubmitted = false;
+	locals.emailExists = false;
+	locals.page = req.originalUrl;
 	
 	// On POST requests, add the Enquiry item to the database
 	view.on('post', { action: 'index' }, function (next) {
 
-		var newSubscription = new Subscription.model();
-		var subUpdater = newSubscription.getUpdateHandler(req);
-		
-		subUpdater.process(req.body, {
-			flashErrors: true,
-			fields: 'email',
-			errorMessage: 'Įvyko klaida pildant formą',
-		}, function (err) {
-			if (err) {
-				locals.validationErrors = err.errors;
+		let newSubscription = new Subscription.model();
+		let subUpdater = newSubscription.getUpdateHandler(req);
+		keystone.list('Subscription').model.find({email: req.body.email}).exec(function (err, result) {
+			if (result.length == 0) {
+				subUpdater.process(req.body, {
+					flashErrors: true,
+					fields: 'email',
+					errorMessage: 'Įvyko klaida pildant formą',
+				}, function (err) {
+					if (err) {
+						locals.validationErrors = err.errors;
+					} else {
+						locals.formSubmitted = true;
+					}
+					next();
+				});
 			} else {
-				locals.subSubmitted = true;
+				locals.status = {title: 'Šis el-paštas jau yra įtrauktas į prenumetūrą', message: ''};
+				locals.emailExists = true;
+				next();
 			}
-			next();
 		});
 	});
 	view.render('index');

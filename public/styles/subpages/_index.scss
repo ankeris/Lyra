@@ -1,5 +1,4 @@
 #manifesto {
-	display: flex;
 	position: relative;
 	/* The image used */
 	background-image: url('/images/newmanifesto.jpg');
@@ -7,8 +6,6 @@
 	min-height: 95vh;
 	/* Create the parallax scrolling effect */
 	// background-attachment: fixed;
-	background-position: bottom;
-	background-repeat: no-repeat;
 	background-size: cover;
     background-position: center;
     display: flex;

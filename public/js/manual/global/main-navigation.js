@@ -32,7 +32,6 @@ $( ".main-navigation .main-navigation__burger" ).click(function() {
 			height: "easeOutBounce"
 		}
 	});
-	console.log(document.querySelector('.main-navigation__burger--stripe'));
 	$(stripe1).toggleClass('stripe1');
 	$(stripe2).toggleClass('stripe2');
 	$(stripe3).toggleClass('invisible');
