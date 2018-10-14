@@ -141,6 +141,17 @@ eval("let $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jqu
 
 /***/ }),
 
+/***/ "./public/js/manual/products/products-section.js":
+/*!*******************************************************!*\
+  !*** ./public/js/manual/products/products-section.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("\n\n//# sourceURL=webpack:///./public/js/manual/products/products-section.js?");
+
+/***/ }),
+
 /***/ "./public/js/manual/products/side-navigation.js":
 /*!******************************************************!*\
   !*** ./public/js/manual/products/side-navigation.js ***!
@@ -148,18 +159,18 @@ eval("let $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jqu
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("let $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\r\n\r\n$('.subcategory-box__item--svg')\r\n\t.click(function () {\r\n\t\t$(this)\r\n\t\t\t.parent()\r\n\t\t\t.next('div')\r\n\t\t\t.slideToggle('slow');\r\n\t\t$(this).toggleClass('rotate');\r\n\t});\r\n\r\n\r\n$('.mobile-side-nav')\r\n\t.click(function () {\r\n\t\t$(this)\r\n\t\t\t.next('aside')\r\n\t\t\t.slideToggle('slow');\r\n\t\t$(this.childNodes[3]).toggleClass('rotate');\r\n\t});\r\n\r\n$(document).ready(function () {\r\n\t$('.navigation-dropdown').each(function (index, value) {\r\n\t\tlet parentCategory = $(this);\r\n\t\tlet subCategoryBox = $(this).next('div');\r\n\t\t// remove Parent category if it has no SubCategories ((it should be handled in server side))\r\n\t\tif (!subCategoryBox.children().length) {\r\n\t\t\tsubCategoryBox.remove();\r\n\t\t\t$(this).remove();\r\n\t\t} else {\r\n\t\t\t// if there are SubCategories, count all the products and display number on Parent\r\n\t\t\tlet AllProductsSum = 0;\r\n\t\t\tsubCategoryBox.children().each(function (index, value) {\r\n\t\t\t\tAllProductsSum += Number($(value).children()[0].innerHTML);\r\n\t\t\t});\r\n\t\t\t$(parentCategory[0]).children()[0].children[0].innerHTML = AllProductsSum;\r\n\t\t}\r\n\t});\r\n\tconst active = $('.active')[1];\r\n\t// If subcategory is selected, the SVG is rotated on page load\r\n\t$(active).parent().prev('div').children('.subcategory-box__item--svg').toggleClass('rotate');\r\n\r\n\twindow.addEventListener('resize', function (e) {\r\n\t\tif (window.innerWidth >= 700) {\r\n\t\t\t$('.side-nav').removeAttr('style');\r\n\t\t}\r\n\t});\r\n});\r\n\r\nconst el = document.querySelector('.side-nav__box');\r\n\r\n// Change Side Navigation position to sticky While scrolling . . . . .\r\nif (el) {\r\n\tconst elTop = el\r\n\t\t.getBoundingClientRect()\r\n\t\t.top - document\r\n\t\t.body\r\n\t\t.getBoundingClientRect()\r\n\t\t.top - 60;\r\n\r\n\tconst mq = window.matchMedia('(max-width: 700px)');\r\n\r\n\twindow.addEventListener('scroll', function () {\r\n\t\tif (mq) {\r\n\t\t\tif (document.documentElement.scrollTop > elTop) {\r\n\t\t\t\tel.style.position = 'sticky';\r\n\t\t\t\tel.style.top = '60px';\r\n\t\t\t} else {\r\n\t\t\t\tel.style.top = 'auto';\r\n\t\t\t}\r\n\t\t} else {\r\n\t\t\tconsole.log('hi');\r\n\t\t}\r\n\t});\r\n}\r\n\r\n\r\n// Front-end solution for styling sub-categories\r\n\n\n//# sourceURL=webpack:///./public/js/manual/products/side-navigation.js?");
+eval("let $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\r\n\r\n$('.subcategory-box__item--svg')\r\n\t.click(function () {\r\n\t\t$(this)\r\n\t\t\t.parent()\r\n\t\t\t.next('div')\r\n\t\t\t.slideToggle('slow');\r\n\t\t$(this).toggleClass('rotate');\r\n\t});\r\n\r\n$('.mobile-side-nav')\r\n\t.click(function () {\r\n\t\t$(this)\r\n\t\t\t.next('aside')\r\n\t\t\t.slideToggle('slow');\r\n\t\t$(this.childNodes[3]).toggleClass('rotate');\r\n\t});\r\n\r\n$(document).ready(function () {\r\n\t$('.navigation-dropdown').each(function (index, value) {\r\n\t\tlet parentCategory = $(this);\r\n\t\tlet subCategoryBox = $(this).next('div');\r\n\t\t// remove Parent category if it has no SubCategories ((it should be handled in server side))\r\n\t\tif (!subCategoryBox.children().length) {\r\n\t\t\tsubCategoryBox.remove();\r\n\t\t\t$(this).remove();\r\n\t\t} \r\n\t\t// else {\r\n\t\t// \t// if there are SubCategories, count all the products and display number on Parent\r\n\t\t// \tlet AllProductsSum = 0;\r\n\t\t// \tsubCategoryBox.children().each(function (index, value) {\r\n\t\t// \t\tAllProductsSum += Number($(value).children()[0].innerHTML);\r\n\t\t// \t});\r\n\t\t// \t$(parentCategory[0]).children()[0].children[0].innerHTML = AllProductsSum;\r\n\t\t// }\r\n\t});\r\n\tconst active = $('.active')[1];\r\n\t// If subcategory is selected, the SVG is rotated on page load\r\n\t$(active).parent().prev('div').children('.subcategory-box__item--svg').toggleClass('rotate');\r\n\r\n\twindow.addEventListener('resize', function (e) {\r\n\t\tif (window.innerWidth >= 700) {\r\n\t\t\t$('.side-nav').removeAttr('style');\r\n\t\t}\r\n\t});\r\n});\r\n\r\nconst el = document.querySelector('.side-nav__box');\r\n\r\n// Change Side Navigation position to sticky While scrolling . . . . .\r\nif (el) {\r\n\tconst elTop = el\r\n\t\t.getBoundingClientRect()\r\n\t\t.top - document\r\n\t\t.body\r\n\t\t.getBoundingClientRect()\r\n\t\t.top - 60;\r\n\r\n\tconst mq = window.matchMedia('(max-width: 700px)');\r\n\r\n\twindow.addEventListener('scroll', function () {\r\n\t\tif (mq) {\r\n\t\t\tif (document.documentElement.scrollTop > elTop) {\r\n\t\t\t\tel.style.position = 'sticky';\r\n\t\t\t\tel.style.top = '60px';\r\n\t\t\t} else {\r\n\t\t\t\tel.style.top = 'auto';\r\n\t\t\t}\r\n\t\t} else {\r\n\t\t\tconsole.log('hi');\r\n\t\t}\r\n\t});\r\n}\r\n\r\n\r\n// Front-end solution for styling sub-categories\r\n\n\n//# sourceURL=webpack:///./public/js/manual/products/side-navigation.js?");
 
 /***/ }),
 
 /***/ 2:
-/*!****************************************************************************************************!*\
-  !*** multi ./public/js/manual/products/loadmore.js ./public/js/manual/products/side-navigation.js ***!
-  \****************************************************************************************************/
+/*!****************************************************************************************************************************************************!*\
+  !*** multi ./public/js/manual/products/loadmore.js ./public/js/manual/products/products-section.js ./public/js/manual/products/side-navigation.js ***!
+  \****************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! ./public/js/manual/products/loadmore.js */\"./public/js/manual/products/loadmore.js\");\nmodule.exports = __webpack_require__(/*! ./public/js/manual/products/side-navigation.js */\"./public/js/manual/products/side-navigation.js\");\n\n\n//# sourceURL=webpack:///multi_./public/js/manual/products/loadmore.js_./public/js/manual/products/side-navigation.js?");
+eval("__webpack_require__(/*! ./public/js/manual/products/loadmore.js */\"./public/js/manual/products/loadmore.js\");\n__webpack_require__(/*! ./public/js/manual/products/products-section.js */\"./public/js/manual/products/products-section.js\");\nmodule.exports = __webpack_require__(/*! ./public/js/manual/products/side-navigation.js */\"./public/js/manual/products/side-navigation.js\");\n\n\n//# sourceURL=webpack:///multi_./public/js/manual/products/loadmore.js_./public/js/manual/products/products-section.js_./public/js/manual/products/side-navigation.js?");
 
 /***/ })
 

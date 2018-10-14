@@ -19,6 +19,9 @@ ProductCategory.add({
 		type: String,
 		required: true
 	},
+	CoverImage: {
+		type: Types.CloudinaryImage
+	},
 	ChildCategoryOf: {
 		type: Types.Relationship,
 		ref: 'ProductCategory',

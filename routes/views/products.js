@@ -94,7 +94,10 @@ exports = module.exports = function (req, res) {
 						if (err) {
 							next(err);
 						} else {
-							locals.data.products = getRidOfMetadata(result);
+							let preparedResult = getRidOfMetadata(result);
+							let resultWithSmallImages = cloudinaryAdjust(preparedResult, 300, 300);
+							
+							locals.data.products = resultWithSmallImages;
 							next(err);
 						}
 					});
@@ -164,16 +167,25 @@ exports = module.exports = function (req, res) {
 
 function getRidOfMetadata(data) {
 	let result;
-	if (data.results) {
-		result = data.results;
-	} else {
-		result = data;
-	}
-	filteredResult = [];
+	// Some data has products array inside 'data.results' and some in just 'data' therefore we need conditional statement
+	data.results ? result = data.results : result = data;
+	let filteredResult = [];
 	result.forEach(r => {
 		filteredResult.push(r.toObject());
 	});
 	return filteredResult;
+}
+
+function cloudinaryAdjust(data, maxWidth, maxHeight) {
+	let adjusted = [];
+	data.forEach(r => {
+		let oldUrl = r.images[0].secure_url.split('/');
+		oldUrl.splice(oldUrl.length-2, 0, 'c_limit,h_300,w_300');
+		let newUrl = oldUrl.join('/');
+		r.images[0].secure_url = newUrl;
+		adjusted.push(r);
+	});
+	return adjusted;
 }
 
 function escapeRegex(text) {

@@ -9,42 +9,44 @@
             <div class="side-nav__box">
                 {% set class = ( "active" if not data.category else "" ) %}
                 <div id="manufacturers-dropdown">
-                    <div class="subcategory-box__item--text">Gamintojai <small style="display: none"></small></div>
+                    <div class="subcategory-box__item--text">Gamintojai</div>
                     <img class="subcategory-box__item--svg" src="/images/dropdown-blue.svg" alt="">
                 </div>
                 <div class="subcategory-box" style="display: none;">
                 {% for manufacturer in manufacturers %}
                     <a href="/brands/{{manufacturer.key}}" class="subcategory-box__item">
                         <span>{{manufacturer.name}}</span>
-                        <small></small>
                     </a>
                 {% endfor %}
                 </div>
-                <a href="/products" class="{{ class }} side-nav__list-box--item">Visi produktai</a>
+                {# Deleted "all products" button, we agreed that people can press "products" in the main navigation instead #}
+                {# <a href="/products" class="{{ class }} side-nav__list-box--item">Visi produktai</a> #}
+
                 {% for cat in data.categories %} 
                 {% set class = ( "active" if data.category and data.category.id == cat.id else "" ) %}
                 {% set dropdown = ( "navigation-dropdown" if cat.IsParentCategory else "" ) %}
-                {% set ChildCategoryOfActive = "display: block;" if data.category.ChildCategoryOf.key == cat.key else "display: none;" %}
+                {% set ChildCategoryOfActive =  "display: none;"  %}
                     {% if not cat.ChildCategoryOf %}
                         {% if cat.IsParentCategory %}
+                        {# Display Parent categories #}
                         <div class="{{ class }} {{dropdown}}" data-category="{{cat.name}}">
-                            <a href="/products/{{ cat.key }}" class="subcategory-box__item--text">{{ cat.name }} <small></small></a>
+                            <a href="/products/{{ cat.key }}" class="subcategory-box__item--text">{{ cat.name }} </a>
                             {{ dropdownSvg("#1f1f1f", "#448AA6") }}
                         </div>
                         {% else %}
+                        {# Simple categories - neither parent or child #}
                         <a href="/products/{{ cat.key }}" class="{{ class }} {{dropdown}} side-nav__list-box--item">
                             <span class="subcategory-box__item--text">{{ cat.name }}</span>
-                            <small>{{cat.postCount}}</small>
                         </a>
                         {% endif %}
                         {% if cat.IsParentCategory %}
+                            {# Display Child categories of Parent category #}
                             <div class="subcategory-box" style="{{ChildCategoryOfActive}}">
                             {% for subCat in data.categories %}
                             {% set subClass = ( "active" if data.category and data.category.id == subCat.id else "" ) %}
                                 {% if cat.key === subCat.ChildCategoryOf.key %}
                                     <a href="/products/{{ subCat.key }}" class="{{ subClass }} subcategory-box__item" data-parent="{{cat.key}}">
                                     {{subCat.name}}
-                                    <small>{{subCat.postCount}}</small>
                                     </a>
                                 {% endif %}
                             {% endfor %}

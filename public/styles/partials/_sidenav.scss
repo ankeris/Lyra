@@ -18,7 +18,7 @@
 			height: 0;
 		}
 		.side-nav__list-box--item {
-			padding: 11px;
+			padding: 14px 11px;
 			display: block;
 			line-height: 1;
 			color: map-get($color, black);
@@ -65,10 +65,9 @@
 			display: flex;
 			flex-direction: row;
 			align-items: center;
-			justify-content: space-between;
+			justify-content: flex-start;
 			line-height: 1;
 			.subcategory-box__item--text {
-				flex-basis: 90%;
 				margin: 0;
 				padding: 11px;
 				color: map-get($color, black);
@@ -86,10 +85,9 @@
 				}
 			}
 			.subcategory-box__item--svg {
-				width: 1px;
+				width: 14px;
 				height: 8px;
-				padding: 12px;
-				flex-basis: 10%;
+				padding: 10px 7px;
 				transition-duration: 400ms;
 				cursor: pointer;
 				&:hover {
@@ -98,14 +96,14 @@
 			}
 		}
 		.subcategory-box {
-			margin-left: 5%;
-			width: 80%;
+			margin-top: -2px;
+			margin-bottom: 12px;
 			font-size: 0.9em;
+			opacity: 1;
 			.subcategory-box__item {
 				width: 90%;
-				border-left: 1px solid map-get($color, darkgrey);
 				color: map-get($color, darkgrey);
-				padding: 10px; // width: 90%;
+				padding: 0; // width: 90%;
 				display: block;
 				margin: 0 auto;
 				&:hover {
@@ -124,7 +122,15 @@
 		}
 	}
 	.active {
-		background-color: map-get($color, lightgrey);
+		text-shadow:
+		-.3px -.3px 0 map-get($color, darkgrey),
+		.3px -.3px 0 map-get($color, darkgrey),
+		-.3px .3px 0 map-get($color, darkgrey),
+		.3px .3px 0 map-get($color, darkgrey);
+		-webkit-transition: all .5s;
+		-moz-transition: all .5s;
+		-o-transition: all .5s;
+		transition: all ease .5s;
 	}
 }
 

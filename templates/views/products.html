@@ -11,10 +11,13 @@
 {% endblock %}
 
 {% block intro %}
-	{% set title = ( data.category.name if data.category else "Produktai" ) %}
-    <div class="title">
-        <h3>{{ title }}</h3>
-    </div>
+	{% set title = ( data.category.name if data.category else "Produktų katalogas" ) %}
+	{# {% set img = ( data.category.image if data.category else "Produktų katalogas" ) %} #}
+
+    <section class="products-intro">
+        <h3 class="products-intro--title">{{ title }}</h3>
+        <h3 class="products-intro--description">{{ title }}</h3>
+    </section>
 {% endblock %}
 
 {% block content %}
@@ -26,10 +29,12 @@
     <section class="products">
             {# looping through products #}
             {% for product in data.products %}
+            {# {{product.images[0].secure_url}} #}
             {# product variables #}
             {% set manufacturerKey = product.Manufacturer.key %}
             {% set manufacturerName = product.Manufacturer.name %}
             {% set productTypeKey = product.ProductType[0].key %}
+            {% set productType = product.ProductType[0].name %}
 
             <div class="items-box__item fade-in">
             <a aria-label="{{product.title}}" title="{{product.title}}" href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
@@ -38,15 +43,22 @@
                     <img class="items-box__item--main-image" alt="{{product.title}}" src="{{product.images[0].secure_url}}">
                     </img>
                 {% endif %}
+                <p class="items-box__item--description">
+                    <span class="items-box__item--description-title">{{manufacturerName | upper}} - {{product.title | upper}}</span>
+                    <br>
+                    <span class="items-box__item--description-type">{{productType | lower}}</span>
+                    <br>
+                    <span class="items-box__item--description-price">{{product.price}}€</span>
+                </p>
             </a>
-            <p class="items-box__item--description">{{product.title}} - {{manufacturerName}} <br>{{product.price}}€</p>
             </div>
             {% endfor %}
     </section>
 </div>
 {# Loading screen for products #}
-{{ loadingSpeakers("#1f1f1f", "#448AA6") }}
-{# {% include 'partials/loadingspinner.html' %} #}
+    {{ loadingSpeakers("#1f1f1f", "#448AA6") }}
+    {# {% include 'partials/loadingspinner.html' %} #}
+
 
 <div class="variables" data-sort="{{data.sort}}" data-category="{{data.category.key}}" data-count="{{data.products.results.length}}" data-search="{{filters.search}}"></div>
 

@@ -9,7 +9,6 @@ $('.subcategory-box__item--svg')
 		$(this).toggleClass('rotate');
 	});
 
-
 $('.mobile-side-nav')
 	.click(function () {
 		$(this)
@@ -26,14 +25,15 @@ $(document).ready(function () {
 		if (!subCategoryBox.children().length) {
 			subCategoryBox.remove();
 			$(this).remove();
-		} else {
-			// if there are SubCategories, count all the products and display number on Parent
-			let AllProductsSum = 0;
-			subCategoryBox.children().each(function (index, value) {
-				AllProductsSum += Number($(value).children()[0].innerHTML);
-			});
-			$(parentCategory[0]).children()[0].children[0].innerHTML = AllProductsSum;
-		}
+		} 
+		// else {
+		// 	// if there are SubCategories, count all the products and display number on Parent
+		// 	let AllProductsSum = 0;
+		// 	subCategoryBox.children().each(function (index, value) {
+		// 		AllProductsSum += Number($(value).children()[0].innerHTML);
+		// 	});
+		// 	$(parentCategory[0]).children()[0].children[0].innerHTML = AllProductsSum;
+		// }
 	});
 	const active = $('.active')[1];
 	// If subcategory is selected, the SVG is rotated on page load

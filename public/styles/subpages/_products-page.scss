@@ -21,12 +21,16 @@
 		text-align: center;
 		.items-box__item--description {
 			margin: 5px;
+			color: map-get($color, darkgrey);
+			.items-box__item--description-price {
+				font-weight: 300;
+			}
 		}
 	}
 	.items-box__item--main-image {
 		object-fit: contain;
 		width: 90%;
-		height: 270px;
+		height: 265px;
 		transition-duration: 90ms;
 		// border-radius: 100%;
 		&:hover {
