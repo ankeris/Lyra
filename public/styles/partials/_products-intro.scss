@@ -1,0 +1,33 @@
+.products-intro {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    height: 57vh;
+    background-position: center;
+	background-size: cover;
+	.products-intro--title {
+		max-width: 750px;
+		word-spacing: 0.1em;
+		padding: 1%;
+		text-align: center;
+		background-color: rgba(0, 0, 0, 0.5);
+		font-size: 2.5em;
+		font-weight: thin;
+		line-height: 1.2em;
+		color: map-get($color, white);
+		margin: 25px;
+	}
+	.products-intro--description {
+		max-width: 750px;
+		word-spacing: 0.1em;
+		padding: 1%;
+		text-align: justify;
+		background-color: rgba(0, 0, 0, 0.5);
+		font-weight: thin;
+		color: map-get($color, white);
+		margin: 25px;
+	}
+}

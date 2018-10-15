@@ -1,6 +1,6 @@
 .sort-bar__box {
 	flex-basis: 100%;
-	margin-bottom: 50px; // margin-top: 50px;
+	margin: 50px 0; // margin-top: 50px;
 	border-bottom: 1px solid map-get($color, lightgrey);
 	text-align: right;
 	order: 1;

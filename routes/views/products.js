@@ -94,10 +94,7 @@ exports = module.exports = function (req, res) {
 						if (err) {
 							next(err);
 						} else {
-							let preparedResult = getRidOfMetadata(result);
-							let resultWithSmallImages = cloudinaryAdjust(preparedResult, 300, 300);
-							
-							locals.data.products = resultWithSmallImages;
+							locals.data.products = getRidOfMetadata(result, true, 300, 300);
 							next(err);
 						}
 					});
@@ -111,7 +108,7 @@ exports = module.exports = function (req, res) {
 							if (err) {
 								next(err);
 							} else {
-								locals.data.products = getRidOfMetadata(result);
+								locals.data.products = getRidOfMetadata(result, true, 300, 300);
 								next(err);
 							}
 						});
@@ -140,20 +137,21 @@ exports = module.exports = function (req, res) {
 					'title': regex
 				}]
 			})
-				.exec(function (err, results) {
+				.exec(function (err, result) {
 					if (err) {
 						next(err);
 					} else {
-						locals.data.products = getRidOfMetadata(results);
+						locals.data.products = getRidOfMetadata(result, true, 300, 300);
 						next(err);
 					}
 				} // Default query when products page is opened
 				);
 		} else if (!locals.data.category) {
 			q
-				.exec(function (err, results) {
+				.exec(function (err, result) {
 					// getting rid of metadata with "toObject()" from mongoose
-					locals.data.products = getRidOfMetadata(results);
+					
+					locals.data.products = getRidOfMetadata(result, true, 300, 300);
 					next(err);
 				});
 		}
@@ -165,27 +163,21 @@ exports = module.exports = function (req, res) {
 	view.render('products');
 };
 
-function getRidOfMetadata(data) {
+function getRidOfMetadata(data, cropImages, width, height) {
 	let result;
 	// Some data has products array inside 'data.results' and some in just 'data' therefore we need conditional statement
 	data.results ? result = data.results : result = data;
 	let filteredResult = [];
 	result.forEach(r => {
+		if (cropImages && r.images[0]) {
+			let oldUrl = r.images[0].secure_url.split('/');
+			oldUrl.splice(oldUrl.length-2, 0, `c_limit,h_${height},w_${width}`);
+			let newUrl = oldUrl.join('/');
+			r.images[0].secure_url = newUrl;
+		}
 		filteredResult.push(r.toObject());
 	});
 	return filteredResult;
-}
-
-function cloudinaryAdjust(data, maxWidth, maxHeight) {
-	let adjusted = [];
-	data.forEach(r => {
-		let oldUrl = r.images[0].secure_url.split('/');
-		oldUrl.splice(oldUrl.length-2, 0, 'c_limit,h_300,w_300');
-		let newUrl = oldUrl.join('/');
-		r.images[0].secure_url = newUrl;
-		adjusted.push(r);
-	});
-	return adjusted;
 }
 
 function escapeRegex(text) {

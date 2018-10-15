@@ -36,29 +36,37 @@
 			}
 		}
 		#manufacturers-dropdown {
-			background-color: map-get($color, darkgrey);
 			display: flex;
 			flex-direction: row;
 			align-items: center;
-			justify-content: space-between;
+			justify-content: flex-start;
 			line-height: 1;
 			.subcategory-box__item--text {
-				color: map-get($color, white);
-				flex-basis: 90%;
+				color: map-get($color, darkgrey);
 				margin: 0;
 				padding: 11px;
 			}
 			.subcategory-box__item--svg {
-				width: 1px;
-				height: 10px;
-				padding: 12px;
-				flex-basis: 10%;
+				width: 14px;
+				height: 8px;
+				padding: 10px 7px;
 				transition-duration: 400ms;
 				cursor: pointer;
+				&:hover {
+					transform: rotate(90deg);
+				}
 			}
 			&:hover {
-				@include hover(blue, 5px);
-				background-color: map-get($color, darkgrey);
+				text-shadow:
+				-.3px -.3px 0 map-get($color, darkgrey),
+				.3px -.3px 0 map-get($color, darkgrey),
+				-.3px .3px 0 map-get($color, darkgrey),
+				.3px .3px 0 map-get($color, darkgrey);
+				-webkit-transition: all .5s;
+				-moz-transition: all .5s;
+				-o-transition: all .5s;
+				transition: all ease .5s;
+				cursor: pointer;
 			}
 		}
 		.navigation-dropdown {
@@ -96,7 +104,6 @@
 			}
 		}
 		.subcategory-box {
-			margin-top: -2px;
 			margin-bottom: 12px;
 			font-size: 0.9em;
 			opacity: 1;

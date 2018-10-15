@@ -3,10 +3,6 @@
 	flex-wrap: wrap;
 }
 
-#loading-content {
-	order: 4;
-}
-
 .products {
 	display: flex;
 	flex-basis: 75%;
@@ -40,12 +36,6 @@
 	}
 }
 
-.items-box__item--title {
-	background-color: rgba($color: white, $alpha: 0.8);
-	padding: 5px;
-	text-align: center;
-}
-
 @media screen and (max-width: 925px) {
 	.products {
 		.items-box__item--main-image {
@@ -59,10 +49,7 @@
 		flex-direction: row-reverse;
 	}
 	.products {
-		display: flex;
 		flex-basis: 100%;
-		flex-wrap: wrap;
-		justify-content: space-between;
 		.items-box__item {
 			flex-basis: 45%;
 			margin: 20px 0;

@@ -9,8 +9,8 @@
             <div class="side-nav__box">
                 {% set class = ( "active" if not data.category else "" ) %}
                 <div id="manufacturers-dropdown">
-                    <div class="subcategory-box__item--text">Gamintojai</div>
-                    <img class="subcategory-box__item--svg" src="/images/dropdown-blue.svg" alt="">
+                    <a href="/brands" class="subcategory-box__item--text">Gamintojai</a>
+                    {{ dropdownSvg("#1f1f1f", "#448AA6") }}
                 </div>
                 <div class="subcategory-box" style="display: none;">
                 {% for manufacturer in manufacturers %}

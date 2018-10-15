@@ -12,11 +12,11 @@
 
 {% block intro %}
 	{% set title = ( data.category.name if data.category else "Produktų katalogas" ) %}
-	{# {% set img = ( data.category.image if data.category else "Produktų katalogas" ) %} #}
+	{% set img = ( data.category.CoverImage.secure_url if data.category else "/images/products-page.jpg" ) %}
 
-    <section class="products-intro">
+    <section class="products-intro" style="background-image: url({{img}})">
         <h3 class="products-intro--title">{{ title }}</h3>
-        <h3 class="products-intro--description">{{ title }}</h3>
+        <p class="products-intro--description">Integer sollicitudin malesuada libero, ac vehicula purus venenatis ut. Curabitur feugiat ornare tellus sed tristique. Etiam fermentum enim nisl. Morbi a condimentum elit. Phasellus tincidunt augue et lectus malesuada hendrerit. Curabitur imperdiet leo eget orci tempor sagittis. Nulla facilisi. Etiam laoreet nunc et massa cursus bibendum. Cras sit amet pretium tortor. Etiam non sapien nec arcu fermentum rutrum. Pellentesque bibendum velit tellus, et dignissim elit rhoncus id. Fusce et quam tortor. Mauris maximus vel neque sit amet fringilla. In hac habitasse platea dictumst. Phasellus faucibus nulla quis dapibus vulputate.</p>
     </section>
 {% endblock %}
 
