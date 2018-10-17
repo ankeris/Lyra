@@ -45,6 +45,18 @@
 				color: map-get($color, darkgrey);
 				margin: 0;
 				padding: 11px;
+				&:hover {
+					text-shadow:
+					-.3px -.3px 0 map-get($color, darkgrey),
+					.3px -.3px 0 map-get($color, darkgrey),
+					-.3px .3px 0 map-get($color, darkgrey),
+					.3px .3px 0 map-get($color, darkgrey);
+					-webkit-transition: all .5s;
+					-moz-transition: all .5s;
+					-o-transition: all .5s;
+					transition: all ease .5s;
+					cursor: pointer;
+				}
 			}
 			.subcategory-box__item--svg {
 				width: 14px;
@@ -55,18 +67,6 @@
 				&:hover {
 					transform: rotate(90deg);
 				}
-			}
-			&:hover {
-				text-shadow:
-				-.3px -.3px 0 map-get($color, darkgrey),
-				.3px -.3px 0 map-get($color, darkgrey),
-				-.3px .3px 0 map-get($color, darkgrey),
-				.3px .3px 0 map-get($color, darkgrey);
-				-webkit-transition: all .5s;
-				-moz-transition: all .5s;
-				-o-transition: all .5s;
-				transition: all ease .5s;
-				cursor: pointer;
 			}
 		}
 		.navigation-dropdown {
@@ -176,6 +176,7 @@
 		align-items: center;
 		justify-content: center;
 		padding: 11px;
+		margin-top: 50px;
 		&:hover {
 			@include hover(blue, 5px);
 			background-color: map-get($color, darkgrey);

@@ -381,6 +381,13 @@ footer {
         color: #1f1f1f;
         margin: 0;
         padding: 11px; }
+        .side-nav .side-nav__box #manufacturers-dropdown .subcategory-box__item--text:hover {
+          text-shadow: -0.3px -0.3px 0 #1f1f1f, 0.3px -0.3px 0 #1f1f1f, -0.3px 0.3px 0 #1f1f1f, 0.3px 0.3px 0 #1f1f1f;
+          -webkit-transition: all .5s;
+          -moz-transition: all .5s;
+          -o-transition: all .5s;
+          transition: all ease .5s;
+          cursor: pointer; }
       .side-nav .side-nav__box #manufacturers-dropdown .subcategory-box__item--svg {
         width: 14px;
         height: 8px;
@@ -389,13 +396,6 @@ footer {
         cursor: pointer; }
         .side-nav .side-nav__box #manufacturers-dropdown .subcategory-box__item--svg:hover {
           transform: rotate(90deg); }
-      .side-nav .side-nav__box #manufacturers-dropdown:hover {
-        text-shadow: -0.3px -0.3px 0 #1f1f1f, 0.3px -0.3px 0 #1f1f1f, -0.3px 0.3px 0 #1f1f1f, 0.3px 0.3px 0 #1f1f1f;
-        -webkit-transition: all .5s;
-        -moz-transition: all .5s;
-        -o-transition: all .5s;
-        transition: all ease .5s;
-        cursor: pointer; }
     .side-nav .side-nav__box .navigation-dropdown {
       display: flex;
       flex-direction: row;
@@ -474,7 +474,8 @@ footer {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 11px; }
+    padding: 11px;
+    margin-top: 50px; }
     .mobile-side-nav:hover {
       box-shadow: inset 0 0 0 5px #448AA6;
       transition: 380ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -511,7 +512,7 @@ footer {
     color: #fff;
     margin: 25px; }
   .products-intro .products-intro--description {
-    max-width: 750px;
+    max-width: 700px;
     word-spacing: 0.1em;
     padding: 1%;
     text-align: justify;
@@ -519,6 +520,24 @@ footer {
     font-weight: thin;
     color: #fff;
     margin: 25px; }
+
+@media screen and (max-width: 700px) {
+  .products-intro {
+    flex-wrap: nowrap;
+    height: 65vh; }
+    .products-intro .products-intro--title {
+      max-width: 750px;
+      word-spacing: 0.1em;
+      padding: 1%;
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: thin;
+      line-height: 1.2em;
+      margin: 5px; }
+    .products-intro .products-intro--description {
+      max-width: 750px;
+      word-spacing: 0;
+      margin: 0; } }
 
 .main-navigation {
   width: 100%;
