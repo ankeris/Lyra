@@ -130,6 +130,17 @@ eval("module.exports = function(module) {\r\n\tif (!module.webpackPolyfill) {\r\
 
 /***/ }),
 
+/***/ "./public/js/manual/products/imageHover.js":
+/*!*************************************************!*\
+  !*** ./public/js/manual/products/imageHover.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("let i;\r\n\r\nlet stopinterval;\r\n\r\nlet imagesToHover = document.querySelectorAll('.items-box__item');\r\n\r\nimagesToHover.forEach((el) => {\r\n    el.addEventListener('mouseenter', function(e) {\r\n        startAnim(el);\r\n    });\r\n\r\n    el.addEventListener('mouseleave', function() {\r\n        stopanim();\r\n    })\r\n})\r\n\r\nfunction startAnim(el) {\r\n  if (stopinterval === undefined) { \r\n    stopinterval = setInterval(function(){ console.log(el.children[0].children) }, 1000);\r\n  }\r\n}\r\n\r\nfunction stopanim() {\r\n  if (stopinterval) { \r\n    clearInterval(stopinterval);\r\n    stopinterval = undefined;\r\n  }\r\n}\n\n//# sourceURL=webpack:///./public/js/manual/products/imageHover.js?");
+
+/***/ }),
+
 /***/ "./public/js/manual/products/loadmore.js":
 /*!***********************************************!*\
   !*** ./public/js/manual/products/loadmore.js ***!
@@ -164,13 +175,13 @@ eval("let $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jqu
 /***/ }),
 
 /***/ 2:
-/*!****************************************************************************************************************************************************!*\
-  !*** multi ./public/js/manual/products/loadmore.js ./public/js/manual/products/products-section.js ./public/js/manual/products/side-navigation.js ***!
-  \****************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** multi ./public/js/manual/products/imageHover.js ./public/js/manual/products/loadmore.js ./public/js/manual/products/products-section.js ./public/js/manual/products/side-navigation.js ***!
+  \**********************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! ./public/js/manual/products/loadmore.js */\"./public/js/manual/products/loadmore.js\");\n__webpack_require__(/*! ./public/js/manual/products/products-section.js */\"./public/js/manual/products/products-section.js\");\nmodule.exports = __webpack_require__(/*! ./public/js/manual/products/side-navigation.js */\"./public/js/manual/products/side-navigation.js\");\n\n\n//# sourceURL=webpack:///multi_./public/js/manual/products/loadmore.js_./public/js/manual/products/products-section.js_./public/js/manual/products/side-navigation.js?");
+eval("__webpack_require__(/*! ./public/js/manual/products/imageHover.js */\"./public/js/manual/products/imageHover.js\");\n__webpack_require__(/*! ./public/js/manual/products/loadmore.js */\"./public/js/manual/products/loadmore.js\");\n__webpack_require__(/*! ./public/js/manual/products/products-section.js */\"./public/js/manual/products/products-section.js\");\nmodule.exports = __webpack_require__(/*! ./public/js/manual/products/side-navigation.js */\"./public/js/manual/products/side-navigation.js\");\n\n\n//# sourceURL=webpack:///multi_./public/js/manual/products/imageHover.js_./public/js/manual/products/loadmore.js_./public/js/manual/products/products-section.js_./public/js/manual/products/side-navigation.js?");
 
 /***/ })
 
