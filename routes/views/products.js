@@ -150,7 +150,6 @@ exports = module.exports = function (req, res) {
 			q
 				.exec(function (err, result) {
 					// getting rid of metadata with "toObject()" from mongoose
-					
 					locals.data.products = getRidOfMetadata(result, true, 300, 300);
 					next(err);
 				});
@@ -170,6 +169,7 @@ function getRidOfMetadata(data, cropImages, width, height) {
 	let filteredResult = [];
 	result.forEach(r => {
 		if (cropImages && r.images[0]) {
+			// Changes the link for each picture to a fixed height and width - in order to load faster.
 			let oldUrl = r.images[0].secure_url.split('/');
 			oldUrl.splice(oldUrl.length-2, 0, `c_limit,h_${height},w_${width}`);
 			let newUrl = oldUrl.join('/');

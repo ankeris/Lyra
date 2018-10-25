@@ -39,16 +39,21 @@
             <div class="items-box__item fade-in">
             <a aria-label="{{product.title}}" title="{{product.title}}" href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
                 {% if product.images[0] %}
+                <div class="items-box__item--images">
                     {# Main image #}
-                    {% for image in product.images %}
-                        {% if loop.index > 1 %}
-                        <img class="items-box__item--main-image hidden" alt="{{product.title}}" src="{{image.secure_url}}"></img>
-                        {% else %}
-                        <img class="items-box__item--main-image" alt="{{product.title}}" src="{{image.secure_url}}"></img>
-                        {% endif %}
-                    {% endfor %}
-                {% else %}
-                <p>Atsiprašome, šis produktas neturi nuotraukos</p>
+                        {% for image in product.images %}
+                            {% if loop.index > 1 %}
+                            <img class="items-box__item--main-image hidden" alt="{{product.title}}" src="{{image.secure_url}}"></img>
+                            {% else %}
+                            <img class="items-box__item--main-image" alt="{{product.title}}" src="{{image.secure_url}}"></img>
+                            {% endif %}
+                        {% endfor %}
+                </div>
+                {# If product does not have image #}
+                {% elif not product.images[0] %}
+                    <div class="no-image-err">
+                        <p>Atsiprašome, šis produktas neturi nuotraukos</p>
+                    </div>
                 {% endif %}
                 <p class="items-box__item--description">
                     <span class="items-box__item--description-title">{{manufacturerName | upper}} - {{product.title | upper}}</span>

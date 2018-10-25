@@ -1109,6 +1109,10 @@ footer {
       color: #1f1f1f; }
       .products .items-box__item .items-box__item--description .items-box__item--description-price {
         font-weight: 300; }
+    .products .items-box__item .no-image-err {
+      height: 100%;
+      display: flex;
+      align-items: center; }
   .products .items-box__item--main-image {
     object-fit: contain;
     width: 90%;

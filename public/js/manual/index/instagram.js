@@ -81,6 +81,7 @@ function checkContainer () {
         $(".items-box__item--text").each(
             (index, value) => {
                 let array = value.innerText.split(" ");
+                console.log(array)
                 value.innerText = array.filter(word => !word.startsWith('#')).join(' ');
             }
         );
