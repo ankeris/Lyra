@@ -34,4 +34,7 @@ acme
 
 .vscode/
 
-public/js/dist/
+public/js/dist
+public/js/dist/*.bundle.js
+
+

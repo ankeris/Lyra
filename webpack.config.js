@@ -15,6 +15,20 @@ module.exports = {
 		path: path.resolve('./public/js/', 'dist'),
 		filename: '[name].bundle.js'
 	},
+	module: {
+		rules: [
+		  {
+			test: /\.m?js$/,
+			exclude: /(node_modules|bower_components)/,
+			use: {
+			  loader: 'babel-loader',
+			  options: {
+				presets: ['@babel/preset-env']
+			  }
+			}
+		  }
+		]
+	  }
 	// plugins: [
 	// 	new BrowserSyncPlugin({
 	// 		// browse to http://localhost:3000/ during development,

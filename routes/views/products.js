@@ -167,13 +167,18 @@ function getRidOfMetadata(data, cropImages, width, height) {
 	// Some data has products array inside 'data.results' and some in just 'data' therefore we need conditional statement
 	data.results ? result = data.results : result = data;
 	let filteredResult = [];
+	// loop through each product
 	result.forEach(r => {
+		// check if cropImage setting is set to true and if image exists
 		if (cropImages && r.images[0]) {
 			// Changes the link for each picture to a fixed height and width - in order to load faster.
-			let oldUrl = r.images[0].secure_url.split('/');
-			oldUrl.splice(oldUrl.length-2, 0, `c_limit,h_${height},w_${width}`);
-			let newUrl = oldUrl.join('/');
-			r.images[0].secure_url = newUrl;
+			r.images.forEach(img => {
+				let oldUrl = img.secure_url.split('/');
+				oldUrl.splice(oldUrl.length-2, 0, `c_limit,h_${height},w_${width}`);
+				let newUrl = oldUrl.join('/');
+				// change old secure_url to new (with new parameters);
+				img.secure_url = newUrl;
+			})
 		}
 		filteredResult.push(r.toObject());
 	});
