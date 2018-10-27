@@ -25,7 +25,7 @@ Product.add({
 	Discount: {
 		type: Number,
 		collapse: true,
-		note: 'Nuolaida (%) Procentais',
+		note: 'What is the new price?',
 	},
 	description: {
 		type: Types.Html,

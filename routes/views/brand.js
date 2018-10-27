@@ -15,7 +15,7 @@ exports = module.exports = function (req, res) {
 		category: req.params.category
 	};
 
-	view.query('manufacturers', keystone.list('ProductManufacturer').model.find());
+	view.query('manufacturers', keystone.list('ProductManufacturer').model.find().sort('name'));
 
 	view.on('init', function (next) {
 		keystone.list('ProductManufacturer').model.findOne({
@@ -87,7 +87,7 @@ exports = module.exports = function (req, res) {
 				if (err) {
 					next(err);
 				} else {
-					locals.data.products = getRidOfMetadata(result);
+					locals.data.products = getRidOfMetadata(result, true, 300, 300);
 					next(err);
 				}
 			});
@@ -103,7 +103,7 @@ exports = module.exports = function (req, res) {
 					if (err) {
 						next(err);
 					} else {
-						locals.data.products = getRidOfMetadata(result);
+						locals.data.products = getRidOfMetadata(result, true, 300, 300);
 						next(err);
 					}
 				});
@@ -118,7 +118,7 @@ exports = module.exports = function (req, res) {
 							if (err) {
 								next(err);
 							} else {
-								locals.data.products = getRidOfMetadata(result);
+								locals.data.products = getRidOfMetadata(result, true, 300, 300);
 								next(err);
 							}
 						});
@@ -145,15 +145,24 @@ exports = module.exports = function (req, res) {
 	}
 };
 
-function getRidOfMetadata(data) {
+function getRidOfMetadata(data, cropImages, width, height) {
 	let result;
-	if (data.results) {
-		result = data.results;
-	} else {
-		result = data;
-	}
-	filteredResult = [];
+	// Some data has products array inside 'data.results' and some in just 'data' therefore we need conditional statement
+	data.results ? result = data.results : result = data;
+	let filteredResult = [];
+	// loop through each product
 	result.forEach(r => {
+		// check if cropImage setting is set to true and if image exists
+		if (cropImages && r.images[0]) {
+			// Changes the link for each picture to a fixed height and width - in order to load faster.
+			r.images.forEach(img => {
+				let oldUrl = img.secure_url.split('/');
+				oldUrl.splice(oldUrl.length-2, 0, `c_limit,h_${height},w_${width}`);
+				let newUrl = oldUrl.join('/');
+				// change old secure_url to new (with new parameters);
+				img.secure_url = newUrl;
+			})
+		}
 		filteredResult.push(r.toObject());
 	});
 	return filteredResult;

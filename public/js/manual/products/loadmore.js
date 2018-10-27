@@ -2,9 +2,9 @@ let $ = require('jquery');
 let _ = require('lodash');
 // AJAX
 // Load more products
+let xoxo;
 let currentPage = 1;
 let AllProductsLoaded = false;
-
 $('.loading-speakers-box').hide();
 
 function addNextPage() {

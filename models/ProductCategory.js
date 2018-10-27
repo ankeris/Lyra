@@ -19,6 +19,10 @@ ProductCategory.add({
 		type: String,
 		required: true
 	},
+	nameSingular: {
+		type: String,
+		required: false
+	},
 	CoverImage: {
 		type: Types.CloudinaryImage
 	},

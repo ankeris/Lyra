@@ -2,7 +2,6 @@ let imageInt = 0;
 let timeOut;
 let productList = document.querySelectorAll('.items-box__item');
 let observer;
-console.log(productList);
 
 // Add event for each product, when mouse enters
 function mouseEvents(listOfElements) {
@@ -26,7 +25,6 @@ let options = {
 observer = new MutationObserver(mutated);
 observer.observe(observedElement, options);
 function mutated(mutationList) {
-  console.log(mutationList);
   mouseEvents(mutationList[0].addedNodes);
 }
 mouseEvents(productList);

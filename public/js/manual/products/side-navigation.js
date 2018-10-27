@@ -17,6 +17,7 @@ $('.mobile-side-nav')
 		$(this.childNodes[3]).toggleClass('rotate');
 	});
 
+// on page load
 $(document).ready(function () {
 	$('.navigation-dropdown').each(function (index, value) {
 		let parentCategory = $(this);
@@ -26,19 +27,13 @@ $(document).ready(function () {
 			subCategoryBox.remove();
 			$(this).remove();
 		} 
-		// else {
-		// 	// if there are SubCategories, count all the products and display number on Parent
-		// 	let AllProductsSum = 0;
-		// 	subCategoryBox.children().each(function (index, value) {
-		// 		AllProductsSum += Number($(value).children()[0].innerHTML);
-		// 	});
-		// 	$(parentCategory[0]).children()[0].children[0].innerHTML = AllProductsSum;
-		// }
 	});
-	const active = $('.active')[1];
-	// If subcategory is selected, the SVG is rotated on page load
-	$(active).parent().prev('div').children('.subcategory-box__item--svg').toggleClass('rotate');
-
+	// If subcategory is selected, open it and rotate SVG
+	const activeSubCategory = $('.subcategory-box .active');
+	$(activeSubCategory).parent().prev('div').children('.subcategory-box__item--svg').toggleClass('rotate');
+	$(activeSubCategory).parent().removeAttr('style');
+	console.log(activeSubCategory);
+	
 	window.addEventListener('resize', function (e) {
 		if (window.innerWidth >= 700) {
 			$('.side-nav').removeAttr('style');
@@ -74,4 +69,12 @@ if (el) {
 }
 
 
-// Front-end solution for styling sub-categories
+//Old code
+	// else {
+	// 	// if there are SubCategories, count all the products and display number on Parent
+	// 	let AllProductsSum = 0;
+	// 	subCategoryBox.children().each(function (index, value) {
+	// 		AllProductsSum += Number($(value).children()[0].innerHTML);
+	// 	});
+	// 	$(parentCategory[0]).children()[0].children[0].innerHTML = AllProductsSum;
+	// }

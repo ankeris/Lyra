@@ -2,7 +2,6 @@
 	display: flex;
 	flex-wrap: wrap;
 }
-
 .products {
 	display: flex;
 	flex-basis: 75%;
@@ -38,6 +37,10 @@
 			transform: scale(1.02);
 			transition-duration: 90ms;
 		}
+	}
+	.price-discount {
+		font-weight: bold;
+		color: #c70039;
 	}
 }
 
