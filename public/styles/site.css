@@ -505,7 +505,7 @@ footer {
     word-spacing: 0.1em;
     padding: 1%;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     font-size: 2.5em;
     font-weight: thin;
     line-height: 1.2em;
@@ -516,7 +516,7 @@ footer {
     word-spacing: 0.1em;
     padding: 1%;
     text-align: justify;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     font-weight: thin;
     color: #fff;
     margin: 25px; }
@@ -677,7 +677,7 @@ footer {
     letter-spacing: 0.2em;
     transition-duration: 90ms; }
     .mini-navigation .mini-navigation__button span {
-      background-color: rgba(0, 0, 0, 0.3);
+      background-color: rgba(0, 0, 0, 0.5);
       padding: 10px;
       border-radius: 5px; }
     .mini-navigation .mini-navigation__button:hover {
@@ -783,7 +783,7 @@ footer {
     .description-box .description-box__title div {
       font-weight: thin; }
   .description-box .description-box__item--text {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 15px;
     max-width: 500px;
     text-align: justify;
@@ -1059,6 +1059,7 @@ footer {
   position: relative;
   /* The image used */
   background-image: url("/images/newmanifesto.jpg");
+  background-color: #1f1f1f;
   /* Set a specific height */
   min-height: 95vh;
   /* Create the parallax scrolling effect */
@@ -1073,7 +1074,7 @@ footer {
     word-spacing: 0.1em;
     padding: 2%;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     font-weight: thin;
     font-size: 4em;
     line-height: 1em;

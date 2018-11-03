@@ -14,7 +14,11 @@
 <section class="product content-section">
 
     <figure class="title">
+        {% if data.product.Discount %}
+        <h3>{{data.product.title}} - {{data.product.Discount}}€</h3>
+        {% else %}
         <h3>{{data.product.title}} - {{data.product.price}}€</h3>
+        {% endif %}
     </figure>
 
 {% if data.product.images.length >= 1 %}
