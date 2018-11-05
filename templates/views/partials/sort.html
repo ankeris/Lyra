@@ -1,12 +1,12 @@
 <figure class="sort-bar__box content-section">
     {% if data.category %}
-    <form action="/products/{{data.category.key}}" method="get">
+    <form class="form_box" action="/products/{{data.category.key}}" method="get">
     {% elif data.brand %}
-    <form action="/brands/{{data.brand.key}}" method="get">
+    <form class="form_box" action="/brands/{{data.brand.key}}" method="get">
     {% elif filters.search %}
-    <form action="/products/?search={{filters.search}}" method="get">
+    <form class="form_box" action="/products/?search={{filters.search}}" method="get">
     {% else %}
-    <form action="/products/" method="get">
+    <form class="form_box" action="/products/" method="get" >
     {% endif %}
         <select name="filterlist" class="sort-bar__box--button" onchange="this.form.submit()">
             {% if data.sort == "price-high" %}
