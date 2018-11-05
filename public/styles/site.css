@@ -1110,9 +1110,21 @@ footer {
   order: 3; }
   .products .items-box__item {
     flex-basis: 30%;
+    display: block;
     margin: 30px 0;
     overflow: hidden;
     text-align: center; }
+    .products .items-box__item .items-box__item--main-image {
+      object-fit: contain;
+      width: 90%;
+      height: 265px;
+      transition-duration: 90ms;
+      display: none; }
+      .products .items-box__item .items-box__item--main-image:hover {
+        transform: scale(1.02);
+        transition-duration: 90ms; }
+    .products .items-box__item .show {
+      display: initial; }
     .products .items-box__item .items-box__item--description {
       margin: 5px;
       color: #1f1f1f; }
@@ -1122,14 +1134,6 @@ footer {
       height: 100%;
       display: flex;
       align-items: center; }
-  .products .items-box__item--main-image {
-    object-fit: contain;
-    width: 90%;
-    height: 265px;
-    transition-duration: 90ms; }
-    .products .items-box__item--main-image:hover {
-      transform: scale(1.02);
-      transition-duration: 90ms; }
   .products .price-discount {
     font-weight: bold;
     color: #c70039; }

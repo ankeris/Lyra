@@ -8,7 +8,6 @@ import jQuery from 'jquery';
 
         $(window).scroll(function() {
             let yPos = 50-($window.scrollTop() / $bgobj.data('speed'));
-            console.log(yPos);
             let coords = '50% '+ yPos + '%';
             $bgobj.css({ backgroundPosition: coords });
         });
