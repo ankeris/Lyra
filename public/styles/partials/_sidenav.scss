@@ -1,5 +1,6 @@
 .mobile-side-nav {
 	display: none;
+	box-sizing: border-box;
 }
 
 .side-nav {
@@ -18,21 +19,12 @@
 			height: 0;
 		}
 		.side-nav__list-box--item {
-			padding: 14px 11px;
+			padding: 14px 0;
 			display: block;
 			line-height: 1;
 			color: map-get($color, black);
 			&:hover {
-				text-shadow:
-				-.3px -.3px 0 map-get($color, darkgrey),
-				.3px -.3px 0 map-get($color, darkgrey),
-				-.3px .3px 0 map-get($color, darkgrey),
-				.3px .3px 0 map-get($color, darkgrey);
-				-webkit-transition: all .5s;
-				-moz-transition: all .5s;
-				-o-transition: all .5s;
-				transition: all ease .5s;
-				cursor: pointer;
+				@include NavigationItemHover();
 			}
 		}
 		#manufacturers-dropdown {
@@ -44,18 +36,9 @@
 			.subcategory-box__item--text {
 				color: map-get($color, darkgrey);
 				margin: 0;
-				padding: 11px;
+				padding: 11px 0;
 				&:hover {
-					text-shadow:
-					-.3px -.3px 0 map-get($color, darkgrey),
-					.3px -.3px 0 map-get($color, darkgrey),
-					-.3px .3px 0 map-get($color, darkgrey),
-					.3px .3px 0 map-get($color, darkgrey);
-					-webkit-transition: all .5s;
-					-moz-transition: all .5s;
-					-o-transition: all .5s;
-					transition: all ease .5s;
-					cursor: pointer;
+					@include NavigationItemHover();
 				}
 			}
 			.subcategory-box__item--svg {
@@ -77,19 +60,10 @@
 			line-height: 1;
 			.subcategory-box__item--text {
 				margin: 0;
-				padding: 11px;
+				padding: 11px 0;
 				color: map-get($color, black);
 				&:hover {
-					text-shadow:
-					-.3px -.3px 0 map-get($color, darkgrey),
-					.3px -.3px 0 map-get($color, darkgrey),
-					-.3px .3px 0 map-get($color, darkgrey),
-					.3px .3px 0 map-get($color, darkgrey);
-					-webkit-transition: all .5s;
-					-moz-transition: all .5s;
-					-o-transition: all .5s;
-					transition: all ease .5s;
-					cursor: pointer;
+					@include NavigationItemHover();
 				}
 			}
 			.subcategory-box__item--svg {
@@ -152,6 +126,9 @@
 			flex-flow: column;
 			max-height: unset;
 			margin-right: 0;
+			.navigation-dropdown, #manufacturers-dropdown {
+				padding-left: 10px;
+			}
 			.side-nav__list-box--item {
 				flex-basis: 100%;
 				width: 100%;

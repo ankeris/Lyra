@@ -10,11 +10,16 @@
 
 {% macro dropdownSvg(colorName, colorHover) %}
     <svg class="subcategory-box__item--svg" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3.7 1.82">
-    <defs><style>
-    .cls-1 {fill: {{colorName}};stroke-width:0px; transition-duration: 90ms; }
-    .subcategory-box__item--svg:hover > .cls-1 { stroke:{{colorName}}; stroke-miterlimit:50;stroke-width:.2px; transition-duration: 90ms; }</style></defs>
     <title>Dropdown</title>
     <path class="cls-1" d="M.22.48H0l1.79,1.8a.07.07,0,0,0,.1,0L3.7.48H3.48L1.89,2.06a0,0,0,0,1-.07,0L.22.48" transform="translate(0 -0.48)"/>
+    </svg>
+{% endmacro %}
+
+{# white dropdown #}
+{% macro whitedropdownSvg() %}
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3.7 1.82" style="width: 16px; height: 10px; transition-duration: 400ms; cursor: pointer;">
+    <title>Dropdown</title>
+    <path class="cls-white" d="M.22.48H0l1.79,1.8a.07.07,0,0,0,.1,0L3.7.48H3.48L1.89,2.06a0,0,0,0,1-.07,0L.22.48" transform="translate(0 -0.48)"/>
     </svg>
 {% endmacro %}
 
@@ -104,6 +109,7 @@
 {% endmacro %}
 
 {# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =  #}
+{# = = = = = = = = = = = = = = = = = = = = = = L O G O ' S = = = = = = = = = = = = = = = = = = = = = = =  #}
 {# = = = = = = = = = = = = = = = = = = = = = = L O G O ' S = = = = = = = = = = = = = = = = = = = = = = =  #}
 {# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =  #}
 {% macro instaLogo(colorName, colorHover) %}

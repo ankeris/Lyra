@@ -11,20 +11,17 @@
 		}
 	}
 	#mids-inner path {
-		animation: sub 1s linear .3s infinite;
+		animation: subwoofer 1s linear .3s infinite;
 	}
 	#mids-inner-2 path {
-		animation: sub 1s linear .2s infinite;
+		animation: subwoofer 1s linear .2s infinite;
 	}
 	#mids-inner-3 path {
-		animation: sub 1s linear .1s infinite;
+		animation: subwoofer 1s linear .1s infinite;
 	}
-	// #highs, #highs-2, #highs-3 {
-	// 	animation: fill 1s linear .1s infinite;
-	// }
 }
 
-@keyframes sub {
+@keyframes subwoofer {
 	0% {
 		stroke-width:0px;
 	}
@@ -41,20 +38,6 @@
 		stroke-width:0px;
 	}
 }
-// @keyframes fill {
-// 	0% {
-// 		fill: none;
-// 	}
-// 	40%{
-// 		fill: map-get($color, blue);
-// 	}
-// 	70%{
-// 		fill: map-get($color, lightgrey);
-// 	}
-// 	100% {
-// 		fill: none;
-// 	}
-// }
 
 .canvas {
 	margin: 0px auto;

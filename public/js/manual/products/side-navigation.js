@@ -32,7 +32,6 @@ $(document).ready(function () {
 	const activeSubCategory = $('.subcategory-box .active');
 	$(activeSubCategory).parent().prev('div').children('.subcategory-box__item--svg').toggleClass('rotate');
 	$(activeSubCategory).parent().removeAttr('style');
-	console.log(activeSubCategory);
 	
 	window.addEventListener('resize', function (e) {
 		if (window.innerWidth >= 700) {

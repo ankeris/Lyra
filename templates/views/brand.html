@@ -86,16 +86,14 @@
             <div class="items-box__item fade-in">
             <a href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}" title="{{product.title}}" aria-label="{{product.title}}">
                 {% if product.images[0] %}
-                <div class="items-box__item--images">
                     {# Main image #}
                         {% for image in product.images %}
                             {% if loop.index > 1 %}
-                            <img class="items-box__item--main-image hidden" alt="{{product.title}}" src="{{image.secure_url}}"></img>
-                            {% else %}
                             <img class="items-box__item--main-image" alt="{{product.title}}" src="{{image.secure_url}}"></img>
+                            {% else %}
+                            <img class="items-box__item--main-image show" alt="{{product.title}}" src="{{image.secure_url}}"></img>
                             {% endif %}
                         {% endfor %}
-                </div>
                 {# If product does not have image #}
                 {% elif not product.images[0] %}
                     <div class="no-image-err">

@@ -6,3 +6,25 @@
 @mixin rotate() {
 	transform: rotate(180deg);
 }
+
+@mixin NavigationItemHover() {
+	text-shadow:
+	-.3px -.3px 0 map-get($color, darkgrey),
+	.3px -.3px 0 map-get($color, darkgrey),
+	-.3px .3px 0 map-get($color, darkgrey),
+	.3px .3px 0 map-get($color, darkgrey);
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-o-transition: all .5s;
+	transition: all ease .5s;
+	cursor: pointer;
+	-webkit-text-shadow: 
+	-.3px -.3px 0 map-get($color, darkgrey),
+	.3px -.3px 0 map-get($color, darkgrey),
+	-.3px .3px 0 map-get($color, darkgrey),
+	.3px .3px 0 map-get($color, darkgrey);
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-o-transition: all .5s;
+	transition: all ease .5s;
+}

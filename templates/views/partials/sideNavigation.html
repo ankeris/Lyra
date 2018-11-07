@@ -1,9 +1,10 @@
 {% from "mixins/macros.html" import dropdownSvg %}
+{% from "mixins/macros.html" import whitedropdownSvg %}
 
 {% if data.categories.length %}
     <div class="mobile-side-nav">
         <div class="subcategory-box__item--text">Kategorijos <small style="display: none"></small></div>
-        {{ dropdownSvg("#ffffff", "#448AA6") }}
+        {{ whitedropdownSvg() }}
     </div>
     <aside class="side-nav">
         <div class="side-nav__box">

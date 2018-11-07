@@ -88,7 +88,6 @@ const play = (box) => {
 }
 
 const stop = ({target: box, relatedTarget: rt}) => {
-  console.log('hi')
   while (!box.classList.contains('items-box__item')) box = box.parentElement;
   while (rt != box && rt) rt = rt.parentElement;
   if (rt === box) return;
@@ -98,7 +97,6 @@ const stop = ({target: box, relatedTarget: rt}) => {
 }
 
 function mouseEvents(list) {
-  console.log(list);
   [...list].forEach((box) => {
     box.addEventListener(
       'mouseenter', 
