@@ -100,8 +100,9 @@ exports = module.exports = function (req, res) {
 					});
 			} // Load products of all children categories of parent category
 			else if (locals.data.category.IsParentCategory) {
-				keystone.list('ProductCategory').model.find({'ChildCategoryOf': locals.data.category})
-					.exec(function (err, result) {
+				keystone.list('ProductCategory').model.find({$or: [{'ChildCategoryOf': locals.data.category}, {'_id': locals.data.category}]})
+				.exec(function (err, result) {
+						console.log(result)
 						q.find({
 							'ProductType': { $in: result }
 						}).exec(function (err, result) {
@@ -162,12 +163,17 @@ exports = module.exports = function (req, res) {
 	view.render('products');
 };
 
+function setDiscountedPrice(discount, currentPrice) {
+	return Math.round(currentPrice - currentPrice/100*discount);
+}
+
 function getRidOfMetadata(data, cropImages, width, height) {
 	let result;
 	// Some data has products array inside 'data.results' and some in just 'data' therefore we need conditional statement
 	data.results ? result = data.results : result = data;
 	let filteredResult = [];
 	// loop through each product
+	console.log(result);
 	result.forEach(r => {
 		// check if cropImage setting is set to true and if image exists
 		if (cropImages && r.images[0]) {
@@ -178,7 +184,11 @@ function getRidOfMetadata(data, cropImages, width, height) {
 				let newUrl = oldUrl.join('/');
 				// change old secure_url to new (with new parameters);
 				img.secure_url = newUrl;
-			})
+			});
+			if(r.ProductType[0].discount > 0){
+				const discount = setDiscountedPrice(r.ProductType[0].discount, r.price);
+				r.Discount = discount;
+			}
 		}
 		filteredResult.push(r.toObject());
 	});

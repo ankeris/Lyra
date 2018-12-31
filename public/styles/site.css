@@ -446,7 +446,8 @@ footer {
           -o-transition: all .5s;
           transition: all ease .5s; }
       .side-nav .side-nav__box .navigation-dropdown .subcategory-box__item--svg {
-        width: 14px;
+        box-sizing: content-box;
+        min-width: 14px;
         height: 8px;
         padding: 10px 7px;
         transition-duration: 400ms;
@@ -654,7 +655,6 @@ footer {
 @media screen and (max-width: 760px) {
   .main-navigation {
     z-index: 999;
-    width: 100%;
     cursor: pointer;
     background: transparent; }
     .main-navigation .main-navigation__burger {

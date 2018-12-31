@@ -1,6 +1,6 @@
 const $ = require('jquery');
 
-const searchIcon = document.querySelector('.search-bar .svg');
+const searchIcon = document.querySelector('.search-bar .searchIcon');
 const searchInput = document.querySelector('#search-input');
 
 searchIcon.addEventListener('click', () => {

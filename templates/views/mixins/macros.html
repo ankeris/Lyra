@@ -24,13 +24,13 @@
 {% endmacro %}
 
 {% macro searchIcon(colorName, colorHover, className) %}
-    <svg class="svg" width="15.000000pt" height="15.000000pt" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2374.6 2359.97">
+    <svg class="searchIcon" width="15.000000pt" height="15.000000pt" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2374.6 2359.97">
     <defs>
     <style>
     .shape1 {stroke:#000; stroke-miterlimit:10;stroke-width:30px;transition-duration: 1s}
-    .svg {padding: 15px; cursor: pointer; transition-duration: 90ms;}
+    .searchIcon {overflow: visible;padding: 15px; cursor: pointer; transition-duration: 90ms;}
     .shape1 {fill:{{colorName}};} 
-    .svg:hover > .shape1 { fill: {{colorHover}}; transition-duration: 1s; stroke-width:200px;}
+    .searchIcon:hover > .shape1 { fill: {{colorHover}}; transition-duration: 1s; stroke-width:200px;}
     </style>
     </defs>
     <title>slim-search</title>

@@ -17,11 +17,17 @@ let ProductCategory = new keystone.List('ProductCategory', {
 ProductCategory.add({
 	name: {
 		type: String,
-		required: true
+		required: true,
+		note: 'daugiskaitos forma'
 	},
 	nameSingular: {
 		type: String,
-		required: false
+		required: false,
+		note: 'vienaskaitos forma'
+	},
+	discount: {
+		type: Number,
+		note: '% 1-100 %'
 	},
 	CoverImage: {
 		type: Types.CloudinaryImage

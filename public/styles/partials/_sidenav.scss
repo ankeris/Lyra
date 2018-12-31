@@ -67,7 +67,8 @@
 				}
 			}
 			.subcategory-box__item--svg {
-				width: 14px;
+				box-sizing: content-box;
+				min-width: 14px;
 				height: 8px;
 				padding: 10px 7px;
 				transition-duration: 400ms;
