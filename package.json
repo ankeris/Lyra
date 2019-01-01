@@ -23,16 +23,16 @@
     "@babel/preset-env": "^7.1.0",
     "babel-loader": "^8.0.4",
     "browser-sync": "^2.26.3",
-    "browser-sync-webpack-plugin": "^2.2.2",
     "eslint": "^5.6.0",
     "eslint-config-keystone": "3.0.0",
     "webpack": "^4.19.0",
-    "webpack-cli": "^2.0.14",
+    "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.8"
   },
   "scripts": {
     "lint": "eslint . --fix",
     "start": "node keystone.js | webpack --watch",
+    "webpack": "webpack --watch",
     "build": "webpack",
     "backend": "nodemon keystone.js --verbose"
   }

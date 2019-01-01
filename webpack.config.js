@@ -1,6 +1,5 @@
 let path = require('path');
 const glob = require('glob');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
 	mode: 'development', //add 'production' when deploy
@@ -29,18 +28,4 @@ module.exports = {
 		  }
 		]
 	  }
-	// plugins: [
-	// 	new BrowserSyncPlugin({
-	// 		// browse to http://localhost:3000/ during development,
-	// 		// ./public directory is being served
-	// 		host: 'localhost',
-	// 		port: 8080,
-	// 		files: [
-	// 			'./templates/views/**/*.html',
-	// 			'./public/styles/**/*.scss',
-	// 			'./public/js/manual/**/*.js'
-	// 		],
-	// 		proxy: 'http://localhost:8080/'
-	// 	})
-	// ]
 };

@@ -1,7 +1,6 @@
 #manifesto {
 	position: relative;
 	/* The image used */
-	background-image: url('/images/newmanifesto.jpg');
 	background-color: map-get($color, darkgrey);
 	/* Set a specific height */
 	min-height: 95vh;

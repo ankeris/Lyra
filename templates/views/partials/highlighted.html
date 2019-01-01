@@ -9,7 +9,7 @@
     <a aria-label="{{product.title}}" title="{{product.title}}" href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
             {% if product.images %}
                 {# Main image #}
-                <div class="items-box__item--main-image" style="background-image: url('{{product.images[0].secure_url}}')">
+                <div class="items-box__item--main-image lazy" data-bg="url({{product.images[0].secure_url}})">
                 </div>
             {% endif %}
     </a>
