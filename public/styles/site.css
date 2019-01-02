@@ -326,7 +326,8 @@ footer {
       /* Safari 6.0 - 9.0 */
       filter: grayscale(100%);
       transition-duration: 1s; }
-      .manufacturers .manufacturers__listbox .manufacturers__listbox--item img {
+      .manufacturers .manufacturers__listbox .manufacturers__listbox--item .manufacturers__listbox--image {
+        min-height: 200px;
         display: block;
         width: 100%;
         height: auto;
@@ -347,6 +348,10 @@ footer {
   .manufacturers .manufacturers__listbox .manufacturers__listbox--item {
     flex-basis: 48%;
     margin: 1% 1%; } }
+
+@media screen and (max-width: 400px) {
+  .manufacturers .manufacturers__listbox .manufacturers__listbox--item .manufacturers__listbox--image {
+    min-height: 100px; } }
 
 .map {
   width: 100%;
@@ -1109,6 +1114,7 @@ footer {
   /* Set a specific height */
   min-height: 95vh;
   /* Create the parallax scrolling effect */
+  background-image: url("/images/newmanifesto.jpg");
   background-size: cover;
   background-position: center;
   display: flex;

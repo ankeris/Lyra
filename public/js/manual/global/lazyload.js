@@ -6,7 +6,7 @@
     s.src = "https://cdn.jsdelivr.net/npm/vanilla-lazyload@" + v + "/dist/lazyload.min.js";
     w.lazyLoadOptions = {
         elements_selector: ".lazy",
-        threshold: 100
+        threshold: 60
     };
     b.appendChild(s);
 }(window, document));

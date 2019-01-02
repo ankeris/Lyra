@@ -18,8 +18,8 @@
         {% for manufacturer in manufacturers %}
         <li class="manufacturers__listbox--item">
             {# {{manufacturer}} #}
-            <a aria-label="{{manufacturer.name}}" href="brands/{{manufacturer.key}}" class="">
-                <img src="{{manufacturer.SmallPreviewImage.secure_url}}" alt="">
+            <a aria-label="{{manufacturer.name}}" href="brands/{{manufacturer.key}}" >
+                <img class="manufacturers__listbox--image lazy" onload="this.classList.add('fade-in')" data-src="{{manufacturer.SmallPreviewImage.secure_url}}" alt="..." height="200px">
             </a>
         </li>
         {% endfor %}

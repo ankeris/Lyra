@@ -38,7 +38,8 @@
             -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
             filter: grayscale(100%);
             transition-duration: 1s;
-			img {
+			.manufacturers__listbox--image {
+            min-height: 200px;
             display: block;
             width: 100%;
             height: auto;
@@ -70,6 +71,17 @@
             .manufacturers__listbox--item {
                 flex-basis: 48%;
                 margin: 1% 1%;
+            }
+        }
+    }
+}
+@media screen and (max-width: 400px) {
+	.manufacturers {
+        .manufacturers__listbox {
+            .manufacturers__listbox--item {
+                .manufacturers__listbox--image {
+                    min-height: 100px;
+                }
             }
         }
     }
