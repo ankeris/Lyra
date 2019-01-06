@@ -24,12 +24,12 @@
         <aside class="side-nav">
             <div class="side-nav__box">
                 <div id="manufacturers-dropdown">
-                    <a href="/brands" class="subcategory-box__item--text">Gamintojai</a>
+                    <a href="/prekiu-zenklai" class="subcategory-box__item--text">Gamintojai</a>
                     {{ dropdownSvg("#1f1f1f", "#448AA6") }}
                 </div>
                 <div class="subcategory-box" style="display: none;">
                 {% for manufacturer in manufacturers %}
-                    <a href="/brands/{{manufacturer.key}}" class="subcategory-box__item">
+                    <a href="/prekiu-zenklai/{{manufacturer.key}}" class="subcategory-box__item">
                         <span>{{manufacturer.name}}</span>
                     </a>
                 {% endfor %}
@@ -42,12 +42,12 @@
                     {% if not cat.ChildCategoryOf %}
                         {% if cat.IsParentCategory %}
                             <div class="{{ class }} {{dropdown}}">
-                                <a href="/brands/{{data.brand.key}}/{{ cat.key }}" class="subcategory-box__item--text">{{ cat.name }} <small></small></a>
+                                <a href="/prekiu-zenklai/{{data.brand.key}}/{{ cat.key }}" class="subcategory-box__item--text">{{ cat.name }} <small></small></a>
                                 {{ dropdownSvg("#1f1f1f", "#448AA6") }}
                             </div>
                         {% else %}
                             {% if cat.postCount > 0 %}
-                            <a href="/products/{{ cat.key }}" class="{{ class }} {{dropdown}} side-nav__list-box--item">
+                            <a href="/produktai/{{ cat.key }}" class="{{ class }} {{dropdown}} side-nav__list-box--item">
                                 <span class="subcategory-box__item--text">{{ cat.name }}</span>
                             </a>
                             {% endif %}
@@ -59,7 +59,7 @@
                             {% set subClass = ( "active" if data.category and data.category.id == subCat.id else "" ) %}
                                 {% if cat.key === subCat.ChildCategoryOf.key %}
                                     {% if subCat.postCount > 0 %}
-                                        <a href="/brands/{{data.brand.key}}/{{ subCat.key }}" class="{{ subClass }} subcategory-box__item" data-parent="{{cat.key}}">
+                                        <a href="/prekiu-zenklai/{{data.brand.key}}/{{ subCat.key }}" class="{{ subClass }} subcategory-box__item" data-parent="{{cat.key}}">
                                         {{subCat.name}}
                                         </a>
                                     {% endif %}
@@ -71,51 +71,7 @@
                 {% endfor %}
             </div>
         </aside>
-
-    <section class="products">
-    {% if data.products %}
-            {# looping through products #}
-            {% for product in data.products %}
-            {# product variables #}
-            {% set manufacturerKey = product.Manufacturer.key %}
-            {% set manufacturerName = product.Manufacturer.name %}
-            {% set productTypeKey = product.ProductType[0].key %}
-            {% set productType = product.ProductType[0].name %}
-            {% set productTypeSingular = product.ProductType[0].nameSingular %}
-
-            <div class="items-box__item fade-in">
-            <a href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}" title="{{product.title}}" aria-label="{{product.title}}">
-                {% if product.images[0] %}
-                    {# Main image #}
-                        {% for image in product.images %}
-                            {% if loop.index > 1 %}
-                            <img class="items-box__item--main-image" alt="{{product.title}}" src="{{image.secure_url}}"></img>
-                            {% else %}
-                            <img class="items-box__item--main-image show" alt="{{product.title}}" src="{{image.secure_url}}"></img>
-                            {% endif %}
-                        {% endfor %}
-                {# If product does not have image #}
-                {% elif not product.images[0] %}
-                    <div class="no-image-err">
-                        <p>Atsiprašome, šis produktas neturi nuotraukos</p>
-                    </div>
-                {% endif %}
-                <p class="items-box__item--description">
-                    <span class="items-box__item--description-title">{{manufacturerName | upper}} - {{product.title | upper}}</span>
-                    <br>
-                    {% if productTypeSingular %}
-                        <span class="items-box__item--description-type">{{productTypeSingular | lower}}</span>
-                        {% else %}
-                        <span class="items-box__item--description-type">{{productType | lower}}</span>
-                    {% endif %}
-                    <br>
-                    <span class="items-box__item--description-price">{{product.price}}€</span>
-                </p>
-            </a>
-            </div>
-            {% endfor %}
-    {% endif %}
-    </section>
+    {% include 'partials/products-list.html' %}
 </div>
 {# Variables stored so they could be used in server-side #}
 <div class="variables" data-sort="{{data.sort}}" data-category="{{data.category.key}}" data-count="{{data.products.results.length}}" data-brand="{{data.brand.key}}"></div>

@@ -7,6 +7,7 @@
 
 a {
 	text-decoration: none;
+	color: map-get($color, blue);
 }
 
 .title {
@@ -16,6 +17,18 @@ a {
 
 .center {
 	text-align: center;
+}
+
+.router-links {
+	text-align: right;
+	font-size: 0.8em;
+	font-weight: 300;
+	.link {
+		color: map-get($color, darkgrey);
+		&:hover {
+			color: map-get($color, link-blue);
+		}
+	}
 }
 
 b {
@@ -35,7 +48,7 @@ b {
 
 .rotate {
 	transform: rotate(180deg);
-	transition-duration: 1s;
+	transition-duration: 0.3s;
 }
 
 .hidden {
@@ -45,7 +58,7 @@ b {
 	visibility: hidden;
 }
 
-input[type=text] {
+input[type='text'] {
 	outline: none;
 	padding: 0 12px;
 }
@@ -62,10 +75,10 @@ button:active,
 button:focus,
 a:focus,
 button:active {
-  background-image: none;
-  outline: 0;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+	background-image: none;
+	outline: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
 }
 
 figure {

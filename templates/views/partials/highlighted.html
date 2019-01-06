@@ -6,7 +6,7 @@
     {% set manufacturerName = product.Manufacturer.name %}
     {% set productTypeKey = product.ProductType[0].key %}
     <div class="items-box__item">
-    <a aria-label="{{product.title}}" title="{{product.title}}" href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
+    <a aria-label="{{product.title}}" title="{{product.title}}" href="/produktai/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
             {% if product.images %}
                 {# Main image #}
                 <div class="items-box__item--main-image lazy" data-bg="url({{product.images[0].secure_url}})">

@@ -23,12 +23,12 @@ exports.initLocals = function (req, res, next) {
 		{
 			label: 'PRODUKTAI',
 			key: 'products',
-			href: '/products'
+			href: '/produktai'
 		},
 		{
 			label: 'PREKIŲ ŽENKLAI',
 			key: 'brands',
-			href: '/brands'
+			href: '/prekiu-zenklai'
 		},
 		{
 			label: 'PASIŪLYMAI',
@@ -48,7 +48,7 @@ exports.initLocals = function (req, res, next) {
 		{
 			label: 'KONTAKTAI',
 			key: 'contact',
-			href: '/contact'
+			href: '/kontaktai'
 		},
 	];
 	res.locals.user = req.user;

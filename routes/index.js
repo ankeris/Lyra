@@ -35,15 +35,15 @@ var routes = {
 exports = module.exports = function (app) {
 	// Views
 	app.get('/', routes.views.index);
-	app.get('/brands', routes.views.brands);
-	app.get('/brands/:brand/:category?', routes.views.brand);
-	app.get('/products/:category?', routes.views.products);
-	app.get('/products/', routes.views.products);
-	app.all('/contact', routes.views.contact);
+	app.get('/prekiu-zenklai', routes.views.brands);
+	app.get('/prekiu-zenklai/:brand/:category?', routes.views.brand);
+	app.get('/produktai/:category?', routes.views.products);
+	app.get('/produktai/', routes.views.products);
+	app.all('/kontaktai', routes.views.contact);
 	app.get('/pasiulymai', routes.views.specialoffers);
 	app.get('/naujienos', routes.views.news);
 	app.get('/apie-mus', routes.views.aboutus);
-	app.get('/products/:Manufacturer?/:category?/:product', routes.views.product);
+	app.get('/produktai/:Manufacturer?/:category?/:product', routes.views.product);
 	app.all('*', routes.views.subscription);
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:

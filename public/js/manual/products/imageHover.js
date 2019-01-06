@@ -68,13 +68,16 @@ let productList = document.querySelectorAll('.items-box__item');
 let observer;
 // DOM Observation (actively checking what changes in DOM tree)
 let observedElement = document.querySelector('.products');
+
 let options = {
   attributes: true,
   subtree: true,
   childList: true
 }
+
 observer = new MutationObserver(mutated);
 observer.observe(observedElement, options);
+
 function mutated(mutationList) {
   mouseEvents(mutationList[0].addedNodes);
 }
@@ -98,16 +101,20 @@ const stop = ({target: box, relatedTarget: rt}) => {
 
 function mouseEvents(list) {
   [...list].forEach((box) => {
-    box.addEventListener(
-      'mouseenter', 
-      function() {
-        if (box.play) return;
-        play(box);
-        box.play = setInterval(() => play(box), 1000);
-      }
-    );
-    
-    box.addEventListener('mouseleave', stop);
+   if(box.children[0].classList != 'no-image-err') {
+     box.addEventListener(
+       'mouseenter', 
+       function() {
+         if (box.play) return;
+         play(box);
+         box.play = setInterval(() => play(box), 1000);
+       }
+     );
+
+     box.addEventListener('mouseleave', stop);
+    } else {
+      return
+    }
   });
 }
 

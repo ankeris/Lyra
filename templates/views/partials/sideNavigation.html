@@ -10,12 +10,12 @@
         <div class="side-nav__box">
             {% set class = ( "active" if not data.category else "" ) %}
             <div id="manufacturers-dropdown">
-                <a href="/brands" class="subcategory-box__item--text">Gamintojai</a>
+                <a href="/prekiu-zenklai" class="subcategory-box__item--text">Gamintojai</a>
                 {{ dropdownSvg("#1f1f1f", "#448AA6") }}
             </div>
             <div class="subcategory-box" style="display: none;">
             {% for manufacturer in manufacturers %}
-                <a href="/brands/{{manufacturer.key}}" class="subcategory-box__item">
+                <a href="/prekiu-zenklai/{{manufacturer.key}}" class="subcategory-box__item">
                     <span>{{manufacturer.name}}</span>
                 </a>
             {% endfor %}
@@ -30,12 +30,12 @@
                     {% if cat.IsParentCategory %}
                     {# Display Parent categories #}
                     <div class="{{ class }} {{dropdown}}" data-category="{{cat.name}}">
-                        <a href="/products/{{ cat.key }}" class="subcategory-box__item--text">{{ cat.name }} </a>
+                        <a href="/produktai/{{ cat.key }}" class="subcategory-box__item--text">{{ cat.name }} </a>
                         {{ dropdownSvg("#1f1f1f", "#448AA6") }}
                     </div>
                     {% else %}
                     {# Simple categories - neither parent or child #}
-                    <a href="/products/{{ cat.key }}" class="{{ class }} {{dropdown}} side-nav__list-box--item">
+                    <a href="/produktai/{{ cat.key }}" class="{{ class }} {{dropdown}} side-nav__list-box--item">
                         <span class="subcategory-box__item--text">{{ cat.name }}</span>
                     </a>
                     {% endif %}
@@ -45,7 +45,7 @@
                         {% for subCat in data.categories %}
                         {% set subClass = ( "active" if data.category and data.category.id == subCat.id else "" ) %}
                             {% if cat.key === subCat.ChildCategoryOf.key %}
-                                <a href="/products/{{ subCat.key }}" class="{{ subClass }} subcategory-box__item" data-parent="{{cat.key}}">
+                                <a href="/produktai/{{ subCat.key }}" class="{{ subClass }} subcategory-box__item" data-parent="{{cat.key}}">
                                 {{subCat.name}}
                                 </a>
                             {% endif %}

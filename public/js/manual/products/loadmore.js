@@ -10,8 +10,8 @@ $('.loading-speakers-box').hide();
 function addNextPage() {
 	currentPage++;
 	let parameters = {
-		'page': currentPage,
-		'filterlist': document.querySelector('.variables').getAttribute('data-sort'),
+		page: currentPage,
+		filterlist: document.querySelector('.variables').getAttribute('data-sort')
 	};
 
 	const category = document.querySelector('.variables').getAttribute('data-category');
@@ -20,20 +20,21 @@ function addNextPage() {
 	const search = document.querySelector('.variables').getAttribute('data-search');
 
 	if (category) {
-		ajaxCall('/products/', category, parameters);
+		ajaxCall('/produktai/', category, parameters);
 	} else if (search) {
-		ajaxCall('/products?search=', search, parameters);
-	} else if (!brand) { // For default product page
-		ajaxCall('/products/', null, parameters);
+		ajaxCall('/produktai?search=', search, parameters);
+	} else if (!brand) {
+		// For default product page
+		ajaxCall('/produktai/', null, parameters);
 	} else if (brand) {
-		ajaxCall('/brands/', brand, parameters);
+		ajaxCall('/prekiu-zenklai/', brand, parameters);
 	}
 }
 
 function ajaxCall(link, variable, parameters) {
 	if (!AllProductsLoaded) {
 		$('.loading-speakers-box').show();
-		$.get(link + variable, parameters, function (data) {
+		$.get(link + variable, parameters, function(data) {
 			$('.products').append($(data).find('.products .items-box__item'));
 			if ($(data).find('.products .items-box__item').length == 0) {
 				AllProductsLoaded = true;
@@ -43,10 +44,9 @@ function ajaxCall(link, variable, parameters) {
 	}
 }
 
-const scrollNews = _.throttle(function (e) {
+const scrollNews = _.throttle(function(e) {
 	// if statement finds if user screen has scrolled to the bottom of products-wrapper box
-	if ($(window).scrollTop() + $(window).height() > $(".products-wrapper").offset().top + $(".products-wrapper").outerHeight(true)) {
-		console.log('lol')
+	if ($(window).scrollTop() + $(window).height() > $('.products-wrapper').offset().top + $('.products-wrapper').outerHeight(true)) {
 		addNextPage();
 	}
 }, 1000);
@@ -54,4 +54,3 @@ const scrollNews = _.throttle(function (e) {
 window.addEventListener('scroll', scrollNews, false);
 
 //	if ($(window).scrollTop() + $(window).height() > $(document).height() - 300) {
- 

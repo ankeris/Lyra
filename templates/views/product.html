@@ -7,11 +7,12 @@
 
 {% block content %}
 
-{# <div class="get-back content-section">
-    <a href="/products">Atgal</a>
-</div> #}
-
 <section class="product content-section">
+    <p class="router-links">
+        <a class="link" href="/produktai/">{{ "produktai" | upper  }}</a><span> > </span>
+        <a class="link" href="/produktai/{{data.product.ProductType[0].key}}">{{data.product.ProductType[0].name | upper }}</a><span> > </span>
+        <u><a class="link" href="">{{data.product.title | upper }}</a></u>
+    </p>
 
     <figure class="title">
         {% if data.product.Discount %}
@@ -45,7 +46,7 @@
         <div class="left-side">
             <h5>{{data.product.title}}</h5>
             <br>
-            <h6>Gamintojas: <a href="/brands/{{data.product.Manufacturer.key}}" class="brown">{{data.product.Manufacturer.name}}</a></h6>
+            <h6>Gamintojas: <a href="/prekiu-zenklai/{{data.product.Manufacturer.key}}" class="brown">{{data.product.Manufacturer.name}}</a></h6>
             <br>
             {% if data.product.description %}
             {{data.product.description|safe}}
@@ -71,25 +72,12 @@
     <h3>{{globaldata.product.relatedTitle}}</h3>
 </figure>
 
-<section class="related-products content-section">
+<section class="products related-products content-section">
     {# looping through products #}
-    {% for relatedproduct in data.relatedproducts %}
+    {% for product in data.relatedproducts %}
     {# product variables #}
-    {% set manufacturerKey = relatedproduct.Manufacturer.key %}
-    {% set manufacturerName = relatedproduct.Manufacturer.name %}
-    {% set productTypeKey = relatedproduct.ProductType[0].key %}
-
-    <div class="items-box__item">
-    <a href="/products/{{manufacturerKey}}/{{productTypeKey}}/{{relatedproduct.slug}}">
-        <div manufacturer="{{manufacturerName}}">
-            {% if relatedproduct.images %}
-                {# Main image #}
-                <div class="items-box__item--main-image" style="background-image: url('{{relatedproduct.images[0].secure_url}}')"></div>
-            {% endif %}
-        </div>
-    </a>
-    <p>{{manufacturerName}} - {{relatedproduct.title}}</p>
-    </div>
+    {% include 'partials/product-item.html' %}
+    
     {% endfor %}
 </section>
 {% endblock %}
