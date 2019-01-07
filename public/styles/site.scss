@@ -5,6 +5,8 @@
 @import 'general/general';
 @import 'partials/partials';
 @import 'subpages/subpages';
-@import 'normalize/normalize.css';
-@import 'photo-swipe/default-skin.css';
-@import 'photo-swipe/photoswipe.css';
+
+// 3rd party imports
+@import '3rd-party/normalize/normalize.css';
+@import '3rd-party/photo-swipe/default-skin.css';
+@import '3rd-party/photo-swipe/photoswipe.css';
