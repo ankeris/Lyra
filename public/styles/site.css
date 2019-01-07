@@ -1245,6 +1245,7 @@ footer {
   justify-content: space-between;
   flex-wrap: wrap; }
   .product .product-gallery {
+    flex-basis: 48%;
     text-align: center; }
     .product .product-gallery .items-box__item--main-image {
       cursor: pointer;
@@ -1266,7 +1267,8 @@ footer {
   .product .product-description {
     display: flex;
     flex-wrap: wrap;
-    list-style-position: inside; }
+    list-style-position: inside;
+    flex-basis: 47%; }
     .product .product-description .description__top {
       display: flex;
       justify-content: space-between;
@@ -1277,7 +1279,7 @@ footer {
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-basis: 48%;
+        flex-basis: 47%;
         padding: 3px;
         box-shadow: 0px 0px 3px 1px #ccc;
         transition: box-shadow 0.2s ease-out; }
@@ -1300,11 +1302,12 @@ footer {
       line-height: 2em; }
   .product .product-awards {
     display: flex;
-    flex-basis: 8%;
-    flex-direction: column;
-    align-items: center; }
+    flex-basis: 100%;
+    align-items: center;
+    margin: 20px 0; }
     .product .product-awards .award-image {
-      width: 90%; }
+      width: 60px;
+      margin-right: 5px; }
   .product .triple-flex {
     margin: 30px 0;
     flex-basis: 100%;
@@ -1314,10 +1317,6 @@ footer {
     .product .triple-flex .triple-flex__split {
       width: 1px;
       border-left: 1px solid #1f1f1f; }
-  .product .hasAwards {
-    flex-basis: 42%; }
-  .product .noAwards {
-    flex-basis: 48%; }
 
 .related-products {
   display: flex;

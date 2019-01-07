@@ -13,12 +13,11 @@
     <u><a class="link" href="">{{product.title | upper }}</a></u>
 </div>
 <section class="product content-section">
-    {% set hasAwards = ( "hasAwards" if product.awards.length >= 1 else "noAwards" ) %}
     {% if product.images.length >= 1 %}
-    <section class="product-gallery {{hasAwards}}">
+    <section class="product-gallery">
         {# Highlighted image #}
         <div id="currentHighlight" class="items-box__item--main-image" style="background-image: url('{{product.images[0].secure_url}}')"
-        data-images="{{data.productImages | dump}}"></div>
+        data-images="{{data.productImages | dump}}" data-current-image="{{product.images[0].secure_url}}"></div>
         {# Extra image collection #}
         <figure class="items-box__item-images">
         {% for image in product.images %}
@@ -30,7 +29,7 @@
     <h4>Sorry, there are no images of this product</h4>
     {% endif %}
 
-    <div class="product-description {{hasAwards}}">
+    <div class="product-description">
         <div class="description__top">
             <a class="description__top--logo description-item" href="/prekiu-zenklai/{{product.Manufacturer.key}}">
                 <img src="{{product.Manufacturer.Logo.secure_url}}" alt="">
@@ -49,6 +48,13 @@
                 {% endif %}
             </div>
 
+            {% if product.awards.length >= 1 %}
+            <div class="product-awards">
+                {% for image in product.awards %}
+                    <img class="award-image" src="{{image.secure_url}}" alt="">
+                {% endfor %}
+            </div>
+            {% endif %}
         </div>
 
         <div class="description__bottom">
@@ -61,13 +67,7 @@
             </div>
         </div>
     </div>
-    {% if product.awards.length >= 1 %}
-            <div class="product-awards">
-                {% for image in product.awards %}
-                    <img class="award-image" src="{{image.secure_url}}" alt="">
-                {% endfor %}
-            </div>
-            {% endif %}
+
     <div class="product-description triple-flex">
         <div class="triple-flex__box">{{product.TechnicalDescription | safe}}</div>
         <figure class="triple-flex__split"></figure>

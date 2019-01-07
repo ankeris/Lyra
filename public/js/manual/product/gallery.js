@@ -1,10 +1,19 @@
 import * as PhotoSwipe from 'photoswipe';
 import * as PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default';
 
-function openPhotoSwipe(imagesArr) {
+function openPhotoSwipe(imagesArr, currentHighlight) {
 	var pswpElement = document.querySelector('.pswp');
 	let parsed = JSON.parse(imagesArr);
+
+	// Find the index of highlighted item
+	var found = parsed.findIndex(function(img) {
+		return img.src == currentHighlight;
+	});
+	// Remove the highlighted item from array and place it again as first
+	const highlight = parsed.splice(found, 1);
+	parsed = [highlight[0], ...parsed];
 	// build items array
+
 	var items = parsed;
 	// define options (if needed)
 	var options = {
@@ -36,6 +45,7 @@ function openPhotoSwipe(imagesArr) {
 const imgPressed = document.getElementById('currentHighlight');
 const arrayOfImages = imgPressed.getAttribute('data-images');
 
-imgPressed.addEventListener('click', () => {
-	openPhotoSwipe(arrayOfImages);
+imgPressed.addEventListener('click', e => {
+	const currentHighlightImage = e.target.getAttribute('data-current-image');
+	openPhotoSwipe(arrayOfImages, currentHighlightImage);
 });

@@ -16,6 +16,7 @@
 	justify-content: space-between;
 	flex-wrap: wrap;
 	.product-gallery {
+		flex-basis: 48%;
 		text-align: center;
 		.items-box__item--main-image {
 			cursor: pointer;
@@ -45,6 +46,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		list-style-position: inside;
+		flex-basis: 47%;
 		.description__top {
 			display: flex;
 			justify-content: space-between;
@@ -55,7 +57,7 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				flex-basis: 48%;
+				flex-basis: 47%;
 				padding: 3px;
 				box-shadow: 0px 0px 3px 1px #ccc;
 				transition: box-shadow 0.2s ease-out;
@@ -88,11 +90,12 @@
 
 	.product-awards {
 		display: flex;
-		flex-basis: 8%;
-		flex-direction: column;
+		flex-basis: 100%;
 		align-items: center;
+		margin: 20px 0;
 		.award-image {
-			width: 90%;
+			width: 60px;
+			margin-right: 5px;
 		}
 	}
 
@@ -107,12 +110,6 @@
 			width: 1px;
 			border-left: 1px solid map-get($color, darkgrey);
 		}
-	}
-	.hasAwards {
-		flex-basis: 42%;
-	}
-	.noAwards {
-		flex-basis: 48%;
 	}
 }
 
