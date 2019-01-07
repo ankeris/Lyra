@@ -28,8 +28,6 @@
     <section class="products">
             {# looping through products #}
             {% for product in data.products %}
-            {# {{product.images[0].secure_url}} #}
-            {# product variables #}
             {% include 'partials/product-item.html' %}
             {% endfor %}
     </section>

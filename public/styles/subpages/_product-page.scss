@@ -12,15 +12,23 @@
 }
 
 .product {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
 	.product-gallery {
 		text-align: center;
 		.items-box__item--main-image {
+			cursor: pointer;
 			margin: 5px auto;
 			max-width: 670px;
 			background-size: contain;
 			background-repeat: no-repeat;
 			background-position: center;
 			height: 40vh;
+			&:hover {
+				opacity: 0.8;
+				transition: 0.2s ease-out;
+			}
 		}
 		.items-box__item-images {
 			.items-box__item-images--item {
@@ -32,44 +40,79 @@
 			}
 		}
 	}
+
 	.product-description {
 		display: flex;
-		flex-wrap: nowrap;
-		.left-side {
-			flex-basis: 45%;
-			margin-right: 5%;
+		flex-wrap: wrap;
+		list-style-position: inside;
+		.description__top {
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			align-items: center;
+			flex-basis: 100%;
+			.description__top--logo {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-basis: 48%;
+				padding: 3px;
+				box-shadow: 0px 0px 3px 1px #ccc;
+				transition: box-shadow 0.2s ease-out;
+				&:hover {
+					box-shadow: 0px 0px 3px 1px map-get($color, blue);
+					transition: box-shadow 0.2s ease-out;
+				}
+			}
+			.description__top--title {
+				flex-basis: 48%;
+				text-align: right;
+			}
+			.description__top--price {
+				flex-basis: 100%;
+				text-align: right;
+				margin: 30px 0;
+				h4 {
+					font-weight: 300 !important;
+				}
+			}
 		}
-		.right-side {
-			text-align: right;
-			flex-basis: 50%;
+		.description__bottom {
+			text-align: justify;
+		}
+		ul {
+			list-style-type: square;
+			line-height: 2em;
 		}
 	}
-}
 
-.description-nav {
-	display: flex;
-	text-align: center;
-	.description-nav__button {
-		cursor: pointer;
-		flex-basis: 50%;
-		background-color: map-get($color, darkgrey);
-		border-top: 1px solid map-get($color, darkgrey);
-		border-right: 1px solid map-get($color, darkgrey);
-		border-left: 1px solid map-get($color, darkgrey);
-		color: white;
-		margin: 25px 0;
-		padding: 16px;
-		transition-duration: 350ms;
-		&:hover {
-			transition-duration: 400ms;
+	.product-awards {
+		display: flex;
+		flex-basis: 8%;
+		flex-direction: column;
+		align-items: center;
+		.award-image {
+			width: 90%;
 		}
 	}
-	.active {
-		background-color: white;
-		color: black;
-		border-top: 1px solid map-get($color, darkgrey);
-		border-left: 1px solid map-get($color, darkgrey);
-		border-right: 1px solid map-get($color, darkgrey);
+
+	.triple-flex {
+		margin: 30px 0;
+		flex-basis: 100%;
+		justify-content: space-between;
+		.triple-flex__box {
+			flex-basis: 45%;
+		}
+		.triple-flex__split {
+			width: 1px;
+			border-left: 1px solid map-get($color, darkgrey);
+		}
+	}
+	.hasAwards {
+		flex-basis: 42%;
+	}
+	.noAwards {
+		flex-basis: 48%;
 	}
 }
 
@@ -94,50 +137,54 @@
 		width: 100%;
 		height: 240px;
 		overflow: auto;
-		&:hover {
-			@include hover(black, 1px);
-		}
 	}
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
 	.product {
-		.product-description {
-			display: flex;
-			flex-direction: column;
-			.left-side {
-				flex-basis: 100%;
-				text-align: justify;
-				margin: 0;
-			}
-			.right-side {
-				flex-basis: 100%;
-				text-align: left;
+		flex-wrap: wrap;
+		flex-direction: column;
+		.product-gallery {
+			.items-box__item--main-image {
+				max-width: 100%;
 			}
 		}
-	}
-	.related-products {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: start;
-		.items-box__item {
-			flex-basis: 25%;
-			margin: 20px 3%;
-			text-align: center;
-			.items-box__item--description {
+		.product-awards {
+			flex-direction: row;
+			flex-wrap: wrap;
+			.award-image {
+				width: 80px;
 				margin: 5px;
 			}
 		}
-		.items-box__item--main-image {
-			background-size: cover;
-			background-repeat: no-repeat;
-			background-position: center;
-			background-size: 100%;
-			width: 100%;
-			height: 200px;
-			overflow: auto;
-			&:hover {
-				@include hover(black, 1px);
+		.product-description {
+			.description__top {
+				flex-basis: 100%;
+				flex-direction: row;
+				.description__top--logo {
+					flex-basis: 100%;
+				}
+				.description__top--title {
+					flex-basis: 100%;
+				}
+				.description__top--price {
+					flex-basis: 100%;
+					margin: 0;
+				}
+				.description-item {
+					text-align: center;
+					margin: 10px;
+				}
+			}
+		}
+		.triple-flex {
+			flex-direction: row;
+			.triple-flex__box {
+				flex-basis: 100%;
+			}
+			.triple-flex__split {
+				flex-basis: 100%;
+				border-bottom: 1px solid map-get($color, darkgrey);
 			}
 		}
 	}

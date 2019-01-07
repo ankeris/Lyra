@@ -1,3 +1,4 @@
+import '../index/slick.js';
 // effect variable
 const opacity = 0.5;
 

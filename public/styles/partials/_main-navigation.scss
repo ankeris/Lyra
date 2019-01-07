@@ -34,7 +34,7 @@
 			@include NavigationItemHover();
 		}
 	}
-	
+
 	.main-navigation__burger {
 		display: none;
 	}
@@ -44,7 +44,8 @@
 	height: 50px;
 }
 
-.search-bar, .logo-nav {
+.search-bar,
+.logo-nav {
 	display: flex;
 	margin: 0;
 	padding: 0;
@@ -85,7 +86,7 @@
 				height: 2px;
 				width: 35px;
 				background-color: map-get($color, white);
-				border-radius:25px;
+				border-radius: 25px;
 				margin: 8px auto;
 			}
 			.stripe1 {

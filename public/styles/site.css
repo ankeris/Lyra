@@ -1,4 +1,6 @@
 @import url(normalize/normalize.css);
+@import url(photo-swipe/default-skin.css);
+@import url(photo-swipe/photoswipe.css);
 .content-section {
   max-width: 1124px;
   margin: 0 auto;
@@ -103,7 +105,9 @@ h2 {
 h3 {
   font-size: 1.75em; }
 
-h4,
+h4 {
+  font-size: 1.5em; }
+
 h5,
 h6 {
   font-size: 1.125em; }
@@ -126,7 +130,8 @@ h6 {
 
 a {
   text-decoration: none;
-  color: #448aa6; }
+  color: #448aa6;
+  font-weight: 300; }
 
 .title {
   text-align: center;
@@ -136,6 +141,7 @@ a {
   text-align: center; }
 
 .router-links {
+  margin: 50px auto;
   text-align: right;
   font-size: 0.8em;
   font-weight: 300; }
@@ -187,6 +193,183 @@ button:active {
 
 figure {
   margin: 0; }
+
+.pswp {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  -ms-touch-action: none;
+  touch-action: none;
+  z-index: 1500;
+  -webkit-text-size-adjust: 100%;
+  /* create separate layer, to avoid paint on window.onscroll in webkit/blink */
+  -webkit-backface-visibility: hidden;
+  outline: none; }
+
+.pswp * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.pswp img {
+  max-width: none; }
+
+/* style is added when JS option showHideOpacity is set to true */
+.pswp--animate_opacity {
+  /* 0.001, because opacity:0 doesn't trigger Paint action, which causes lag at start of transition */
+  opacity: 0.001;
+  will-change: opacity;
+  /* for open/close transition */
+  -webkit-transition: opacity 333ms cubic-bezier(0.4, 0, 0.22, 1);
+  transition: opacity 333ms cubic-bezier(0.4, 0, 0.22, 1); }
+
+.pswp--open {
+  display: block; }
+
+.pswp--zoom-allowed .pswp__img {
+  /* autoprefixer: off */
+  cursor: -webkit-zoom-in;
+  cursor: -moz-zoom-in;
+  cursor: zoom-in; }
+
+.pswp--zoomed-in .pswp__img {
+  /* autoprefixer: off */
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: grab; }
+
+.pswp--dragging .pswp__img {
+  /* autoprefixer: off */
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+  cursor: grabbing; }
+
+/*
+	  Background is added as a separate element.
+	  As animating opacity is much faster than animating rgba() background-color.
+  */
+.pswp__bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  will-change: opacity; }
+
+.pswp__scroll-wrap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+
+.pswp__container,
+.pswp__zoom-wrap {
+  -ms-touch-action: none;
+  touch-action: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0; }
+
+/* Prevent selection and tap highlights */
+.pswp__container,
+.pswp__img {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none; }
+
+.pswp__zoom-wrap {
+  position: absolute;
+  width: 100%;
+  -webkit-transform-origin: left top;
+  -ms-transform-origin: left top;
+  transform-origin: left top;
+  /* for open/close transition */
+  -webkit-transition: -webkit-transform 333ms cubic-bezier(0.4, 0, 0.22, 1);
+  transition: transform 333ms cubic-bezier(0.4, 0, 0.22, 1); }
+
+.pswp__bg {
+  will-change: opacity;
+  /* for open/close transition */
+  -webkit-transition: opacity 333ms cubic-bezier(0.4, 0, 0.22, 1);
+  transition: opacity 333ms cubic-bezier(0.4, 0, 0.22, 1); }
+
+.pswp--animated-in .pswp__bg,
+.pswp--animated-in .pswp__zoom-wrap {
+  -webkit-transition: none;
+  transition: none; }
+
+.pswp__container,
+.pswp__zoom-wrap {
+  -webkit-backface-visibility: hidden; }
+
+.pswp__item {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden; }
+
+.pswp__img {
+  position: absolute;
+  width: auto;
+  height: auto;
+  top: 0;
+  left: 0; }
+
+/*
+	  stretched thumbnail or div placeholder element (see below)
+	  style is added to avoid flickering in webkit/blink when layers overlap
+  */
+.pswp__img--placeholder {
+  -webkit-backface-visibility: hidden; }
+
+/*
+	  div element that matches size of large image
+	  large image loads on top of it
+  */
+.pswp__img--placeholder--blank {
+  background: #222; }
+
+.pswp--ie .pswp__img {
+  width: 100% !important;
+  height: auto !important;
+  left: 0;
+  top: 0; }
+
+/*
+	  Error message appears when image is not loaded
+	  (JS option errorMsg controls markup)
+  */
+.pswp__error-msg {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  line-height: 16px;
+  margin-top: -8px;
+  color: #ccc; }
+
+.pswp__error-msg a {
+  color: #ccc;
+  text-decoration: underline; }
 
 footer {
   width: 100%;
@@ -646,18 +829,22 @@ footer {
 .fakenav {
   height: 50px; }
 
-.search-bar, .logo-nav {
+.search-bar,
+.logo-nav {
   display: flex;
   margin: 0;
   padding: 0; }
-  .search-bar .navigation__search-form, .logo-nav .navigation__search-form {
+  .search-bar .navigation__search-form,
+  .logo-nav .navigation__search-form {
     width: auto; }
-    .search-bar .navigation__search-form .navigation__search-form--search-input, .logo-nav .navigation__search-form .navigation__search-form--search-input {
+    .search-bar .navigation__search-form .navigation__search-form--search-input,
+    .logo-nav .navigation__search-form .navigation__search-form--search-input {
       width: 110px;
       height: 100%;
       transition: ease 1s;
       border: 0; }
-    .search-bar .navigation__search-form .hidden, .logo-nav .navigation__search-form .hidden {
+    .search-bar .navigation__search-form .hidden,
+    .logo-nav .navigation__search-form .hidden {
       display: inherit !important;
       transition: ease 1s;
       height: 100%;
@@ -1179,18 +1366,20 @@ footer {
         transition-duration: 90ms; }
     .products .items-box__item .show {
       display: initial; }
-    .products .items-box__item .items-box__item--description {
-      margin: 5px;
-      color: #1f1f1f; }
-      .products .items-box__item .items-box__item--description .items-box__item--description-price {
-        font-weight: 300; }
     .products .items-box__item .no-image-err {
       height: 100%;
       display: flex;
       align-items: center; }
-  .products .price-discount {
-    font-weight: bold;
-    color: #c70039; }
+
+.items-box__item--description {
+  margin: 5px;
+  color: #1f1f1f; }
+  .items-box__item--description .items-box__item--description-price {
+    font-weight: 300; }
+
+.price-discount {
+  font-weight: bold;
+  color: #c70039; }
 
 @media screen and (max-width: 800px) {
   .products .items-box__item .items-box__item--main-image {
@@ -1228,54 +1417,84 @@ footer {
       box-shadow: inset 0 0 0 5px #448aa6;
       transition: 380ms cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
-.product .product-gallery {
-  text-align: center; }
-  .product .product-gallery .items-box__item--main-image {
-    margin: 5px auto;
-    max-width: 670px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 40vh; }
-  .product .product-gallery .items-box__item-images .items-box__item-images--item {
-    cursor: pointer;
-    width: 10vh;
-    height: 50px;
-    object-fit: contain;
-    margin: 0 5px; }
-
-.product .product-description {
+.product {
   display: flex;
-  flex-wrap: nowrap; }
-  .product .product-description .left-side {
-    flex-basis: 45%;
-    margin-right: 5%; }
-  .product .product-description .right-side {
-    text-align: right;
-    flex-basis: 50%; }
-
-.description-nav {
-  display: flex;
-  text-align: center; }
-  .description-nav .description-nav__button {
-    cursor: pointer;
-    flex-basis: 50%;
-    background-color: #1f1f1f;
-    border-top: 1px solid #1f1f1f;
-    border-right: 1px solid #1f1f1f;
-    border-left: 1px solid #1f1f1f;
-    color: white;
-    margin: 25px 0;
-    padding: 16px;
-    transition-duration: 350ms; }
-    .description-nav .description-nav__button:hover {
-      transition-duration: 400ms; }
-  .description-nav .active {
-    background-color: white;
-    color: black;
-    border-top: 1px solid #1f1f1f;
-    border-left: 1px solid #1f1f1f;
-    border-right: 1px solid #1f1f1f; }
+  justify-content: space-between;
+  flex-wrap: wrap; }
+  .product .product-gallery {
+    text-align: center; }
+    .product .product-gallery .items-box__item--main-image {
+      cursor: pointer;
+      margin: 5px auto;
+      max-width: 670px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 40vh; }
+      .product .product-gallery .items-box__item--main-image:hover {
+        opacity: 0.8;
+        transition: 0.2s ease-out; }
+    .product .product-gallery .items-box__item-images .items-box__item-images--item {
+      cursor: pointer;
+      width: 10vh;
+      height: 50px;
+      object-fit: contain;
+      margin: 0 5px; }
+  .product .product-description {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-position: inside; }
+    .product .product-description .description__top {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: center;
+      flex-basis: 100%; }
+      .product .product-description .description__top .description__top--logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-basis: 48%;
+        padding: 3px;
+        box-shadow: 0px 0px 3px 1px #ccc;
+        transition: box-shadow 0.2s ease-out; }
+        .product .product-description .description__top .description__top--logo:hover {
+          box-shadow: 0px 0px 3px 1px #448aa6;
+          transition: box-shadow 0.2s ease-out; }
+      .product .product-description .description__top .description__top--title {
+        flex-basis: 48%;
+        text-align: right; }
+      .product .product-description .description__top .description__top--price {
+        flex-basis: 100%;
+        text-align: right;
+        margin: 30px 0; }
+        .product .product-description .description__top .description__top--price h4 {
+          font-weight: 300 !important; }
+    .product .product-description .description__bottom {
+      text-align: justify; }
+    .product .product-description ul {
+      list-style-type: square;
+      line-height: 2em; }
+  .product .product-awards {
+    display: flex;
+    flex-basis: 8%;
+    flex-direction: column;
+    align-items: center; }
+    .product .product-awards .award-image {
+      width: 90%; }
+  .product .triple-flex {
+    margin: 30px 0;
+    flex-basis: 100%;
+    justify-content: space-between; }
+    .product .triple-flex .triple-flex__box {
+      flex-basis: 45%; }
+    .product .triple-flex .triple-flex__split {
+      width: 1px;
+      border-left: 1px solid #1f1f1f; }
+  .product .hasAwards {
+    flex-basis: 42%; }
+  .product .noAwards {
+    flex-basis: 48%; }
 
 .related-products {
   display: flex;
@@ -1296,39 +1515,36 @@ footer {
     width: 100%;
     height: 240px;
     overflow: auto; }
-    .related-products .items-box__item--main-image:hover {
-      box-shadow: inset 0 0 0 1px #000000;
-      transition: 380ms cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
-@media screen and (max-width: 700px) {
-  .product .product-description {
-    display: flex;
-    flex-direction: column; }
-    .product .product-description .left-side {
-      flex-basis: 100%;
-      text-align: justify;
-      margin: 0; }
-    .product .product-description .right-side {
-      flex-basis: 100%;
-      text-align: left; }
-  .related-products {
-    display: flex;
+@media screen and (max-width: 800px) {
+  .product {
     flex-wrap: wrap;
-    justify-content: start; }
-    .related-products .items-box__item {
-      flex-basis: 25%;
-      margin: 20px 3%;
-      text-align: center; }
-      .related-products .items-box__item .items-box__item--description {
+    flex-direction: column; }
+    .product .product-gallery .items-box__item--main-image {
+      max-width: 100%; }
+    .product .product-awards {
+      flex-direction: row;
+      flex-wrap: wrap; }
+      .product .product-awards .award-image {
+        width: 80px;
         margin: 5px; }
-    .related-products .items-box__item--main-image {
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 100%;
-      width: 100%;
-      height: 200px;
-      overflow: auto; }
-      .related-products .items-box__item--main-image:hover {
-        box-shadow: inset 0 0 0 1px #000000;
-        transition: 380ms cubic-bezier(0.175, 0.885, 0.32, 1.275); } }
+    .product .product-description .description__top {
+      flex-basis: 100%;
+      flex-direction: row; }
+      .product .product-description .description__top .description__top--logo {
+        flex-basis: 100%; }
+      .product .product-description .description__top .description__top--title {
+        flex-basis: 100%; }
+      .product .product-description .description__top .description__top--price {
+        flex-basis: 100%;
+        margin: 0; }
+      .product .product-description .description__top .description-item {
+        text-align: center;
+        margin: 10px; }
+    .product .triple-flex {
+      flex-direction: row; }
+      .product .triple-flex .triple-flex__box {
+        flex-basis: 100%; }
+      .product .triple-flex .triple-flex__split {
+        flex-basis: 100%;
+        border-bottom: 1px solid #1f1f1f; } }

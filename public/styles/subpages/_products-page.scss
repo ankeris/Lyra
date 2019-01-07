@@ -29,25 +29,24 @@
 		.show {
 			display: initial;
 		}
-		.items-box__item--description {
-			margin: 5px;
-			color: map-get($color, darkgrey);
-			.items-box__item--description-price {
-				font-weight: 300;
-			}
-		}
 		.no-image-err {
-			height: 100%; 
+			height: 100%;
 			display: flex;
 			align-items: center;
 		}
 	}
-	.price-discount {
-		font-weight: bold;
-		color: #c70039;
+}
+.items-box__item--description {
+	margin: 5px;
+	color: map-get($color, darkgrey);
+	.items-box__item--description-price {
+		font-weight: 300;
 	}
 }
-
+.price-discount {
+	font-weight: bold;
+	color: #c70039;
+}
 @media screen and (max-width: 800px) {
 	.products {
 		.items-box__item {

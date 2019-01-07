@@ -1,92 +1,8 @@
-@import 'colors';
-@import 'mixins';
-@import 'layout';
-@import 'animations';
-@import 'fonts';
-@import 'svgs';
-
-a {
-	text-decoration: none;
-	color: map-get($color, blue);
-	font-weight: 300;
-}
-
-.title {
-	text-align: center;
-	margin: 50px 0;
-}
-
-.center {
-	text-align: center;
-}
-
-.router-links {
-	margin: 50px auto;
-	text-align: right;
-	font-size: 0.8em;
-	font-weight: 300;
-	.link {
-		color: map-get($color, darkgrey);
-		&:hover {
-			color: map-get($color, link-blue);
-		}
-	}
-}
-
-b {
-	color: map-get($color, blue);
-}
-
-.brown {
-	color: map-get($color, brown);
-}
-
-.dropdownSVG {
-	fill: white;
-	width: 50px;
-	margin: 10px;
-	transition-duration: 1s;
-}
-
-.rotate {
-	transform: rotate(180deg);
-	transition-duration: 0.3s;
-}
-
-.hidden {
-	display: none;
-}
-.invisible {
-	visibility: hidden;
-}
-
-input[type='text'] {
-	outline: none;
-	padding: 0 12px;
-}
-
-ul {
-	-webkit-padding-start: 0;
-}
-
-small {
-	font-size: 0.7em;
-}
-
-button:active,
-button:focus,
-a:focus,
-button:active {
-	background-image: none;
-	outline: 0;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-}
-
-figure {
-	margin: 0;
-}
-
+/*! PhotoSwipe main CSS by Dmitry Semenov | photoswipe.com | MIT license */
+/*
+	Styles for basic PhotoSwipe functionality (sliding area, open/close transitions)
+*/
+/* pswp = photoswipe */
 .pswp {
 	display: none;
 	position: absolute;
@@ -147,9 +63,9 @@ figure {
 }
 
 /*
-	  Background is added as a separate element.
-	  As animating opacity is much faster than animating rgba() background-color.
-  */
+	Background is added as a separate element.
+	As animating opacity is much faster than animating rgba() background-color.
+*/
 .pswp__bg {
 	position: absolute;
 	left: 0;
@@ -242,17 +158,17 @@ figure {
 }
 
 /*
-	  stretched thumbnail or div placeholder element (see below)
-	  style is added to avoid flickering in webkit/blink when layers overlap
-  */
+	stretched thumbnail or div placeholder element (see below)
+	style is added to avoid flickering in webkit/blink when layers overlap
+*/
 .pswp__img--placeholder {
 	-webkit-backface-visibility: hidden;
 }
 
 /*
-	  div element that matches size of large image
-	  large image loads on top of it
-  */
+	div element that matches size of large image
+	large image loads on top of it
+*/
 .pswp__img--placeholder--blank {
 	background: #222;
 }
@@ -265,9 +181,9 @@ figure {
 }
 
 /*
-	  Error message appears when image is not loaded
-	  (JS option errorMsg controls markup)
-  */
+	Error message appears when image is not loaded
+	(JS option errorMsg controls markup)
+*/
 .pswp__error-msg {
 	position: absolute;
 	left: 0;

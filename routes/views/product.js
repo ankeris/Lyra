@@ -9,8 +9,8 @@ exports = module.exports = function(req, res) {
 		product: req.params.product,
 		category: req.params.category
 	};
-
 	locals.data = {
+		productImages: [],
 		products: [],
 		relatedproducts: []
 	};
@@ -24,6 +24,13 @@ exports = module.exports = function(req, res) {
 			.populate('Manufacturer ProductType');
 
 		q.exec(function(err, result) {
+			result.images.forEach(img => {
+				locals.data.productImages.push({
+					src: img.secure_url,
+					w: img.width,
+					h: img.height
+				});
+			});
 			locals.data.product = result;
 			next(err);
 		});
