@@ -9,10 +9,10 @@ function openPhotoSwipe(imagesArr, currentHighlight) {
 	var found = parsed.findIndex(function(img) {
 		return img.src == currentHighlight;
 	});
-	// Remove the highlighted item from array and place it again as first
-	const highlight = parsed.splice(found, 1);
-	parsed = [highlight[0], ...parsed];
-	// build items array
+
+	// Split array into two and begin array with highlight image
+	const highlight = parsed.splice(0, found);
+	parsed = [...parsed, ...highlight];
 
 	var items = parsed;
 	// define options (if needed)
