@@ -11,7 +11,15 @@ let Product = new keystone.List('Product', {
 		path: 'slug',
 		from: 'title',
 		unique: true
-	},
+	}
+});
+
+var storage = new keystone.Storage({
+	adapter: keystone.Storage.Adapters.FS,
+	fs: {
+		path: 'public/vid',
+		publicPath: '/public/vid/'
+	}
 });
 
 Product.add({
@@ -25,7 +33,7 @@ Product.add({
 	Discount: {
 		type: Number,
 		collapse: true,
-		note: 'What is the new price?',
+		note: 'What is the new price?'
 	},
 	description: {
 		type: Types.Html,
@@ -37,11 +45,18 @@ Product.add({
 		wysiwyg: true,
 		height: 300
 	},
+	Video: {
+		type: Types.File,
+		storage: storage,
+		collapse: true
+	},
 	images: {
 		type: Types.CloudinaryImages
 	},
 	awards: {
-		type: Types.CloudinaryImages
+		type: Types.Relationship,
+		ref: 'Awards',
+		many: true
 	},
 	ProductType: {
 		type: Types.Relationship,

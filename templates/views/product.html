@@ -12,6 +12,11 @@
     <a class="link" href="/produktai/{{product.ProductType[0].key}}">{{product.ProductType[0].name | upper }}</a><span> > </span>
     <u><a class="link" href="">{{product.title | upper }}</a></u>
 </div>
+
+<video poster="" id="player" playsinline controls>
+    <source src="/vid/XOfQ2sMojTq9uYh_" type="video/mp4">
+</video>
+
 <section class="product content-section">
     {% if product.images.length >= 1 %}
     <section class="product-gallery">
@@ -50,8 +55,8 @@
 
             {% if product.awards.length >= 1 %}
             <div class="product-awards">
-                {% for image in product.awards %}
-                    <img class="award-image" src="{{image.secure_url}}" alt="">
+                {% for award in product.awards %}
+                    <img class="award-image" src="{{award.CoverImage.secure_url}}" alt="">
                 {% endfor %}
             </div>
             {% endif %}

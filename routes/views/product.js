@@ -21,7 +21,7 @@ exports = module.exports = function(req, res) {
 			.model.findOne({
 				slug: locals.filters.product
 			})
-			.populate('Manufacturer ProductType');
+			.populate('Manufacturer ProductType awards');
 
 		q.exec(function(err, result) {
 			result.images.forEach(img => {
