@@ -1,3 +1,12 @@
-import Plyr from 'plyr';
+import Plyr from 'plyr/dist/plyr';
+import 'plyr/dist/plyr.css';
 const player = new Plyr('#player');
-// <link rel="stylesheet" href="https://cdn.plyr.io/3.4.7/plyr.css">
+
+if (document.querySelector('#player')) {
+	document.querySelector('#player').addEventListener('ready', event => {
+		player.volume = 0;
+		player.play();
+	});
+}
+
+export {player};

@@ -21,7 +21,7 @@
         {# If product does not have image #}
         {% elif not product.images[0] %}
             <div class="no-image-err">
-                <p>Atsiprašome, šis produktas neturi nuotraukos</p>
+                <p>{{globaldata.errors.product_image}}</p>
             </div>
         {% endif %}
         <p class="items-box__item--description">

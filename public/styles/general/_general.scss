@@ -83,6 +83,12 @@ button:active {
 	box-shadow: none;
 }
 
+.black-bg {
+	width: 100%;
+	background-color: map-get($color, darkgrey);
+	color: white;
+}
+
 figure {
 	margin: 0;
 }

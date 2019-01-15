@@ -27,9 +27,10 @@
     "working_hr2": "Šeštadieniais: 10:00 - 15:00 val.",
     "working_hr3": "Sekmadieniais nedirbame"
   },
-
+  "errors": {
+    "product_image": "Atsiprašome, šis produktas neturi nuotraukos"
+  },
   "brands": "Siūlome šiuos prekių ženklus",
-
   "product": {
     "relatedTitle": "Susiję produktai"
   }
