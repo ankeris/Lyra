@@ -23,6 +23,7 @@
     "webpack-dev-server": "^3.1.8"
   },
   "dependencies": {
+    "afterglowplayer": "^1.1.0",
     "async": "2.1.4",
     "imagesloaded": "^4.1.4",
     "instafeed.js": "^1.4.1",
@@ -31,7 +32,6 @@
     "lodash": "^4.13.1",
     "normalize.css": "^8.0.0",
     "photoswipe": "^4.1.2",
-    "plyr": "^3.4.7",
     "slick-carousel": "^1.8.1",
     "videojs-contrib-hls": "^5.15.0"
   },
