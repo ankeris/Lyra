@@ -1,4 +1,5 @@
 let keystone = require('keystone');
+let cropCloudlinaryImage = require('../cropImage');
 
 exports = module.exports = function(req, res) {
 	let view = new keystone.View(req, res);
@@ -12,7 +13,8 @@ exports = module.exports = function(req, res) {
 	locals.data = {
 		productImages: [],
 		products: [],
-		relatedproducts: []
+		relatedproducts: [],
+		awards: []
 	};
 
 	view.on('init', function(next) {
@@ -24,15 +26,28 @@ exports = module.exports = function(req, res) {
 			.populate('Manufacturer ProductType awards');
 
 		q.exec(function(err, result) {
-			result.images.forEach(img => {
-				locals.data.productImages.push({
-					src: img.secure_url,
-					w: img.width,
-					h: img.height
+			if (result) {
+				result.images.forEach(img => {
+					locals.data.productImages.push({
+						src: img.secure_url,
+						w: img.width,
+						h: img.height
+					});
 				});
-			});
-			locals.data.product = result;
-			next(err);
+				result.images.forEach(img => {
+					locals.data.productImages.push({
+						src: img.secure_url,
+						w: img.width,
+						h: img.height
+					});
+				});
+				result.awards.forEach(award => (award.CoverImage.secure_url = cropCloudlinaryImage(award.CoverImage, 150, 150)));
+
+				locals.data.product = result;
+				next(err);
+			} else {
+				throw err;
+			}
 		});
 	});
 
@@ -48,8 +63,9 @@ exports = module.exports = function(req, res) {
 			});
 	});
 
+	// Related products
 	view.on('init', function(next) {
-		let r = keystone
+		keystone
 			.list('Product')
 			.model.find()
 			.where('ProductType')

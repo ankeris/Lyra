@@ -1,5 +1,3 @@
-import '../index/slick.js';
-import {player} from './video';
 // Effect variable
 const opacity = 0.5;
 
@@ -10,31 +8,37 @@ images[0].style.opacity = opacity;
 
 // Video variables
 const videoButton = document.querySelector('.video-instance') || null;
-const video = document.querySelector('.video-player-wrapper') || null;
+const videoWrapper = document.querySelector('.video-player-wrapper') || null;
+const videoPlayer = videoWrapper.querySelector('.vid-player');
 
 // Events
 images.forEach(img => img.addEventListener('click', changeImage));
-if (video) {
+if (videoWrapper) {
 	videoButton.addEventListener('click', highlightVideo);
 }
 
 function changeImage(newImage) {
-	images.forEach(img => (img.style.opacity = 1));
-	highlighted.style.backgroundImage = `url('${newImage.target.src}')`;
-	highlighted.setAttribute('data-current-image', newImage.target.src);
-	highlighted.classList.add('fade-in');
-	newImage.target.style.opacity = opacity;
-	setTimeout(() => highlighted.classList.remove('fade-in'), 500);
-	// Hide video, show Image
-	if (video) {
-		highlighted.classList.remove('hidden');
-		video.classList.add('hidden');
-		player.pause();
+	newImage = newImage.target;
+	// Only change image if it's different and not the current one
+	if (newImage.getAttribute('src') !== highlighted.getAttribute('data-current-image')) {
+		images.forEach(img => (img.style.opacity = 1));
+		highlighted.style.backgroundImage = `url('${newImage.src}')`;
+		highlighted.setAttribute('data-current-image', newImage.src);
+		highlighted.classList.add('fade-in');
+		newImage.style.opacity = opacity;
+		setTimeout(() => highlighted.classList.remove('fade-in'), 500);
+		// Hide video, show Image
+		if (videoWrapper) {
+			highlighted.classList.remove('hidden');
+			videoWrapper.classList.add('hidden');
+			videoPlayer.pause();
+		}
 	}
 }
 
 function highlightVideo(vid) {
 	// Hide image, show Video
-	video.classList.remove('hidden');
+	videoPlayer.play();
+	videoWrapper.classList.remove('hidden');
 	highlighted.classList.add('hidden');
 }

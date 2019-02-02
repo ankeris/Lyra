@@ -1,6 +1,7 @@
 let keystone = require('keystone');
 let async = require('async');
 let mongoose = require('mongoose');
+let cropCloudlinaryImage = require('../cropImage');
 
 exports = module.exports = function(req, res) {
 	let view = new keystone.View(req, res);
@@ -31,7 +32,6 @@ exports = module.exports = function(req, res) {
 				if (err || !results.length) {
 					return next(err);
 				}
-				console.log(results);
 
 				locals.data.categories = results;
 				// Load the counts for each category (counts how much products every category contains)
@@ -185,11 +185,8 @@ function getRidOfMetadata(data, cropImages, width, height) {
 		if (cropImages && r.images[0]) {
 			// Changes the link for each picture to a fixed height and width - in order to load faster.
 			r.images.forEach(img => {
-				let oldUrl = img.secure_url.split('/');
-				oldUrl.splice(oldUrl.length - 2, 0, `c_limit,h_${height},w_${width}`);
-				let newUrl = oldUrl.join('/');
 				// change old secure_url to new (with new parameters);
-				img.secure_url = newUrl;
+				img.secure_url = cropCloudlinaryImage(img, height, width);
 			});
 			if (r.ProductType[0].discount > 0) {
 				const discount = setDiscountedPrice(r.ProductType[0].discount, r.price);
