@@ -25,12 +25,20 @@ a {
 	text-align: right;
 	font-size: 0.8em;
 	font-weight: 300;
-	.link {
-		color: map-get($color, darkgrey);
-		&:hover {
-			color: map-get($color, link-blue);
-		}
+}
+
+.link {
+	color: map-get($color, darkgrey);
+	&:hover {
+		color: map-get($color, link-blue);
 	}
+}
+
+.space-button {
+	padding: 30px 50px;
+	text-decoration: underline;
+	font-size: 1.3em;
+	font-weight: bold;
 }
 
 b {
@@ -51,6 +59,10 @@ b {
 .rotate {
 	transform: rotate(180deg);
 	transition-duration: 0.3s;
+}
+.strike-through-text {
+	text-decoration-line: line-through;
+	line-height: 1;
 }
 
 .hidden {

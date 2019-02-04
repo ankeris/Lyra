@@ -92,6 +92,15 @@
     </div>
 </div>
 
+{% if product.ManufacturersDescriptionLink and product.UserManual %}
+    <section class="content-section">
+        <div class="double-flex">
+            <a class="space-button link" href="{{product.ManufacturersDescriptionLink}}">Gamintojo puslapis: {{product.title}}</a>
+            <a class="space-button link" href="{{product.UserManual}}">{{product.title}} vartotojo vadovas</a>
+        </div>
+    </section>
+{% endif %}
+
 
 <figure class="title">
     <h3>{{globaldata.product.relatedTitle}}</h3>

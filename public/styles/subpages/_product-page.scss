@@ -74,10 +74,7 @@
 			.description__top--logo {
 				display: flex;
 				align-items: center;
-				justify-content: center;
-				flex-basis: 47%;
-				padding: 3px;
-				box-shadow: 0px 0px 3px 1px #ccc;
+				justify-content: left;
 				transition: box-shadow 0.2s ease-out;
 				&:hover {
 					box-shadow: 0px 0px 3px 1px map-get($color, blue);
@@ -123,7 +120,7 @@
 	margin: 30px auto;
 	flex-basis: 100%;
 	justify-content: space-between;
-	padding: 30px;
+	padding: 35px;
 	.triple-flex__box {
 		flex-basis: 45%;
 	}
@@ -131,6 +128,11 @@
 		width: 1px;
 		border-left: 1px solid map-get($color, darkgrey);
 	}
+}
+.double-flex {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
 .related-products {
 	display: flex;

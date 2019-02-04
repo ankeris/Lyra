@@ -45,6 +45,14 @@ Product.add({
 		wysiwyg: true,
 		height: 300
 	},
+	ManufacturersDescriptionLink: {
+		type: Types.Url,
+		note: 'Gamintojo nuoroda apie produkta'
+	},
+	UserManual: {
+		type: Types.Url,
+		note: 'Vartotojo vadovas'
+	},
 	Video: {
 		type: Types.File,
 		storage: storage,
