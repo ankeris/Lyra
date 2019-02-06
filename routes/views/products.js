@@ -1,7 +1,9 @@
-let keystone = require('keystone');
-let async = require('async');
-let mongoose = require('mongoose');
-let cropCloudlinaryImage = require('../cropImage');
+const keystone = require('keystone');
+const async = require('async');
+const mongoose = require('mongoose');
+const helpers = require('../helpers');
+const cropCloudlinaryImage = helpers.cropCloudlinaryImage;
+const setDiscountedPrice = helpers.setDiscountedPrice;
 
 exports = module.exports = function(req, res) {
 	let view = new keystone.View(req, res);
@@ -118,13 +120,11 @@ exports = module.exports = function(req, res) {
 
 		function getSort() {
 			if (req.query.filterlist == 'price-high') {
-				return {
-					price: -1
-				};
+				return {price: -1};
 			} else if (req.query.filterlist == 'price-low') {
-				return {
-					price: 1
-				};
+				return {price: 1};
+			} else {
+				return {title: -1};
 			}
 		}
 
@@ -169,10 +169,6 @@ exports = module.exports = function(req, res) {
 	// Render the view
 	view.render('products');
 };
-
-function setDiscountedPrice(discount, currentPrice) {
-	return Math.round(currentPrice - (currentPrice / 100) * discount);
-}
 
 function getRidOfMetadata(data, cropImages, width, height) {
 	let result;

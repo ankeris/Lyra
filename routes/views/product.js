@@ -1,5 +1,6 @@
-let keystone = require('keystone');
-let cropCloudlinaryImage = require('../cropImage');
+const keystone = require('keystone');
+const helpers = require('../helpers');
+const cropCloudlinaryImage = helpers.cropCloudlinaryImage;
 
 exports = module.exports = function(req, res) {
 	let view = new keystone.View(req, res);
@@ -41,7 +42,9 @@ exports = module.exports = function(req, res) {
 						h: img.height
 					});
 				});
-				result.awards.forEach(award => (award.CoverImage.secure_url = cropCloudlinaryImage(award.CoverImage, 150, 150)));
+				if (result.awards.length > 0) {
+					result.awards.forEach(award => (award.CoverImage.secure_url = cropCloudlinaryImage(award.CoverImage, 150, 150)));
+				}
 
 				locals.data.product = result;
 				next(err);

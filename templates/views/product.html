@@ -63,7 +63,7 @@
                 {% endif %}
             </div>
 
-            {% if product.awards.length >= 1 %}
+            {% if product.awards %}
             <div class="product-awards">
                 {% for award in product.awards %}
                     <a href="{{award.Url}}"><img class="award-image" src="{{award.CoverImage.secure_url}}" title="{{award.name}}" alt=""></a>

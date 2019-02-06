@@ -9,7 +9,7 @@ images[0].style.opacity = opacity;
 // Video variables
 const videoButton = document.querySelector('.video-instance') || null;
 const videoWrapper = document.querySelector('.video-player-wrapper') || null;
-const videoPlayer = videoWrapper.querySelector('.vid-player');
+const videoPlayer = videoWrapper ? videoWrapper.querySelector('.vid-player') : null;
 
 // Events
 images.forEach(img => img.addEventListener('click', changeImage));
