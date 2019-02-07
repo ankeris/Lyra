@@ -153,7 +153,8 @@ a {
     color: #5f4ef0; }
 
 .space-button {
-  padding: 30px 50px;
+  padding: 15px;
+  margin: 20px;
   text-decoration: underline;
   font-size: 1.3em;
   font-weight: bold; }
@@ -175,8 +176,7 @@ b {
   transition-duration: 0.3s; }
 
 .strike-through-text {
-  text-decoration-line: line-through;
-  line-height: 1; }
+  font-family: Lucida Sans Unicode, Lucida Grande, sans-serif !important; }
 
 .hidden {
   display: none; }
@@ -267,13 +267,17 @@ footer {
             width: 15%;
             text-align: center;
             cursor: pointer; }
-          footer .content-section .footer__box--right .newsletter .newsletter__box input[type="submit"] {
+          footer .content-section .footer__box--right .newsletter .newsletter__box input[type='submit'] {
             display: none; }
-      footer .content-section .footer__box--right .media-icons {
-        text-align: center;
-        margin: 20px; }
-        footer .content-section .footer__box--right .media-icons a {
-          margin: 4px; }
+
+.media-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 20px; }
+  .media-icons .media-icons__icon {
+    margin: 4px 7px; }
 
 @media screen and (max-width: 700px) {
   footer .content-section {
@@ -315,7 +319,7 @@ footer {
             width: 15%;
             text-align: center;
             cursor: pointer; }
-          footer .content-section .footer__box--right .newsletter .newsletter__box input[type="submit"] {
+          footer .content-section .footer__box--right .newsletter .newsletter__box input[type='submit'] {
             display: none; }
       footer .content-section .footer__box--right .media-icons {
         text-align: center;
@@ -1395,6 +1399,7 @@ footer {
       .product .product-description .description__top .description__top--title {
         flex-basis: 100%; }
       .product .product-description .description__top .description__top--price {
+        font-family: Lucida Sans Unicode, Lucida Grande, sans-serif !important;
         flex-basis: 100%;
         margin: 0; }
       .product .product-description .description__top .description-item {

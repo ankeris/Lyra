@@ -1,4 +1,8 @@
+{% from "mixins/macros.html" import messengerLogo %}
+{% from "mixins/macros.html" import email %}
+
 {% extends "layouts/default.html" %}
+
 {% set product = data.product %}
 
 {% block head %}
@@ -28,7 +32,7 @@
         <div id="currentHighlight" class="items-box__item--main-image {{hideHighlightedImage}}" style="background-image: url('{{product.images[0].secure_url}}')"
         data-images="{{data.productImages | dump}}" data-current-image="{{product.images[0].secure_url}}"></div>
         {# Extra image collection #}
-        
+
         <figure class="items-box__item-images">
         {% if product.Video.filename %}
             <div class="items-box__item-images--item video-instance" alt="">
@@ -57,7 +61,7 @@
 
             <div class="description__top--price description-item">
                 {% if product.Discount %}
-                <h4 class="items-box__item--description-price"><b class="price-discount">{{product.Discount}}€</b> &nbsp<strike>{{product.price}}€</strike></h4>
+                <h4 class="items-box__item--description-price"><b class="price-discount">{{product.Discount}}€</b> &nbsp<strike class="strike-through-text">{{product.price}}€</strike></h4>
                 {% else %}
                 <h4 class="items-box__item--description-price">{{product.price}}€</h4>
                 {% endif %}
@@ -79,6 +83,14 @@
             <div class="right-side">
             <p>Dėl šio produkto galime Jus pakonsultuoti <a href="tel:+37052623596"> (+370 5) 262 35 96</a>
             arba mūsų <a href="/kontaktai/">Kęstučio g. 26, Vilnius</a> arba <a href="mailto:info@lyra.lt">INFO@LYRA.LT</a></p>
+            </div>
+            <div class="media-icons">
+                <a class="media-icons__icon" aria-label="facebook" rel="noreferrer" href="https://www.facebook.com/SalonasLyra/" target="_blank">
+                    {{ messengerLogo("#1f1f1f", "#448AA6") }}
+                </a>
+                <a class="media-icons__icon" aria-label="email" rel="noreferrer" href="mailto:info@lyra.lt?subject={{product.Manufacturer.name}} - {{product.title}}" target="_blank">
+                    {{ email("#1f1f1f", "#448AA6") }}
+                </a>
             </div>
         </div>
     </div>

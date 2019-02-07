@@ -35,7 +35,8 @@ a {
 }
 
 .space-button {
-	padding: 30px 50px;
+	padding: 15px;
+	margin: 20px;
 	text-decoration: underline;
 	font-size: 1.3em;
 	font-weight: bold;
@@ -61,8 +62,7 @@ b {
 	transition-duration: 0.3s;
 }
 .strike-through-text {
-	text-decoration-line: line-through;
-	line-height: 1;
+	font-family: Lucida Sans Unicode, Lucida Grande, sans-serif !important;
 }
 
 .hidden {

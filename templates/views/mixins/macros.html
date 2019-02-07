@@ -1,13 +1,3 @@
-{# {% macro dropdownSvg(colorName, colorHover) %}
-    <svg class="" data-name="Layer 1" 
-    xmlns="http://www.w3.org/2000/svg" 
-    viewBox="0 0 3.7 2.76"><defs>
-    <style>
-        .cls-1 {fill:{{colorName}};} 
-        .subcategory-box__item--svg:hover > .cls-1 { fill: {{colorHover}}; transition-duration: 90ms; }
-    </style></defs><title>IconDown</title><polygon class="cls-1" points="0 0 3.7 0 1.84 2.76 0 0"/></svg>
-{% endmacro %} #}
-
 {% macro dropdownSvg(colorName, colorHover) %}
     <svg class="subcategory-box__item--svg" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3.7 1.82">
     <title>Dropdown</title>
@@ -158,5 +148,42 @@
         <path class="spotify-cls-4" d="M42.06,44a70.22,70.22,0,0,1,30,6.39c1.74.82,3.43,1.77,5.09,2.74a3.78,3.78,0,1,1-3.87,6.48A57,57,0,0,0,52,52.37a64.25,64.25,0,0,0-19.26-.09c-2.63.4-5.24,1-7.83,1.69a3.89,3.89,0,0,1-5-2.5,3.82,3.82,0,0,1,2.82-4.78,66.5,66.5,0,0,1,16.55-2.64C40.24,44,41.15,44,42.06,44Z" transform="translate(-0.22 -0.54)"/>
         <path class="spotify-cls-4" d="M42.23,59.91a56,56,0,0,1,24.65,5.17c1.51.72,3,1.54,4.42,2.38a3,3,0,0,1,1.24,4.28,3,3,0,0,1-4.33.9A46.76,46.76,0,0,0,47.7,66.19,71.78,71.78,0,0,0,25.81,68a3.07,3.07,0,0,1-3.52-1.33,2.85,2.85,0,0,1,.26-3.44,3.73,3.73,0,0,1,1.74-1.06A79.66,79.66,0,0,1,42.23,59.91Z" transform="translate(-0.22 -0.54)"/>
     </g></g></g>
+</svg>
+{% endmacro %}
+
+
+{% macro messengerLogo(colorName, colorHover) %}
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1024 1024" style="enable-background:new 0 0 1024 1024;" xml:space="preserve" width="40px" height="40px">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:url(#Bubble_Solid_1_);}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+</style>
+<g id="Messenger_4_">
+	<linearGradient id="Bubble_Solid_1_" gradientUnits="userSpaceOnUse" x1="512" y1="11.5" x2="512" y2="1005.4999">
+		<stop  offset="0" style="stop-color:{{colorName}}"/>
+		<stop  offset="1" style="stop-color:{{colorName}}"/>
+	</linearGradient>
+	<path id="Bubble_Solid_3_" class="st0" d="M512,11.5c-280,0-497,205.1-497,482.1c0,144.9,59.4,270.1,156.1,356.6
+		c8.1,7.3,13,17.4,13.4,28.3l2.7,88.4c0.9,28.2,30,46.5,55.8,35.2l98.6-43.5c8.4-3.7,17.7-4.4,26.5-2
+		c45.3,12.5,93.6,19.1,143.9,19.1c280,0,497-205.1,497-482.1S792,11.5,512,11.5z"/>
+	<path id="Bolt_4_" class="st1" d="M213.6,634.6l146-231.6c23.2-36.8,73-46,107.8-19.9l116.1,87.1c10.7,8,25.3,7.9,35.9-0.1
+		l156.8-119c20.9-15.9,48.3,9.2,34.2,31.4L664.5,614c-23.2,36.8-73,46-107.8,19.9l-116.1-87.1c-10.7-8-25.3-7.9-35.9,0.1L247.8,666
+		C226.9,681.9,199.5,656.8,213.6,634.6z"/>
+</g>
+</svg>
+{% endmacro %}
+
+{% macro email(colorName, colorHover)%}
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	  width="44px" height="44px" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve">
+<g>
+	<path d="M306.768,346.814h0.131c4.615,0,9.176-1.339,12.866-3.777l1.001-0.643c0.218-0.142,0.446-0.271,0.675-0.424l11.658-9.645
+		l278.259-229.624c-0.576-0.795-1.557-1.339-2.602-1.339H3.233c-0.751,0-1.448,0.272-2.003,0.729l291.125,239.954
+		C296.024,345.083,301.259,346.814,306.768,346.814z M0,133.899v340.37l208.55-168.471L0,133.899z M403.668,306.941L612,474.356
+		V135.031L403.668,306.941z M337.431,361.585c-8.305,6.814-19.168,10.57-30.576,10.57c-11.451,0-22.304-3.734-30.587-10.516
+		l-47.765-39.394L0,506.806v0.587c0,1.753,1.502,3.244,3.276,3.244h605.491c1.741,0,3.232-1.491,3.232-3.255v-0.544L383.693,323.4
+		L337.431,361.585z"/>
+</g>
 </svg>
 {% endmacro %}
