@@ -1,4 +1,5 @@
 {% extends "layouts/default.html" %}
+{% from "mixins/sideNavigation.html" import sideNavigation %}
 
 {% from "mixins/macros.html" import dropdownSvg %}
 
@@ -17,60 +18,7 @@
 {% block content %}
 <div class="products-wrapper content-section">
     {% include 'partials/sort.html' %}
-        <div class="mobile-side-nav">
-            <div class="subcategory-box__item--text">Kategorijos <small style="display: none"></small></div>
-            {{ dropdownSvg("#ffffff", "#448AA6") }}
-        </div>
-        <aside class="side-nav">
-            <div class="side-nav__box">
-                <div id="manufacturers-dropdown">
-                    <a href="/prekiu-zenklai" class="subcategory-box__item--text">Gamintojai</a>
-                    {{ dropdownSvg("#1f1f1f", "#448AA6") }}
-                </div>
-                <div class="subcategory-box" style="display: none;">
-                {% for manufacturer in manufacturers %}
-                    <a href="/prekiu-zenklai/{{manufacturer.key}}" class="subcategory-box__item">
-                        <span>{{manufacturer.name}}</span>
-                    </a>
-                {% endfor %}
-                </div>
-
-                {% for cat in data.categories %}
-                {% set class = ( "active" if data.category and data.category.id == cat.id else "" ) %}
-                {% set dropdown = ( "navigation-dropdown" if cat.IsParentCategory else "" ) %}
-                {% set ChildCategoryOfActive =  "display: none;"  %}
-                    {% if not cat.ChildCategoryOf %}
-                        {% if cat.IsParentCategory %}
-                            <div class="{{ class }} {{dropdown}}">
-                                <a href="/prekiu-zenklai/{{data.brand.key}}/{{ cat.key }}" class="subcategory-box__item--text">{{ cat.name }} <small></small></a>
-                                {{ dropdownSvg("#1f1f1f", "#448AA6") }}
-                            </div>
-                        {% else %}
-                            {% if cat.postCount > 0 %}
-                            <a href="/produktai/{{ cat.key }}" class="{{ class }} {{dropdown}} side-nav__list-box--item">
-                                <span class="subcategory-box__item--text">{{ cat.name }}</span>
-                            </a>
-                            {% endif %}
-                        {% endif %}
-                        {% if cat.IsParentCategory %}
-                        {# Display Child categories of Parent category #}
-                            <div class="subcategory-box" style="{{ChildCategoryOfActive}}">
-                            {% for subCat in data.categories %}
-                            {% set subClass = ( "active" if data.category and data.category.id == subCat.id else "" ) %}
-                                {% if cat.key === subCat.ChildCategoryOf.key %}
-                                    {% if subCat.postCount > 0 %}
-                                        <a href="/prekiu-zenklai/{{data.brand.key}}/{{ subCat.key }}" class="{{ subClass }} subcategory-box__item" data-parent="{{cat.key}}">
-                                        {{subCat.name}}
-                                        </a>
-                                    {% endif %}
-                                {% endif %}
-                            {% endfor %}
-                            </div>
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-            </div>
-        </aside>
+    {{sideNavigation("brand-page", data)}}
     {% include 'partials/products-list.html' %}
 </div>
 {# Variables stored so they could be used in server-side #}

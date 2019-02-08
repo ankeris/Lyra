@@ -1,4 +1,5 @@
 {% extends "layouts/default.html" %}
+{% from "mixins/sideNavigation.html" import sideNavigation %}
 
 {% block head %}
 	<title>{{section}}</title>
@@ -8,7 +9,19 @@
 {% block intro %}
     <div class="content-section" style="text-align: center;">
         <h3 class="title">{{section}}</h3>
-        <h3 class="title">This subpage is under construction</h3>
-        <img src="/images/construct.png" alt="Construction" width="200px">
     </div>
+{% endblock %}
+
+{% block content %}
+<div class="products-wrapper content-section">
+    {% include 'partials/sort.html' %}
+    {{sideNavigation("brand-page", data)}}
+    {% include 'partials/products-list.html' %}
+</div>
+{# Variables stored so they could be used in server-side #}
+<div class="variables" data-sort="{{data.sort}}" data-category="{{data.category.key}}" data-count="{{data.products.results.length}}" data-brand="{{data.brand.key}}" data-discounts="true"></div>
+{% endblock %}
+
+{% block js %}
+    <script src="/js/dist/products.bundle.js"></script>
 {% endblock %}

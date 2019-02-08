@@ -36,9 +36,9 @@ ProductCategory.add({
 		type: Types.Relationship,
 		ref: 'ProductCategory',
 		many: false,
-		required: false,
+		required: false
 	},
-	IsParentCategory: Types.Boolean,
+	IsParentCategory: Types.Boolean
 });
 
 ProductCategory.relationship({
@@ -47,6 +47,6 @@ ProductCategory.relationship({
 	refPath: 'ProductType'
 });
 
-ProductCategory.defaultColumns = 'name, ChildCategoryOf, IsParentCategory';
+ProductCategory.defaultColumns = 'name, ChildCategoryOf, IsParentCategory, discount';
 
 ProductCategory.register();

@@ -1,9 +1,7 @@
 const keystone = require('keystone');
 const async = require('async');
-const mongoose = require('mongoose');
 const helpers = require('../helpers');
-const cropCloudlinaryImage = helpers.cropCloudlinaryImage;
-const setDiscountedPrice = helpers.setDiscountedPrice;
+const getRidOfMetadata = helpers.getRidOfMetadata;
 
 exports = module.exports = function(req, res) {
 	let view = new keystone.View(req, res);
@@ -103,7 +101,6 @@ exports = module.exports = function(req, res) {
 					.list('ProductCategory')
 					.model.find({$or: [{ChildCategoryOf: locals.data.category}, {_id: locals.data.category}]})
 					.exec(function(err, result) {
-						console.log(result);
 						q.find({
 							ProductType: {$in: result}
 						}).exec(function(err, result) {
@@ -158,41 +155,21 @@ exports = module.exports = function(req, res) {
 		}
 	});
 
-	// Additionally query manufacturers for section
-	view.query(
-		'manufacturers',
+	// Additionally query manufacturers for sidenav
+	view.on('init', function(next) {
 		keystone
 			.list('ProductManufacturer')
 			.model.find()
 			.sort('name')
-	);
+			.exec(function(err, result) {
+				locals.data.manufacturers = result;
+				next(err);
+			});
+	});
+
 	// Render the view
 	view.render('products');
 };
-
-function getRidOfMetadata(data, cropImages, width, height) {
-	let result;
-	// Some data has products array inside 'data.results' and some in just 'data' therefore we need conditional statement
-	data.results ? (result = data.results) : (result = data);
-	let filteredResult = [];
-	// loop through each product
-	result.forEach(r => {
-		// check if cropImage setting is set to true and if image exists
-		if (cropImages && r.images[0]) {
-			// Changes the link for each picture to a fixed height and width - in order to load faster.
-			r.images.forEach(img => {
-				// change old secure_url to new (with new parameters);
-				img.secure_url = cropCloudlinaryImage(img, height, width);
-			});
-			if (r.ProductType[0].discount > 0) {
-				const discount = setDiscountedPrice(r.ProductType[0].discount, r.price);
-				r.Discount = discount;
-			}
-		}
-		filteredResult.push(r.toObject());
-	});
-	return filteredResult;
-}
 
 function escapeRegex(text) {
 	return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');

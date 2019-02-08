@@ -1,7 +1,8 @@
-{% from "mixins/macros.html" import dropdownSvg %}
-{% from "mixins/macros.html" import whitedropdownSvg %}
+{% from "./macros.html" import dropdownSvg %}
+{% from "./macros.html" import whitedropdownSvg %}
 
-{% if data.categories.length %}
+{% macro sideNavigation(page, data) %}
+    {% if data.categories.length %}
     <div class="mobile-side-nav">
         <div class="subcategory-box__item--text">Kategorijos <small style="display: none"></small></div>
         {{ whitedropdownSvg() }}
@@ -14,7 +15,7 @@
                 {{ dropdownSvg("#1f1f1f", "#448AA6") }}
             </div>
             <div class="subcategory-box" style="display: none;">
-            {% for manufacturer in manufacturers %}
+            {% for manufacturer in data.manufacturers %}
                 <a href="/prekiu-zenklai/{{manufacturer.key}}" class="subcategory-box__item">
                     <span>{{manufacturer.name}}</span>
                 </a>
@@ -30,14 +31,24 @@
                     {% if cat.IsParentCategory %}
                     {# Display Parent categories #}
                     <div class="{{ class }} {{dropdown}}" data-category="{{cat.name}}">
-                        <a href="/produktai/{{ cat.key }}" class="subcategory-box__item--text">{{ cat.name }} </a>
+                        {% if page == "products-page" %}
+                            <a href="/produktai/{{ cat.key }}" class="subcategory-box__item--text">{{ cat.name }}</a>
+                        {% elif page == "brand-page" %}
+                            <a href="/prekiu-zenklai/{{data.brand.key}}/{{ cat.key }}" class="subcategory-box__item--text">{{ cat.name }}</a>
+                        {% endif %}
                         {{ dropdownSvg("#1f1f1f", "#448AA6") }}
                     </div>
                     {% else %}
                     {# Simple categories - neither parent or child #}
+                    {% if page == "products-page" %}
                     <a href="/produktai/{{ cat.key }}" class="{{ class }} {{dropdown}} side-nav__list-box--item">
                         <span class="subcategory-box__item--text">{{ cat.name }}</span>
                     </a>
+                    {% elif page == "brand-page" %}
+                    <a href="/prekiu-zenklai/{{data.brand.key}}/{{ cat.key }}" class="{{ class }} {{dropdown}} side-nav__list-box--item">
+                        <span class="subcategory-box__item--text">{{ cat.name }}</span>
+                    </a>
+                    {% endif %}
                     {% endif %}
                     {% if cat.IsParentCategory %}
                         {# Display Child categories of Parent category #}
@@ -45,9 +56,15 @@
                         {% for subCat in data.categories %}
                         {% set subClass = ( "active" if data.category and data.category.id == subCat.id else "" ) %}
                             {% if cat.key === subCat.ChildCategoryOf.key %}
-                                <a href="/produktai/{{ subCat.key }}" class="{{ subClass }} subcategory-box__item" data-parent="{{cat.key}}">
-                                {{subCat.name}}
-                                </a>
+                                {% if page == "products-page" %}
+                                    <a href="/produktai/{{ subCat.key }}" class="{{ subClass }} subcategory-box__item" data-parent="{{cat.key}}">
+                                    {{subCat.name}}
+                                    </a>
+                                {% elif page == "brand-page" %}
+                                    <a href="/prekiu-zenklai/{{data.brand.key}}/{{ subCat.key }}" class="{{ subClass }} subcategory-box__item" data-parent="{{cat.key}}">
+                                    {{subCat.name}}
+                                    </a>
+                                {% endif %}
                             {% endif %}
                         {% endfor %}
                         </div>
@@ -57,3 +74,4 @@
         </div>
     </aside>
 {% endif %}
+{% endmacro %}

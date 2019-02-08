@@ -1,4 +1,5 @@
 {% from "mixins/macros.html" import loadingSpeakers %}
+{% from "mixins/sideNavigation.html" import sideNavigation %}
 {% extends "layouts/default.html" %}
 
 {% block head %}
@@ -22,7 +23,7 @@
 {% block content %}
 <div class="products-wrapper content-section">
 {% include 'partials/sort.html' %}
-    {% include 'partials/sideNavigation.html'%}
+    {{sideNavigation("products-page", data)}}
 
     {# items box wrapper #}
     <section class="products">

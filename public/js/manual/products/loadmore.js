@@ -13,11 +13,12 @@ function addNextPage() {
 		page: currentPage,
 		filterlist: document.querySelector('.variables').getAttribute('data-sort')
 	};
-
-	const category = document.querySelector('.variables').getAttribute('data-category');
-	const count = document.querySelector('.variables').getAttribute('data-count');
-	const brand = document.querySelector('.variables').getAttribute('data-brand');
-	const search = document.querySelector('.variables').getAttribute('data-search');
+	const vars = document.querySelector('.variables');
+	const category = vars.getAttribute('data-category');
+	const count = vars.getAttribute('data-count');
+	const discounts = vars.getAttribute('data-discounts') || null;
+	const search = vars.getAttribute('data-search');
+	const brand = vars.getAttribute('data-brand');
 
 	if (category) {
 		ajaxCall('/produktai/', category, parameters);
@@ -25,7 +26,11 @@ function addNextPage() {
 		ajaxCall('/produktai?search=', search, parameters);
 	} else if (!brand) {
 		// For default product page
-		ajaxCall('/produktai/', null, parameters);
+		if (discounts) {
+			ajaxCall('/pasiulymai/', discounts, parameters);
+		} else {
+			ajaxCall('/produktai/', null, parameters);
+		}
 	} else if (brand) {
 		ajaxCall('/prekiu-zenklai/', brand, parameters);
 	}

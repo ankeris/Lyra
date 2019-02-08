@@ -1,6 +1,7 @@
 const keystone = require('keystone');
 const helpers = require('../helpers');
 const cropCloudlinaryImage = helpers.cropCloudlinaryImage;
+const setDiscountedPrice = helpers.setDiscountedPrice;
 
 exports = module.exports = function(req, res) {
 	let view = new keystone.View(req, res);
@@ -26,27 +27,35 @@ exports = module.exports = function(req, res) {
 			})
 			.populate('Manufacturer ProductType awards');
 
-		q.exec(function(err, result) {
-			if (result) {
-				result.images.forEach(img => {
+		q.exec(function(err, product) {
+			if (product) {
+				product.images.forEach(img => {
 					locals.data.productImages.push({
 						src: img.secure_url,
 						w: img.width,
 						h: img.height
 					});
 				});
-				result.images.forEach(img => {
+				product.images.forEach(img => {
 					locals.data.productImages.push({
 						src: img.secure_url,
 						w: img.width,
 						h: img.height
 					});
 				});
-				if (result.awards.length > 0) {
-					result.awards.forEach(award => (award.CoverImage.secure_url = cropCloudlinaryImage(award.CoverImage, 150, 150)));
+
+				if (product.awards.length > 0) {
+					product.awards.forEach(award => (award.CoverImage.secure_url = cropCloudlinaryImage(award.CoverImage, 150, 150)));
+				}
+				// Check if product doesn't have it's own discount and only then put the discount from productType
+				if (!product.Discount) {
+					if (product.ProductType[0].discount > 0) {
+						const discount = setDiscountedPrice(product.ProductType[0].discount, product.price);
+						product.Discount = discount;
+					}
 				}
 
-				locals.data.product = result;
+				locals.data.product = product;
 				next(err);
 			} else {
 				throw err;
