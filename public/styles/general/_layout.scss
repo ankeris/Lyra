@@ -1,3 +1,10 @@
+$window-small: 400px;
+$window-small-medium: 600px;
+$window-medium: 800px;
+$window-medium-large: 1000px;
+$window-large: 1123px;
+$window-large-xlarge: 1400px;
+
 .content-section {
 	max-width: 1124px;
 	margin: 0 auto;
@@ -11,7 +18,7 @@
 	height: auto;
 }
 
-@media screen and (max-width: 1123px) {
+@media screen and (max-width: $window-large) {
 	.content-section {
 		width: 95%;
 	}

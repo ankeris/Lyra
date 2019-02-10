@@ -85,10 +85,14 @@ footer {
 	margin: 20px;
 	.media-icons__icon {
 		margin: 4px 7px;
+		&:hover {
+			opacity: 0.6;
+			transition: ease-out 0.2s;
+		}
 	}
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: $window-small-medium) {
 	footer {
 		.content-section {
 			padding: 40px 0;

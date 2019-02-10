@@ -2,11 +2,11 @@
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    height: 57vh;
-    background-position: 50% 50%;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	height: 57vh;
+	background-position: 50% 50%;
 	background-size: cover;
 	.products-intro--title {
 		max-width: 750px;
@@ -31,7 +31,8 @@
 		margin: 25px;
 	}
 }
-@media screen and (max-width: 700px) {
+
+@media screen and (max-width: $window-medium) {
 	.products-intro {
 		flex-wrap: nowrap;
 		height: 65vh;

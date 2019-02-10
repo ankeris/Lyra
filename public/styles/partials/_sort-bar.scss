@@ -30,9 +30,8 @@
 	}
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: $window-medium) {
 	.sort-bar__box {
-		margin-top: 50px;
 		order: 2;
 	}
 }

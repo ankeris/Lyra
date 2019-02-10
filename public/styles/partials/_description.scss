@@ -4,11 +4,11 @@
 	background-position: left bottom;
 	background-size: 135%;
 	animation: animatedBackground 30s linear infinite;
-	
+
 	color: map-get($color, white);
 	display: flex;
 	flex-direction: column;
-    align-items: center;
+	align-items: center;
 	justify-content: center;
 	.description-box__title {
 		width: 500px;
@@ -33,7 +33,7 @@
 	}
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: $window-small-medium) {
 	.description-box {
 		flex-wrap: wrap-reverse;
 		height: 80vh;
@@ -41,10 +41,10 @@
 			max-width: 90%;
 			display: flex;
 			flex-flow: row nowrap;
-			  justify-content: space-between;
-			  font-size: 4em;
+			justify-content: space-between;
+			font-size: 4em;
 		}
-	
+
 		.description-box__item--text {
 			max-width: 90%;
 		}

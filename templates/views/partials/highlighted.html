@@ -25,7 +25,7 @@
             {% endif %}
             <br>
             {% if product.Discount %}
-            <span class="items-box__item--description-price"><b class="price-discount">{{product.Discount}}€</b> &nbsp<strike>{{product.price}}€</strike></span>
+            <span class="items-box__item--description-price"><b class="price-discount strike-through-text">{{product.Discount}}€</b> &nbsp<strike>{{product.price}}€</strike></span>
             {% else %}
             <span class="items-box__item--description-price">{{product.price}}€</span>
             {% endif %}

@@ -35,11 +35,9 @@ a {
 }
 
 .space-button {
-	padding: 15px;
-	margin: 20px;
-	text-decoration: underline;
-	font-size: 1.3em;
-	font-weight: bold;
+	margin: 30px;
+	border-bottom: 1px solid map-get($color, lightgrey);
+	font-size: 1.2em;
 }
 
 b {
@@ -60,9 +58,6 @@ b {
 .rotate {
 	transform: rotate(180deg);
 	transition-duration: 0.3s;
-}
-.strike-through-text {
-	font-family: Lucida Sans Unicode, Lucida Grande, sans-serif !important;
 }
 
 .hidden {

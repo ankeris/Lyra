@@ -24,23 +24,16 @@
 			// @include hover(darkgrey);
 			opacity: 0.9;
 			background-size: 123%;
-			transition-duration:90ms;
+			transition-duration: 90ms;
 		}
 	}
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: $window-medium) {
 	.mini-navigation {
-		flex-direction: row;
 		flex-wrap: wrap;
 		.mini-navigation__button {
 			flex-basis: 100%;
-		}
-	}
-}
-@media screen and (max-width: 800px) {
-	.mini-navigation {
-		.mini-navigation__button {
 			font-size: 14pt;
 			letter-spacing: 0.2em;
 		}

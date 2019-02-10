@@ -1,5 +1,4 @@
-{% from "mixins/macros.html" import messengerLogo %}
-{% from "mixins/macros.html" import email %}
+{% from "mixins/macros.html" import emailIcon, messengerLogo %}
 
 {% extends "layouts/default.html" %}
 
@@ -61,7 +60,7 @@
 
             <div class="description__top--price description-item">
                 {% if product.Discount %}
-                <h4 class="items-box__item--description-price"><b class="price-discount">{{product.Discount}}€</b> &nbsp<strike class="strike-through-text">{{product.price}}€</strike></h4>
+                <h4 class="items-box__item--description-price"><b class="price-discount">{{product.Discount}}€</b> &nbsp<strike>{{product.price}}€</strike></h4>
                 {% else %}
                 <h4 class="items-box__item--description-price">{{product.price}}€</h4>
                 {% endif %}
@@ -86,10 +85,10 @@
             </div>
             <div class="media-icons">
                 <a class="media-icons__icon" aria-label="facebook" rel="noreferrer" href="https://www.facebook.com/SalonasLyra/" target="_blank">
-                    {{ messengerLogo("#1f1f1f", "#448AA6") }}
+                    {{ messengerLogo("#1f1f1f", "#448AA6", "30px", "30px") }}
                 </a>
-                <a class="media-icons__icon" aria-label="email" rel="noreferrer" href="mailto:info@lyra.lt?subject={{product.Manufacturer.name}} - {{product.title}}" target="_blank">
-                    {{ email("#1f1f1f", "#448AA6") }}
+                <a class="media-icons__icon" aria-label="email" rel="noreferrer" href="mailto:info@lyra.lt?subject={{product.Manufacturer.name}} - {{product.title}}">
+                    {{ emailIcon("#1f1f1f", "#448AA6", "30px", "30px") }}
                 </a>
             </div>
         </div>

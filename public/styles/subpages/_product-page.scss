@@ -126,7 +126,6 @@
 	}
 	.triple-flex__split {
 		width: 1px;
-		border-left: 1px solid map-get($color, darkgrey);
 	}
 }
 .double-flex {
@@ -196,15 +195,16 @@
 				}
 			}
 		}
-		.triple-flex {
-			flex-direction: row;
-			.triple-flex__box {
-				flex-basis: 100%;
-			}
-			.triple-flex__split {
-				flex-basis: 100%;
-				border-bottom: 1px solid map-get($color, darkgrey);
-			}
+	}
+	.triple-flex {
+		flex-direction: column;
+		.triple-flex__box {
+			flex-basis: 100%;
+		}
+		.triple-flex__split {
+			width: 100%;
+			margin: 10px 0;
+			border-bottom: 1px solid map-get($color, lightgrey);
 		}
 	}
 }
