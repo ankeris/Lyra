@@ -7,6 +7,7 @@ function cropCloudlinaryImage(img, width, height) {
 function setDiscountedPrice(discount, currentPrice) {
 	return Math.round(currentPrice - (currentPrice / 100) * discount);
 }
+
 function getSort(filter) {
 	if (filter == 'price-high') {
 		return {

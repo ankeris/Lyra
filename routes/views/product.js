@@ -36,13 +36,6 @@ exports = module.exports = function(req, res) {
 						h: img.height
 					});
 				});
-				product.images.forEach(img => {
-					locals.data.productImages.push({
-						src: img.secure_url,
-						w: img.width,
-						h: img.height
-					});
-				});
 
 				if (product.awards.length > 0) {
 					product.awards.forEach(award => (award.CoverImage.secure_url = cropCloudlinaryImage(award.CoverImage, 150, 150)));

@@ -15,7 +15,9 @@
 {% block content %}
 <div class="products-wrapper content-section">
     {% include 'partials/sort.html' %}
+    
     {{sideNavigation("brand-page", data)}}
+
     {% include 'partials/products-list.html' %}
 </div>
 {# Variables stored so they could be used in server-side #}
