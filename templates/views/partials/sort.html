@@ -1,8 +1,12 @@
 <figure class="sort-bar__box content-section">
-    {% if data.category %}
+    {% if data.category and not data.discounts %}
     <form class="form_box" action="/produktai/{{data.category.key}}" method="get">
     {% elif data.brand %}
     <form class="form_box" action="/prekiu-zenklai/{{data.brand.key}}" method="get">
+    {% elif data.category and data.discounts %}
+    <form class="form_box" action="/pasiulymai/{{data.category.key}}/" method="get">
+    {% elif data.discounts %}
+    <form class="form_box" action="/pasiulymai/" method="get">
     {% elif filters.search %}
     <form class="form_box" action="/produktai/?search={{filters.search}}" method="get">
     {% else %}

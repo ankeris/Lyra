@@ -12,6 +12,7 @@ exports = module.exports = function(req, res) {
 	locals.data = {
 		products: [],
 		categories: [],
+		discounts: true,
 		sort: req.query.filterlist
 	};
 
@@ -79,6 +80,7 @@ exports = module.exports = function(req, res) {
 					.find({
 						ProductType: locals.data.category
 					})
+					.sort(getSort(req.query.filterlist))
 					.exec(function(err, result) {
 						if (err) {
 							next(err);
@@ -102,6 +104,7 @@ exports = module.exports = function(req, res) {
 									next(err);
 								} else {
 									locals.data.products = getRidOfMetadata(result, true, 300, 300);
+									locals.data.products = locals.data.products.filter(product => product.Discount);
 									next(err);
 								}
 							});
@@ -116,11 +119,6 @@ exports = module.exports = function(req, res) {
 					if (err) {
 						next(err);
 					} else {
-						const prodsWithDiscounts = prods.results.filter(product => product.Discount);
-						prodsWithDiscounts.forEach(prod => {
-							locals.data.categories.push(prod.ProductType[0]);
-						});
-
 						locals.data.products = getRidOfMetadata(prods, true, 300, 300);
 					}
 					next(err);
