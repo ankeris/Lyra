@@ -1,88 +1,58 @@
 .ig_logo {
-   height: 40px;
-   width: 40px;
-   display: flex;
-   align-content: center;
-   margin: 0 auto;
+	height: 40px;
+	width: 40px;
+	display: flex;
+	align-content: center;
+	margin: 0 auto;
 
-   img {
-       width: 50px;
-       height: 50px;
-   }
+	img {
+		width: 50px;
+		height: 50px;
+	}
 }
 #instafeed {
 	display: flex;
 	flex-wrap: wrap;
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: center;
-    position: relative;
-    .slick-list {
-        flex-basis: 100%;
-    }
-    .items-box__instagram-item {
-        margin: 0;
-        text-align: center;
-        .items-box__item--main-image {
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            width: 100%;
-            height: 250px;
-            overflow-x: hidden;
-            overflow-y: auto;
-            position: relative;
-            
-            &:hover > .items-box__item--text {
-                color: map-get($color, white);
-                font-size: 0.87em;
-                width: 95%;
-                height: 100%;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                padding: 0 5%;
-                transform: translate(-50%, -50%);
-                background-color: rgba($color: #000000, $alpha: 0.75);
-                text-align: start;
-                display: flex;
-                align-self: stretch;
-                align-items: center;
-                animation: fadeIn 0.2s ease 1 forwards;
-            }
-        }
-        .items-box__item--text {
-            display: none;
-            background-color: map-get($color, white);
-            opacity: 0;
-            transition-duration: 90ms;
-        }
-    }
-    .slick-arrow {
-        position: absolute;
-        background-image: url('/images/SlideNext_2.svg');
-	    background-repeat: no-repeat;
-        background-position: center;
-        background-size: 80%;
-        border: 0;
-        transition-duration: 90ms;
-        cursor: pointer;
-        background-color: white;
-        z-index: 155;
-        width: 40px;
-        height: 35px;
+	justify-content: space-between;
+	flex-direction: row;
+	align-items: center;
+	position: relative;
+	.items-box__instagram-item {
+		margin: 0;
+		text-align: center;
+		.items-box__item--main-image {
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+			width: 100%;
+			height: 250px;
+			overflow-x: hidden;
+			overflow-y: auto;
+			position: relative;
 
-        &:hover {
-            opacity: 0.6;
+			&:hover > .items-box__item--text {
+				color: map-get($color, white);
+				font-size: 0.87em;
+				width: 95%;
+				height: 100%;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				padding: 0 5%;
+				transform: translate(-50%, -50%);
+				background-color: rgba($color: #000000, $alpha: 0.75);
+				text-align: start;
+				display: flex;
+				align-self: stretch;
+				align-items: center;
+				animation: fadeIn 0.2s ease 1 forwards;
+			}
+		}
+		.items-box__item--text {
+			display: none;
+			background-color: map-get($color, white);
+			opacity: 0;
 			transition-duration: 90ms;
-        }
-    }
-    .slick-next {
-        transform: rotate(-90deg);
-        right: 0;
-    }
-    .slick-prev {
-        transform: rotate(90deg);
-        left: 0;
-    }
+		}
+	}
 }

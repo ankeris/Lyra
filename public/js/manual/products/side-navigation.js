@@ -17,15 +17,6 @@ $('.mobile-side-nav').click(function() {
 
 // on page load
 $(document).ready(function() {
-	$('.navigation-dropdown').each(function(index, value) {
-		let parentCategory = $(this);
-		let subCategoryBox = $(this).next('div');
-		// remove Parent category if it has no SubCategories ((it should be handled in server side))
-		if (!subCategoryBox.children().length) {
-			subCategoryBox.remove();
-			$(this).remove();
-		}
-	});
 	// If subcategory is selected, open it and rotate SVG
 	const activeSubCategory = $('.subcategory-box .active');
 	$(activeSubCategory)
@@ -65,13 +56,3 @@ if (el) {
 		}
 	});
 }
-
-//Old code
-// else {
-// 	// if there are SubCategories, count all the products and display number on Parent
-// 	let AllProductsSum = 0;
-// 	subCategoryBox.children().each(function (index, value) {
-// 		AllProductsSum += Number($(value).children()[0].innerHTML);
-// 	});
-// 	$(parentCategory[0]).children()[0].children[0].innerHTML = AllProductsSum;
-// }

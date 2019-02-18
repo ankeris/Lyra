@@ -28,25 +28,23 @@ keystone.pre('render', middleware.flashMessages);
 
 // Import Route Controllers
 var routes = {
-	views: importRoutes('./views'),
+	views: importRoutes('./views')
 };
 
 // Setup Route Bindings
-exports = module.exports = function (app) {
+exports = module.exports = function(app) {
 	// Views
 	app.get('/', routes.views.index);
 	app.get('/prekiu-zenklai', routes.views.brands);
 	app.get('/prekiu-zenklai/:brand/:category?', routes.views.brand);
-	app.get('/produktai/:category?', routes.views.products);
-	app.get('/produktai/', routes.views.products);
 	app.all('/kontaktai', routes.views.contact);
-	app.get('/pasiulymai', routes.views.specialoffers);
+	app.get('/pasiulymai/:category?', routes.views.specialoffers);
 	app.get('/naujienos', routes.views.news);
 	app.get('/apie-mus', routes.views.aboutus);
+	app.get('/produktai/:category?', routes.views.products);
 	app.get('/produktai/:Manufacturer?/:category?/:product', routes.views.product);
 	app.all('*', routes.views.subscription);
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
-
 };
