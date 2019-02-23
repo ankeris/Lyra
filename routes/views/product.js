@@ -1,4 +1,10 @@
 const keystone = require('keystone');
+// redis
+const redisQueries = require('../redis-queries/redisQueries');
+
+const findProduct = redisQueries.findItemBySlug;
+const findCategory = redisQueries.findCategoryByKey;
+// helpers
 const helpers = require('../helpers');
 const cropCloudlinaryImage = helpers.cropCloudlinaryImage;
 const setDiscountedPrice = helpers.setDiscountedPrice;
@@ -20,14 +26,25 @@ exports = module.exports = function(req, res) {
 	};
 
 	view.on('init', function(next) {
-		let q = keystone
-			.list('Product')
-			.model.findOne({
-				slug: locals.filters.product
-			})
-			.populate('Manufacturer ProductType awards');
+		let productQueryOptions = {
+			dbCollection: keystone.list('Product'),
+			populateBy: 'Manufacturer ProductType awards',
+			slug: locals.filters.product,
+			callback: (product, err) => exec(product, err)
+		};
 
-		q.exec(function(err, product) {
+		let categoryQueryOptions = {
+			dbCollection: keystone.list('ProductCategory'),
+			categoryKey: locals.filters.category,
+			callback: (result, err) => {
+				if (err) throw err;
+				else locals.data.category = result;
+			}
+		};
+		findCategory(categoryQueryOptions);
+		findProduct(productQueryOptions);
+
+		function exec(product, err = '') {
 			if (product) {
 				product.images.forEach(img => {
 					locals.data.productImages.push({
@@ -49,23 +66,11 @@ exports = module.exports = function(req, res) {
 				}
 
 				locals.data.product = product;
-				next(err);
+				next();
 			} else {
 				throw err;
 			}
-		});
-	});
-
-	view.on('init', function(next) {
-		keystone
-			.list('ProductCategory')
-			.model.findOne({
-				key: locals.filters.category
-			})
-			.exec(function(err, result) {
-				locals.data.category = result;
-				next(err);
-			});
+		}
 	});
 
 	// Related products

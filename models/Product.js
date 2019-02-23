@@ -82,4 +82,9 @@ Product.add({
 });
 
 Product.defaultColumns = 'title, ProductType, Manufacturer, images, Highlight';
+
+Product.schema.post('save', function(doc) {
+	console.log('The user is new? ', doc);
+});
+
 Product.register();

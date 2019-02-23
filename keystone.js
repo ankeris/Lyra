@@ -10,24 +10,24 @@ const nunjucks = require('nunjucks');
 // Initialise Keystone with your project's configuration. See
 // http://keystonejs.com/guide/config for available options and documentation.
 keystone.init({
-	'name': 'acme',
-	'brand': 'acme',
-	'sass': 'public',
-	'static': 'public',
-	'favicon': 'public/favicon.ico',
-	'views': 'templates/views',
+	name: 'acme',
+	brand: 'acme',
+	sass: 'public',
+	static: 'public',
+	favicon: 'public/favicon.ico',
+	views: 'templates/views',
 	'view engine': '.html',
 	'custom engine': cons.nunjucks,
 	'session store': 'connect-mongo',
-
+	'view cache': true,
 	'auto update': true,
-	'session': true,
-	'auth': true,
+	session: true,
+	auth: true,
 	'user model': 'User'
 });
 
 // Load your project's Models
-keystone.import ('models');
+keystone.import('models');
 
 // Setup common locals for your templates. The following are required for the
 // bundled templates and layouts. Any runtime locals (that should be set
@@ -46,9 +46,7 @@ keystone.set('routes', require('./routes'));
 
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
-	products: [
-		'products', 'product-categories', 'product-manufacturers'
-	],
+	products: ['products', 'product-categories', 'product-manufacturers'],
 	enquiries: ['enquiries', 'subscriptions'],
 	users: 'users'
 });

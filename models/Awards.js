@@ -29,5 +29,4 @@ Awards.add({
 });
 
 Awards.defaultColumns = 'name, CoverImage';
-
 Awards.register();
