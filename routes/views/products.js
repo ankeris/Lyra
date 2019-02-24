@@ -3,6 +3,11 @@ const async = require('async');
 const helpers = require('../helpers');
 const getRidOfMetadata = helpers.getRidOfMetadata;
 
+// redis
+const redisQueries = require('../redis-queries/redisQueries');
+const loadAll = redisQueries.loadAll;
+const findCategory = redisQueries.findCategoryByKey;
+
 exports = module.exports = function(req, res) {
 	let view = new keystone.View(req, res);
 	let locals = res.locals;
@@ -23,56 +28,56 @@ exports = module.exports = function(req, res) {
 
 	// Load all categories for side navigation
 	view.on('init', function(next) {
-		keystone
-			.list('ProductCategory')
-			.model.find()
-			.sort('name')
-			.populate('ChildCategoryOf')
-			.exec(function(err, results) {
-				if (err || !results.length) {
+		const loadAllCategoriesQuery = {
+			dbCollection: keystone.list('ProductCategory'),
+			populateBy: 'ChildCategoryOf',
+			sort: 'name',
+			redisKeyName: 'allCategories',
+			callback: (cats, err) => {
+				locals.data.categories = cats;
+				if (err || !cats.length) {
 					return next(err);
 				}
+				next();
+			}
+		};
 
-				locals.data.categories = results;
-				// Load the counts for each category (counts how much products every category contains)
-				async.each(
-					locals.data.categories,
-					function(category, next) {
-						keystone
-							.list('Product')
-							.model.count()
-							.where('ProductType')
-							.in([category.id])
-							.exec(function(err, count) {
-								category.postCount = count;
-								next(err);
-							});
-					},
-					function(err) {
-						next(err);
-					}
-				);
-			});
+		loadAll(loadAllCategoriesQuery);
 	});
-
-	// Load the current category Object
-	view.on('init', function(next) {
+	// load current category
+	view.on('init', next => {
 		if (req.params.category) {
-			keystone
-				.list('ProductCategory')
-				.model.findOne({
-					key: locals.filters.category
-				})
-				.populate('ChildCategoryOf')
-				.exec(function(err, result) {
-					locals.data.category = result;
+			findCategory({
+				dbCollection: keystone.list('ProductCategory'),
+				categoryKey: locals.filters.category,
+				callback: (result, err) => {
+					if (err) throw console.log(err);
+					else locals.data.category = result;
 					next(err);
-				});
+				}
+			});
 		} else {
 			next();
 		}
 	});
 
+	// Additionally query manufacturers for sidenav
+	view.on('init', function(next) {
+		const loadAllManufacturersQuery = {
+			dbCollection: keystone.list('ProductManufacturer'),
+			sort: 'name',
+			redisKeyName: 'allManufacturers',
+			callback: (result, err) => {
+				locals.data.manufacturers = result;
+				if (err || !result.length) {
+					return next(err);
+				}
+				next();
+			}
+		};
+
+		loadAll(loadAllManufacturersQuery);
+	});
 	// Load the products
 	view.on('init', function(next) {
 		let q = keystone.list('Product').paginate({
@@ -153,18 +158,6 @@ exports = module.exports = function(req, res) {
 				next(err);
 			});
 		}
-	});
-
-	// Additionally query manufacturers for sidenav
-	view.on('init', function(next) {
-		keystone
-			.list('ProductManufacturer')
-			.model.find()
-			.sort('name')
-			.exec(function(err, result) {
-				locals.data.manufacturers = result;
-				next(err);
-			});
 	});
 
 	// Render the view

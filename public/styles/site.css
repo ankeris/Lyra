@@ -135,8 +135,16 @@ a {
   font-weight: 300; }
 
 .title {
-  text-align: center;
-  margin: 50px 0; }
+  text-align: center; }
+
+.push-top {
+  margin-top: 50px; }
+
+.push-bottom {
+  margin-bottom: 50px; }
+
+.push-vertical {
+  margin: 50px auto; }
 
 .center {
   text-align: center; }
@@ -324,8 +332,7 @@ footer {
         margin: 20px; } }
 
 .manufacturers {
-  text-align: center;
-  margin: 50px auto; }
+  text-align: center; }
   .manufacturers .partners__item,
   .manufacturers .presentation__item {
     margin: 0;
@@ -394,9 +401,7 @@ footer {
 
 @media screen and (max-width: 600px) {
   .map {
-    width: 100%;
-    min-height: 90vh;
-    margin: 50px 0; } }
+    min-height: 90vh; } }
 
 .mobile-side-nav {
   display: none;
@@ -785,7 +790,6 @@ footer {
 
 .sort-bar__box {
   flex-basis: 100%;
-  margin: 50px 0;
   border-bottom: 1px solid #e6e6e6;
   order: 1;
   text-align: right; }
@@ -1218,7 +1222,8 @@ footer {
     .products .items-box__item .show {
       display: initial; }
     .products .items-box__item .no-image-err {
-      height: 100%;
+      height: 50%;
+      margin: 25% 0;
       display: flex;
       align-items: center; }
 

@@ -13,7 +13,18 @@ a {
 
 .title {
 	text-align: center;
-	margin: 50px 0;
+}
+
+.push-top {
+	margin-top: 50px;
+}
+
+.push-bottom {
+	margin-bottom: 50px;
+}
+
+.push-vertical {
+	margin: 50px auto;
 }
 
 .center {

@@ -1,7 +1,6 @@
 const keystone = require('keystone');
 // redis
 const redisQueries = require('../redis-queries/redisQueries');
-
 const findProduct = redisQueries.findItemBySlug;
 const findCategory = redisQueries.findCategoryByKey;
 // helpers
@@ -37,7 +36,7 @@ exports = module.exports = function(req, res) {
 			dbCollection: keystone.list('ProductCategory'),
 			categoryKey: locals.filters.category,
 			callback: (result, err) => {
-				if (err) throw err;
+				if (err) throw console.log(err);
 				else locals.data.category = result;
 			}
 		};
@@ -64,7 +63,6 @@ exports = module.exports = function(req, res) {
 						product.Discount = discount;
 					}
 				}
-
 				locals.data.product = product;
 				next();
 			} else {

@@ -1,5 +1,7 @@
 let keystone = require('keystone');
 let Types = keystone.Field.Types;
+const redisClient = require('redis').createClient;
+const redis = redisClient(6379, '127.0.0.1');
 
 let Product = new keystone.List('Product', {
 	map: {
@@ -83,8 +85,8 @@ Product.add({
 
 Product.defaultColumns = 'title, ProductType, Manufacturer, images, Highlight';
 
-Product.schema.post('save', function(doc) {
-	console.log('The user is new? ', doc);
+Product.schema.post('save', doc => {
+	if (redis.exists(doc.slug)) redis.del(doc.slug);
 });
 
 Product.register();

@@ -41,7 +41,6 @@
     {% else %}
     <h4>{{globaldata.errors.product_image}}</h4>
     {% endif %}
-
     <div class="product-description">
         <div class="description__top">
             
@@ -111,14 +110,14 @@
 {% endif %}
 
 
-<figure class="title">
+<figure class="title push-vertical">
     <h3>{{globaldata.product.relatedTitle}}</h3>
 </figure>
 {# looping through products #}
 {% set products = data.relatedproducts %}
 {% include 'partials/highlighted.html' %}
 
-<div class="title"></div>
+<div class="title push-vertical"></div>
 
 {% endblock %}
 

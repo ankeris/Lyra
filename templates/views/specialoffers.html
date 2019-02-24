@@ -20,8 +20,13 @@
     {% include 'partials/sort.html' %}
     
     {{sideNavigation("special-offers-page", data)}}
-
-    {% include 'partials/products-list.html' %}
+{# items box wrapper #}
+    <section class="products">
+            {# looping through products #}
+            {% for product in data.products %}
+            {% include 'partials/product-item.html' %}
+            {% endfor %}
+    </section>
 </div>
 {# Variables stored so they could be used in server-side #}
 <div class="variables" data-sort="{{data.sort}}" data-category="{{data.category.key}}" data-count="{{data.products.results.length}}" data-brand="{{data.brand.key}}" data-discounts="true"></div>
