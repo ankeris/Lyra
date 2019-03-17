@@ -1,6 +1,7 @@
 {% extends "layouts/default.html" %}
 {% from "mixins/sideNavigation.html" import sideNavigation %}
-
+{% from "mixins/intro-image-text.html" import introImageText %}
+{% from "mixins/dynamic-link.html" import dynamicLink %}
 {% from "mixins/macros.html" import dropdownSvg %}
 
 {% block head %}
@@ -9,15 +10,29 @@
 {% endblock %}
 
 {% block intro %}
-	<figure class="title push-vertical">
-		{# <h3>{{data.name}} produktai</h3> #}
-        <img src="{{data.brand.image.secure_url}}" alt="">
-	</figure>
+	{% set title = ( data.brand.name if data.brand else "Produktų katalogas" ) %}
+	{% set text = ( data.brand.description if data.brand.description else "Lorem. Curabitur feugiat ornare tellus sed tristique. Etiam fermentum enim nisl. Morbi a condimentum elit. Phasellus tincidunt augue et lectus malesuada hendrerit. Curabitur imperdiet leo eget orci tempor sagittis. Nulla facilisi. Etiam laoreet nunc et massa cursus bibendum. Cras sit amet pretium tortor. Etiam non sapien nec arcu fermentum rutrum. Pellentesque bibendum velit tellus, et dignissim elit rhoncus id." ) %}
+	{% set img = ( data.brand.CoverImage.secure_url if data.brand.CoverImage.secure_url else "/images/products-page.jpg" ) %}
+    {{introImageText(title, text, img)}}
 {% endblock %}
 
 {% block content %}
 <div class="products-wrapper content-section">
+    <figure class="sort-bar__box push-vertical content-section">
+    {% if data.brand %}
+    {{dynamicLink(
+        [{
+            name: "Prekių ženklai",
+            url: "/prekiu-zenklai/"
+        },
+        {
+            name: data.brand.name,
+            url: "/prekiu-zenklai/" + data.brand.key
+        }]
+    )}}
+    {% endif %}
     {% include 'partials/sort.html' %}
+</figure>
     {{sideNavigation("brand-page", data)}}
     <section class="products">
         {# looping through products #}

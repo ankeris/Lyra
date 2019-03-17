@@ -1,16 +1,18 @@
 const keystone = require('keystone');
 const async = require('async');
+const browser = require('browser-detect');
 const helpers = require('../helpers');
 const getRidOfMetadata = helpers.getRidOfMetadata;
 
 // redis
 const redisQueries = require('../redis-queries/redisQueries');
-const loadAll = redisQueries.loadAll;
-const findCategory = redisQueries.findCategoryByKey;
+const {loadAll} = redisQueries;
+const findCategory = redisQueries.findOneByKey;
 
 exports = module.exports = function(req, res) {
 	let view = new keystone.View(req, res);
 	let locals = res.locals;
+	const supportWebP = browser(req.headers['user-agent']).name == 'chrome';
 
 	locals.section = 'products';
 
@@ -49,7 +51,7 @@ exports = module.exports = function(req, res) {
 		if (req.params.category) {
 			findCategory({
 				dbCollection: keystone.list('ProductCategory'),
-				categoryKey: locals.filters.category,
+				keyName: locals.filters.category,
 				callback: (result, err) => {
 					if (err) throw console.log(err);
 					else locals.data.category = result;
@@ -96,7 +98,7 @@ exports = module.exports = function(req, res) {
 					if (err) {
 						next(err);
 					} else {
-						locals.data.products = getRidOfMetadata(result, true, 300, 300);
+						locals.data.products = getRidOfMetadata(result, true, 300, 300, supportWebP);
 						next(err);
 					}
 				});
@@ -112,7 +114,7 @@ exports = module.exports = function(req, res) {
 							if (err) {
 								next(err);
 							} else {
-								locals.data.products = getRidOfMetadata(result, true, 300, 300);
+								locals.data.products = getRidOfMetadata(result, true, 300, 300, supportWebP);
 								next(err);
 							}
 						});
@@ -146,7 +148,7 @@ exports = module.exports = function(req, res) {
 					if (err) {
 						next(err);
 					} else {
-						locals.data.products = getRidOfMetadata(result, true, 300, 300);
+						locals.data.products = getRidOfMetadata(result, true, 300, 300, supportWebP);
 						next(err);
 					}
 				} // Default query when products page is opened
@@ -154,7 +156,7 @@ exports = module.exports = function(req, res) {
 		} else if (!locals.data.category) {
 			q.exec(function(err, result) {
 				// getting rid of metadata with "toObject()" from mongoose
-				locals.data.products = getRidOfMetadata(result, true, 300, 300);
+				locals.data.products = getRidOfMetadata(result, true, 300, 300, supportWebP);
 				next(err);
 			});
 		}

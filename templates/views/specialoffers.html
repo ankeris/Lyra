@@ -1,5 +1,7 @@
 {% extends "layouts/default.html" %}
 {% from "mixins/sideNavigation.html" import sideNavigation %}
+{% from "mixins/intro-image-text.html" import introImageText %}
+{% from "mixins/dynamic-link.html" import dynamicLink %}
 
 {% block head %}
 	<title>{{section}}</title>
@@ -8,16 +10,29 @@
 
 {% block intro %}
     {% set title = ( data.category.name if data.category else "Specialūs pasiūlymai" ) %}
+	{% set text = ( data.category.description if data.category.description else "Lorem. Curabitur feugiat ornare tellus sed tristique. Etiam fermentum enim nisl. Morbi a condimentum elit. Phasellus tincidunt augue et lectus malesuada hendrerit. Curabitur imperdiet leo eget orci tempor sagittis. Nulla facilisi. Etiam laoreet nunc et massa cursus bibendum. Cras sit amet pretium tortor. Etiam non sapien nec arcu fermentum rutrum. Pellentesque bibendum velit tellus, et dignissim elit rhoncus id." ) %}
 	{% set img = ( data.category.CoverImage.secure_url if data.category else "/images/products-page.jpg" ) %}
-    <section class="products-intro" style="background-image: url({{img}})" data-type="parallax" data-speed="9">
-        <h3 class="products-intro--title">{{ title }}</h3>
-        <p class="products-intro--description">Lorem. Curabitur feugiat ornare tellus sed tristique. Etiam fermentum enim nisl. Morbi a condimentum elit. Phasellus tincidunt augue et lectus malesuada hendrerit. Curabitur imperdiet leo eget orci tempor sagittis. Nulla facilisi. Etiam laoreet nunc et massa cursus bibendum. Cras sit amet pretium tortor. Etiam non sapien nec arcu fermentum rutrum. Pellentesque bibendum velit tellus, et dignissim elit rhoncus id.</p>
-    </section>
+    {{introImageText(title, text, img)}}
 {% endblock %}
 
 {% block content %}
 <div class="products-wrapper content-section">
+
+<figure class="sort-bar__box push-vertical content-section">
+    {% if data.category %}
+    {{dynamicLink(
+        [{
+            name: "pasiūlymai",
+            url: "/pasiulymai/"
+        },
+        {
+            name: data.category.name,
+            url: "/pasiulymai/" + data.category.key
+        }]
+    )}}
+    {% endif %}
     {% include 'partials/sort.html' %}
+</figure>
     
     {{sideNavigation("special-offers-page", data)}}
 {# items box wrapper #}

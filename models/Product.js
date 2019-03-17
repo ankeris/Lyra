@@ -1,7 +1,6 @@
 let keystone = require('keystone');
 let Types = keystone.Field.Types;
-const redisClient = require('redis').createClient;
-const redis = redisClient(6379, '127.0.0.1');
+const {redis} = require('../redis');
 
 let Product = new keystone.List('Product', {
 	map: {

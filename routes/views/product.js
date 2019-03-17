@@ -2,7 +2,7 @@ const keystone = require('keystone');
 // redis
 const redisQueries = require('../redis-queries/redisQueries');
 const findProduct = redisQueries.findItemBySlug;
-const findCategory = redisQueries.findCategoryByKey;
+const findCategory = redisQueries.findOneByKey;
 // helpers
 const helpers = require('../helpers');
 const cropCloudlinaryImage = helpers.cropCloudlinaryImage;
@@ -34,7 +34,7 @@ exports = module.exports = function(req, res) {
 
 		let categoryQueryOptions = {
 			dbCollection: keystone.list('ProductCategory'),
-			categoryKey: locals.filters.category,
+			keyName: locals.filters.category,
 			callback: (result, err) => {
 				if (err) throw console.log(err);
 				else locals.data.category = result;

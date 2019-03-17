@@ -1,5 +1,4 @@
-const redisClient = require('redis').createClient;
-const redis = redisClient(6379, '127.0.0.1');
+const {redis} = require('../../redis');
 
 module.exports.findItemBySlug = function({dbCollection, populateBy = '', slug, callback}) {
 	redis.get(slug, function(err, reply) {
@@ -29,26 +28,26 @@ module.exports.findItemBySlug = function({dbCollection, populateBy = '', slug, c
 	});
 };
 
-module.exports.findCategoryByKey = function({dbCollection, categoryKey, populateBy = 'ChildCategoryOf', callback}) {
-	redis.get(categoryKey, function(err, reply) {
+module.exports.findOneByKey = function({dbCollection, keyName, populateBy = 'ChildCategoryOf', callback}) {
+	redis.get(keyName, function(err, reply) {
 		if (err) callback(null, err);
 		else if (reply) {
 			// category exists in cache
-			console.log('Jeg kommer fra', '\x1b[31m', 'REDIS!', '\x1b[0m');
+			console.log(`(${keyName}) Jeg kommer fra`, '\x1b[31m', 'REDIS!', '\x1b[0m');
 			callback(JSON.parse(reply));
 		} else {
 			// category doesn't exist in cache - we need to query the main database
 			console.log('category doesnt exist in cache');
 			dbCollection.model
 				.findOne({
-					key: categoryKey
+					key: keyName
 				})
 				.populate('ChildCategoryOf')
 				.exec(function(err, doc) {
 					if (err || !doc) callback(null, err);
 					else {
 						// category found in database, save to cache and return to client
-						redis.set(categoryKey, JSON.stringify(doc), function() {
+						redis.set(keyName, JSON.stringify(doc), function() {
 							callback(doc);
 						});
 					}
@@ -63,7 +62,7 @@ module.exports.homePageHighlights = function({dbCollection, populateBy, sort, ca
 		if (err) callback(null, err);
 		else if (reply) {
 			// highlights exists in cache
-			console.log('Jeg kommer fra', '\x1b[31m', 'REDIS!', '\x1b[0m');
+			console.log(`Jeg kommer fra`, '\x1b[31m', 'REDIS!', '\x1b[0m');
 			callback(JSON.parse(reply));
 		} else {
 			// highlights doesn't exist in cache - we need to query the main database
@@ -92,7 +91,7 @@ module.exports.loadAll = function({dbCollection, populateBy = '', redisKeyName, 
 		if (err) callback(null, err);
 		else if (reply) {
 			// highlights exists in cache
-			console.log('Found all in', '\x1b[31m', 'REDIS!', '\x1b[0m');
+			console.log(`Found ${redisKeyName} in`, '\x1b[31m', 'REDIS!', '\x1b[0m');
 			callback(JSON.parse(reply));
 		} else {
 			// highlights doesn't exist in cache - we need to query the main database

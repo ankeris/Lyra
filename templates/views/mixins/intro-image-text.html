@@ -1,0 +1,11 @@
+{% macro introImageText(title, text, image_url) %}
+    <figure id="slider" class="fullwidth-image" style="background-image: url({{image_url}})" data-type="background" data-speed="3"></figure>
+    <section class="content-section section-description push-vertical">
+        <div class="section-description__left">
+            <h3>{{ title }}</h3>
+        </div>
+        <div class="section-description__right">
+            <p>{{ text }}</p>
+        </div>
+    </section>
+{% endmacro %}

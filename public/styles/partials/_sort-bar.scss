@@ -1,9 +1,13 @@
 .sort-bar__box {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 	flex-basis: 100%;
 	border-bottom: 1px solid map-get($color, lightgrey);
 	order: 1;
-	text-align: right;
 	.form_box {
+		margin-left: auto;
 		.sort-bar__box--button {
 			box-sizing: border-box;
 			height: 35px;

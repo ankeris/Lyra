@@ -1,9 +1,13 @@
 var keystone = require('keystone');
 var async = require('async');
 const helpers = require('../helpers');
-const cropCloudlinaryImage = helpers.cropCloudlinaryImage;
 const getSort = helpers.getSort;
 const getRidOfMetadata = helpers.getRidOfMetadata;
+
+//redis
+const redisQueries = require('../redis-queries/redisQueries');
+const findCategory = redisQueries.findOneByKey;
+const {loadAll} = redisQueries;
 
 exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
@@ -21,27 +25,36 @@ exports = module.exports = function(req, res) {
 
 	// All manufacturers for sidenav
 	view.on('init', function(next) {
-		keystone
-			.list('ProductManufacturer')
-			.model.find()
-			.sort('name')
-			.exec(function(err, result) {
+		const loadAllCategoriesQuery = {
+			dbCollection: keystone.list('ProductManufacturer'),
+			sort: 'name',
+			redisKeyName: 'allCategories',
+			callback: (result, err) => {
 				locals.data.manufacturers = result;
-				next(err);
-			});
+				if (err || !result.length) {
+					return next(err);
+				}
+				next();
+			}
+		};
+
+		loadAll(loadAllCategoriesQuery);
 	});
 
 	view.on('init', function(next) {
-		keystone
-			.list('ProductManufacturer')
-			.model.findOne({
-				key: locals.filters.brand
-			})
-			.exec(function(err, result) {
-				locals.data.brand = result;
-				locals.data.name = result.name;
-				next(err);
-			});
+		const categoryQueryOptions = {
+			dbCollection: keystone.list('ProductManufacturer'),
+			keyName: locals.filters.brand,
+			callback: (result, err) => {
+				if (err) throw console.log(err);
+				else {
+					locals.data.brand = result;
+					locals.data.name = result.name;
+					next(err);
+				}
+			}
+		};
+		findCategory(categoryQueryOptions);
 	});
 
 	// All categories for side navigation
@@ -118,8 +131,6 @@ exports = module.exports = function(req, res) {
 			r.find({
 				Manufacturer: locals.data.brand
 			}).exec(function(err, result) {
-				console.log(result);
-
 				if (err) {
 					next(err);
 				} else {

@@ -1,7 +1,9 @@
-function cropCloudlinaryImage(img, width, height) {
+function cropCloudlinaryImage(img, width, height, useWebp) {
 	let oldUrl = img.secure_url.split('/');
 	oldUrl.splice(oldUrl.length - 2, 0, `c_limit,h_${height},w_${width}`);
-	oldUrl[oldUrl.length - 1] = oldUrl[oldUrl.length - 1].replace('.jpg', '.webp');
+	if (useWebp) {
+		oldUrl[oldUrl.length - 1] = oldUrl[oldUrl.length - 1].replace('.jpg', '.webp');
+	}
 
 	return oldUrl.join('/');
 }
@@ -22,7 +24,7 @@ function getSort(filter) {
 	}
 }
 
-function getRidOfMetadata(data, cropImages, width, height) {
+function getRidOfMetadata(data, cropImages, width, height, supportWebP) {
 	let result;
 	// Some data has products array inside 'data.results' and some in just 'data' therefore we need conditional statement
 	data.results ? (result = data.results) : (result = data);
@@ -34,7 +36,7 @@ function getRidOfMetadata(data, cropImages, width, height) {
 			// Changes the link for each picture to a fixed height and width - in order to load faster.
 			r.images.forEach(img => {
 				// change old secure_url to new (with new parameters);
-				img.secure_url = cropCloudlinaryImage(img, height, width);
+				img.secure_url = cropCloudlinaryImage(img, height, width, supportWebP);
 			});
 			if (!r.Discount) {
 				if (r.ProductType[0].discount > 0) {

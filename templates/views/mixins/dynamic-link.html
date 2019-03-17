@@ -1,0 +1,11 @@
+{% macro dynamicLink(arrOfLinks) %}
+    <div class="router-links">
+        {% for link in arrOfLinks %}
+            {% if not loop.last %}
+                <a class="link" href="{{link.url}}">{{ link.name | upper  }}</a><span> > </span>
+            {% else %}
+                <u><a class="link" href="{{link.url}}">{{ link.name | upper  }}</a></u>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endmacro %}
