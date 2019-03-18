@@ -27,6 +27,26 @@ ProductManufacturer.add({
 	},
 	CoverImage: {
 		type: Types.CloudinaryImage
+	},
+	WebsiteUrl: {
+		type: Types.Url,
+		collapse: true
+	},
+	FacebookUrl: {
+		type: Types.Url,
+		collapse: true
+	},
+	InstagramUrl: {
+		type: Types.Url,
+		collapse: true
+	},
+	YoutubeUrl: {
+		type: Types.Url,
+		collapse: true
+	},
+	PinterestUrl: {
+		type: Types.Url,
+		collapse: true
 	}
 });
 
@@ -37,8 +57,9 @@ ProductManufacturer.relationship({
 	refPath: 'Manufacturer'
 });
 
-ProductManufacturer.schema.post('save', () => {
+ProductManufacturer.schema.post('save', brand => {
 	if (redis.exists('allManufacturers')) redis.del('allManufacturers');
+	if (redis.exists(brand.key)) redis.del(brand.key);
 });
 
 ProductManufacturer.register();

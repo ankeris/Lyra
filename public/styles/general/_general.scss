@@ -7,7 +7,7 @@
 
 a {
 	text-decoration: none;
-	color: map-get($color, blue);
+	color: map-get($color, link-blue);
 	font-weight: 300;
 }
 
@@ -41,6 +41,9 @@ a {
 	&:hover {
 		color: map-get($color, link-blue);
 	}
+}
+.link--active {
+	color: map-get($color, link-blue);
 }
 
 .space-button {

@@ -52,10 +52,10 @@ footer {
 						input {
 							width: 95%;
 							height: 30px;
-							padding: 0 6px;
+							padding: 2px 8px;
 							margin: 0;
 							border: none;
-							background-color: grey;
+							background-color: map-get($color, darkgrey);
 							&::placeholder {
 								color: map-get($color, white);
 							}

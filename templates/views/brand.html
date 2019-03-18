@@ -11,7 +11,7 @@
 
 {% block intro %}
 	{% set title = ( data.brand.name if data.brand else "Produktų katalogas" ) %}
-	{% set text = ( data.brand.description if data.brand.description else "Lorem. Curabitur feugiat ornare tellus sed tristique. Etiam fermentum enim nisl. Morbi a condimentum elit. Phasellus tincidunt augue et lectus malesuada hendrerit. Curabitur imperdiet leo eget orci tempor sagittis. Nulla facilisi. Etiam laoreet nunc et massa cursus bibendum. Cras sit amet pretium tortor. Etiam non sapien nec arcu fermentum rutrum. Pellentesque bibendum velit tellus, et dignissim elit rhoncus id." ) %}
+	{% set text = ( data.brand.description | safe if data.brand.description else "Lorem. Curabitur feugiat ornare tellus sed tristique. Etiam fermentum enim nisl. Morbi a condimentum elit. Phasellus tincidunt augue et lectus malesuada hendrerit. Curabitur imperdiet leo eget orci tempor sagittis. Nulla facilisi. Etiam laoreet nunc et massa cursus bibendum. Cras sit amet pretium tortor. Etiam non sapien nec arcu fermentum rutrum. Pellentesque bibendum velit tellus, et dignissim elit rhoncus id." ) %}
 	{% set img = ( data.brand.CoverImage.secure_url if data.brand.CoverImage.secure_url else "/images/products-page.jpg" ) %}
     {{introImageText(title, text, img)}}
 {% endblock %}
