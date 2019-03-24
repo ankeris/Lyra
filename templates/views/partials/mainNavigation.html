@@ -18,11 +18,11 @@
 		    {% endfor %}
             <li class="navigation__item search-bar">
                 {{ searchIcon("#1f1f1f", "#448AA6") }}
-                <form class="navigation__search-form content-section" action="/produktai/" method="get">
-                    <input id="search-input" class="hidden" name="search" type="text" placeholder="ieškoti">
-                </form>
             </li>
 		</ul>
+        <form class="search-form form getup content-section" action="/produktai/" method="get">
+            <input id="search-input" class="form__input" name="search" type="text" placeholder="ieškoti">
+        </form>
     <figure class="main-navigation__burger">
         <div class="main-navigation__burger--stripe"></div>
         <div class="main-navigation__burger--stripe"></div>

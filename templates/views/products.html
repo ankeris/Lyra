@@ -1,7 +1,8 @@
 {% from "mixins/macros.html" import loadingSpeakers %}
 {% from "mixins/sideNavigation.html" import sideNavigation %}
-{% from "mixins/intro-image-text.html" import introImageText %}
+{% from "mixins/section-text-on-image.html" import textOnImage %}
 {% from "mixins/dynamic-link.html" import dynamicLink %}
+
 {% extends "layouts/default.html" %}
 
 {% block head %}
@@ -17,7 +18,7 @@
 	{% set title = ( data.category.name if data.category else "Produktų katalogas" ) %}
 	{% set text = ( data.category.description if data.category.description else "Lorem. Curabitur feugiat ornare tellus sed tristique. Etiam fermentum enim nisl. Morbi a condimentum elit. Phasellus tincidunt augue et lectus malesuada hendrerit. Curabitur imperdiet leo eget orci tempor sagittis. Nulla facilisi. Etiam laoreet nunc et massa cursus bibendum. Cras sit amet pretium tortor. Etiam non sapien nec arcu fermentum rutrum. Pellentesque bibendum velit tellus, et dignissim elit rhoncus id." ) %}
 	{% set img = ( data.category.CoverImage.secure_url if data.category else "/images/products-page.jpg" ) %}
-    {{introImageText(title, text, img)}}
+    {{textOnImage(title, text, img)}}
 {% endblock %}
 
 {% block content %}

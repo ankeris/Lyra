@@ -1,4 +1,5 @@
-{% from "mixins/macros.html" import instaLogo, fbLogo, checkBox, tidalLogo, spotifyLogo %}
+{% from "mixins/macros.html" import checkBox %}
+{% from 'mixins/media-icons.html' import fbLogo, instaLogo, tidalLogo, spotifyLogo %}
 
 <footer id="footer">
     <section class="content-section">
@@ -45,7 +46,7 @@
             <a href="mailto:info@lyra.lt">INFO@LYRA.LT</a></p>
         </div>
         <div class="footer__box footer__box--right">
-            <div class="media-icons">
+            <div class="media-icons content-center">
                     <a class="media-icons__icon" aria-label="facebook" rel="noreferrer" href="https://www.facebook.com/SalonasLyra/" target="_blank">
                         {{ fbLogo("#1f1f1f", "#448AA6") }}
                     </a>

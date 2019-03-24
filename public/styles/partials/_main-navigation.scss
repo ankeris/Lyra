@@ -46,28 +46,22 @@
 
 .search-bar,
 .logo-nav {
+	position: relative;
 	display: flex;
 	margin: 0;
 	padding: 0;
-	.navigation__search-form {
-		width: auto;
-		.navigation__search-form--search-input {
-			width: 110px;
-			height: 100%;
-			transition: ease 1s;
-			border: 0;
-		}
-		.hidden {
-			display: inherit !important;
-			transition: ease 1s;
-			height: 100%;
-			width: 0;
-			border: 0;
-			padding: 0;
-			opacity: 0.5;
-			box-shadow: inset 0 0 7px #000000;
-		}
-	}
+}
+
+.search-form {
+	background-color: rgba($color: map-get($color, white), $alpha: 0.85);
+	padding: 15px;
+	width: 100%;
+	margin-top: -1px;
+	transform: translateY(-150px);
+}
+
+.dropdown {
+	animation: 0.2s dropdown both alternate ease-in;
 }
 
 @media screen and (max-width: 760px) {
@@ -126,15 +120,10 @@
 	.fakenav {
 		display: none;
 	}
-	.search-bar {
-		.navigation__search-form {
-			width: 100%;
-			.navigation__search-form--search-input {
-				width: 100%;
-				height: 100%;
-				transition: ease 1s;
-				border: 0;
-			}
-		}
+	.search-form {
+		transform: translateX(-100%);
+		width: 100%;
+		height: 0;
+		padding: 0;
 	}
 }

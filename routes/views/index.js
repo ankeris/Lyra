@@ -1,10 +1,15 @@
 var keystone = require('keystone');
-const redisQueries = require('../redis-queries/redisQueries');
-const homePageHighlights = redisQueries.homePageHighlights;
+
+// redis
+const {homePageHighlights} = require('../redis-queries/redisQueries');
+
+//helpers
+const {isWebP, getRidOfMetadata} = require('../helpers');
 
 exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
+	const supportWebP = isWebP(req);
 	locals.section = 'home';
 	locals.products = [];
 
@@ -14,7 +19,7 @@ exports = module.exports = function(req, res) {
 			populateBy: 'Manufacturer ProductType',
 			sort: 'publishedDate',
 			callback: (hlts, err) => {
-				locals.products = hlts;
+				locals.products = getRidOfMetadata(hlts, true, 300, 300, supportWebP);
 				next();
 			}
 		};

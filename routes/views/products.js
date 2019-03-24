@@ -1,8 +1,6 @@
 const keystone = require('keystone');
 const async = require('async');
-const browser = require('browser-detect');
-const helpers = require('../helpers');
-const getRidOfMetadata = helpers.getRidOfMetadata;
+const {getRidOfMetadata, isWebP} = require('../helpers');
 
 // redis
 const redisQueries = require('../redis-queries/redisQueries');
@@ -12,7 +10,7 @@ const findCategory = redisQueries.findOneByKey;
 exports = module.exports = function(req, res) {
 	let view = new keystone.View(req, res);
 	let locals = res.locals;
-	const supportWebP = browser(req.headers['user-agent']).name == 'chrome';
+	const supportWebP = isWebP(req);
 
 	locals.section = 'products';
 
@@ -80,7 +78,7 @@ exports = module.exports = function(req, res) {
 
 		loadAll(loadAllManufacturersQuery);
 	});
-	// Load the products
+	// Load ALL products
 	view.on('init', function(next) {
 		let q = keystone.list('Product').paginate({
 			page: req.query.page || 1,

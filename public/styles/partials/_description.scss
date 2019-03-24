@@ -1,4 +1,4 @@
-.description-box {
+.loop-box {
 	height: 70vh;
 	background-attachment: fixed;
 	background-position: left bottom;
@@ -6,46 +6,30 @@
 	animation: animatedBackground 30s linear infinite;
 
 	color: map-get($color, white);
-	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	.description-box__title {
-		width: 500px;
-		margin: 5px;
-		display: flex;
-		flex-flow: row nowrap;
-		justify-content: space-between;
-		font-size: 4em;
-		z-index: 10;
-		div {
-			font-weight: thin;
-		}
-	}
+}
 
-	.description-box__item--text {
-		background-color: rgba(0, 0, 0, 0.7);
-		padding: 15px;
-		max-width: 500px;
-		text-align: justify;
-		overflow: visible;
-		margin: 0;
+.loop-box__title {
+	width: 500px;
+	margin: 5px;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	font-size: 4em;
+	z-index: 10;
+	div {
+		font-weight: thin;
 	}
 }
 
 @media screen and (max-width: $window-small-medium) {
-	.description-box {
+	.loop-box {
 		flex-wrap: wrap-reverse;
 		height: 80vh;
-		.description-box__title {
+		.loop-box__title {
 			max-width: 90%;
-			display: flex;
-			flex-flow: row nowrap;
-			justify-content: space-between;
-			font-size: 4em;
 		}
-
-		.description-box__item--text {
+		.loop-box__item--text {
 			max-width: 90%;
 		}
 	}

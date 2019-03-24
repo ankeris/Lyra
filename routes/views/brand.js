@@ -1,20 +1,20 @@
 var keystone = require('keystone');
 var async = require('async');
-const helpers = require('../helpers');
-const getSort = helpers.getSort;
-const getRidOfMetadata = helpers.getRidOfMetadata;
+
+//helpers
+const {getSort, getRidOfMetadata, changeFormatToWebp, isWebP, cropCloudlinaryImage} = require('../helpers');
 
 //redis
-const redisQueries = require('../redis-queries/redisQueries');
-const findCategory = redisQueries.findOneByKey;
-const {loadAll} = redisQueries;
+const {loadAll, findOneByKey} = require('../redis-queries/redisQueries');
 
 exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
+	const supportWebP = isWebP(req);
 
 	locals.data = {
 		products: [],
+		socialMedias: [],
 		sort: req.query.filterlist
 	};
 
@@ -41,20 +41,30 @@ exports = module.exports = function(req, res) {
 		loadAll(loadAllCategoriesQuery);
 	});
 
+	// Find current brand/manufacturer
 	view.on('init', function(next) {
 		const categoryQueryOptions = {
 			dbCollection: keystone.list('ProductManufacturer'),
 			keyName: locals.filters.brand,
 			callback: (result, err) => {
-				if (err) throw console.log(err);
+				if (err) throw console.error(err);
 				else {
+					if (result.CoverImage && supportWebP) {
+						const coverImage = result.CoverImage.secure_url;
+						result.CoverImage.secure_url = changeFormatToWebp(coverImage);
+					}
+					const countryFlag = result.CountryFlag || null;
+					if (countryFlag) {
+						result.CountryFlag.secure_url = cropCloudlinaryImage(countryFlag, 50, 37, supportWebP);
+					}
+					locals.data.socialMedias = [...socialMediasArr(result)];
 					locals.data.brand = result;
 					locals.data.name = result.name;
 					next(err);
 				}
 			}
 		};
-		findCategory(categoryQueryOptions);
+		findOneByKey(categoryQueryOptions);
 	});
 
 	// All categories for side navigation
@@ -100,24 +110,6 @@ exports = module.exports = function(req, res) {
 			});
 	});
 
-	// Load the current category Object
-	view.on('init', function(next) {
-		if (req.params.category) {
-			keystone
-				.list('ProductCategory')
-				.model.findOne({
-					key: locals.filters.category
-				})
-				.populate('ChildCategoryOf')
-				.exec(function(err, result) {
-					locals.data.category = result;
-					next(err);
-				});
-		} else {
-			next();
-		}
-	});
-
 	// Load products
 	view.on('init', function(next) {
 		let r = keystone.list('Product').paginate({
@@ -134,7 +126,7 @@ exports = module.exports = function(req, res) {
 				if (err) {
 					next(err);
 				} else {
-					locals.data.products = getRidOfMetadata(result, true, 300, 300);
+					locals.data.products = getRidOfMetadata(result, true, 300, 300, supportWebP);
 					next(err);
 				}
 			});
@@ -179,3 +171,19 @@ exports = module.exports = function(req, res) {
 	// Render the view
 	view.render('brand');
 };
+
+function socialMediasArr(result) {
+	const arr = [];
+	pushIf('website', result.WebsiteUrl);
+	pushIf('facebook', result.FacebookUrl);
+	pushIf('instagram', result.InstagramUrl);
+	pushIf('youtube', result.YoutubeUrl);
+	pushIf('pinterest', result.PinterestUrl);
+
+	function pushIf(key, val) {
+		if (val) {
+			arr.push({name: key, url: val});
+		}
+	}
+	return arr;
+}

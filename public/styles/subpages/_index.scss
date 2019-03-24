@@ -1,40 +1,38 @@
-#manifesto {
-	position: relative;
-	/* The image used */
+.manifesto {
 	background-color: map-get($color, darkgrey);
-	/* Set a specific height */
 	min-height: 95vh;
 	/* Create the parallax scrolling effect */
-	// background-attachment: fixed;
 	background-image: url('/images/newmanifesto.jpg');
 	background-size: cover;
-    background-position: center;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-	.message {
-        max-width: 750px;
-        word-spacing: 0.1em;
-        padding: 2%;
-		text-align: center;
-		background-color: rgba(0, 0, 0, 0.7);
-		font-weight: thin;
-		font-size: 4em;
-		line-height: 1em;
-		color: map-get($color, white);
-		// border: 5px solid white;
-		margin: 0;
-	}
+	background-position: center;
+}
+
+.message--huge {
+	max-width: 750px;
+	word-spacing: 0.1em;
+	font-weight: thin;
+	font-size: 4em;
+	text-align: center !important;
+	max-width: $window-medium !important;
+	padding: 2% !important;
+	line-height: 1em;
+}
+
+.message__square {
+	text-align: justify;
+	max-width: $window-small-medium;
+	color: map-get($color, white);
+	background-color: rgba(0, 0, 0, 0.7);
+	padding: 1%;
 }
 
 @media screen and (max-width: 700px) {
-    #manifesto {
-        min-height: 65vh;
+	#manifesto {
+		min-height: 65vh;
 		.message {
-            max-width: 90%;
-            font-size: 2em;
-            line-height: 1.5em;
+			max-width: 90%;
+			font-size: 2em;
+			line-height: 1.5em;
 		}
 	}
 }

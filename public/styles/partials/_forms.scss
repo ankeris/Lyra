@@ -1,27 +1,25 @@
-.contact-form {
+.form {
 	display: flex;
 	flex-wrap: wrap; // flex-direction: column;
 	justify-content: space-between;
-	.contact-form__leftbox {
+	.form__leftbox {
 		flex-basis: 49%;
 		display: flex;
 		flex-direction: column;
-		.contact-form__leftbox--input {
-			padding: 10px;
-			border: 1px solid map-get($color, darkgrey); // border-radius: 8px;
-		}
-		.middle {
-			margin: 20px 0;
-		}
 	}
-	.contact-form__rightbox {
+	.form__rightbox {
 		display: flex;
 		flex-basis: 49%;
-		.contact-form__rightbox--textarea {
-			flex-basis: 100%;
-			padding: 10px;
-			border: 1px solid map-get($color, darkgrey);
-		}
+	}
+	.form__textarea {
+		flex-basis: 100%;
+		padding: 10px;
+		border: 1px solid map-get($color, darkgrey);
+	}
+	.form__input {
+		flex-basis: 100%;
+		padding: 10px;
+		border: 1px solid map-get($color, darkgrey); // border-radius: 8px;
 	}
 	.confirm-button {
 		margin: 20px auto;

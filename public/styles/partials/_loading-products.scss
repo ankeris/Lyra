@@ -3,49 +3,42 @@
 	opacity: 0;
 	text-align: center;
 	animation: getBigger 0.5s ease-in 1 forwards;
-	#mids-inner, #mids-inner-2, #mids-inner-3 {
+	#mids-inner,
+	#mids-inner-2,
+	#mids-inner-3 {
 		path {
-			stroke:#1f1f1f;
-			stroke-miterlimit:10;
-			stroke-width:0px;
+			stroke: #1f1f1f;
+			stroke-miterlimit: 10;
+			stroke-width: 0px;
 		}
 	}
 	#mids-inner path {
-		animation: subwoofer 1s linear .3s infinite;
+		animation: subwoofer 1s linear 0.3s infinite;
 	}
 	#mids-inner-2 path {
-		animation: subwoofer 1s linear .2s infinite;
+		animation: subwoofer 1s linear 0.2s infinite;
 	}
 	#mids-inner-3 path {
-		animation: subwoofer 1s linear .1s infinite;
+		animation: subwoofer 1s linear 0.1s infinite;
 	}
 }
 
 @keyframes subwoofer {
 	0% {
-		stroke-width:0px;
+		stroke-width: 0px;
 	}
-	40%{
-		stroke-width:1px;
+	40% {
+		stroke-width: 1px;
 	}
-	60%{
-		stroke-width:7px;
+	60% {
+		stroke-width: 7px;
 	}
-	70%{
-		stroke-width:1px;
+	70% {
+		stroke-width: 1px;
 	}
 	100% {
-		stroke-width:0px;
+		stroke-width: 0px;
 	}
-}
-
-.canvas {
-	margin: 0px auto;
-	animation: getBigger 0.5s ease-in 1 forwards;
-	align-items: center;
-	display: flex;
-	justify-content: center;
-	width: 10em;
 }
 
 /* Spinner 6 starts here */
@@ -54,20 +47,20 @@
 	background: map-get($color, darkgrey);
 	border-radius: 30%;
 	height: 1em;
-	margin: .2em;
+	margin: 0.2em;
 	width: 1em;
 }
 
 .p1 {
-	animation: fall 1s linear .3s infinite;
+	animation: fall 1s linear 0.3s infinite;
 }
 
 .p2 {
-	animation: fall 1s linear .2s infinite;
+	animation: fall 1s linear 0.2s infinite;
 }
 
 .p3 {
-	animation: fall 1s linear .1s infinite;
+	animation: fall 1s linear 0.1s infinite;
 }
 
 .p4 {

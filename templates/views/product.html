@@ -44,7 +44,7 @@
         data-images="{{data.productImages | dump}}" data-current-image="{{product.images[0].secure_url}}"></div>
         {# Extra image collection #}
 
-        <figure class="items-box__item-images">
+        <figure class="items-box__item-images content-center">
         {% for image in product.images %}
             <img class="items-box__item-images--item" src="{{image.secure_url}}" alt="">
         {% endfor %}
@@ -57,7 +57,7 @@
         <div class="description__top">
             
             <div class="description__top--logo description-item">
-                <a href="/prekiu-zenklai/{{product.Manufacturer.key}}">
+                <a title="{{product.Manufacturer.name}}" aria-label="{{product.Manufacturer.name}}" href="/prekiu-zenklai/{{product.Manufacturer.key}}">
                 <img src="{{product.Manufacturer.Logo.secure_url}}" alt="">
                 </a>
             </div>
@@ -92,7 +92,7 @@
             <p>Dėl šio produkto galime Jus pakonsultuoti <a href="tel:+37052623596"> (+370 5) 262 35 96</a>
             arba mūsų <a href="/kontaktai/">Kęstučio g. 26, Vilnius</a> arba <a href="mailto:info@lyra.lt">INFO@LYRA.LT</a></p>
             </div>
-            <div class="media-icons">
+            <div class="media-icons content-center">
                 <a class="media-icons__icon" aria-label="facebook" rel="noreferrer" href="https://www.facebook.com/SalonasLyra/" target="_blank">
                     {{ messengerLogo("#1f1f1f", "#448AA6", "30px", "30px") }}
                 </a>

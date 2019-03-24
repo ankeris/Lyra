@@ -3,7 +3,7 @@
 		opacity: 1;
 	}
 }
-@keyframes fadeOut{
+@keyframes fadeOut {
 	to {
 		opacity: 0;
 	}
@@ -11,16 +11,15 @@
 @keyframes animatedBackground {
 	0% {
 		// background-position: 0px 0;
-	background-position: left;
-
+		background-position: left;
 	}
-	  50% {
+	50% {
 		// background-position: 1600px 0;
 		background-position: right;
 	}
 	100% {
 		// background-position: 0px 0;
-	background-position: left;
+		background-position: left;
 	}
 }
 
@@ -50,14 +49,24 @@
 	}
 }
 
+@keyframes dropdown {
+	from {
+		transform: translateY(-50px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		transform: translateX(0);
+		opacity: 1;
+		height: auto;
+	}
+}
+
 /* Spinner 6 ends here */
 
 @media (max-width: 600px) {
 	.container {
 		align-items: center;
 		flex-direction: column;
-	}
-	.canvas {
-		margin: 1em;
 	}
 }

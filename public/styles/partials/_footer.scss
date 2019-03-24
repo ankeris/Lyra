@@ -78,11 +78,7 @@ footer {
 	}
 }
 .media-icons {
-	display: flex;
 	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	margin: 20px;
 	.media-icons__icon {
 		margin: 4px 7px;
 		&:hover {

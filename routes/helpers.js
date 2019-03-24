@@ -1,12 +1,17 @@
-function cropCloudlinaryImage(img, width, height, useWebp) {
-	let oldUrl = img.secure_url.split('/');
-	oldUrl.splice(oldUrl.length - 2, 0, `c_limit,h_${height},w_${width}`);
-	if (useWebp) {
-		oldUrl[oldUrl.length - 1] = oldUrl[oldUrl.length - 1].replace('.jpg', '.webp').replace('.png', '.webp');
-	}
+const browserDetect = require('browser-detect');
 
-	return oldUrl.join('/');
+function cropCloudlinaryImage(img, width, height, useWebp) {
+	let oldUrl = img.secure_url;
+	if (useWebp) {
+		oldUrl = changeFormatToWebp(oldUrl);
+	}
+	const splitUrl = oldUrl.split('/');
+	splitUrl.splice(splitUrl.length - 2, 0, `c_limit,h_${height},w_${width}`);
+
+	return splitUrl.join('/');
 }
+
+const changeFormatToWebp = url => url.substr(0, url.lastIndexOf('.')) + '.webp';
 
 function setDiscountedPrice(discount, currentPrice) {
 	return Math.round(currentPrice - (currentPrice / 100) * discount);
@@ -45,14 +50,37 @@ function getRidOfMetadata(data, cropImages, width, height, supportWebP) {
 				}
 			}
 		}
-		filteredResult.push(r.toObject());
+		filteredResult.push(r);
 	});
 	return filteredResult;
+}
+
+function isWebP(request) {
+	const browser = browserDetect(request.headers['user-agent']);
+	const browserName = browser.name;
+	const browserVersion = browser.versionNumber;
+
+	switch (browserName) {
+		case 'chrome':
+			return browserVersion >= 32;
+		case 'firefox':
+			return browserVersion >= 65;
+		case 'opera':
+			return browserVersion >= 19;
+		case 'edge':
+			return browserVersion >= 18;
+		case 'android':
+			return browserVersion >= 4;
+		default:
+			return false;
+	}
 }
 
 module.exports = {
 	cropCloudlinaryImage,
 	setDiscountedPrice,
 	getSort,
-	getRidOfMetadata
+	getRidOfMetadata,
+	isWebP,
+	changeFormatToWebp
 };

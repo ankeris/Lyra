@@ -14,7 +14,8 @@
 		overflow-y: scroll;
 		max-height: 85vh;
 		margin-right: 13%;
-		&::-webkit-scrollbar, ::-webkit-resizer {
+		&::-webkit-scrollbar,
+		::-webkit-resizer {
 			width: 0;
 			height: 0;
 		}
@@ -89,30 +90,24 @@
 				display: block;
 				margin: 0 auto;
 				&:hover {
-					text-shadow:
-					-.3px -.3px 0 map-get($color, darkgrey),
-					.3px -.3px 0 map-get($color, darkgrey),
-					-.3px .3px 0 map-get($color, darkgrey),
-					.3px .3px 0 map-get($color, darkgrey);
-					-webkit-transition: all .5s;
-					-moz-transition: all .5s;
-					-o-transition: all .5s;
-					transition: all ease .5s;
+					text-shadow: -0.3px -0.3px 0 map-get($color, darkgrey), 0.3px -0.3px 0 map-get($color, darkgrey), -0.3px 0.3px 0 map-get($color, darkgrey),
+						0.3px 0.3px 0 map-get($color, darkgrey);
+					-webkit-transition: all 0.5s;
+					-moz-transition: all 0.5s;
+					-o-transition: all 0.5s;
+					transition: all ease 0.5s;
 					cursor: pointer;
 				}
 			}
 		}
 	}
 	.active {
-		text-shadow:
-		-.3px -.3px 0 map-get($color, darkgrey),
-		.3px -.3px 0 map-get($color, darkgrey),
-		-.3px .3px 0 map-get($color, darkgrey),
-		.3px .3px 0 map-get($color, darkgrey);
-		-webkit-transition: all .5s;
-		-moz-transition: all .5s;
-		-o-transition: all .5s;
-		transition: all ease .5s;
+		text-shadow: -0.3px -0.3px 0 map-get($color, darkgrey), 0.3px -0.3px 0 map-get($color, darkgrey), -0.3px 0.3px 0 map-get($color, darkgrey),
+			0.3px 0.3px 0 map-get($color, darkgrey);
+		-webkit-transition: all 0.5s;
+		-moz-transition: all 0.5s;
+		-o-transition: all 0.5s;
+		transition: all ease 0.5s;
 	}
 }
 
@@ -127,7 +122,8 @@
 			flex-flow: column;
 			max-height: unset;
 			margin-right: 0;
-			.navigation-dropdown, #manufacturers-dropdown {
+			.navigation-dropdown,
+			#manufacturers-dropdown {
 				padding-left: 10px;
 			}
 			.side-nav__list-box--item {
@@ -149,10 +145,7 @@
 		width: 80%;
 		margin: 0 auto;
 		cursor: pointer;
-		display: flex;
 		flex-direction: row;
-		align-items: center;
-		justify-content: center;
 		padding: 11px;
 		margin-top: 50px;
 		&:hover {

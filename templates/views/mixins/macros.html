@@ -13,6 +13,29 @@
     </svg>
 {% endmacro %}
 
+{% macro messengerLogo(colorName, colorHover, width, height) %}
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1024 1024" style="enable-background:new 0 0 1024 1024;" xml:space="preserve" width="{{width}}" height="{{height}}">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:url(#Bubble_Solid_1_);}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+</style>
+<title>messenger</title>
+<g id="Messenger_4_">
+	<linearGradient id="Bubble_Solid_1_" gradientUnits="userSpaceOnUse" x1="512" y1="11.5" x2="512" y2="1005.4999">
+		<stop  offset="0" style="stop-color:{{colorName}}"/>
+		<stop  offset="1" style="stop-color:{{colorName}}"/>
+	</linearGradient>
+	<path id="Bubble_Solid_3_" class="st0" d="M512,11.5c-280,0-497,205.1-497,482.1c0,144.9,59.4,270.1,156.1,356.6
+		c8.1,7.3,13,17.4,13.4,28.3l2.7,88.4c0.9,28.2,30,46.5,55.8,35.2l98.6-43.5c8.4-3.7,17.7-4.4,26.5-2
+		c45.3,12.5,93.6,19.1,143.9,19.1c280,0,497-205.1,497-482.1S792,11.5,512,11.5z"/>
+	<path id="Bolt_4_" class="st1" d="M213.6,634.6l146-231.6c23.2-36.8,73-46,107.8-19.9l116.1,87.1c10.7,8,25.3,7.9,35.9-0.1
+		l156.8-119c20.9-15.9,48.3,9.2,34.2,31.4L664.5,614c-23.2,36.8-73,46-107.8,19.9l-116.1-87.1c-10.7-8-25.3-7.9-35.9,0.1L247.8,666
+		C226.9,681.9,199.5,656.8,213.6,634.6z"/>
+</g>
+</svg>
+{% endmacro %}
+
 {% macro searchIcon(colorName, colorHover, className) %}
     <svg class="searchIcon" width="15.000000pt" height="15.000000pt" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2374.6 2359.97">
     <defs>
@@ -27,6 +50,20 @@
     <path class="shape1" d="M2349.71,2252.65l-658.38-658.38c143.82-166.16,230.84-382.84,230.84-619.84,0-523.33-424.24-947.57-947.57-947.57C451.68,26.85,27,451.51,27,974.42,27,1497.75,451.26,1922,974.59,1922c244.41,0,467.21-92.55,635.27-244.5l657.36,657.36a37.06,37.06,0,0,0,52.41,0l30.08-30.08A36.85,36.85,0,0,0,2349.71,2252.65ZM119.56,974.42c0-472.22,382.81-855,855-855s855,382.81,855,855-382.81,855-855,855S119.56,1446.64,119.56,974.42Z" transform="translate(-6.46 -6.29)"/></svg>
 {% endmacro %}
 
+{% macro emailIcon(colorName, colorHover, width, height) %}
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	  width="{{width}}" height="{{height}}" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve">
+<g>
+    <title>email</title>
+	<path d="M306.768,346.814h0.131c4.615,0,9.176-1.339,12.866-3.777l1.001-0.643c0.218-0.142,0.446-0.271,0.675-0.424l11.658-9.645
+		l278.259-229.624c-0.576-0.795-1.557-1.339-2.602-1.339H3.233c-0.751,0-1.448,0.272-2.003,0.729l291.125,239.954
+		C296.024,345.083,301.259,346.814,306.768,346.814z M0,133.899v340.37l208.55-168.471L0,133.899z M403.668,306.941L612,474.356
+		V135.031L403.668,306.941z M337.431,361.585c-8.305,6.814-19.168,10.57-30.576,10.57c-11.451,0-22.304-3.734-30.587-10.516
+		l-47.765-39.394L0,506.806v0.587c0,1.753,1.502,3.244,3.276,3.244h605.491c1.741,0,3.232-1.491,3.232-3.255v-0.544L383.693,323.4
+		L337.431,361.585z"/>
+</g>
+</svg>
+{% endmacro %}
 
 {% macro logo(colorName, colorHover) %}
     <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 618.31 438.31" width="27pt">
@@ -96,96 +133,4 @@
     <path class="speakers-cls-1" d="M173.48,46.84a17,17,0,1,0,17,17A17,17,0,0,0,173.48,46.84Zm0,32.73a15.72,15.72,0,1,1,15.72-15.72A15.72,15.72,0,0,1,173.48,79.57Z" transform="translate(0 -9.68)"/></g>
     <circle id="highs-3" data-name="highs" class="speakers-cls-2" cx="173.48" cy="15.73" r="6.72"/></g></svg>
 </div>
-{% endmacro %}
-
-{# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =  #}
-{# = = = = = = = = = = = = = = = = = = = = = = L O G O ' S = = = = = = = = = = = = = = = = = = = = = = =  #}
-{# = = = = = = = = = = = = = = = = = = = = = = L O G O ' S = = = = = = = = = = = = = = = = = = = = = = =  #}
-{# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =  #}
-{% macro instaLogo(colorName, colorHover) %}
-<svg class="insta-logo-svg" width="44px" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9.36 9.36">
-<defs>
-<style>.instagram-cls-1{fill:#1f1f1f;} </style>
-</defs>
-<title>instagram</title>
-<path class="insta-logo-svg-path" d="M0,2.8V6.56a2.8,2.8,0,0,0,2.8,2.8H6.56a2.8,2.8,0,0,0,2.8-2.8V2.8A2.8,2.8,0,0,0,6.56,0H2.8A2.8,2.8,0,0,0,0,2.8ZM6.54,8.54H2.75a2,2,0,0,1-2-2V2.75a2,2,0,0,1,2-2H6.54a2,2,0,0,1,2,2V6.54A2,2,0,0,1,6.54,8.54Z" transform="translate(0 0)"/><path class="instagram-cls-1" d="M4.68,2.31A2.37,2.37,0,1,0,7.05,4.68,2.37,2.37,0,0,0,4.68,2.31Zm0,4A1.64,1.64,0,1,1,6.32,4.68,1.64,1.64,0,0,1,4.68,6.32Z" transform="translate(0 0)"/><circle class="instagram-cls-1" cx="7.21" cy="2.24" r="0.5"/></svg>
-{% endmacro %}
-
-{% macro fbLogo(colorName, colorHover) %}
-    <svg id="fblogo"xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="44px" viewBox="0 0 266.893 266.895" enable-background="new 0 0 266.893 266.895" xml:space="preserve">
-    <defs><style></style></defs>
-    <title>facebook</title>
-    <path id="Blue_1_" fill="#1f1f1f" d="M248.082,262.307c7.854,0,14.223-6.369,14.223-14.225V18.812  c0-7.857-6.368-14.224-14.223-14.224H18.812c-7.857,0-14.224,6.367-14.224,14.224v229.27c0,7.855,6.366,14.225,14.224,14.225  H248.082z"/>
-    <path id="f" fill="#FFFFFF" d="M182.409,262.307v-99.803h33.499l5.016-38.895h-38.515V98.777c0-11.261,3.127-18.935,19.275-18.935  l20.596-0.009V45.045c-3.562-0.474-15.788-1.533-30.012-1.533c-29.695,0-50.025,18.126-50.025,51.413v28.684h-33.585v38.895h33.585  v99.803H182.409z"/>
-    </svg>
-{% endmacro %}
-
-{% macro tidalLogo(colorName, colorHover) %}
-<svg id="tidal" xmlns="http://www.w3.org/2000/svg" width="44px" viewBox="0 0 200 200">
-<defs><style>.tidal-cls-1{fill:#fff;}.tidal-cls-2{fill:#1f1f1f;}</style></defs>
-<title>tidal</title>
-<rect class="tidal-cls-1" width="200" height="200"/>
-<rect class="tidal-cls-2" x="14.6" y="56.54" width="44.87" height="44.87" transform="translate(-45 49.31) rotate(-45)"/>
-<rect class="tidal-cls-2" x="77.57" y="56.54" width="44.87" height="44.87" transform="translate(-26.55 93.84) rotate(-45)"/>
-<rect class="tidal-cls-2" x="140.54" y="56.54" width="44.87" height="44.87" transform="translate(-8.11 138.37) rotate(-45)"/>
-<rect class="tidal-cls-2" x="77.57" y="120.21" width="44.87" height="44.87" transform="translate(-71.57 112.49) rotate(-45)"/>
-</svg>
-{% endmacro %}
-
-
-{% macro spotifyLogo(colorName, colorHover) %}
-<svg id="sptf" data-name="Layer 1" width="44px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 99.77 99.21"><defs>
-<style>.spotify-cls-1{fill:none;}.spotify-cls-2{clip-path:url(#clip-path);}.spotify-cls-3{clip-path:url(#clip-path-2);}.spotify-cls-4{fill:#fff;}</style>
-    <clipPath id="clip-path" transform="translate(-0.22 -0.54)">
-    <polyline class="spotify-cls-1" points="87.84 0.54 0.27 0.54 0.27 99.47 87.84 99.47 99.73 99.47 99.73 0.54 87.84 0.54"/></clipPath>
-    <clipPath id="clip-path-2" transform="translate(-0.22 -0.54)">
-    <polyline class="spotify-cls-1" points="99.73 0.54 87.84 0.54 0.27 0.54 0.27 99.47 99.73 99.47 99.73 0.54"/></clipPath></defs>
-    <title>spotify</title>
-    <g id="spotify"><g class="spotify-cls-2"><g class="spotify-cls-3">
-        <path class="spotify-cls-4" d="M.22,99.74V.54H100V99.74Zm50-98.34A48.77,48.77,0,1,0,99,50.38,48.73,48.73,0,0,0,50.19,1.41Z" transform="translate(-0.22 -0.54)"/>
-        <path d="M50.19,1.41A48.77,48.77,0,1,1,1.43,50.18,48.7,48.7,0,0,1,50.19,1.41Zm-7,25.93c-1.58,0-3.16-.05-4.74,0A77.27,77.27,0,0,0,21.2,29.88a11.64,11.64,0,0,0-2.3.79,4.51,4.51,0,0,0-2,5.69A4.65,4.65,0,0,0,22.3,39c3.14-.73,6.29-1.52,9.48-2a84.48,84.48,0,0,1,21.16-.21c9.26,1,18.17,3.17,26.32,7.88a4.17,4.17,0,0,0,4.68-.28,4.51,4.51,0,0,0-.26-7.62,53.07,53.07,0,0,0-9.45-4.45A89.17,89.17,0,0,0,43.16,27.33ZM42.06,44c-.91,0-1.82,0-2.72,0a66.5,66.5,0,0,0-16.55,2.64A3.82,3.82,0,0,0,20,51.47a3.89,3.89,0,0,0,5,2.5c2.59-.65,5.19-1.29,7.83-1.69A64.25,64.25,0,0,1,52,52.37a57,57,0,0,1,21.22,7.29,3.78,3.78,0,1,0,3.87-6.48c-1.67-1-3.35-1.92-5.09-2.74A70.22,70.22,0,0,0,42.06,44Zm.18,15.86a79.66,79.66,0,0,0-18,2.25,3.73,3.73,0,0,0-1.74,1.06,2.85,2.85,0,0,0-.26,3.44A3.07,3.07,0,0,0,25.81,68,71.78,71.78,0,0,1,47.7,66.19a46.76,46.76,0,0,1,20.51,6.44,3,3,0,0,0,4.33-.9,3,3,0,0,0-1.24-4.28c-1.45-.84-2.91-1.66-4.42-2.38A56,56,0,0,0,42.23,59.91Z" transform="translate(-0.22 -0.54)"/>
-        <path class="spotify-cls-4" d="M43.16,27.33a89.17,89.17,0,0,1,31.08,5,53.07,53.07,0,0,1,9.45,4.45,4.51,4.51,0,0,1,.26,7.62,4.17,4.17,0,0,1-4.68.28C71.11,40,62.2,37.86,52.94,36.85a84.48,84.48,0,0,0-21.16.21c-3.19.45-6.33,1.24-9.48,2a4.65,4.65,0,0,1-5.45-2.67,4.51,4.51,0,0,1,2-5.69,11.64,11.64,0,0,1,2.3-.79,77.27,77.27,0,0,1,17.22-2.53C40,27.28,41.58,27.33,43.16,27.33Z" transform="translate(-0.22 -0.54)"/>
-        <path class="spotify-cls-4" d="M42.06,44a70.22,70.22,0,0,1,30,6.39c1.74.82,3.43,1.77,5.09,2.74a3.78,3.78,0,1,1-3.87,6.48A57,57,0,0,0,52,52.37a64.25,64.25,0,0,0-19.26-.09c-2.63.4-5.24,1-7.83,1.69a3.89,3.89,0,0,1-5-2.5,3.82,3.82,0,0,1,2.82-4.78,66.5,66.5,0,0,1,16.55-2.64C40.24,44,41.15,44,42.06,44Z" transform="translate(-0.22 -0.54)"/>
-        <path class="spotify-cls-4" d="M42.23,59.91a56,56,0,0,1,24.65,5.17c1.51.72,3,1.54,4.42,2.38a3,3,0,0,1,1.24,4.28,3,3,0,0,1-4.33.9A46.76,46.76,0,0,0,47.7,66.19,71.78,71.78,0,0,0,25.81,68a3.07,3.07,0,0,1-3.52-1.33,2.85,2.85,0,0,1,.26-3.44,3.73,3.73,0,0,1,1.74-1.06A79.66,79.66,0,0,1,42.23,59.91Z" transform="translate(-0.22 -0.54)"/>
-    </g></g></g>
-</svg>
-{% endmacro %}
-
-
-{% macro messengerLogo(colorName, colorHover, width, height) %}
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 1024 1024" style="enable-background:new 0 0 1024 1024;" xml:space="preserve" width="{{width}}" height="{{height}}">
-<style type="text/css">
-	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:url(#Bubble_Solid_1_);}
-	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
-</style>
-<title>messenger</title>
-<g id="Messenger_4_">
-	<linearGradient id="Bubble_Solid_1_" gradientUnits="userSpaceOnUse" x1="512" y1="11.5" x2="512" y2="1005.4999">
-		<stop  offset="0" style="stop-color:{{colorName}}"/>
-		<stop  offset="1" style="stop-color:{{colorName}}"/>
-	</linearGradient>
-	<path id="Bubble_Solid_3_" class="st0" d="M512,11.5c-280,0-497,205.1-497,482.1c0,144.9,59.4,270.1,156.1,356.6
-		c8.1,7.3,13,17.4,13.4,28.3l2.7,88.4c0.9,28.2,30,46.5,55.8,35.2l98.6-43.5c8.4-3.7,17.7-4.4,26.5-2
-		c45.3,12.5,93.6,19.1,143.9,19.1c280,0,497-205.1,497-482.1S792,11.5,512,11.5z"/>
-	<path id="Bolt_4_" class="st1" d="M213.6,634.6l146-231.6c23.2-36.8,73-46,107.8-19.9l116.1,87.1c10.7,8,25.3,7.9,35.9-0.1
-		l156.8-119c20.9-15.9,48.3,9.2,34.2,31.4L664.5,614c-23.2,36.8-73,46-107.8,19.9l-116.1-87.1c-10.7-8-25.3-7.9-35.9,0.1L247.8,666
-		C226.9,681.9,199.5,656.8,213.6,634.6z"/>
-</g>
-</svg>
-{% endmacro %}
-
-{% macro emailIcon(colorName, colorHover, width, height) %}
-<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	  width="{{width}}" height="{{height}}" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve">
-<g>
-    <title>email</title>
-	<path d="M306.768,346.814h0.131c4.615,0,9.176-1.339,12.866-3.777l1.001-0.643c0.218-0.142,0.446-0.271,0.675-0.424l11.658-9.645
-		l278.259-229.624c-0.576-0.795-1.557-1.339-2.602-1.339H3.233c-0.751,0-1.448,0.272-2.003,0.729l291.125,239.954
-		C296.024,345.083,301.259,346.814,306.768,346.814z M0,133.899v340.37l208.55-168.471L0,133.899z M403.668,306.941L612,474.356
-		V135.031L403.668,306.941z M337.431,361.585c-8.305,6.814-19.168,10.57-30.576,10.57c-11.451,0-22.304-3.734-30.587-10.516
-		l-47.765-39.394L0,506.806v0.587c0,1.753,1.502,3.244,3.276,3.244h605.491c1.741,0,3.232-1.491,3.232-3.255v-0.544L383.693,323.4
-		L337.431,361.585z"/>
-</g>
-</svg>
 {% endmacro %}

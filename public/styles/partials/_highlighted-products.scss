@@ -1,7 +1,4 @@
 .highlighted-products {
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	flex-wrap: wrap;
 	.items-box__item {
 		text-align: center;
@@ -27,11 +24,9 @@
 
 @media screen and (max-width: 700px) {
 	.highlighted-products {
-		justify-content: center;
 		.items-box__item {
 			.items-box__item--main-image {
 				height: 200px;
-				overflow: auto;
 			}
 		}
 	}

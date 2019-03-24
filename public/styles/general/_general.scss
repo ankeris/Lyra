@@ -11,6 +11,14 @@ a {
 	font-weight: 300;
 }
 
+.content-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+p {
+	margin: 0;
+}
 .title {
 	text-align: center;
 }
@@ -27,6 +35,13 @@ a {
 	margin: 50px auto;
 }
 
+.push-vertical--small {
+	margin: 15px 0;
+}
+
+.push-horizontal--small {
+	margin: 0 15px;
+}
 .center {
 	text-align: center;
 }

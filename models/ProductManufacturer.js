@@ -19,6 +19,12 @@ ProductManufacturer.add({
 		type: Types.Html,
 		wysiwyg: true
 	},
+	CountryName: {
+		type: String
+	},
+	CountryFlag: {
+		type: Types.CloudinaryImage
+	},
 	Logo: {
 		type: Types.CloudinaryImage
 	},
