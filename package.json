@@ -29,7 +29,8 @@
     "normalize.css": "^8.0.0",
     "photoswipe": "^4.1.2",
     "redis": "^2.8.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "vanilla-lazyload": "^11.0.6"
   },
   "scripts": {
     "dev": "npm-run-all -p -r webpack backend",

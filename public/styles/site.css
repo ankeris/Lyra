@@ -1140,7 +1140,6 @@ footer {
   background-color: #1f1f1f;
   min-height: 95vh;
   /* Create the parallax scrolling effect */
-  background-image: url("/images/newmanifesto.jpg");
   background-size: cover;
   background-position: center; }
 

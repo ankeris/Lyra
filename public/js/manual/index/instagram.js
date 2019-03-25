@@ -1,96 +1,90 @@
 const Instafeed = require('instafeed.js');
-let $ = require('jquery');
-let slick = require('slick-carousel');
+const $ = require('jquery');
+const slick = require('slick-carousel');
+import {lazyLoadInstance} from '../global/lazyload';
 
 const userFeed = new Instafeed({
-    get: 'user',
-    userId: '7012478136',
-    limit: 10,
-    resolution: 'standard_resolution',
-    accessToken: '7012478136.1677ed0.5376c43243c642f2af5fe2b9d6712770',
-    sortBy: 'most-recent',
-    template: `
+	get: 'user',
+	userId: '7012478136',
+	limit: 10,
+	resolution: 'standard_resolution',
+	accessToken: '7012478136.1677ed0.5376c43243c642f2af5fe2b9d6712770',
+	sortBy: 'most-recent',
+	template: `
     <div class="items-box__instagram-item">
         <a href="{{link}}" rel="noreferrer" target="_blank" aria-label="{{likes}} likes">
-            <div class="items-box__item--main-image" style="background-image: url('{{image}}')">
+            <div class="items-box__item--main-image lazy" data-bg="url('{{image}}')">
                 <div class="items-box__item--text">{{caption}}</div>
             </div>
         </a>
-    </div>`
-})
+    </div>`,
+	after: () => {
+		checkContainer();
+		lazyLoadInstance.update();
+	}
+});
 
 userFeed.run();
 
-$(document).ready(checkContainer);
+function checkContainer() {
+	$('#instafeed').slick({
+		infinite: true,
+		autoplay: false,
+		slidesToShow: 6,
+		speed: 200,
+		slidesToScroll: 2,
+		lazyLoad: 'ondemand',
+		prevArrow: '<button type="button" class="slick-prev" aria-label="slide previous"></button>',
+		nextArrow: '<button type="button" class="slick-next" aria-label="slide next"></button>',
+		responsive: [
+			{
+				breakpoint: 2000,
+				settings: {
+					slidesToShow: 6,
+					slidesToScroll: 1,
+					infinite: true
+				}
+			},
+			{
+				breakpoint: 1400,
+				settings: {
+					slidesToShow: 5,
+					slidesToScroll: 1,
+					infinite: true
+				}
+			},
+			{
+				breakpoint: 1200,
+				settings: {
+					slidesToShow: 4,
+					slidesToScroll: 1,
+					infinite: true
+				}
+			},
+			{
+				breakpoint: 940,
+				settings: {
+					slidesToShow: 3,
+					slidesToScroll: 1,
+					infinite: true
+				}
+			},
+			{
+				breakpoint: 700,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 1,
+					infinite: true
+				}
+			}
+		]
+	});
 
-function checkContainer () {
-    if($('.items-box__instagram-item').is(':visible')) {
-        $('#instafeed').slick({
-            infinite: true,
-            autoplay: false,
-            slidesToShow: 6,
-            speed: 200,
-            slidesToScroll: 2,
-            lazyLoad: 'ondemand',
-            prevArrow: '<button type="button" class="slick-prev" aria-label="slide previous"></button>',
-            nextArrow: '<button type="button" class="slick-next" aria-label="slide next"></button>',
-            responsive: [
-                {
-                    breakpoint: 2000,
-                    settings: {
-                      slidesToShow: 6,
-                      slidesToScroll: 1,
-                      infinite: true,
-                    }
-                },
-                {
-                    breakpoint: 1400,
-                    settings: {
-                      slidesToShow: 5,
-                      slidesToScroll: 1,
-                      infinite: true,
-                    }
-                },
-                {
-                    breakpoint: 1200,
-                    settings: {
-                      slidesToShow: 4,
-                      slidesToScroll: 1,
-                      infinite: true,
-                    }
-                },
-                {
-                  breakpoint: 940,
-                  settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                    infinite: true,
-                  }
-                },
-                {
-                    breakpoint: 700,
-                    settings: {
-                      slidesToShow: 2,
-                      slidesToScroll: 1,
-                      infinite: true,
-                    }
-                }
-            ]
-        });
-
-        $(".items-box__item--text").each(
-            (index, value) => {
-                let array = value.innerText.split(" ");
-                value.innerText = array.filter(word => !word.startsWith('#')).join(' ');
-            }
-        );
-    } else {
-      setTimeout(checkContainer, 50); //wait 50 ms, then try again
-    }
-  }
-
-
-
+	$('.items-box__item--text').each((index, value) => {
+		let array = value.innerText.split(' ');
+		value.innerText = array.filter(word => !word.startsWith('#')).join(' ');
+	});
+}
 
 // {{type}} - the image's type, can be image or video.
 // {{width}} - the image's width, in pixels.
