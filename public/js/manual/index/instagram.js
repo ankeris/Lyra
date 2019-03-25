@@ -81,8 +81,10 @@ function checkContainer() {
 	});
 
 	$('.items-box__item--text').each((index, value) => {
-		let array = value.innerText.split(' ');
+		const array = value.innerText.split(' ');
+
 		value.innerText = array.filter(word => !word.startsWith('#')).join(' ');
+		value.innerText.length > 280 ? (value.innerText = value.innerText.substring(0, 280) + '...') : null;
 	});
 }
 
