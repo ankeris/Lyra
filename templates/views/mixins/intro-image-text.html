@@ -10,7 +10,9 @@
     <section class="content-section section-description push-vertical">
         <div class="section-description__left">
             <div class="content-center">
-                <img title="{{CountryName}}" aria-label="{{CountryName}}" src="{{CountryFlag.secure_url}}" alt="{{CountryName}}">
+                {% if CountryFlag.secure_url %}
+                    <img title="{{CountryName}}" aria-label="{{CountryName}}" src="{{CountryFlag.secure_url}}" alt="{{CountryName}}">
+                {% endif %}
                 <span class="text--medium push-horizontal--small">{{ CountryName | upper}}</span>
             </div>
             <div class="push-vertical--small">

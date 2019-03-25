@@ -8,12 +8,12 @@ const {loadAll} = redisQueries;
 const findCategory = redisQueries.findOneByKey;
 
 exports = module.exports = function(req, res) {
-	let view = new keystone.View(req, res);
+	const view = new keystone.View(req, res);
 	let locals = res.locals;
 	const supportWebP = isWebP(req);
 
 	locals.section = 'products';
-
+	locals.supportWebP = supportWebP;
 	locals.data = {
 		products: [],
 		categories: [],

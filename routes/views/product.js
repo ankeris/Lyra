@@ -4,13 +4,12 @@ const redisQueries = require('../redis-queries/redisQueries');
 const findProduct = redisQueries.findItemBySlug;
 const findCategory = redisQueries.findOneByKey;
 // helpers
-const helpers = require('../helpers');
-const cropCloudlinaryImage = helpers.cropCloudlinaryImage;
-const setDiscountedPrice = helpers.setDiscountedPrice;
+const {changeFormatToWebp, setDiscountedPrice, cropCloudlinaryImage, isWebP} = require('../helpers');
 
 exports = module.exports = function(req, res) {
-	let view = new keystone.View(req, res);
+	const view = new keystone.View(req, res);
 	let locals = res.locals;
+	const supportWebP = isWebP(req);
 
 	locals.section = 'product';
 	locals.filters = {
@@ -46,6 +45,8 @@ exports = module.exports = function(req, res) {
 		function exec(product, err = '') {
 			if (product) {
 				product.images.forEach(img => {
+					if (supportWebP) img.secure_url = changeFormatToWebp(img.secure_url);
+
 					locals.data.productImages.push({
 						src: img.secure_url,
 						w: img.width,
@@ -54,8 +55,9 @@ exports = module.exports = function(req, res) {
 				});
 
 				if (product.awards.length > 0) {
-					product.awards.forEach(award => (award.CoverImage.secure_url = cropCloudlinaryImage(award.CoverImage, 150, 150)));
+					product.awards.forEach(award => (award.CoverImage.secure_url = cropCloudlinaryImage(award.CoverImage, 150, 150, supportWebP)));
 				}
+
 				// Check if product doesn't have it's own discount and only then put the discount from productType
 				if (!product.Discount) {
 					if (product.ProductType[0].discount > 0) {

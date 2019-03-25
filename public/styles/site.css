@@ -93,8 +93,7 @@ p {
   font-size: 12pt; }
 
 .text--medium {
-  font-size: 1.5em;
-  height: 20px; }
+  font-size: 1.5em; }
 
 .text--large {
   font-size: 2.25em; }
@@ -794,6 +793,7 @@ footer {
     .sort-bar__box .form_box .sort-bar__box--button {
       box-sizing: border-box;
       height: 35px;
+      width: 175px;
       text-align: center;
       border-radius: 1px;
       border: none;
