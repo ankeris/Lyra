@@ -162,6 +162,9 @@ p {
 .push-top {
   margin-top: 50px; }
 
+.push-top--small {
+  margin-top: 15px; }
+
 .push-bottom {
   margin-bottom: 50px; }
 
@@ -276,8 +279,7 @@ footer {
         width: 100%; }
         footer .content-section .footer__box--right .newsletter .newsletter__box {
           display: flex;
-          flex-wrap: wrap;
-          margin: 15px 0; }
+          flex-wrap: wrap; }
           footer .content-section .footer__box--right .newsletter .newsletter__box .newsletter__box--text {
             flex-basis: 100%;
             margin-top: 0;
@@ -305,7 +307,7 @@ footer {
 .media-icons {
   flex-direction: row; }
   .media-icons .media-icons__icon {
-    margin: 4px 7px; }
+    margin: 0 7px; }
     .media-icons .media-icons__icon:hover {
       opacity: 0.6;
       transition: ease-out 0.2s; }

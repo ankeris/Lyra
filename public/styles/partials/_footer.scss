@@ -40,7 +40,6 @@ footer {
 				.newsletter__box {
 					display: flex;
 					flex-wrap: wrap;
-					margin: 15px 0;
 					.newsletter__box--text {
 						flex-basis: 100%;
 						margin-top: 0;
@@ -80,7 +79,7 @@ footer {
 .media-icons {
 	flex-direction: row;
 	.media-icons__icon {
-		margin: 4px 7px;
+		margin: 0 7px;
 		&:hover {
 			opacity: 0.6;
 			transition: ease-out 0.2s;
