@@ -38,13 +38,20 @@ ProductCategory.add({
 		many: false,
 		required: false
 	},
-	IsParentCategory: Types.Boolean
+	IsParentCategory: {
+		type: Types.Boolean
+	}
 });
 
 ProductCategory.relationship({
 	ref: 'Product',
 	path: 'products',
 	refPath: 'ProductType'
+});
+
+ProductCategory.schema.post('save', cat => {
+	if (redis.exists('all-categories')) redis.del('all-categories');
+	if (redis.exists(cat.key)) redis.del(cat.key);
 });
 
 ProductCategory.defaultColumns = 'name, ChildCategoryOf, IsParentCategory, discount';

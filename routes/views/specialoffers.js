@@ -1,7 +1,9 @@
 const keystone = require('keystone');
-const helpers = require('../helpers');
-const getSort = helpers.getSort;
-const getRidOfMetadata = helpers.getRidOfMetadata;
+// redis
+const {findItemBySlug, findOneByKey, loadAll} = require('../redis-queries/redisQueries');
+
+// helpers
+const {getSort, getRidOfMetadata} = require('../helpers');
 
 exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
@@ -22,40 +24,51 @@ exports = module.exports = function(req, res) {
 	};
 
 	view.on('init', function(next) {
-		keystone
-			.list('ProductManufacturer')
-			.model.find()
-			.sort('name')
-			.exec(function(err, result) {
+		const loadAllManufacturersQuery = {
+			dbCollection: keystone.list('ProductManufacturer'),
+			sort: 'name',
+			redisKeyName: 'all-manufacturers',
+			callback: (result, err) => {
 				locals.data.manufacturers = result;
-				next(err);
-			});
-	});
+				if (err || !result.length) {
+					return next(err);
+				}
+			}
+		};
 
-	const categoryQuery = keystone.list('ProductCategory').model;
-
-	view.on('init', function(next) {
-		categoryQuery
-			.find()
-			.sort('name')
-			.exec(function(err, result) {
+		const loadAllCategoriesQuery = {
+			dbCollection: keystone.list('ProductCategory'),
+			redisKeyName: 'all-categories',
+			populateBy: 'ChildCategoryOf',
+			callback: (result, err) => {
+				if (err || !result.length) {
+					return next(err);
+				}
 				const filteredArr = result.filter(cat => cat.discount || cat.discount > 0);
 				locals.filters.categoriesWithDiscount = filteredArr;
 				locals.data.categories = filteredArr;
-				next(err);
-			});
+				next();
+			}
+		};
+
+		loadAll(loadAllManufacturersQuery);
+		loadAll(loadAllCategoriesQuery);
 	});
+
 	view.on('init', function(next) {
 		if (locals.filters.category) {
-			categoryQuery
-				.findOne({
-					key: locals.filters.category
-				})
-				.populate('ChildCategoryOf')
-				.exec(function(err, result) {
-					locals.data.category = result;
-					next(err);
-				});
+			let categoryQueryOptions = {
+				dbCollection: keystone.list('ProductCategory'),
+				keyName: locals.filters.category,
+				sort: 'name',
+				prefix: 'category-',
+				callback: (result, err) => {
+					if (err) throw console.log(err);
+					else locals.data.category = result;
+					next();
+				}
+			};
+			findOneByKey(categoryQueryOptions);
 		} else {
 			next();
 		}

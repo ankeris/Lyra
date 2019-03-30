@@ -1,5 +1,4 @@
 const keystone = require('keystone');
-const async = require('async');
 const {getRidOfMetadata, isWebP} = require('../helpers');
 
 // redis
@@ -30,9 +29,9 @@ exports = module.exports = function(req, res) {
 	view.on('init', function(next) {
 		const loadAllCategoriesQuery = {
 			dbCollection: keystone.list('ProductCategory'),
-			populateBy: 'ChildCategoryOf',
 			sort: 'name',
-			redisKeyName: 'allCategories',
+			redisKeyName: 'all-categories',
+			populateBy: 'ChildCategoryOf',
 			callback: (cats, err) => {
 				locals.data.categories = cats;
 				if (err || !cats.length) {
@@ -50,6 +49,7 @@ exports = module.exports = function(req, res) {
 			findCategory({
 				dbCollection: keystone.list('ProductCategory'),
 				keyName: locals.filters.category,
+				prefix: 'category-',
 				callback: (result, err) => {
 					if (err) throw console.log(err);
 					else locals.data.category = result;
@@ -66,7 +66,7 @@ exports = module.exports = function(req, res) {
 		const loadAllManufacturersQuery = {
 			dbCollection: keystone.list('ProductManufacturer'),
 			sort: 'name',
-			redisKeyName: 'allManufacturers',
+			redisKeyName: 'all-manufacturers',
 			callback: (result, err) => {
 				locals.data.manufacturers = result;
 				if (err || !result.length) {
@@ -85,6 +85,7 @@ exports = module.exports = function(req, res) {
 			perPage: 9,
 			maxPages: 10
 		});
+
 		q.populate('Manufacturer ProductType').sort(getSort());
 
 		if (locals.data.category) {
@@ -154,6 +155,7 @@ exports = module.exports = function(req, res) {
 		} else if (!locals.data.category) {
 			q.exec(function(err, result) {
 				// getting rid of metadata with "toObject()" from mongoose
+
 				locals.data.products = getRidOfMetadata(result, true, 300, 300, supportWebP);
 				next(err);
 			});

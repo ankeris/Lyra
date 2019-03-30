@@ -1,8 +1,6 @@
 const keystone = require('keystone');
 // redis
-const redisQueries = require('../redis-queries/redisQueries');
-const findProduct = redisQueries.findItemBySlug;
-const findCategory = redisQueries.findOneByKey;
+const {findItemBySlug, findOneByKey} = require('../redis-queries/redisQueries');
 // helpers
 const {changeFormatToWebp, setDiscountedPrice, cropCloudlinaryImage, isWebP} = require('../helpers');
 
@@ -28,19 +26,21 @@ exports = module.exports = function(req, res) {
 			dbCollection: keystone.list('Product'),
 			populateBy: 'Manufacturer ProductType awards',
 			slug: locals.filters.product,
+			prefix: 'product-',
 			callback: (product, err) => exec(product, err)
 		};
 
 		let categoryQueryOptions = {
 			dbCollection: keystone.list('ProductCategory'),
 			keyName: locals.filters.category,
+			prefix: 'category-',
 			callback: (result, err) => {
 				if (err) throw console.log(err);
 				else locals.data.category = result;
 			}
 		};
-		findCategory(categoryQueryOptions);
-		findProduct(productQueryOptions);
+		findOneByKey(categoryQueryOptions);
+		findItemBySlug(productQueryOptions);
 
 		function exec(product, err = '') {
 			if (product) {
