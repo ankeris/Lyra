@@ -1,5 +1,4 @@
 const keystone = require('keystone');
-const mongoosePaginate = require('mongoose-paginate-v2');
 const Types = keystone.Field.Types;
 const {redis} = require('../redis');
 
@@ -84,7 +83,6 @@ Product.add({
 });
 
 Product.defaultColumns = 'title, ProductType, Manufacturer, images, Highlight';
-Product.schema.plugin(mongoosePaginate);
 Product.schema.post('save', doc => {
 	if (redis.exists(`product-${doc.slug}`)) redis.del(`product-${doc.slug}`);
 });
