@@ -2,6 +2,7 @@
 {% from "mixins/sideNavigation.html" import sideNavigation %}
 {% from "mixins/intro-image-text.html" import introImageText %}
 {% from "mixins/dynamic-link.html" import dynamicLink %}
+{% from "mixins/sort-by-form.html" import sortByForm %}
 
 {% block head %}
 	<title>{{section}}</title>
@@ -31,7 +32,12 @@
         }]
     )}}
     {% endif %}
-    {% include 'partials/sort.html' %}
+    {% if data %}
+        {# data.sort is here to track the current sort #}
+        {{sortByForm('/pasiulymai/', data.sort)}}
+    {% elif data.discounts and data.category %}
+        {{sortByForm('/pasiulymai/' + data.category.key, data.sort)}}
+    {% endif%}
 </figure>
     
     {{sideNavigation("special-offers-page", data)}}

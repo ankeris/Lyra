@@ -2,6 +2,7 @@
 {% from "mixins/sideNavigation.html" import sideNavigation %}
 {% from "mixins/section-text-on-image.html" import textOnImage %}
 {% from "mixins/dynamic-link.html" import dynamicLink %}
+{% from "mixins/sort-by-form.html" import sortByForm %}
 
 {% extends "layouts/default.html" %}
 
@@ -37,7 +38,14 @@
         }]
     )}}
     {% endif %}
-    {% include 'partials/sort.html' %}
+    {% if data.category and not data.discounts %}
+        {# data.sort is here to track the current sort #}
+        {{sortByForm('/produktai/' + data.category.key, data.sort)}}
+    {% elif filters.search %}
+        {{sortByForm('/produktai/?search=' + filters.search, data.sort)}}
+    {% else %}
+        {{sortByForm('/produktai/', data.sort)}}
+    {% endif %}
 </figure>
     {{sideNavigation("products-page", data)}}
 
@@ -50,8 +58,7 @@
     </section>
 </div>
 {# Loading screen for products #}
-    {{ loadingSpeakers("#1f1f1f", "#448AA6") }}
-    {# {% include 'partials/loadingspinner.html' %} #}
+{{ loadingSpeakers("#1f1f1f", "#448AA6") }}
 
 <div class="variables" data-sort="{{data.sort}}" data-category="{{data.category.key}}" data-count="{{data.products.results.length}}" data-search="{{filters.search}}"></div>
 

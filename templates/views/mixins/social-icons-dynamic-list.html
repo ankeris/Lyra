@@ -1,26 +1,26 @@
-{% from './media-icons.html' import fbLogo, instaLogo %}
+{% from './media-icons.html' import facebook, instagram, spotify, pinterest, youtube, website %}
 {% macro socialIcons(arrIcons) %}
     <div class="media-icons content-center">
         {% for icon in arrIcons %}
             {% if icon.name == "website" %}
-            <a class="media-icons__icon" aria-label="instagram" rel="noreferrer" href="{{icon.url}}" target="_blank">
-                {{ fbLogo("#1f1f1f", "#448AA6", icon.url)}}
+            <a class="media-icons__icon" aria-label="website" rel="noreferrer" href="{{icon.url}}" target="_blank">
+                {{ website("#1f1f1f", "#448AA6", icon.url)}}
             </a>
             {% elif icon.name == "facebook" %}
-            <a class="media-icons__icon" aria-label="instagram" rel="noreferrer" href="{{icon.url}}" target="_blank">
-                {{ fbLogo("#1f1f1f", "#448AA6", icon.url) }}
+            <a class="media-icons__icon" aria-label="facebook" rel="noreferrer" href="{{icon.url}}" target="_blank">
+                {{ facebook("#1f1f1f", "#448AA6", icon.url) }}
             </a>
             {% elif icon.name == "instagram" %}
             <a class="media-icons__icon" aria-label="instagram" rel="noreferrer" href="{{icon.url}}" target="_blank">
-                {{ instaLogo("#1f1f1f", "#448AA6") }}
+                {{ instagram("#1f1f1f", "#448AA6") }}
             </a>
             {% elif icon.name == "youtube" %}
             <a class="media-icons__icon" aria-label="youtube" rel="noreferrer" href="{{icon.url}}" target="_blank">
-                {{ spotifyLogo("#1f1f1f", "#448AA6") }}
+                {{ youtube("#1f1f1f", "#448AA6") }}
             </a>
             {% elif icon.name == "pinterest" %}
             <a class="media-icons__icon" aria-label="pinterest" rel="noreferrer" href="{{icon.url}}" target="_blank">
-                {{ spotifyLogo("#1f1f1f", "#448AA6") }}
+                {{ pinterest("#1f1f1f", "#448AA6") }}
             </a>
             {% endif %}
         {% endfor %}

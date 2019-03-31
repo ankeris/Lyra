@@ -3,6 +3,7 @@
 {% from "mixins/intro-image-text.html" import introImageText %}
 {% from "mixins/dynamic-link.html" import dynamicLink %}
 {% from "mixins/macros.html" import dropdownSvg %}
+{% from "mixins/sort-by-form.html" import sortByForm %}
 
 {% block head %}
 	<title>Lyra | {{data.brand.name}}</title>
@@ -28,7 +29,10 @@
         }]
     )}}
     {% endif %}
-    {% include 'partials/sort.html' %}
+    {% if data.brand %}
+        {# data.sort is here to track the current sort #}
+        {{sortByForm('/prekiu-zenklai/' + data.brand.key, data.sort)}}
+    {% endif%}
 </figure>
     {{sideNavigation("brand-page", data)}}
     <section class="products">
