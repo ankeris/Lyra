@@ -1,10 +1,9 @@
 const keystone = require('keystone');
-const {getRidOfMetadata, isWebP} = require('../helpers');
+const {getRidOfMetadata, isWebP, getSort} = require('../helpers');
 
 // redis
 const redisQueries = require('../redis-queries/redisQueries');
-const {loadAll} = redisQueries;
-const findCategory = redisQueries.findOneByKey;
+const {loadAll, findOneByKey} = redisQueries;
 
 exports = module.exports = function(req, res) {
 	const view = new keystone.View(req, res);
@@ -46,7 +45,7 @@ exports = module.exports = function(req, res) {
 	// load current category
 	view.on('init', next => {
 		if (req.params.category) {
-			findCategory({
+			findOneByKey({
 				dbCollection: keystone.list('ProductCategory'),
 				keyName: locals.filters.category,
 				prefix: 'category-',
@@ -86,21 +85,25 @@ exports = module.exports = function(req, res) {
 			maxPages: 10
 		});
 
-		q.populate('Manufacturer ProductType').sort(getSort());
+		q.lean()
+			.populate('Manufacturer ProductType')
+			.sort(getSort(req.query.filterlist));
 
 		if (locals.data.category) {
 			// Load products for basic categories (without subcategories)
 			if (!locals.data.category.IsParentCategory) {
 				q.find({
 					ProductType: locals.data.category
-				}).exec(function(err, result) {
-					if (err) {
-						next(err);
-					} else {
-						locals.data.products = getRidOfMetadata(result, true, 300, 300, supportWebP);
-						next(err);
-					}
-				});
+				})
+					.lean()
+					.exec(function(err, result) {
+						if (err) {
+							next(err);
+						} else {
+							locals.data.products = getRidOfMetadata(result, true, 300, 300, supportWebP);
+							next(err);
+						}
+					});
 			} // Load products of all children categories of parent category
 			else if (locals.data.category.IsParentCategory) {
 				keystone
@@ -109,25 +112,17 @@ exports = module.exports = function(req, res) {
 					.exec(function(err, result) {
 						q.find({
 							ProductType: {$in: result}
-						}).exec(function(err, result) {
-							if (err) {
-								next(err);
-							} else {
-								locals.data.products = getRidOfMetadata(result, true, 300, 300, supportWebP);
-								next(err);
-							}
-						});
+						})
+							.lean()
+							.exec(function(err, result) {
+								if (err) {
+									next(err);
+								} else {
+									locals.data.products = getRidOfMetadata(result, true, 300, 300, supportWebP);
+									next(err);
+								}
+							});
 					});
-			}
-		}
-
-		function getSort() {
-			if (req.query.filterlist == 'price-high') {
-				return {price: -1};
-			} else if (req.query.filterlist == 'price-low') {
-				return {price: 1};
-			} else {
-				return {title: -1};
 			}
 		}
 
@@ -142,20 +137,21 @@ exports = module.exports = function(req, res) {
 						title: regex
 					}
 				]
-			}).exec(
-				function(err, result) {
-					if (err) {
-						next(err);
-					} else {
-						locals.data.products = getRidOfMetadata(result, true, 300, 300, supportWebP);
-						next(err);
-					}
-				} // Default query when products page is opened
-			);
+			})
+				.lean()
+				.exec(
+					function(err, result) {
+						if (err) {
+							next(err);
+						} else {
+							locals.data.products = getRidOfMetadata(result, true, 300, 300, supportWebP);
+							next(err);
+						}
+					} // Default query when products page is opened
+				);
 		} else if (!locals.data.category) {
-			q.exec(function(err, result) {
+			q.lean().exec(function(err, result) {
 				// getting rid of metadata with "toObject()" from mongoose
-
 				locals.data.products = getRidOfMetadata(result, true, 300, 300, supportWebP);
 				next(err);
 			});

@@ -2,7 +2,7 @@ const keystone = require('keystone');
 // redis
 const {findItemBySlug, findOneByKey} = require('../redis-queries/redisQueries');
 // helpers
-const {changeFormatToWebp, setDiscountedPrice, cropCloudlinaryImage, isWebP} = require('../helpers');
+const {changeFormatToWebp, setDiscountedPrice, cropCloudlinaryImage, isWebP, getRidOfMetadata} = require('../helpers');
 
 exports = module.exports = function(req, res) {
 	const view = new keystone.View(req, res);
@@ -78,6 +78,7 @@ exports = module.exports = function(req, res) {
 		keystone
 			.list('Product')
 			.model.find()
+			.lean()
 			.where('ProductType')
 			.in([locals.data.category])
 			.where('slug')
@@ -85,7 +86,7 @@ exports = module.exports = function(req, res) {
 			// .where('price').gt(locals.data.product.price-500).lt(locals.data.product.price+500)
 			.populate('Manufacturer ProductType')
 			.exec(function(err, result) {
-				locals.data.relatedproducts = result;
+				locals.data.relatedproducts = getRidOfMetadata(result, true, 250, 250, supportWebP);
 				next(err);
 			});
 	});

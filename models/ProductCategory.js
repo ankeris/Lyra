@@ -51,7 +51,7 @@ ProductCategory.relationship({
 
 ProductCategory.schema.post('save', cat => {
 	if (redis.exists('all-categories')) redis.del('all-categories');
-	if (redis.exists(cat.key)) redis.del(cat.key);
+	if (redis.exists('category-' + cat.key)) redis.del('category-' + cat.key);
 });
 
 ProductCategory.defaultColumns = 'name, ChildCategoryOf, IsParentCategory, discount';

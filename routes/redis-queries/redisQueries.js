@@ -14,6 +14,7 @@ module.exports.findItemBySlug = function({dbCollection, populateBy = '', prefix 
 				.findOne({
 					slug: slug
 				})
+				.lean()
 				.populate(populateBy)
 				.exec(function(err, doc) {
 					if (err || !doc) callback(null, err);
@@ -42,6 +43,7 @@ module.exports.findOneByKey = function({dbCollection, keyName, sort = '', popula
 				.findOne({
 					key: keyName
 				})
+				.lean()
 				.sort(sort)
 				.populate(populateBy)
 				.exec(function(err, doc) {
@@ -72,6 +74,7 @@ module.exports.homePageHighlights = function({dbCollection, populateBy, sort, ca
 				.find({
 					Highlight: true
 				})
+				.lean()
 				.sort(sort)
 				.populate(populateBy)
 				.exec(function(err, doc) {
@@ -100,6 +103,7 @@ module.exports.loadAll = function({dbCollection, populateBy = '', redisKeyName, 
 
 			dbCollection.model
 				.find()
+				.lean()
 				.sort(sort)
 				.populate(populateBy)
 				.exec(function(err, doc) {

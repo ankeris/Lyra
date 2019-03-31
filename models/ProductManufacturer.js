@@ -65,7 +65,7 @@ ProductManufacturer.relationship({
 
 ProductManufacturer.schema.post('save', brand => {
 	if (redis.exists('all-manufacturers')) redis.del('all-manufacturers');
-	if (redis.exists(brand.key)) redis.del(brand.key);
+	if (redis.exists('brand-' + brand.key)) redis.del('brand-' + brand.key);
 });
 
 ProductManufacturer.register();

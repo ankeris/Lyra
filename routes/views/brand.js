@@ -1,5 +1,6 @@
 var keystone = require('keystone');
 var async = require('async');
+let mongoose = require('mongoose');
 
 //helpers
 const {getSort, getRidOfMetadata, changeFormatToWebp, isWebP, cropCloudlinaryImage} = require('../helpers');
@@ -47,18 +48,21 @@ exports = module.exports = function(req, res) {
 		const categoryQueryOptions = {
 			dbCollection: keystone.list('ProductManufacturer'),
 			keyName: locals.filters.brand,
+			prefix: 'brand-',
 			callback: (result, err) => {
 				if (err) throw console.error(err);
 				else {
-					if (result.CoverImage && supportWebP) {
-						const coverImage = result.CoverImage.secure_url;
+					const coverImage = result.hasOwnProperty('CoverImage') ? result.CoverImage.secure_url : null;
+					if (!!coverImage && supportWebP) {
 						result.CoverImage.secure_url = changeFormatToWebp(coverImage);
 					}
-					const countryFlag = result.CountryFlag || null;
-					if (countryFlag) {
-						result.CountryFlag.secure_url = cropCloudlinaryImage(countryFlag, 50, 37, supportWebP);
+
+					const exists = result.hasOwnProperty('CountryFlag');
+
+					if (!!exists) {
+						result.CountryFlag.secure_url = cropCloudlinaryImage(result.CountryFlag, 50, 37, supportWebP);
 					}
-					locals.data.socialMedias = [...socialMediasArr(result)];
+					locals.data.socialMedias = generateSocialMediasArr(result);
 					locals.data.brand = result;
 					locals.data.name = result.name;
 					next(err);
@@ -120,7 +124,7 @@ exports = module.exports = function(req, res) {
 		});
 		r.populate('Manufacturer ProductType').sort(getSort(req.query.filterlist));
 
-		if (!locals.data.category) {
+		if (!locals.filters.category) {
 			r.find({
 				Manufacturer: locals.data.brand
 			}).exec(function(err, result) {
@@ -133,11 +137,11 @@ exports = module.exports = function(req, res) {
 			});
 		}
 
-		if (locals.data.category) {
+		if (locals.filters.category) {
 			// Load products for basic categories (without subcategories)
-			if (!locals.data.category.IsParentCategory) {
+			if (!locals.filters.category.IsParentCategory) {
 				r.find({
-					ProductType: locals.data.category,
+					ProductType: locals.filters.category,
 					Manufacturer: locals.data.brand
 				}).exec(function(err, result) {
 					if (err) {
@@ -148,10 +152,10 @@ exports = module.exports = function(req, res) {
 					}
 				});
 			} // Load products of all children categories of parent category
-			else if (locals.data.category.IsParentCategory) {
+			else if (locals.filters.category.IsParentCategory) {
 				keystone
 					.list('ProductCategory')
-					.model.find({ChildCategoryOf: locals.data.category})
+					.model.find({ChildCategoryOf: locals.filters.category})
 					.exec(function(err, result) {
 						r.find({
 							ProductType: {$in: result},
@@ -173,7 +177,7 @@ exports = module.exports = function(req, res) {
 	view.render('brand');
 };
 
-function socialMediasArr(result) {
+function generateSocialMediasArr(result) {
 	const arr = [];
 	pushIf('website', result.WebsiteUrl);
 	pushIf('facebook', result.FacebookUrl);
