@@ -4,7 +4,7 @@
 {% set productType = product.ProductType[0].name %}
 {% set productTypeSingular = product.ProductType[0].nameSingular %}
 
-<a class="items-box__item fade-in" aria-label="{{product.title}}" title="{{product.title}}" href="/produktai/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
+<a class="items-box__item content-center fade-in" aria-label="{{product.title}}" title="{{product.title}}" href="/produktai/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
     {% if product.images[0] %}
         {# Main image #}
             {% for image in product.images %}

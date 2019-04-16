@@ -27,7 +27,7 @@ exports = module.exports = function(req, res) {
 		const loadAllManufacturersQuery = {
 			dbCollection: keystone.list('ProductManufacturer'),
 			sort: 'name',
-			redisKeyName: 'all-manufacturers',
+			redisKeyName: 'all-brands',
 			callback: (result, err) => {
 				locals.data.manufacturers = result;
 				if (err || !result.length) {

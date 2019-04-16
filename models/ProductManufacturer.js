@@ -1,8 +1,8 @@
-var keystone = require('keystone');
+const keystone = require('keystone');
 let Types = keystone.Field.Types;
 const {redis} = require('../redis');
 
-var ProductManufacturer = new keystone.List('ProductManufacturer', {
+const ProductManufacturer = new keystone.List('ProductManufacturer', {
 	autokey: {
 		from: 'name',
 		path: 'key',
@@ -64,7 +64,7 @@ ProductManufacturer.relationship({
 });
 
 ProductManufacturer.schema.post('save', brand => {
-	if (redis.exists('all-manufacturers')) redis.del('all-manufacturers');
+	if (redis.exists('all-brands')) redis.del('all-brands');
 	if (redis.exists('brand-' + brand.key)) redis.del('brand-' + brand.key);
 });
 

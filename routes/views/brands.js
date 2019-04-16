@@ -15,7 +15,7 @@ exports = module.exports = function(req, res) {
 		const loadAllManufacturersQuery = {
 			dbCollection: keystone.list('ProductManufacturer'),
 			sort: 'name',
-			redisKeyName: 'all-manufacturers',
+			redisKeyName: 'all-brands',
 			callback: (result, err) => {
 				result.forEach(
 					manufacturer => (manufacturer.SmallPreviewImage.secure_url = cropCloudlinaryImage(manufacturer.SmallPreviewImage, 250, 250, supportWebP))

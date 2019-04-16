@@ -1180,6 +1180,7 @@ footer {
   flex-wrap: wrap;
   order: 3; }
   .products .items-box__item {
+    flex-direction: column;
     flex-basis: 30%;
     margin: 30px auto;
     text-align: center; }

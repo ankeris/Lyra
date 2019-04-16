@@ -1,6 +1,6 @@
+/* eslint-disable no-console */
 var keystone = require('keystone');
 var async = require('async');
-let mongoose = require('mongoose');
 
 //helpers
 const {getSort, getRidOfMetadata, changeFormatToWebp, isWebP, cropCloudlinaryImage} = require('../helpers');
@@ -29,7 +29,7 @@ exports = module.exports = function(req, res) {
 		const loadAllCategoriesQuery = {
 			dbCollection: keystone.list('ProductManufacturer'),
 			sort: 'name',
-			redisKeyName: 'all-categories',
+			redisKeyName: 'all-brands',
 			populateBy: 'ChildCategoryOf',
 			callback: (result, err) => {
 				locals.data.manufacturers = result;
@@ -59,7 +59,7 @@ exports = module.exports = function(req, res) {
 
 					const exists = result.hasOwnProperty('CountryFlag');
 
-					if (!!exists) {
+					if (exists) {
 						result.CountryFlag.secure_url = cropCloudlinaryImage(result.CountryFlag, 50, 37, supportWebP);
 					}
 					locals.data.socialMedias = generateSocialMediasArr(result);
@@ -74,19 +74,14 @@ exports = module.exports = function(req, res) {
 
 	// All categories for side navigation
 	view.on('init', function(next) {
-		keystone
-			.list('ProductCategory')
-			.model.find()
-			.sort('name')
-			.populate('ChildCategoryOf')
-			.exec(function(err, results) {
-				if (err || !results.length) {
-					return next(err);
-				}
-
-				locals.data.allCategories = results;
-				let categoriesToDisplay = [];
-				//Load the counts for each category (counts how much products every category contains)
+		const loadAllCategoriesQuery = {
+			dbCollection: keystone.list('ProductCategory'),
+			sort: 'name',
+			redisKeyName: 'all-categories',
+			populateBy: 'ChildCategoryOf',
+			callback: (cats, err) => {
+				locals.data.allCategories = cats;
+				const categoriesToDisplay = [];
 				async.each(
 					locals.data.allCategories,
 					function(category, next) {
@@ -94,7 +89,7 @@ exports = module.exports = function(req, res) {
 							.list('Product')
 							.model.count()
 							.where('ProductType')
-							.in([category.id])
+							.in([category])
 							.where('Manufacturer')
 							.in([locals.data.brand])
 							.exec(function(err, count) {
@@ -107,24 +102,47 @@ exports = module.exports = function(req, res) {
 							});
 					},
 					function(err) {
-						categoriesToDisplay.sort();
-						locals.data.categories = categoriesToDisplay;
+						locals.data.categories = categoriesToDisplay.sort((a, b) => (a.name > b.name ? 1 : -1));
 						next(err);
 					}
 				);
+				if (err || !cats.length) {
+					return next(err);
+				}
+			}
+		};
+
+		loadAll(loadAllCategoriesQuery);
+	});
+
+	// load current category object
+	view.on('init', next => {
+		if (req.params.category) {
+			findOneByKey({
+				dbCollection: keystone.list('ProductCategory'),
+				keyName: locals.filters.category,
+				prefix: 'category-',
+				callback: (result, err) => {
+					if (err) throw console.log(err);
+					else locals.data.category = result;
+					next(err);
+				}
 			});
+		} else {
+			next();
+		}
 	});
 
 	// Load products
 	view.on('init', function(next) {
-		let r = keystone.list('Product').paginate({
+		const r = keystone.list('Product').paginate({
 			page: req.query.page || 1,
 			perPage: 9,
 			maxPages: 10
 		});
 		r.populate('Manufacturer ProductType').sort(getSort(req.query.filterlist));
 
-		if (!locals.filters.category) {
+		if (!locals.data.category) {
 			r.find({
 				Manufacturer: locals.data.brand
 			}).exec(function(err, result) {
@@ -137,14 +155,15 @@ exports = module.exports = function(req, res) {
 			});
 		}
 
-		if (locals.filters.category) {
+		if (locals.data.category) {
 			// Load products for basic categories (without subcategories)
-			if (!locals.filters.category.IsParentCategory) {
+			if (!locals.data.category.IsParentCategory) {
 				r.find({
-					ProductType: locals.filters.category,
+					ProductType: locals.data.category,
 					Manufacturer: locals.data.brand
 				}).exec(function(err, result) {
 					if (err) {
+						console.log(err);
 						next(err);
 					} else {
 						locals.data.products = getRidOfMetadata(result, true, 300, 300);
@@ -152,10 +171,10 @@ exports = module.exports = function(req, res) {
 					}
 				});
 			} // Load products of all children categories of parent category
-			else if (locals.filters.category.IsParentCategory) {
+			else if (locals.data.category.IsParentCategory) {
 				keystone
 					.list('ProductCategory')
-					.model.find({ChildCategoryOf: locals.filters.category})
+					.model.find({$or: [{ChildCategoryOf: locals.data.category}, {_id: locals.data.category}]})
 					.exec(function(err, result) {
 						r.find({
 							ProductType: {$in: result},
