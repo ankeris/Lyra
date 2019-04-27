@@ -1,10 +1,10 @@
 
 {% from './social-icons-dynamic-list.html' import socialIcons %}
-{% macro introImageText(brandBody, mediaIconsArr) %}
-    {% set CountryName = ( brandBody.CountryName if brandBody.CountryName else "Produktų katalogas" ) %}
-    {% set CountryFlag = ( brandBody.CountryFlag if brandBody.CountryFlag else "" ) %}
-    {% set text = ( brandBody.description | safe if brandBody.description else "Lorem. Curabitur feugiat ornare tellus sed tristique. Etiam fermentum enim nisl. Morbi a condimentum elit. Phasellus tincidunt augue et lectus malesuada hendrerit. Curabitur imperdiet leo eget orci tempor sagittis. Nulla facilisi. Etiam laoreet nunc et massa cursus bibendum. Cras sit amet pretium tortor. Etiam non sapien nec arcu fermentum rutrum. Pellentesque bibendum velit tellus, et dignissim elit rhoncus id." ) %}
-    {% set img = ( brandBody.CoverImage.secure_url if brandBody.CoverImage.secure_url else "/images/products-page.jpg" ) %}
+{% macro introImageText(body, mediaIconsArr) %}
+    {% set CountryName = ( body.CountryName if body.CountryName else "Produktų katalogas" ) %}
+    {% set CountryFlag = ( body.CountryFlag if body.CountryFlag else "" ) %}
+    {% set text = ( body.description | safe if body.description else "Lorem. Curabitur feugiat ornare tellus sed tristique. Etiam fermentum enim nisl. Morbi a condimentum elit. Phasellus tincidunt augue et lectus malesuada hendrerit. Curabitur imperdiet leo eget orci tempor sagittis. Nulla facilisi. Etiam laoreet nunc et massa cursus bibendum. Cras sit amet pretium tortor. Etiam non sapien nec arcu fermentum rutrum. Pellentesque bibendum velit tellus, et dignissim elit rhoncus id." ) %}
+    {% set img = ( body.CoverImage.secure_url if body.CoverImage.secure_url else "/images/products-page.jpg" ) %}
     
     <figure id="slider" class="fullwidth-image" style="background-image: url({{img}})" data-type="background" data-speed="-3"></figure>
     <section class="content-section section-description push-vertical">

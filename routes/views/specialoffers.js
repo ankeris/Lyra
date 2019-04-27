@@ -1,15 +1,17 @@
 const keystone = require('keystone');
 // redis
-const {findOneByKey, loadAll} = require('../redis-queries/redisQueries');
+const {loadAll} = require('../redis-queries/redisQueries');
 
 // helpers
-const {getSort, getRidOfMetadata} = require('../helpers');
+const {getSort, isWebP, getRidOfMetadata} = require('../helpers');
 
 exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
+	const supportWebP = isWebP(req);
 
 	locals.section = 'Nuolaidos';
+	locals.supportWebP = supportWebP;
 
 	locals.data = {
 		products: [],
@@ -57,7 +59,7 @@ exports = module.exports = function(req, res) {
 				if (err) {
 					next(err);
 				} else {
-					locals.data.products = getRidOfMetadata(prods, true, 300, 300);
+					locals.data.products = getRidOfMetadata(prods, true, 300, 300, supportWebP);
 				}
 				next(err);
 			});

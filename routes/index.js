@@ -38,7 +38,7 @@ exports = module.exports = function(app) {
 	app.get('/prekiu-zenklai', routes.views.brands);
 	app.get('/prekiu-zenklai/:brand/:category?', routes.views.brand);
 	app.all('/kontaktai', routes.views.contact);
-	app.get('/pasiulymai/:category?', routes.views.specialoffers);
+	app.get('/nuolaidos/:category?', routes.views.specialoffers);
 	app.get('/naujienos', routes.views.news);
 	app.get('/apie-mus', routes.views.aboutus);
 	app.get('/produktai/:category?', routes.views.products);
