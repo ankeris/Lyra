@@ -28,16 +28,15 @@ $(document).ready(function() {
 		.parent()
 		.removeAttr('style');
 
-	window.addEventListener('resize', function(e) {
+	window.addEventListener('resize', function() {
 		if (window.innerWidth >= 700) {
 			$('.side-nav').removeAttr('style');
 		}
 	});
 });
 
-const el = document.querySelector('.side-nav__box');
-
 // Change Side Navigation position to sticky While scrolling . . . . .
+const el = document.querySelector('.side-nav__box');
 if (el) {
 	const elTop = el.getBoundingClientRect().top - document.body.getBoundingClientRect().top - 60;
 
@@ -51,8 +50,6 @@ if (el) {
 			} else {
 				el.style.top = 'auto';
 			}
-		} else {
-			console.log('hi');
 		}
 	});
 }

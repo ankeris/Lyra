@@ -14,14 +14,15 @@
                 {{ dropdownSvg("#1f1f1f", "#448AA6") }}
             </div>
             <div class="subcategory-box" style="display: none;">
+
+            {# Manufacturers #}
             {% for manufacturer in data.manufacturers %}
                 <a href="/prekiu-zenklai/{{manufacturer.key}}" class="subcategory-box__item">
                     <span>{{manufacturer.name}}</span>
                 </a>
             {% endfor %}
             </div>
-            {# Deleted "all products" button, we agreed that people can press "products" in the main navigation instead #}
-            {# <a href="/products" class="{{ class }} side-nav__list-box--item">Visi produktai</a> #}
+            {# Categories #}
             {% for cat in data.categories %}
             {% set class = ( "active" if data.category and data.category.key == cat.key else "" ) %}
             {% set dropdown = ( "navigation-dropdown" if cat.IsParentCategory else "" ) %}
