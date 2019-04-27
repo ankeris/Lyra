@@ -2,14 +2,24 @@
 	display: flex;
 	flex-wrap: wrap;
 }
+.products--fullwidth {
+	flex-basis: 100%;
+	.items-box__item {
+		flex-basis: 21%;
+	}
+}
+.products--threequarters {
+	flex-basis: 75%;
+	.items-box__item {
+		flex-basis: 30%;
+	}
+}
 .products {
 	display: flex;
-	flex-basis: 75%;
 	flex-wrap: wrap;
 	order: 3;
 	.items-box__item {
 		flex-direction: column;
-		flex-basis: 30%;
 		margin: 30px auto;
 		text-align: center;
 		.items-box__item--main-image {

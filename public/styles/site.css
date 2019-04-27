@@ -1174,14 +1174,22 @@ footer {
   display: flex;
   flex-wrap: wrap; }
 
+.products--fullwidth {
+  flex-basis: 100%; }
+  .products--fullwidth .items-box__item {
+    flex-basis: 21%; }
+
+.products--threequarters {
+  flex-basis: 75%; }
+  .products--threequarters .items-box__item {
+    flex-basis: 30%; }
+
 .products {
   display: flex;
-  flex-basis: 75%;
   flex-wrap: wrap;
   order: 3; }
   .products .items-box__item {
     flex-direction: column;
-    flex-basis: 30%;
     margin: 30px auto;
     text-align: center; }
     .products .items-box__item .items-box__item--main-image {

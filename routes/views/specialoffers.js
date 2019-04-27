@@ -44,7 +44,7 @@ exports = module.exports = function(req, res) {
 			.list('Product')
 			.paginate({
 				page: req.query.page || 1,
-				perPage: 9,
+				perPage: 12,
 				maxPages: 10
 			})
 			.populate('Manufacturer ProductType');
