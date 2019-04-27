@@ -35,7 +35,7 @@ exports = module.exports = function(req, res) {
 			keyName: locals.filters.category,
 			prefix: 'category-',
 			callback: (result, err) => {
-				if (err) throw console.log(err);
+				if (err) throw err;
 				else locals.data.category = result;
 			}
 		};

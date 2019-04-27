@@ -153,6 +153,9 @@ a {
   align-items: center;
   justify-content: center; }
 
+.content-column {
+  flex-direction: column; }
+
 p {
   margin: 0; }
 
@@ -192,9 +195,26 @@ p {
 .link--active {
   color: #5f4ef0; }
 
+.button {
+  border: none;
+  padding: 8px 28px;
+  cursor: pointer;
+  line-height: 12pt;
+  transition-duration: 0.2s; }
+  .button:hover {
+    opacity: 0.8; }
+
+.button--dark {
+  background-color: #1f1f1f;
+  color: #fff; }
+
+.button--light {
+  background-color: #fff;
+  color: #1f1f1f; }
+
 .space-button {
   margin: 30px;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid #fae8e8;
   font-size: 1.2em; }
 
 b {
@@ -598,7 +618,7 @@ footer {
 
 .fullwidth-image {
   height: 57vh;
-  background-position: top;
+  background-position: center;
   background-size: cover; }
 
 .section-description {
@@ -788,7 +808,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   flex-basis: 100%;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid #fae8e8;
   order: 1; }
   .sort-bar__box .form_box {
     margin-left: auto; }
@@ -840,15 +860,6 @@ footer {
     border: 1px solid #1f1f1f; }
   .form .confirm-button {
     margin: 20px auto; }
-    .form .confirm-button button {
-      background-color: #1f1f1f;
-      color: #fff;
-      color: 1px solid #1f1f1f;
-      padding: 10px 50px;
-      border: 0; }
-      .form .confirm-button button:hover {
-        box-shadow: inset 0 0 0 6px #448aa6;
-        transition: 380ms cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
 .loop-box {
   height: 70vh;
@@ -1237,18 +1248,6 @@ footer {
   .products .items-box__item .items-box__item--main-image {
     height: 200px; } }
 
-.get-back {
-  margin-top: 35px; }
-  .get-back a,
-  .get-back button {
-    padding: 15px 30px;
-    color: #fff;
-    background-color: #1f1f1f; }
-    .get-back a:hover,
-    .get-back button:hover {
-      box-shadow: inset 0 0 0 5px #448aa6;
-      transition: 380ms cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-
 .product {
   display: flex;
   justify-content: space-between;
@@ -1354,4 +1353,4 @@ footer {
     .triple-flex .triple-flex__split {
       width: 100%;
       margin: 10px 0;
-      border-bottom: 1px solid #e6e6e6; } }
+      border-bottom: 1px solid #fae8e8; } }

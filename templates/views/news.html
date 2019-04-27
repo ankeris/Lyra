@@ -2,13 +2,21 @@
 
 {% block head %}
 	<title>{{section}}</title>
-    <meta name="Description" content="Specialūs pasiūlymai, žemesnės kainos produktams">
+    <meta name="Description" content="Nauji produktai. Svarbiausios garso aparatūros aktualijos">
 {% endblock %}
 
-{% block intro %}
-    <div class="content-section" style="text-align: center;">
-        <h3 class="title push-vertical">{{section}}</h3>
-        <h3 class="title push-vertical">This subpage is under construction</h3>
-        <img src="/images/construct.png" alt="Construction" width="200px">
-    </div>
+{% block content %}
+    {% for new in news %}
+        <section class="fullwidth-image content-center content-column lazy" data-bg="url({{new.image.secure_url}})">
+            <div class="message__square">
+                <h3>{{ new.title }}</h3>
+                <p>{{ new.description | safe}}</p>
+            </div>
+            {% if new.ButtonStyle == 'dark' %}
+            <a class="button button--dark push-top--small">Skaityti daugiau ></a>
+            {% else %}
+            <a class="button button--light push-top--small">Skaityti daugiau ></a>
+            {% endif %}
+        </section>
+    {% endfor %}
 {% endblock %}

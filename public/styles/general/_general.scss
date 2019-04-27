@@ -17,6 +17,10 @@ a {
 	justify-content: center;
 }
 
+.content-column {
+	flex-direction: column;
+}
+
 p {
 	margin: 0;
 }
@@ -62,6 +66,27 @@ p {
 }
 .link--active {
 	color: map-get($color, link-blue);
+}
+
+.button {
+	border: none;
+	padding: 8px 28px;
+	cursor: pointer;
+	line-height: 12pt;
+	transition-duration: 0.2s;
+	&:hover {
+		opacity: 0.8;
+	}
+}
+
+.button--dark {
+	background-color: map-get($color, darkgrey);
+	color: map-get($color, white);
+}
+
+.button--light {
+	background-color: map-get($color, white);
+	color: map-get($color, darkgrey);
 }
 
 .space-button {

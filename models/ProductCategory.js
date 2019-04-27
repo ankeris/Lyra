@@ -1,5 +1,6 @@
 var keystone = require('keystone');
 let Types = keystone.Field.Types;
+const {redis} = require('../redis');
 
 /**
  * ProductCategory Model
@@ -18,7 +19,7 @@ ProductCategory.add({
 	name: {
 		type: String,
 		required: true,
-		note: 'daugiskaitos forma'
+		note: 'pavadinimas daugiskaitos forma'
 	},
 	nameSingular: {
 		type: String,
