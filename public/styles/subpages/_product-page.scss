@@ -1,16 +1,3 @@
-.get-back {
-	margin-top: 35px;
-	a,
-	button {
-		padding: 15px 30px;
-		color: map-get($color, white);
-		background-color: map-get($color, darkgrey);
-		&:hover {
-			@include hover(blue, 5px);
-		}
-	}
-}
-
 .product {
 	display: flex;
 	justify-content: space-between;
