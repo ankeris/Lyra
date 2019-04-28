@@ -154,6 +154,7 @@ a {
   justify-content: center; }
 
 .content-column {
+  position: relative;
   flex-direction: column; }
 
 p {
@@ -209,8 +210,8 @@ p {
   color: #fff; }
 
 .button--light {
-  background-color: #fff;
-  color: #1f1f1f; }
+  border: 3px solid #fff;
+  color: #fff; }
 
 .space-button {
   margin: 30px;
@@ -619,7 +620,12 @@ footer {
 .fullwidth-image {
   height: 57vh;
   background-position: center;
-  background-size: cover; }
+  background-size: cover;
+  overflow: hidden; }
+
+.video-player-wrapper {
+  display: flex;
+  align-items: center; }
 
 .section-description {
   display: flex;
@@ -1354,3 +1360,14 @@ footer {
       width: 100%;
       margin: 10px 0;
       border-bottom: 1px solid #fae8e8; } }
+
+.news-section {
+  height: 60vh;
+  overflow: hidden; }
+
+.background-image {
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  z-index: -1; }

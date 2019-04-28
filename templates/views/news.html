@@ -7,15 +7,23 @@
 
 {% block content %}
     {% for new in news %}
-        <section class="fullwidth-image content-center content-column lazy" data-bg="url({{new.image.secure_url}})">
+        <section class="content-center content-column news-section">
+            {# Media #}
+            {% if new.image.secure_url %}
+            <img class="background-image lazy" data-src="{{new.image.secure_url}}" alt="{{new.title}}">
+            {% elif new.video.filename %}
+            <video class="bg-video background-image lazy" muted loop autoplay>
+                <source class="player-src" src="/vid_news/{{new.video.filename}}" type="video/mp4">
+            </video>
+            {% endif %}
             <div class="message__square">
                 <h3>{{ new.title }}</h3>
                 <p>{{ new.description | safe}}</p>
             </div>
             {% if new.ButtonStyle == 'dark' %}
-            <a class="button button--dark push-top--small">Skaityti daugiau ></a>
+            <a class="button button--dark push-top--small">Skaityti daugiau →</a>
             {% else %}
-            <a class="button button--light push-top--small">Skaityti daugiau ></a>
+            <a class="button button--light push-top--small">Skaityti daugiau →</a>
             {% endif %}
         </section>
     {% endfor %}

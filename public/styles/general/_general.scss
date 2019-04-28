@@ -18,6 +18,7 @@ a {
 }
 
 .content-column {
+	position: relative;
 	flex-direction: column;
 }
 
@@ -85,8 +86,8 @@ p {
 }
 
 .button--light {
-	background-color: map-get($color, white);
-	color: map-get($color, darkgrey);
+	border: 3px solid map-get($color, white);
+	color: map-get($color, white);
 }
 
 .space-button {

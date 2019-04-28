@@ -15,10 +15,15 @@ exports = module.exports = function(req, res) {
 	view.on('init', function(next) {
 		const loadAllNewsQuery = {
 			dbCollection: keystone.list('News'),
-			sort: 'title',
+			sort: 'createdAt',
 			redisKeyName: 'all-news',
 			callback: (result, err) => {
-				result.forEach(post => (post.image.secure_url = cropCloudlinaryImage(post.image, 1000, 1000, supportWebP)));
+				result.forEach(post => {
+					if (post.hasOwnProperty('image') && post.image.hasOwnProperty('secure_url')) {
+						post.image.secure_url = cropCloudlinaryImage(post.image, 1000, 1000, supportWebP);
+					}
+				});
+
 				locals.news = result;
 				if (err || !result.length) {
 					return next(err);

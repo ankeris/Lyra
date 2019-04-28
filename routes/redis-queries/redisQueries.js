@@ -90,6 +90,16 @@ module.exports.homePageHighlights = function({dbCollection, populateBy, sort, ca
 	});
 };
 
+function compare(a, b) {
+	if (a.last_nom < b.last_nom) {
+		return -1;
+	}
+	if (a.last_nom > b.last_nom) {
+		return 1;
+	}
+	return 0;
+}
+
 module.exports.loadAll = function({dbCollection, populateBy = '', redisKeyName, sort = '', callback}) {
 	redis.get(redisKeyName, function(err, reply) {
 		if (err) callback(null, err);
@@ -104,7 +114,7 @@ module.exports.loadAll = function({dbCollection, populateBy = '', redisKeyName, 
 			dbCollection.model
 				.find()
 				.lean()
-				.sort(sort)
+				.sort({[sort]: -1})
 				.populate(populateBy)
 				.exec(function(err, doc) {
 					if (err || !doc) callback(null, err);

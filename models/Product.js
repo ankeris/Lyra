@@ -17,7 +17,10 @@ let Product = new keystone.List('Product', {
 
 var storage = new keystone.Storage({
 	adapter: keystone.Storage.Adapters.FS,
+	file: 'remove',
 	fs: {
+		size: true,
+		mimetype: true,
 		path: 'public/vid',
 		publicPath: '/public/vid/'
 	}

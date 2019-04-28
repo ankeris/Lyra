@@ -2,8 +2,12 @@
 	height: 57vh;
 	background-position: center;
 	background-size: cover;
+	overflow: hidden;
 }
-
+.video-player-wrapper {
+	display: flex;
+	align-items: center;
+}
 .section-description {
 	display: flex;
 	flex-direction: row;
