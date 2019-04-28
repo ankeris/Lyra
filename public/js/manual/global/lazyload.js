@@ -2,7 +2,7 @@ import LazyLoad from 'vanilla-lazyload';
 
 const lazyLoadOptions = {
 	elements_selector: '.lazy',
-	threshold: 60,
+	threshold: 0,
 	class_loaded: 'fade-in'
 };
 
