@@ -22,7 +22,7 @@ exports = module.exports = function(req, res) {
 	};
 
 	view.on('init', function(next) {
-		let productQueryOptions = {
+		const productQueryOptions = {
 			dbCollection: keystone.list('Product'),
 			populateBy: 'Manufacturer ProductType awards',
 			slug: locals.filters.product,

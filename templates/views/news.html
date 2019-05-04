@@ -21,9 +21,9 @@
                 <p>{{ new.description | safe}}</p>
             </div>
             {% if new.ButtonStyle == 'dark' %}
-            <a class="button button--dark push-top--small">Skaityti daugiau →</a>
+            <a href="/naujienos/{{new.slug}}" class="button button--dark push-top--small">Skaityti daugiau →</a>
             {% else %}
-            <a class="button button--light push-top--small">Skaityti daugiau →</a>
+            <a href="/naujienos/{{new.slug}}" class="button button--light push-top--small">Skaityti daugiau →</a>
             {% endif %}
         </section>
     {% endfor %}

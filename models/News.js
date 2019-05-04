@@ -52,6 +52,7 @@ News.add({
 		note: 'Hide from the page?'
 	}
 });
+
 News.schema.post('save', () => {
 	if (redis.exists('all-news')) redis.del('all-news');
 	const opts = keystone.options();
@@ -80,6 +81,10 @@ News.schema.post('save', () => {
 				});
 			});
 		});
+});
+
+News.schema.post('delete', () => {
+	if (redis.exists('all-news')) redis.del('all-news');
 });
 
 News.defaultColumns = 'title, image';

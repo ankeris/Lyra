@@ -1,0 +1,12 @@
+{% extends "layouts/default.html" %}
+
+{% block head %}
+	<title>{{section}}</title>
+    <meta name="Description" content="{{data.new.title}}">
+{% endblock %}
+
+{% block content %}
+    <section class="content-section">
+    {{data.new.title}}
+    </section>
+{% endblock %}

@@ -18,9 +18,14 @@ exports = module.exports = function(req, res) {
 			sort: 'createdAt',
 			redisKeyName: 'all-news',
 			callback: (result, err) => {
-				result.forEach(post => {
+				result.forEach((post, index) => {
 					if (post.hasOwnProperty('image') && post.image.hasOwnProperty('secure_url')) {
 						post.image.secure_url = cropCloudlinaryImage(post.image, 1000, 1000, supportWebP);
+					}
+					if (post.hasOwnProperty('hidden')) {
+						if (post.hidden) {
+							result.splice(index, 1);
+						}
 					}
 				});
 

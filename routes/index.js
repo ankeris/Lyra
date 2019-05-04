@@ -40,6 +40,7 @@ exports = module.exports = function(app) {
 	app.all('/kontaktai', routes.views.contact);
 	app.get('/nuolaidos/:category?', routes.views.specialoffers);
 	app.get('/naujienos', routes.views.news);
+	app.get('/naujienos/:newsItem', routes.views.new);
 	app.get('/apie-mus', routes.views.aboutus);
 	app.get('/produktai/:category?', routes.views.products);
 	app.get('/produktai/:Manufacturer?/:category?/:product', routes.views.product);
