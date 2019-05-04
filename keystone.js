@@ -5,7 +5,6 @@ require('dotenv').config();
 // Require keystone
 const keystone = require('keystone');
 const cons = require('consolidate');
-const nunjucks = require('nunjucks');
 
 // Initialise Keystone with your project's configuration. See
 // http://keystonejs.com/guide/config for available options and documentation.
@@ -17,6 +16,15 @@ keystone.init({
 	favicon: 'public/favicon.ico',
 	views: 'templates/views',
 	'view engine': '.html',
+	'wysiwyg cloudinary images': true,
+	'wysiwyg additional options': {
+		toolbar:
+			'fontselect fontsizeselect formatselect | bold italic | link image | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat',
+		block_formats: 'Paragraph=p; Header 1=h1; Header 2=h2; Header 3=h3',
+		font_formats: 'Azo Sans=AzoSans; Arial=arial,helvetica,sans-serif; Courier New=courier new,courier,monospace;',
+		content_css: ['public/general/_fonts.scss'],
+		menubar: true
+	},
 	'custom engine': cons.nunjucks,
 	'session store': 'connect-mongo',
 	'view cache': true,
