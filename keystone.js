@@ -55,7 +55,8 @@ keystone.set('routes', require('./routes'));
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
 	products: ['products', 'product-categories', 'product-manufacturers'],
-	information: ['news', 'enquiries', 'subscriptions'],
+	news: ['news', 'NewsParagraph'],
+	information: ['enquiries', 'subscriptions'],
 	users: 'users'
 });
 
