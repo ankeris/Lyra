@@ -2,6 +2,9 @@ var keystone = require('keystone');
 const Types = keystone.Field.Types;
 
 const NewsParagraph = new keystone.List('NewsParagraph', {
+	map: {
+		name: 'paragraphTitle'
+	},
 	track: true
 });
 
@@ -13,6 +16,11 @@ NewsParagraph.add({
 		type: String,
 		collapse: true,
 		note: 'Tekstas bus dedamas tik ant pirmos nuotraukos'
+	},
+	paragraphTitle: {
+		type: String,
+		required: true,
+		default: ''
 	},
 	text: {
 		type: Types.Html,
@@ -31,5 +39,5 @@ NewsParagraph.add({
 	}
 });
 
-NewsParagraph.defaultColumns = 'title, CoverImage';
+NewsParagraph.defaultColumns = 'paragraphTitle, images, BelongsTo';
 NewsParagraph.register();

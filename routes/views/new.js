@@ -13,7 +13,8 @@ exports = module.exports = function(req, res) {
 	};
 
 	locals.data = {
-		newsItem: {}
+		newsItem: {},
+		paragraphs: []
 	};
 
 	view.on('init', function(next) {
@@ -26,17 +27,36 @@ exports = module.exports = function(req, res) {
 
 		findItemBySlug(newsItemQueryOptions);
 
-		function exec(newsItem, err = '') {
+		const exec = (newsItem, err) => {
 			if (newsItem) {
-				locals.data.new = newsItem;
-				console.log(newsItem);
-				// Check if product doesn't have it's own discount and only then put the discount from productType
+				console.log(newsItem._id);
+				locals.data.newsItem = newsItem;
 				next();
 			} else {
+				next(err);
 				throw err;
 			}
-		}
+		};
 	});
+
+	view.on('init', function(next) {
+		keystone
+			.list('NewsParagraph')
+			.model.find({
+				BelongsTo: locals.data.newsItem._id
+			})
+			.lean()
+			.exec(function(err, result) {
+				result.forEach(paragraph =>
+					paragraph.images.forEach(image => {
+						image.secure_url = cropCloudlinaryImage(image, 1250, 1250, supportWebP);
+					})
+				);
+				locals.data.paragraphs = result;
+				next(err);
+			});
+	});
+
 	// Render the view
 	view.render('new');
 };

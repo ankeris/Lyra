@@ -1,12 +1,30 @@
 {% extends "layouts/default.html" %}
 
 {% block head %}
-	<title>{{section}}</title>
-    <meta name="Description" content="{{data.new.title}}">
+	<title>{{section}} | {{data.newsItem.title}}</title>
+    <meta name="Description" content="{{data.paragraph.title}}">
 {% endblock %}
 
 {% block content %}
-    <section class="content-section">
-    {{data.new.title}}
-    </section>
+    {% for paragraph in data.paragraphs %}
+        <div class="content-center content-column fullwidth-image">
+            {# Media #}
+            {% for image in paragraph.images %}
+                <img class="background-image lazy" data-src="{{image.secure_url}}" alt="{{paragraph.paragraphTitle}}">
+                {% if paragraph.textOnImage %}
+                    <div class="message__square">
+                        <p>{{ paragraph.textOnImage}}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        
+        {% set background = ( "black-bg" if paragraph.style == "dark" ) %}
+        <article class="{{background}}">
+            <div class="content-section expand-vertical">
+                <h3>{{paragraph.paragraphTitle}}</h3>
+                <p>{{ paragraph.text | safe}}</p>
+            </div>
+        </article>
+    {% endfor %}
 {% endblock %}
