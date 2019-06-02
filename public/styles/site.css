@@ -721,10 +721,12 @@ footer {
   padding: 15px;
   width: 100%;
   margin-top: -1px;
+  transition: transform 0.4s;
+  z-index: -1;
   transform: translateY(-150px); }
 
 .dropdown {
-  animation: 0.2s dropdown both alternate ease-in; }
+  transform: translateY(0px); }
 
 @media screen and (max-width: 760px) {
   .main-navigation {
