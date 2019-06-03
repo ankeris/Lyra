@@ -24,7 +24,8 @@ Awards.add({
 		type: Types.CloudinaryImage
 	},
 	Url: {
-		type: Types.Url
+		type: Types.Url,
+		note: 'Kur keliaus klientas paspaudes ant emblemos?'
 	}
 });
 

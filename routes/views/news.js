@@ -1,8 +1,8 @@
 const keystone = require('keystone');
-const {loadAll} = require('../redis-queries/redisQueries');
-const {cropCloudlinaryImage, isWebP} = require('../helpers');
+const { loadAll } = require('../redis-queries/redisQueries');
+const { cropCloudlinaryImage, isWebP } = require('../helpers');
 
-exports = module.exports = function(req, res) {
+exports = module.exports = function (req, res) {
 	const view = new keystone.View(req, res);
 	const locals = res.locals;
 	const supportWebP = isWebP(req);
@@ -12,7 +12,7 @@ exports = module.exports = function(req, res) {
 		news: []
 	};
 
-	view.on('init', function(next) {
+	view.on('init', function (next) {
 		const loadAllNewsQuery = {
 			dbCollection: keystone.list('News'),
 			sort: 'createdAt',

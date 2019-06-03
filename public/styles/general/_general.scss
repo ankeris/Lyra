@@ -22,6 +22,14 @@ a {
 	flex-direction: column;
 }
 
+.content-row {
+	flex-direction: row;
+}
+
+.wrap {
+	flex-wrap: wrap;
+}
+
 p {
 	margin: 0;
 }
@@ -32,9 +40,11 @@ p {
 .push-top {
 	margin-top: 50px;
 }
+
 .push-top--small {
 	margin-top: 15px;
 }
+
 .push-bottom {
 	margin-bottom: 50px;
 }
@@ -42,6 +52,7 @@ p {
 .push-vertical {
 	margin: 50px auto;
 }
+
 .expand-vertical {
 	padding: 50px 0;
 }

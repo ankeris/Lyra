@@ -1,7 +1,7 @@
-const {redis} = require('../../redis');
+const { redis } = require('../../redis');
 
-module.exports.findItemBySlug = function({dbCollection, populateBy = '', prefix = '', slug, callback}) {
-	redis.get(prefix + slug, function(err, reply) {
+module.exports.findItemBySlug = function ({ dbCollection, populateBy = '', prefix = '', slug, callback }) {
+	redis.get(prefix + slug, function (err, reply) {
 		if (err) callback(null, err);
 		else if (reply) {
 			// product exists in cache
@@ -16,11 +16,11 @@ module.exports.findItemBySlug = function({dbCollection, populateBy = '', prefix 
 				})
 				.lean()
 				.populate(populateBy)
-				.exec(function(err, doc) {
+				.exec(function (err, doc) {
 					if (err || !doc) callback(null, err);
 					else {
 						// product found in database, save to cache and return to client
-						redis.set(prefix + slug, JSON.stringify(doc), function() {
+						redis.set(prefix + slug, JSON.stringify(doc), function () {
 							callback(doc);
 						});
 					}
@@ -29,8 +29,8 @@ module.exports.findItemBySlug = function({dbCollection, populateBy = '', prefix 
 	});
 };
 
-module.exports.findOneByKey = function({dbCollection, keyName, sort = '', populateBy = 'ChildCategoryOf', prefix = '', callback}) {
-	redis.get(prefix + keyName, function(err, reply) {
+module.exports.findOneByKey = function ({ dbCollection, keyName, sort = '', populateBy = 'ChildCategoryOf', prefix = '', callback }) {
+	redis.get(prefix + keyName, function (err, reply) {
 		if (err) callback(null, err);
 		else if (reply) {
 			// category exists in cache
@@ -46,11 +46,11 @@ module.exports.findOneByKey = function({dbCollection, keyName, sort = '', popula
 				.lean()
 				.sort(sort)
 				.populate(populateBy)
-				.exec(function(err, doc) {
+				.exec(function (err, doc) {
 					if (err || !doc) callback(null, err);
 					else {
 						// category found in database, save to cache and return to client
-						redis.set(prefix + keyName, JSON.stringify(doc), function() {
+						redis.set(prefix + keyName, JSON.stringify(doc), function () {
 							callback(doc);
 						});
 					}
@@ -60,8 +60,8 @@ module.exports.findOneByKey = function({dbCollection, keyName, sort = '', popula
 };
 
 // Hardcoded Qrs
-module.exports.homePageHighlights = function({dbCollection, populateBy, sort, callback}) {
-	redis.get('homePageHighlights', function(err, reply) {
+module.exports.homePageHighlights = function ({ dbCollection, populateBy, sort, callback }) {
+	redis.get('homePageHighlights', function (err, reply) {
 		if (err) callback(null, err);
 		else if (reply) {
 			// highlights exists in cache
@@ -77,11 +77,11 @@ module.exports.homePageHighlights = function({dbCollection, populateBy, sort, ca
 				.lean()
 				.sort(sort)
 				.populate(populateBy)
-				.exec(function(err, doc) {
+				.exec(function (err, doc) {
 					if (err || !doc) callback(null, err);
 					else {
 						// highlights found in database, save to cache and return to client
-						redis.set('homePageHighlights', JSON.stringify(doc), function() {
+						redis.set('homePageHighlights', JSON.stringify(doc), function () {
 							callback(doc);
 						});
 					}
@@ -90,18 +90,8 @@ module.exports.homePageHighlights = function({dbCollection, populateBy, sort, ca
 	});
 };
 
-function compare(a, b) {
-	if (a.last_nom < b.last_nom) {
-		return -1;
-	}
-	if (a.last_nom > b.last_nom) {
-		return 1;
-	}
-	return 0;
-}
-
-module.exports.loadAll = function({dbCollection, populateBy = '', redisKeyName, sort = '', callback}) {
-	redis.get(redisKeyName, function(err, reply) {
+module.exports.loadAll = function ({ dbCollection, populateBy = '', redisKeyName, sort = '', callback }) {
+	redis.get(redisKeyName, function (err, reply) {
 		if (err) callback(null, err);
 		else if (reply) {
 			// highlights exists in cache
@@ -114,13 +104,13 @@ module.exports.loadAll = function({dbCollection, populateBy = '', redisKeyName, 
 			dbCollection.model
 				.find()
 				.lean()
-				.sort({[sort]: -1})
+				.sort({ [sort]: -1 })
 				.populate(populateBy)
-				.exec(function(err, doc) {
+				.exec(function (err, doc) {
 					if (err || !doc) callback(null, err);
 					else {
 						// highlights found in database, save to cache and return to client
-						redis.set(redisKeyName, JSON.stringify(doc), function() {
+						redis.set(redisKeyName, JSON.stringify(doc), function () {
 							callback(doc);
 						});
 					}

@@ -3,12 +3,12 @@ var keystone = require('keystone');
 var async = require('async');
 
 //helpers
-const {getSort, getRidOfMetadata, changeFormatToWebp, isWebP, cropCloudlinaryImage} = require('../helpers');
+const { getSort, getRidOfMetadata, changeFormatToWebp, isWebP, cropCloudlinaryImage } = require('../helpers');
 
 //redis
-const {loadAll, findOneByKey} = require('../redis-queries/redisQueries');
+const { loadAll, findOneByKey } = require('../redis-queries/redisQueries');
 
-exports = module.exports = function(req, res) {
+exports = module.exports = function (req, res) {
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
 	const supportWebP = isWebP(req);
@@ -25,7 +25,7 @@ exports = module.exports = function(req, res) {
 	};
 
 	// All manufacturers for sidenav
-	view.on('init', function(next) {
+	view.on('init', function (next) {
 		const loadAllCategoriesQuery = {
 			dbCollection: keystone.list('ProductManufacturer'),
 			sort: 'name',
@@ -44,7 +44,7 @@ exports = module.exports = function(req, res) {
 	});
 
 	// Find current brand/manufacturer
-	view.on('init', function(next) {
+	view.on('init', function (next) {
 		const categoryQueryOptions = {
 			dbCollection: keystone.list('ProductManufacturer'),
 			keyName: locals.filters.brand,
@@ -60,7 +60,7 @@ exports = module.exports = function(req, res) {
 					const exists = result.hasOwnProperty('CountryFlag');
 
 					if (exists) {
-						result.CountryFlag.secure_url = cropCloudlinaryImage(result.CountryFlag, 50, 37, supportWebP);
+						result.CountryFlag.secure_url = cropCloudlinaryImage(result.CountryFlag, 40, 40, supportWebP);
 					}
 					locals.data.socialMedias = generateSocialMediasArr(result);
 					locals.data.brand = result;
@@ -73,7 +73,7 @@ exports = module.exports = function(req, res) {
 	});
 
 	// All categories for side navigation
-	view.on('init', function(next) {
+	view.on('init', function (next) {
 		const loadAllCategoriesQuery = {
 			dbCollection: keystone.list('ProductCategory'),
 			sort: 'name',
@@ -84,7 +84,7 @@ exports = module.exports = function(req, res) {
 				const categoriesToDisplay = [];
 				async.each(
 					locals.data.allCategories,
-					function(category, next) {
+					function (category, next) {
 						keystone
 							.list('Product')
 							.model.count()
@@ -92,7 +92,7 @@ exports = module.exports = function(req, res) {
 							.in([category])
 							.where('Manufacturer')
 							.in([locals.data.brand])
-							.exec(function(err, count) {
+							.exec(function (err, count) {
 								category.postCount = count;
 
 								if (category.postCount > 0) {
@@ -101,7 +101,7 @@ exports = module.exports = function(req, res) {
 								next(err);
 							});
 					},
-					function(err) {
+					function (err) {
 						locals.data.categories = categoriesToDisplay.sort((a, b) => (a.name > b.name ? 1 : -1));
 						next(err);
 					}
@@ -134,7 +134,7 @@ exports = module.exports = function(req, res) {
 	});
 
 	// Load products
-	view.on('init', function(next) {
+	view.on('init', function (next) {
 		const r = keystone.list('Product').paginate({
 			page: req.query.page || 1,
 			perPage: 9,
@@ -145,7 +145,7 @@ exports = module.exports = function(req, res) {
 		if (!locals.data.category) {
 			r.find({
 				Manufacturer: locals.data.brand
-			}).exec(function(err, result) {
+			}).exec(function (err, result) {
 				if (err) {
 					next(err);
 				} else {
@@ -161,7 +161,7 @@ exports = module.exports = function(req, res) {
 				r.find({
 					ProductType: locals.data.category,
 					Manufacturer: locals.data.brand
-				}).exec(function(err, result) {
+				}).exec(function (err, result) {
 					if (err) {
 						console.log(err);
 						next(err);
@@ -174,12 +174,12 @@ exports = module.exports = function(req, res) {
 			else if (locals.data.category.IsParentCategory) {
 				keystone
 					.list('ProductCategory')
-					.model.find({$or: [{ChildCategoryOf: locals.data.category}, {_id: locals.data.category}]})
-					.exec(function(err, result) {
+					.model.find({ $or: [{ ChildCategoryOf: locals.data.category }, { _id: locals.data.category }] })
+					.exec(function (err, result) {
 						r.find({
-							ProductType: {$in: result},
+							ProductType: { $in: result },
 							Manufacturer: locals.data.brand
-						}).exec(function(err, result) {
+						}).exec(function (err, result) {
 							if (err) {
 								next(err);
 							} else {
@@ -206,7 +206,7 @@ function generateSocialMediasArr(result) {
 
 	function pushIf(key, val) {
 		if (val) {
-			arr.push({name: key, url: val});
+			arr.push({ name: key, url: val });
 		}
 	}
 	return arr;

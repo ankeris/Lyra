@@ -1,4 +1,5 @@
 {% extends "layouts/default.html" %}
+{% from "mixins/highlighted-products.html" import highlightedProducts %}
 
 {% block head %}
     <meta name="Description" content="Kokybiškos garso aparatūros parduotuvė. Stereo sistemos, namų kino ir multiroom įranga.">
@@ -27,7 +28,7 @@
 
     {% include 'partials/googlemaps.html' %}
     
-    {% include 'partials/highlighted.html' %}
+    {{highlightedProducts(products)}}
     
     {% include 'partials/instagram.html' %}
 

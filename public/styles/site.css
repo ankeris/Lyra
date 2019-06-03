@@ -157,6 +157,12 @@ a {
   position: relative;
   flex-direction: column; }
 
+.content-row {
+  flex-direction: row; }
+
+.wrap {
+  flex-wrap: wrap; }
+
 p {
   margin: 0; }
 

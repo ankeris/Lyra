@@ -1,6 +1,6 @@
 const keystone = require('keystone');
 const Types = keystone.Field.Types;
-const {redis} = require('../redis');
+const { redis } = require('../redis');
 const path = require('path');
 const fs = require('fs');
 
@@ -45,15 +45,21 @@ News.add({
 	ButtonStyle: {
 		type: Types.Select,
 		default: 'dark',
-		options: [{value: 'dark', label: 'Juodas mygtukas'}, {value: 'light', label: 'Baltas mygtukas'}]
+		options: [{ value: 'dark', label: 'Juodas mygtukas' }, { value: 'light', label: 'Baltas mygtukas' }]
 	},
 	hidden: {
 		type: Boolean,
 		note: 'Hide from the page?'
+	},
+	relatedProducts: {
+		type: Types.Relationship,
+		ref: 'Product',
+		many: true
 	}
 });
 
-News.schema.post('save', () => {
+News.schema.post('save', (doc) => {
+	if (redis.exists(`news-${doc.slug}`)) redis.del(`news-${doc.slug}`);
 	if (redis.exists('all-news')) redis.del('all-news');
 	const opts = keystone.options();
 	const videosPath = path.join(opts['module root'], opts.static + '/vid_news');
@@ -72,7 +78,7 @@ News.schema.post('save', () => {
 			// Look for files that don't exist in DB and delete them
 			fs.readdir(videosPath, (err, files) => {
 				if (err) throw err;
-				files.forEach(function(file) {
+				files.forEach(function (file) {
 					if (filesInDb.indexOf(file) == -1) {
 						fs.unlink(`${videosPath}/${file}`, err => {
 							if (err) throw err;
