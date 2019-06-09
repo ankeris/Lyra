@@ -2,14 +2,13 @@ let $ = require('jquery');
 let _ = require('lodash');
 // AJAX
 // Load more products
-let xoxo;
 let currentPage = 1;
 let AllProductsLoaded = false;
 $('.loading-speakers-box').hide();
 
 function addNextPage() {
 	currentPage++;
-	let parameters = {
+	const parameters = {
 		page: currentPage,
 		filterlist: document.querySelector('.variables').getAttribute('data-sort')
 	};
@@ -39,7 +38,7 @@ function addNextPage() {
 function ajaxCall(link, variable, parameters) {
 	if (!AllProductsLoaded) {
 		$('.loading-speakers-box').show();
-		$.get(link + variable, parameters, function(data) {
+		$.get(link + variable, parameters, function (data) {
 			$('.products').append($(data).find('.products .items-box__item'));
 			if ($(data).find('.products .items-box__item').length == 0) {
 				AllProductsLoaded = true;
@@ -49,7 +48,7 @@ function ajaxCall(link, variable, parameters) {
 	}
 }
 
-const scrollNews = _.throttle(function(e) {
+const scrollNews = _.throttle(function (e) {
 	// if statement finds if user screen has scrolled to the bottom of products-wrapper box
 	if ($(window).scrollTop() + $(window).height() > $('.products-wrapper').offset().top + $('.products-wrapper').outerHeight(true)) {
 		addNextPage();
