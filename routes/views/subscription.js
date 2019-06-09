@@ -13,13 +13,12 @@ exports = module.exports = function (req, res) {
 	locals.formSubmitted = false;
 	locals.emailExists = false;
 	locals.page = req.originalUrl;
-	
-	// On POST requests, add the Enquiry item to the database
-	view.on('post', { action: 'index' }, function (next) {
 
-		let newSubscription = new Subscription.model();
+	// On POST requests, add the Enquiry item to the database
+	view.on('post', function (next) {
+		const newSubscription = new Subscription.model();
 		let subUpdater = newSubscription.getUpdateHandler(req);
-		keystone.list('Subscription').model.find({email: req.body.email}).exec(function (err, result) {
+		keystone.list('Subscription').model.find({ email: req.body.email }).exec(function (err, result) {
 			if (result.length == 0) {
 				subUpdater.process(req.body, {
 					flashErrors: true,
@@ -29,12 +28,13 @@ exports = module.exports = function (req, res) {
 					if (err) {
 						locals.validationErrors = err.errors;
 					} else {
+						locals.status = { email: req.body.email };
 						locals.formSubmitted = true;
 					}
 					next();
 				});
 			} else {
-				locals.status = {title: 'Šis el-paštas jau yra įtrauktas į prenumetūrą', message: ''};
+				locals.status = { title: 'Šis el-paštas jau yra įtrauktas į prenumetūrą', message: '' };
 				locals.emailExists = true;
 				next();
 			}

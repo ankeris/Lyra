@@ -1,64 +1,86 @@
 {% from "mixins/macros.html" import checkBox %}
 {% from 'mixins/media-icons.html' import facebook, instagram, tidal, spotify %}
 
-<footer id="footer">
-    <section class="content-section">
-    
-        <div class="footer__box footer__box--left">
-            <p>SALONAS „LYRA“<br>
-            KĘSTUČIO G. 26<br>
-            LT-08115 VILNIUS</p>
-        </div>
+<footer class="footer" id="footer">
+    <section class="content-section push-vertical">
+        <div class="content-center content-space-between content-wrap">
+            <div class="footer__box footer__box--left">
+                <p>SALONAS „LYRA“<br>
+                KĘSTUČIO G. 26<br>
+                LT-08115 VILNIUS</p>
 
-        <div class="footer__box footer__box--middle">
-            <p>
-            I - V: 10 - 19<br>
-            VI: 10 - 15<br>
-            VII: <span style="letter-spacing: -2px;">-----<span>
-            </p>
-        </div>
+                <p class="push-top--small"><a href="tel:+37052623596">(+370 5) 262 35 96</a><br>
+                <a href="mailto:info@lyra.lt">INFO@LYRA.LT</a></p>
+            </div>
 
-        <div class="footer__box footer__box--right">
-            {% if formSubmitted %}
-            <h5>Jūs sėkmingai prisijungėte prie naujienlaiškio</h5>
-            {% elif emailExists %}
-            <h5>{{status.title}}</h5>
-            {% else %}
-                <form class="newsletter" method="post">
-                    <div class="newsletter__box">
-                        <p class="newsletter__box--text">Naujienlaiškis</p>
-                        <div class="newsletter__box--input push-bottom--small">
-                            <input type="hidden" name="action" value="index">
-                            <input type="email" name="email" value="{{ formData.email }}" placeholder="įveskite savo el. pašto adresą">
+            <div class="footer__box footer__box--middle">
+                I - V: 10 - 19<br>
+                VI: 10 - 15<br>
+                VII: <span style="letter-spacing: -2px;">-----<span>
+            </div>
+
+            <div class="footer__box footer__box--right">
+                {% if formSubmitted %}
+                <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+                    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+                        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                            <header class="content-center content-space-between">
+                            <h2 class="modal__title" id="modal-1-title">
+                                Ačiū!
+                            </h2>
+                            <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+                            </header>
+                            <main class="push-vertical--small modal__body" id="modal-1-content">
+                                <p><b>{{status.email}}</b> buvo sėkmingai įtrauktas į naujienlaiškį</p>
+                            </main>
                         </div>
-                        <label class="newsletter__box--button">
-                            <input type="submit" />
-                            {{ checkBox("#1f1f1f", "#448AA6") }}
-                        </label>
                     </div>
-                </form>
-            {% endif %}
-            
-        </div>
-
-        <div class="footer__box footer__box--left">
-            <p><a href="tel:+37052623596">(+370 5) 262 35 96</a><br>
-            <a href="mailto:info@lyra.lt">INFO@LYRA.LT</a></p>
-        </div>
-        <div class="footer__box footer__box--right">
-            <div class="media-icons content-center push-top--small">
-                    <a class="media-icons__icon" aria-label="facebook" rel="noreferrer" href="https://www.facebook.com/SalonasLyra/" target="_blank">
-                        {{ facebook("#1f1f1f", "#448AA6") }}
-                    </a>
-                    <a class="media-icons__icon" aria-label="instagram" rel="noreferrer" href="https://www.instagram.com/salonas_lyra/" target="_blank">
-                        {{ instagram("#1f1f1f", "#448AA6") }}
-                    </a>
-                    <a class="media-icons__icon" aria-label="tidal" rel="noreferrer" href="https://tidal.com/playlist/b82d9073-c0e7-4862-97c4-814c8515a2f7" target="_blank">
-                        {{ tidal("#1f1f1f", "#448AA6") }}
-                    </a>
-                    <a class="media-icons__icon" aria-label="spotify" rel="noreferrer" href="https://open.spotify.com/user/lyra26?si=KmJGXnamTpKBMtcaHZE5KQ" target="_blank">
-                        {{ spotify("#1f1f1f", "#448AA6") }}
-                    </a>
+                </div>
+                {% elif emailExists %}
+                <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+                    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+                        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                            <header class="content-center content-space-between">
+                            <h2 class="modal__title" id="modal-1-title">
+                                Informacija
+                            </h2>
+                            <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+                            </header>
+                            <main class="push-vertical--small modal__body" id="modal-1-content">
+                                <p>Šis e-mail jau yra įtrauktas į naujienlaiškį</p>
+                            </main>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                    <form class="newsletter" method="post">
+                        <p class="newsletter__box--text">Naujienlaiškis</p>
+                        <div class="content-center">
+                            <div class="newsletter__box--input push-bottom--small">
+                                <input type="hidden" name="action" value="index">
+                                <input type="email" name="email" value="{{ formData.email }}" required placeholder="įveskite savo el. pašto adresą">
+                            </div>
+                            <label class="newsletter__box--button">
+                                <input type="submit" />
+                                {{ checkBox("#1f1f1f", "#448AA6") }}
+                            </label>
+                        </div>
+                        <div class="media-icons content-center push-top--small">
+                            <a class="media-icons__icon" aria-label="facebook" rel="noreferrer" href="https://www.facebook.com/SalonasLyra/" target="_blank">
+                                {{ facebook("#1f1f1f", "#448AA6") }}
+                            </a>
+                            <a class="media-icons__icon" aria-label="instagram" rel="noreferrer" href="https://www.instagram.com/salonas_lyra/" target="_blank">
+                                {{ instagram("#1f1f1f", "#448AA6") }}
+                            </a>
+                            <a class="media-icons__icon" aria-label="tidal" rel="noreferrer" href="https://tidal.com/playlist/b82d9073-c0e7-4862-97c4-814c8515a2f7" target="_blank">
+                                {{ tidal("#1f1f1f", "#448AA6") }}
+                            </a>
+                            <a class="media-icons__icon" aria-label="spotify" rel="noreferrer" href="https://open.spotify.com/user/lyra26?si=KmJGXnamTpKBMtcaHZE5KQ" target="_blank">
+                                {{ spotify("#1f1f1f", "#448AA6") }}
+                            </a>
+                        </div>
+                    </form>
+                {% endif %}
             </div>
         </div>
     </section>

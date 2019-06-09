@@ -57,9 +57,9 @@
 	padding: 15px;
 	width: 100%;
 	margin-top: -1px;
-	transition: transform 0.4s;
 	z-index: -1;
 	transform: translateY(-150px);
+	transition: transform 0.3s;
 }
 
 .dropdown {
@@ -122,10 +122,24 @@
 	.fakenav {
 		display: none;
 	}
+
 	.search-form {
-		transform: translateX(-100%);
-		width: 100%;
+		background-color: rgba($color: map-get($color, white), $alpha: 0.85);
 		height: 0;
 		padding: 0;
+		visibility: hidden;
+		width: 100%;
+		margin-top: -1px;
+		z-index: -1;
+		transform: translateX(300px);
+		transition: transform 0.3s;
+	}
+	
+	.dropdown {
+		transform: translateX(0px);
+		display: block;
+		visibility: visible;
+		height: auto;
+		padding: 15px;
 	}
 }

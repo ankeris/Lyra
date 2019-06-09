@@ -1,7 +1,7 @@
-var keystone = require('keystone');
-var Types = keystone.Field.Types;
+const keystone = require('keystone');
+const Types = keystone.Field.Types;
 
-var Subscription = new keystone.List('Subscription', {
+const Subscription = new keystone.List('Subscription', {
 	nocreate: true,
 	noedit: true,
 	map: { name: 'email' }
