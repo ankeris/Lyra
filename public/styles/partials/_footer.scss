@@ -1,49 +1,67 @@
-footer {
-	width: 100%;
-	margin: 0 auto;
+.footer {
 	border-top: 1px solid #eeeeee;
 	background-color: map-get($color, white);
 	font-weight: 300;
-	p {
-		color: map-get($color, darkgrey);
-	}
-	.content-section {
-		padding: 40px 0;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		.footer__box {
-			a img {
-				margin-left: 10px;
-				margin-bottom: 10px;
-				width: 50px;
-				height: 50px;
-			}
-		}
 		.footer__box--left {
 			text-align: left;
 			flex-basis: 23%;
 		}
 		.footer__box--middle {
+			align-self: flex-start;
 			justify-content: left;
-			// text-align: right;
 			flex-basis: 20%;
-			p {
-				width: 100px;
-				text-align: right;
-			}
 		}
 		.footer__box--right {
+			align-self: flex-start;
 			flex-basis: 40%;
+		}
+
+		.newsletter {
+			.newsletter__box--input {
+				width: 85%;
+				input {
+					width: 95%;
+					height: 30px;
+					padding: 2px 8px;
+					margin: 0;
+					border: none;
+					background-color: map-get($color, darkgrey);
+					&::placeholder {
+						color: map-get($color, white);
+					}
+					&[type] {
+						color: map-get($color, white);
+					}
+				}
+			}
+			.newsletter__box--button {
+				height: 35px;
+				width: 15%;
+				text-align: center;
+				cursor: pointer;
+			}
+			input[type='submit'] {
+				display: none;
+			}
+		}
+}
+
+@media screen and (max-width: $window-small-medium) {
+	.footer {
+		.footer__box--left {
+			text-align: left;
+			flex-basis: 50%;
+		}
+		.footer__box--middle {
+			text-align: right;
+			flex-basis: 50%;
+		}
+		.footer__box--right {
+			flex-basis: 100%;
 			.newsletter {
 				width: 100%;
-				.newsletter__box {
-					display: flex;
-					flex-wrap: wrap;
 					.newsletter__box--text {
 						flex-basis: 100%;
-						margin-top: 0;
-						margin-bottom: 5px;
 					}
 					.newsletter__box--input {
 						width: 85%;
@@ -51,10 +69,8 @@ footer {
 						input {
 							width: 95%;
 							height: 30px;
-							padding: 2px 8px;
+							padding: 0 5px;
 							margin: 0;
-							border: none;
-							background-color: map-get($color, darkgrey);
 							&::placeholder {
 								color: map-get($color, white);
 							}
@@ -64,6 +80,7 @@ footer {
 						}
 					}
 					.newsletter__box--button {
+						height: 35px;
 						width: 15%;
 						text-align: center;
 						cursor: pointer;
@@ -71,84 +88,6 @@ footer {
 					input[type='submit'] {
 						display: none;
 					}
-				}
-			}
-		}
-	}
-}
-.media-icons {
-	flex-direction: row;
-	.media-icons__icon {
-		margin: 0 7px;
-		&:hover {
-			opacity: 0.6;
-			transition: ease-out 0.2s;
-		}
-	}
-}
-
-@media screen and (max-width: $window-small-medium) {
-	footer {
-		.content-section {
-			padding: 40px 0;
-			display: flex;
-			flex-wrap: wrap-reverse;
-			.footer__box {
-				a img {
-					margin-left: 10px;
-					margin-bottom: 10px;
-					width: 50px;
-					height: 50px;
-				}
-			}
-			.footer__box--left {
-				text-align: left;
-				flex-basis: 50%;
-			}
-			.footer__box--middle {
-				text-align: right;
-				flex-basis: 50%;
-			}
-			.footer__box--right {
-				flex-basis: 100%;
-				.newsletter {
-					width: 100%;
-					.newsletter__box {
-						display: flex;
-						flex-wrap: wrap;
-						.newsletter__box--text {
-							flex-basis: 100%;
-						}
-						.newsletter__box--input {
-							width: 85%;
-							// overflow: auto;
-							input {
-								width: 95%;
-								height: 30px;
-								padding: 0 5px;
-								margin: 0;
-								&::placeholder {
-									color: map-get($color, white);
-								}
-								&[type] {
-									color: map-get($color, white);
-								}
-							}
-						}
-						.newsletter__box--button {
-							width: 15%;
-							text-align: center;
-							cursor: pointer;
-						}
-						input[type='submit'] {
-							display: none;
-						}
-					}
-				}
-				.media-icons {
-					text-align: center;
-					margin: 20px;
-				}
 			}
 		}
 	}
