@@ -29,7 +29,7 @@
         </article>
 
         {% if paragraph.awards.length %}
-        <div class="content-center content-row push-bottom wrap">
+        <div class="content-center content-row push-bottom content-wrap">
             {% for award in paragraph.awards %}
                 <a href="{{award.Url}}" class="push-horizontal--small"><img class="award-image" src="{{award.CoverImage.secure_url}}" title="{{award.name}}" alt=""></a>
             {% endfor %}
