@@ -871,7 +871,7 @@ figure {
   flex-flow: row nowrap;
   justify-content: space-between;
   font-size: 4em;
-  z-index: 10; }
+  z-index: 1; }
   .loop-box__title div {
     font-weight: thin; }
 
@@ -1155,7 +1155,8 @@ figure {
   background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  z-index: 2; }
 
 .modal__container {
   background-color: #1f1f1f;
@@ -1235,7 +1236,7 @@ figure {
   max-width: 600px;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.7);
-  padding: 1%; }
+  padding: 15px; }
 
 @media screen and (max-width: 700px) {
   #manifesto {

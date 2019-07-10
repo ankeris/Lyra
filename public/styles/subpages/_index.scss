@@ -22,7 +22,7 @@
 	max-width: $window-small-medium;
 	color: map-get($color, white);
 	background-color: rgba(0, 0, 0, 0.7);
-	padding: 1%;
+	padding: 15px;
 }
 
 @media screen and (max-width: 700px) {

@@ -1,5 +1,6 @@
 var keystone = require('keystone');
 var Enquiry = keystone.list('Enquiry');
+const {isWebP} = require('../helpers');
 
 exports = module.exports = function (req, res) {
 
@@ -7,6 +8,7 @@ exports = module.exports = function (req, res) {
 	var locals = res.locals;
 
 	// Set locals
+	locals.supportWebP = isWebP(req);
 	locals.section = 'contact';
 	locals.formData = req.body || {};
 	locals.validationErrors = {};

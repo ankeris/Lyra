@@ -12,6 +12,8 @@
 {% endblock %}
 
 {% block content %}
+	{% set fileExtension = ( "webp" if supportWebP else "jpg" ) %}
+
 	{% if enquirySubmitted %}
 		<h3>Ačiū, greitu metu perskaitysime jūsų žinutę</h3>
 	{% else %}
