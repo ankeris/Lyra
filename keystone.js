@@ -17,10 +17,10 @@ keystone.init({
 	views: 'templates/views',
 	'view engine': '.html',
 	'wysiwyg cloudinary images': true,
-	'wysiwyg additional plugins': 'table',
+	'wysiwyg additional plugins': 'table, lists',
 	'wysiwyg additional options': {
 		toolbar:
-			'fontselect fontsizeselect formatselect | bold italic | link image | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent removeformat | table tabledelete tableprops tablerowprops tablecellprops',
+			'fontselect fontsizeselect formatselect | bold italic | link image | alignleft aligncenter alignright alignjustify | numlist bullist | outdent indent removeformat | table tabledelete tableprops tablerowprops tablecellprops',
 		block_formats: 'Paragraph=p; Header 1=h1; Header 2=h2; Header 3=h3',
 		font_formats: 'Azo Sans=AzoSans; Arial=arial,helvetica,sans-serif; Courier New=courier new,courier,monospace;',
 		content_css: ['public/general/_fonts.scss'],
