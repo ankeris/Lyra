@@ -2,37 +2,47 @@ const keystone = require('keystone');
 const Types = keystone.Field.Types;
 const { redis } = require('../redis');
 
-const AboutUs = new keystone.List('AboutUs', {
+const AboutUsParagraphs = new keystone.List('AboutUsParagraphs', {
 	map: {
-		name: 'title'
+		name: 'paragraphTitle'
 	},
 	track: true,
 	autokey: {
-		from: 'title',
+		from: 'paragraphTitle',
 		path: 'slug',
 		unique: true
 	}
 });
 
-AboutUs.add({
-	title: {
+AboutUsParagraphs.add({
+	images: {
+		type: Types.CloudinaryImages
+	},
+	textOnImage: {
 		type: String,
-		required: true
+		collapse: true,
+		note: 'Tekstas bus dedamas tik ant pirmos nuotraukos'
+	},
+	paragraphTitle: {
+		type: String,
+		required: true,
+		default: ''
 	},
 	body: {
 		type: Types.Html,
 		wysiwyg: true,
-		height: 200
+		height: 400
+    },
+    style: {
+		type: Types.Select,
+		default: 'light',
+		options: [{ value: 'light', label: 'Baltas fonas + juodas tekstas' }, { value: 'dark', label: 'Juodas fonas + baltas tekstas' }]
 	}
 });
 
-AboutUs.schema.post('save', (doc) => {
-	
+AboutUsParagraphs.schema.post('save', (doc) => {
+	if (redis.exists('all-aboutusparagraphs')) redis.del('all-aboutusparagraphs');
 });
 
-AboutUs.schema.post('delete', () => {
-	if (redis.exists('all-aboutus')) redis.del('all-aboutus');
-});
-
-AboutUs.defaultColumns = 'title, image';
-AboutUs.register();
+AboutUsParagraphs.defaultColumns = 'title, image';
+AboutUsParagraphs.register();

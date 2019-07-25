@@ -1,14 +1,30 @@
 {% extends "layouts/default.html" %}
-
 {% block head %}
-	<title>{{section}}</title>
-    <meta name="Description" content="Lyros istorija ir tikslas">
+	<title>{{section}} | {{data.newsItem.title}}</title>
+    <meta name="Description" content="{{section}}">
 {% endblock %}
 
-{% block intro %}
-    <div class="content-section" style="text-align: center;">
-        <h3 class="title push-vertical">{{section}}</h3>
-        <h3 class="title push-vertical">This subpage is under construction</h3>
-        <img src="/images/construct.png" alt="Construction" width="200px">
-    </div>
+{% block content %}
+    {% for paragraph in data.paragraphs %}
+        {% if paragraph.images.length %}
+            <div class="content-center content-column fullwidth-image">
+                {# Media #}
+                {% for image in paragraph.images %}
+                    <img class="background-image lazy" data-src="{{image.secure_url}}" alt="{{paragraph.paragraphTitle}}">
+                    {% if paragraph.textOnImage %}
+                        <div class="message__square">
+                            <p>{{ paragraph.textOnImage}}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        {% set background = ( "black-bg" if paragraph.style == "dark" ) %}
+        <article class="{{background}}">
+            <div class="content-section expand-vertical">
+                <p>{{ paragraph.body | safe}}</p>
+            </div>
+        </article>
+    {% endfor %}
 {% endblock %}

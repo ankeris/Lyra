@@ -8,17 +8,19 @@
 
 {% block content %}
     {% for paragraph in data.paragraphs %}
-        <div class="content-center content-column fullwidth-image">
-            {# Media #}
-            {% for image in paragraph.images %}
-                <img class="background-image lazy" data-src="{{image.secure_url}}" alt="{{paragraph.paragraphTitle}}">
-                {% if paragraph.textOnImage %}
-                    <div class="message__square">
-                        <p>{{ paragraph.textOnImage}}</p>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
+        {% if paragraph.images.length %}
+            <div class="content-center content-column fullwidth-image">
+                {# Media #}
+                {% for image in paragraph.images %}
+                    <img class="background-image lazy" data-src="{{image.secure_url}}" alt="{{paragraph.paragraphTitle}}">
+                    {% if paragraph.textOnImage %}
+                        <div class="message__square">
+                            <p>{{ paragraph.textOnImage}}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
         
         {% set background = ( "black-bg" if paragraph.style == "dark" ) %}
         <article class="{{background}}">
