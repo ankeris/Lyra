@@ -1,5 +1,7 @@
 {% extends "layouts/default.html" %}
 {% from "mixins/moving-background.html" import movingBackground %}
+{% from 'mixins/media-icons.html' import facebook, instagram %}
+{% from 'mixins/macros.html' import blackLogo %}
 
 {% block head %}
 	<title>Kontaktai</title>
@@ -8,7 +10,6 @@
 
 {% block intro %}
 	<div class="title push-vertical">
-		<h2>Susisiekite su mumis</h2>
 	</div>
 {% endblock %}
 
@@ -18,12 +19,42 @@
 	{% if enquirySubmitted %}
 		<h3>Ačiū, greitu metu perskaitysime jūsų žinutę</h3>
 	{% else %}
-        {% include 'partials/contact-form.html' %}
+		<section class="content-section content-center content-row content-wrap content-space-between push-bottom">
+			<div class="expand content-half content-center content-wrap">
+				<div class="content-half center push-bottom">
+					{{blackLogo()}}
+				</div>
+				<div class="content-half center push-bottom">
+					<p>KĘSTUČIO G. 26<br>
+					LT-08115 VILNIUS</p>
+					<p><a href="tel:+37052623596">(+370 5) 262 35 96</a><br>
+					<a href="mailto:info@lyra.lt">INFO@LYRA.LT</a></p>
+				</div>
+				<div class="content-half center">
+					<div>I - V: 10 - 19</div>
+					<div>VI: 10 - 15</div>
+					<div>VII: <span style="letter-spacing: -2px;">----------<span></div>
+				</div>
+				<div class="content-half center">
+					<div class="media-icons content-center push-top--small">
+                        <a class="media-icons__icon" aria-label="facebook" rel="noreferrer" href="https://www.facebook.com/SalonasLyra/" target="_blank">
+                            {{ facebook("#1f1f1f", "#448AA6") }}
+                        </a>
+                        <a class="media-icons__icon" aria-label="instagram" rel="noreferrer" href="https://www.instagram.com/salonas_lyra/" target="_blank">
+                            {{ instagram("#1f1f1f", "#448AA6") }}
+                        </a>
+                    </div>
+				</div>
+			</div>
+			<div class="content-half">
+				{% include 'partials/contact-form.html' %}
+			</div>
+		</section>
 	{% endif %}
 
-<figure class="title push-vertical">
+{# <figure class="title push-vertical">
     <h3>{{globaldata.invitation.sentence1}} <b>{{globaldata.invitation.strongword1}}</b> {{globaldata.invitation.sentence2}}<b> {{globaldata.invitation.strongword2}}</b></h3>
-</figure>
+</figure> #}
 
 {% include 'partials/googlemaps.html' %}
 

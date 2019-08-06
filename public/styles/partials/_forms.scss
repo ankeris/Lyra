@@ -1,25 +1,23 @@
 .form {
 	display: flex;
+	flex-direction: column;
 	flex-wrap: wrap; // flex-direction: column;
 	justify-content: space-between;
-	.form__leftbox {
-		flex-basis: 49%;
-		display: flex;
-		flex-direction: column;
-	}
-	.form__rightbox {
-		display: flex;
-		flex-basis: 49%;
-	}
 	.form__textarea {
 		flex-basis: 100%;
 		padding: 10px;
-		border: 1px solid map-get($color, darkgrey);
+		font-weight: 200;
+		border-style: solid;
+		border-color: map-get($color, darkgrey);
+		border-width: 0 0 1px 0;
+		outline: none;
+		resize: none;
 	}
 	.form__input {
 		flex-basis: 100%;
 		padding: 10px;
-		border: 1px solid map-get($color, darkgrey); // border-radius: 8px;
+		border: none;
+		border-bottom: 1px solid map-get($color, darkgrey); // border-radius: 8px;
 	}
 	.confirm-button {
 		margin: 20px auto;

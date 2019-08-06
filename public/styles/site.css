@@ -151,7 +151,8 @@ a {
 .content-center {
   display: flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  box-sizing: border-box; }
 
 .content-column {
   position: relative;
@@ -165,6 +166,12 @@ a {
 
 .content-wrap {
   flex-wrap: wrap; }
+
+.content-half {
+  flex-basis: 48%; }
+  @media screen and (max-width: 800px) {
+    .content-half {
+      flex-basis: 100%; } }
 
 .media-icons {
   flex-direction: row; }
@@ -180,26 +187,29 @@ p {
 .title {
   text-align: center; }
 
-.push-top {
-  margin-top: 50px; }
+.push {
+  margin: 50px; }
+  .push-top {
+    margin-top: 50px; }
+    .push-top--small {
+      margin-top: 15px; }
+  .push-bottom {
+    margin-bottom: 50px; }
+    .push-bottom--small {
+      margin-bottom: 15px; }
+  .push-vertical {
+    margin: 50px auto; }
+    .push-vertical--small {
+      margin: 15px 0; }
+  .push-horizontal {
+    margin: auto 50px; }
+    .push-horizontal--small {
+      margin: 0 15px; }
 
-.push-top--small {
-  margin-top: 15px; }
-
-.push-bottom {
-  margin-bottom: 50px; }
-
-.push-vertical {
-  margin: 50px auto; }
-
-.expand-vertical {
-  padding: 50px 0; }
-
-.push-vertical--small {
-  margin: 15px 0; }
-
-.push-horizontal--small {
-  margin: 0 15px; }
+.expand {
+  padding: 50px; }
+  .expand-vertical {
+    padding: 50px 0; }
 
 .center {
   text-align: center; }
@@ -835,23 +845,23 @@ figure {
 
 .form {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-between; }
-  .form .form__leftbox {
-    flex-basis: 49%;
-    display: flex;
-    flex-direction: column; }
-  .form .form__rightbox {
-    display: flex;
-    flex-basis: 49%; }
   .form .form__textarea {
     flex-basis: 100%;
     padding: 10px;
-    border: 1px solid #1f1f1f; }
+    font-weight: 200;
+    border-style: solid;
+    border-color: #1f1f1f;
+    border-width: 0 0 1px 0;
+    outline: none;
+    resize: none; }
   .form .form__input {
     flex-basis: 100%;
     padding: 10px;
-    border: 1px solid #1f1f1f; }
+    border: none;
+    border-bottom: 1px solid #1f1f1f; }
   .form .confirm-button {
     margin: 20px auto; }
 

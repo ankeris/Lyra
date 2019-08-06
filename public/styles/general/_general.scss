@@ -16,6 +16,7 @@ a {
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		box-sizing: border-box;
 	}
 	&-column {
 		position: relative;
@@ -29,6 +30,12 @@ a {
 	}
 	&-wrap {
 		flex-wrap: wrap;
+	}
+	&-half {
+		flex-basis: 48%;
+		@media screen and (max-width: $window-medium) {
+			flex-basis: 100%;
+		}
 	}
 }
 
@@ -50,32 +57,41 @@ p {
 	text-align: center;
 }
 
-.push-top {
-	margin-top: 50px;
+.push {
+	margin: 50px;
+	&-top {
+		margin-top: 50px;
+		&--small {
+			margin-top: 15px;
+		}
+	}
+	&-bottom {
+		margin-bottom: 50px;
+		&--small {
+			margin-bottom: 15px;
+		}
+	}
+	&-vertical {
+		margin: 50px auto;
+		&--small {
+			margin: 15px 0;
+		}
+	}
+	&-horizontal {
+		margin: auto 50px;
+		&--small {
+			margin: 0 15px;
+		}
+	}
 }
 
-.push-top--small {
-	margin-top: 15px;
+.expand {
+	padding: 50px;
+	&-vertical {
+		padding: 50px 0;
+	}
 }
 
-.push-bottom {
-	margin-bottom: 50px;
-}
-
-.push-vertical {
-	margin: 50px auto;
-}
-
-.expand-vertical {
-	padding: 50px 0;
-}
-.push-vertical--small {
-	margin: 15px 0;
-}
-
-.push-horizontal--small {
-	margin: 0 15px;
-}
 .center {
 	text-align: center;
 }
