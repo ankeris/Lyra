@@ -1,0 +1,12 @@
+{% macro movingBackground(title, text, image_url) %}
+<section class="loop-box content-center lazy" data-bg="url('{{image_url}}')">
+    <div class="loop-box__title">
+        {% for letter in title %}
+            <div>{{letter}}</div>
+        {% endfor %}
+    </div>
+    <div class="message__square">
+        <p>{{text}}</p>
+    </div>
+</section>
+{% endmacro %}

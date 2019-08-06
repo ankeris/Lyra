@@ -1,5 +1,6 @@
 {% extends "layouts/default.html" %}
 {% from "mixins/highlighted-products.html" import highlightedProducts %}
+{% from "mixins/moving-background.html" import movingBackground %}
 
 {% block head %}
     <meta name="Description" content="Kokybiškos garso aparatūros parduotuvė. Stereo sistemos, namų kino ir multiroom įranga.">
@@ -24,7 +25,7 @@
         <a href="" class="mini-navigation__button lazy" data-bg="url(/images/mini-nav3.{{fileExtension}})"><span>{{globaldata.mini_nav.button3}}</span></a>
     </figure>
 
-    {% include 'partials/description.html' %}
+    {{movingBackground(['L', 'y', 'r', 'a'], globaldata.about.description1, '/images/contact2.' + fileExtension)}}
 
     {% include 'partials/googlemaps.html' %}
     
