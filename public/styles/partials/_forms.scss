@@ -16,8 +16,10 @@
 	.form__input {
 		flex-basis: 100%;
 		padding: 10px;
+		font-weight: 200;
 		border: none;
-		border-bottom: 1px solid map-get($color, darkgrey); // border-radius: 8px;
+		text-transform: uppercase;
+		border-bottom: 2px solid rgba(map-get($color, darkgrey), 0.2);// border-radius: 8px;
 	}
 	.confirm-button {
 		margin: 20px auto;
