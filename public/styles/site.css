@@ -37,6 +37,22 @@
   animation: fadeIn 0.5s ease-in 1 forwards;
   transition-duration: 0.5s; }
 
+#changing-container {
+  height: 45vh;
+  display: flex;
+  position: relative;
+  overflow: hidden; }
+
+.changing-image {
+  width: 100%;
+  position: absolute;
+  transition: opacity .5s ease-in;
+  object-fit: contain;
+  object-position: center; }
+
+.changing-image + .changing-image {
+  opacity: 0; }
+
 @keyframes getBigger {
   to {
     margin: 35px auto;
@@ -860,8 +876,10 @@ figure {
   .form .form__input {
     flex-basis: 100%;
     padding: 10px;
+    font-weight: 200;
     border: none;
-    border-bottom: 1px solid #1f1f1f; }
+    text-transform: uppercase;
+    border-bottom: 2px solid rgba(31, 31, 31, 0.2); }
   .form .confirm-button {
     margin: 20px auto; }
 

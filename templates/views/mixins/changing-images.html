@@ -1,0 +1,7 @@
+{% macro changingImages(images) %}
+    <div id="changing-container">
+        {% for image in images %}
+		    <img class="changing-image" src="{{image}}">
+        {% endfor %}
+	</div>
+{% endmacro %}

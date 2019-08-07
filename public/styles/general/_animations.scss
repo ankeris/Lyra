@@ -29,6 +29,23 @@
 	transition-duration: 0.5s;
 }
 
+#changing-container {
+	height: 45vh;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+}
+
+.changing-image {
+	width: 100%;
+	position: absolute;
+	transition: opacity .5s ease-in;
+	object-fit: contain;
+	object-position: center;
+}
+
+.changing-image + .changing-image { opacity: 0; }
+
 @keyframes getBigger {
 	to {
 		margin: 35px auto;
