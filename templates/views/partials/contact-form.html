@@ -3,10 +3,10 @@
   <input type="hidden" name="action" value="contact">
   <input class="form__input" type="text" name="name.full" value="{{ formData["name.full"] }}" placeholder="Vardas">
   <input class="form__input push-vertical--small" type="email" name="email" value="{{ formData.email }}" placeholder="El. pašto adresas">
-  <input class="form__input" type="text" name="phone" value="{{ formData.phone }}" placeholder="Telefonas (nebūtina)">
+  <input class="form__input" type="text" name="phone" value="{{ formData.phone }}" placeholder="Telefono nr.">
   <input class="form__input form__textarea push-vertical--small" type="text" name="message" value="{{ formData.message }}" placeholder="Žinutė">
   {# <textarea class="form__textarea" name="message" type="text" value="{{ formData.message }}" placeholder="Žinutė"></textarea> #}
   <div class="confirm-button">
-	  <button type="submit" class="button button--dark">Siūsti</button>
+	  <button type="submit" class="button button--transparent">{{'Siųsti' | upper}}</button>
 	</div>
 </form>

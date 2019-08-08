@@ -6,7 +6,7 @@
         {% endfor %}
     </div>
     <div class="message__square">
-        <p>{{text}}</p>
+        <p>{{text | safe}}</p>
     </div>
 </section>
 {% endmacro %}

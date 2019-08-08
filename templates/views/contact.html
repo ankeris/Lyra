@@ -11,14 +11,15 @@
 
 {% block intro %}
 	<figure class="push-bottom">
-		{{changingImages([
+		{# {{changingImages([
 			'//images.unsplash.com/photo-1475872711536-95ec04b9d290?auto=compress,format&w=1440',
 			'//images.unsplash.com/photo-1471696035578-3d8c78d99684?auto=compress,format&w=1440',
 			'//images.unsplash.com/photo-1496861083958-175bb1bd5702?auto=compress,format&w=1440',
 			'//images.unsplash.com/photo-1524388680868-377a2e6bbb1c?auto=compress,format&w=1440',
 			'//images.unsplash.com/photo-1502164980785-f8aa41d53611?auto=compress,format&w=1440'
 			])
-		}}
+		}} #}
+		{{changingImages(data.images)}}
 	</figure>
 {% endblock %}
 
@@ -67,6 +68,6 @@
 
 {% include 'partials/googlemaps.html' %}
 
-{{movingBackground(['S', 'a', 'l', 'o', 'n', 'a', 's'], 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In labore repellat nam architecto praesentium mollitia earum, adipisci hic illo ullam dolore, ea quod rerum vero iste, natus quidem ad aliquid!', '/images/contact2.' + fileExtension)}}
+{{movingBackground(['S', 'a', 'l', 'o', 'n', 'a', 's'], data.description, '/images/contact2.' + fileExtension)}}
 
 {% endblock %}

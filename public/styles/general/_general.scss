@@ -120,17 +120,23 @@ p {
 	&:hover {
 		opacity: 0.8;
 	}
+	&--dark {
+		background-color: map-get($color, darkgrey);
+		color: map-get($color, white);
+	}
+	&--light {
+		border: 3px solid map-get($color, white);
+		color: map-get($color, white);
+	}
+	&--transparent {
+		border: 1px solid map-get($color, darkgrey);
+		background-color: transparent;
+		font-weight: 200;
+		color: map-get($color, darkgrey);
+	}
 }
 
-.button--dark {
-	background-color: map-get($color, darkgrey);
-	color: map-get($color, white);
-}
 
-.button--light {
-	border: 3px solid map-get($color, white);
-	color: map-get($color, white);
-}
 
 .space-button {
 	margin: 30px;

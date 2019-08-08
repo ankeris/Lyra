@@ -40,8 +40,8 @@
 	width: 100%;
 	position: absolute;
 	transition: opacity .5s ease-in;
-	object-fit: contain;
-	object-position: center;
+	object-fit: cover;
+	height: 100%;
 }
 
 .changing-image + .changing-image { opacity: 0; }
