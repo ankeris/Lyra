@@ -13,7 +13,10 @@ const Texts = new keystone.List('Texts', {
 		from: 'Title',
 		path: 'key',
 		unique: true
-	}
+	},
+	map: {
+		name: 'Title'
+	},
 });
 
 Texts.add({

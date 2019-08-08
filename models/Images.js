@@ -3,7 +3,15 @@ var Types = keystone.Field.Types;
 
 var Images = new keystone.List('Images', {
 	nocreate: false,
-	noedit: false
+	noedit: false,
+	autokey: {
+		from: 'Title',
+		path: 'key',
+		unique: true
+	},
+	map: {
+		name: 'Title'
+	},
 });
 
 Images.add({
