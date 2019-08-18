@@ -1,6 +1,6 @@
 const keystone = require('keystone');
 const Types = keystone.Field.Types;
-const {redis} = require('../redis');
+const { redis } = require('../redis');
 
 let Product = new keystone.List('Product', {
 	map: {
@@ -73,12 +73,16 @@ Product.add({
 	ProductType: {
 		type: Types.Relationship,
 		ref: 'ProductCategory',
-		many: true
+		many: true,
+		required: true,
+		initial: false
 	},
 	Manufacturer: {
 		type: Types.Relationship,
 		ref: 'ProductManufacturer',
-		many: false
+		many: false,
+		required: true,
+		initial: false
 	},
 	Highlight: {
 		type: Types.Boolean

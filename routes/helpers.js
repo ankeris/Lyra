@@ -27,7 +27,7 @@ function getSort(filter) {
 			price: 1
 		};
 	} else {
-		return {title: -1};
+		return { title: -1 };
 	}
 }
 
