@@ -44,6 +44,11 @@ Product.add({
 		wysiwyg: true,
 		height: 300
 	},
+	FeaturesDescription: {
+		type: Types.Html,
+		wysiwyg: true,
+		height: 300
+	},
 	TechnicalDescription: {
 		type: Types.Html,
 		wysiwyg: true,

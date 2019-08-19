@@ -60,7 +60,7 @@
             
             <div class="description__top--logo description-item">
                 <a title="{{product.Manufacturer.name}}" aria-label="{{product.Manufacturer.name}}" href="/prekiu-zenklai/{{product.Manufacturer.key}}">
-                <img src="{{product.Manufacturer.Logo.secure_url}}" alt="">
+                    <img class="image" src="{{product.Manufacturer.Logo.secure_url}}" alt="">
                 </a>
             </div>
 
@@ -69,30 +69,34 @@
                 <h4>{{product.ProductType[0].nameSingular}}</h4>
             </div>
 
-            <div class="description__top--price description-item">
+            <div class="description__top--price push-vertical--small description-item">
                 {% if product.Discount %}
                 <h4 class="description__top--price"><b class="price-discount">{{product.Discount}}€</b> &nbsp<strike>{{product.price}}€</strike></h4>
-                {% else %}
+                {% elif product.price > 0 %}
                 <h4 class="description__top--price">{{product.price}}€</h4>
                 {% endif %}
             </div>
-
-            {% if product.exteriorTrims.length > 0 %}
-            <div class="content-center">
-                {% for trim in product.exteriorTrims %}
-                    <img class="trim-image push-vertical--small" src="{{trim.image.secure_url}}" title="{{trim.name}}" alt="{{trim.name}}">
-                {% endfor %}
-            </div>
-            {% endif %}
         </div>
 
         <div class="description__bottom">
             {% if product.description %}
             {{product.description|safe}}
             {% endif %}
-            <div class="push-vertical">
-                <p>Dėl šio produkto galime Jus pakonsultuoti <a href="tel:+37052623596"> (+370 5) 262 35 96</a>
-                arba mūsų <a href="/kontaktai/">Kęstučio g. 26, Vilnius</a> arba <a href="mailto:info@lyra.lt">INFO@LYRA.LT</a></p>
+            
+            {% if product.exteriorTrims.length > 0 %}
+            <div class="push-top--medium">
+                <h5>{{'Apdailos:' | upper}}</h5>
+            </div>
+            <div class="content-row">
+                {% for trim in product.exteriorTrims %}
+                    <img class="trim-image push-vertical--small" src="{{trim.image.secure_url}}" title="{{trim.name}}" alt="{{trim.name}}">
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="push-top--medium">
+                <p>Dėl šio produkto galime Jus pakonsultuoti <a href="tel:+37052623596"> (+370 5) 262 35 96</a>,
+                mūsų salone <a href="/kontaktai/">Kęstučio g. 26, Vilnius</a> arba:
             </div>
             <div class="media-icons content-center push-top--small">
                 <a class="media-icons__icon" aria-label="facebook" rel="noreferrer" href="https://www.facebook.com/SalonasLyra/" target="_blank">
@@ -117,7 +121,7 @@
 {% if product.TechnicalDescription %}
     <div class="black-bg">
         <div class="product-description triple-flex content-section">
-            <div class="triple-flex__box">{{product.TechnicalDescription | safe}}</div>
+            <div class="triple-flex__box">{{product.FeaturesDescription | safe}}</div>
             <figure class="triple-flex__split"></figure>
             <div class="triple-flex__box">{{product.TechnicalDescription | safe}}</div>
         </div>

@@ -54,11 +54,11 @@ exports = module.exports = function(req, res) {
 					});
 				});
 
-				if (product.awards.length > 0) {
+				if (product.awards && product.awards.length > 0) {
 					product.awards.forEach(award => (award.CoverImage.secure_url = cropCloudlinaryImage(award.CoverImage, 150, 150, supportWebP)));
 				}
 
-				if (product.exteriorTrims.length > 0) {
+				if (product.exteriorTrims && product.exteriorTrims.length > 0) {
 					product.exteriorTrims.forEach(exteriorTrim => (exteriorTrim.image.secure_url = cropCloudlinaryImage(exteriorTrim.image, 100, 100, supportWebP)));
 				}
 
