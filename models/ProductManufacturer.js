@@ -1,6 +1,6 @@
 const keystone = require('keystone');
 let Types = keystone.Field.Types;
-const {redis} = require('../redis');
+const { redis } = require('../redis');
 
 const ProductManufacturer = new keystone.List('ProductManufacturer', {
 	autokey: {
@@ -29,10 +29,14 @@ ProductManufacturer.add({
 		type: Types.CloudinaryImage
 	},
 	SmallPreviewImage: {
-		type: Types.CloudinaryImage
+		type: Types.CloudinaryImage,
+		required: true,
+		initial: false,
+		note: 'Bus rodoma "/prekiu-zenklai" puslapyje'
 	},
 	CoverImage: {
-		type: Types.CloudinaryImage
+		type: Types.CloudinaryImage,
+		note: 'Bus rodoma sio gamintojo puslapio virsuje (plati nuotrauka)'
 	},
 	WebsiteUrl: {
 		type: Types.Url,
@@ -64,6 +68,11 @@ ProductManufacturer.relationship({
 });
 
 ProductManufacturer.schema.post('save', brand => {
+	if (redis.exists('all-brands')) redis.del('all-brands');
+	if (redis.exists('brand-' + brand.key)) redis.del('brand-' + brand.key);
+});
+
+ProductManufacturer.schema.post('remove', brand => {
 	if (redis.exists('all-brands')) redis.del('all-brands');
 	if (redis.exists('brand-' + brand.key)) redis.del('brand-' + brand.key);
 });
