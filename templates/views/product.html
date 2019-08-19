@@ -51,6 +51,7 @@
         {% endfor %}
         </figure>
     </section>
+
     {% else %}
     <h4>{{globaldata.errors.product_image}}</h4>
     {% endif %}
@@ -70,16 +71,16 @@
 
             <div class="description__top--price description-item">
                 {% if product.Discount %}
-                <h4 class="items-box__item--description-price"><b class="price-discount">{{product.Discount}}€</b> &nbsp<strike>{{product.price}}€</strike></h4>
+                <h4 class="description__top--price"><b class="price-discount">{{product.Discount}}€</b> &nbsp<strike>{{product.price}}€</strike></h4>
                 {% else %}
-                <h4 class="items-box__item--description-price">{{product.price}}€</h4>
+                <h4 class="description__top--price">{{product.price}}€</h4>
                 {% endif %}
             </div>
 
-            {% if product.awards.length > 0 %}
-            <div class="product-awards">
-                {% for award in product.awards %}
-                    <a href="{{award.Url}}"><img class="award-image" src="{{award.CoverImage.secure_url}}" title="{{award.name}}" alt=""></a>
+            {% if product.exteriorTrims.length > 0 %}
+            <div class="content-center">
+                {% for trim in product.exteriorTrims %}
+                    <img class="trim-image push-vertical--small" src="{{trim.image.secure_url}}" title="{{trim.name}}" alt="{{trim.name}}">
                 {% endfor %}
             </div>
             {% endif %}
@@ -89,9 +90,9 @@
             {% if product.description %}
             {{product.description|safe}}
             {% endif %}
-            <div class="right-side">
-            <p>Dėl šio produkto galime Jus pakonsultuoti <a href="tel:+37052623596"> (+370 5) 262 35 96</a>
-            arba mūsų <a href="/kontaktai/">Kęstučio g. 26, Vilnius</a> arba <a href="mailto:info@lyra.lt">INFO@LYRA.LT</a></p>
+            <div class="push-vertical">
+                <p>Dėl šio produkto galime Jus pakonsultuoti <a href="tel:+37052623596"> (+370 5) 262 35 96</a>
+                arba mūsų <a href="/kontaktai/">Kęstučio g. 26, Vilnius</a> arba <a href="mailto:info@lyra.lt">INFO@LYRA.LT</a></p>
             </div>
             <div class="media-icons content-center push-top--small">
                 <a class="media-icons__icon" aria-label="facebook" rel="noreferrer" href="https://www.facebook.com/SalonasLyra/" target="_blank">
@@ -103,6 +104,14 @@
             </div>
         </div>
     </div>
+
+    {% if product.awards.length > 0 %}
+        <div class="product-awards">
+            {% for award in product.awards %}
+                <a href="{{award.Url}}"><img class="award-image" src="{{award.CoverImage.secure_url}}" title="{{award.name}}" alt=""></a>
+            {% endfor %}
+        </div>
+    {% endif %}
 </section>
 
 {% if product.TechnicalDescription %}

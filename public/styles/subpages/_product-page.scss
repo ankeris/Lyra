@@ -3,7 +3,7 @@
 	justify-content: space-between;
 	flex-wrap: wrap;
 	.product-gallery {
-		flex-basis: 48%;
+		flex-basis: 45%;
 		text-align: center;
 		overflow: hidden;
 		.items-box__item--main-image {
@@ -35,7 +35,8 @@
 		display: flex;
 		flex-wrap: wrap;
 		list-style-position: inside;
-		flex-basis: 47%;
+		flex: 1;
+		margin: 0 3%;
 		.description__top {
 			display: flex;
 			justify-content: space-between;
@@ -52,13 +53,10 @@
 				flex-basis: 48%;
 				text-align: right;
 			}
-			.description__top--price {
+			&--price {
 				flex-basis: 100%;
+				font-weight: 300;
 				text-align: right;
-				margin: 30px 0;
-				h4 {
-					font-weight: 300 !important;
-				}
 			}
 		}
 		.description__bottom {
@@ -72,13 +70,20 @@
 
 	.product-awards {
 		display: flex;
-		flex-basis: 100%;
+		flex-basis: 12%;
+		flex-direction: column;
 		align-items: center;
-		margin: 20px 0;
 		.award-image {
-			width: 60px;
+			width: 80px;
 			margin-right: 10px;
 		}
+	}
+	.trim-image {
+		width: 45px;
+		height: 45px;
+		margin-right: 10px;
+		object-fit: cover;
+		border: 1px solid map-get($color, lightgrey);
 	}
 }
 

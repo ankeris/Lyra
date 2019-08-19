@@ -70,6 +70,11 @@ Product.add({
 		ref: 'Awards',
 		many: true
 	},
+	exteriorTrims: {
+		type: Types.Relationship,
+		ref: 'ExteriorTrims',
+		many: true
+	},
 	ProductType: {
 		type: Types.Relationship,
 		ref: 'ProductCategory',

@@ -24,7 +24,7 @@ exports = module.exports = function(req, res) {
 	view.on('init', function(next) {
 		const productQueryOptions = {
 			dbCollection: keystone.list('Product'),
-			populateBy: 'Manufacturer ProductType awards',
+			populateBy: 'Manufacturer ProductType awards exteriorTrims',
 			slug: locals.filters.product,
 			prefix: 'product-',
 			callback: (product, err) => exec(product, err)
@@ -56,6 +56,10 @@ exports = module.exports = function(req, res) {
 
 				if (product.awards.length > 0) {
 					product.awards.forEach(award => (award.CoverImage.secure_url = cropCloudlinaryImage(award.CoverImage, 150, 150, supportWebP)));
+				}
+
+				if (product.exteriorTrims.length > 0) {
+					product.exteriorTrims.forEach(exteriorTrim => (exteriorTrim.image.secure_url = cropCloudlinaryImage(exteriorTrim.image, 100, 100, supportWebP)));
 				}
 
 				// Check if product doesn't have it's own discount and only then put the discount from productType
