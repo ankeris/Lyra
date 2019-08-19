@@ -1,6 +1,6 @@
 var keystone = require('keystone');
 let Types = keystone.Field.Types;
-const {redis} = require('../redis');
+const { redis } = require('../redis');
 
 /**
  * ProductCategory Model
@@ -51,6 +51,11 @@ ProductCategory.relationship({
 });
 
 ProductCategory.schema.post('save', cat => {
+	if (redis.exists('all-categories')) redis.del('all-categories');
+	if (redis.exists('category-' + cat.key)) redis.del('category-' + cat.key);
+});
+
+ProductCategory.schema.post('remove', cat => {
 	if (redis.exists('all-categories')) redis.del('all-categories');
 	if (redis.exists('category-' + cat.key)) redis.del('category-' + cat.key);
 });
