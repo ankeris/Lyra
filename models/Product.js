@@ -94,8 +94,16 @@ Product.add({
 		required: true,
 		initial: false
 	},
+	RelatedProducts: {
+		type: Types.Relationship,
+		ref: 'Product',
+		many: true,
+		required: false,
+		initial: false
+	},
 	Highlight: {
-		type: Types.Boolean
+		type: Types.Boolean,
+		note: 'Jei pasirinkta, produktas rodomas pagrindiniame puslapyje apacioje'
 	}
 });
 

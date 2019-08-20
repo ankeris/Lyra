@@ -32,6 +32,8 @@ exports = module.exports = function(req, res) {
 				if (err || !result.length) {
 					return next(err);
 				}
+				console.log(result.filter(cat => cat.discount || cat.discount > 0));
+				
 				locals.filters.categoriesWithDiscount = result.filter(cat => cat.discount || cat.discount > 0);
 				next();
 			}

@@ -49,7 +49,7 @@ keystone.set('locals', {
 	globaldata: require('./public/globaldata.json')
 });
 
-keystone.set('port', 443);
+keystone.set('port', 80);
 // Load your project's Routes
 keystone.set('routes', require('./routes'));
 

@@ -24,13 +24,36 @@ exports = module.exports = function(req, res) {
 	view.on('init', function(next) {
 		const productQueryOptions = {
 			dbCollection: keystone.list('Product'),
-			populateBy: 'Manufacturer ProductType awards exteriorTrims',
+			populateBy: [
+				{
+					path: 'Manufacturer'
+				},
+				{
+					path: 'ProductType'
+				},
+				{
+					path: 'awards'
+				},
+				{
+					path: 'exteriorTrims'
+				},
+				{
+					path: 'RelatedProducts',
+					populate: [
+						{
+							path: 'Manufacturer', 
+						},
+						{
+							path: 'ProductType', 
+						},
+					]
+				}],
 			slug: locals.filters.product,
 			prefix: 'product-',
 			callback: (product, err) => exec(product, err)
 		};
 
-		let categoryQueryOptions = {
+		const categoryQueryOptions = {
 			dbCollection: keystone.list('ProductCategory'),
 			keyName: locals.filters.category,
 			prefix: 'category-',
@@ -61,6 +84,10 @@ exports = module.exports = function(req, res) {
 				if (product.exteriorTrims && product.exteriorTrims.length > 0) {
 					product.exteriorTrims.forEach(exteriorTrim => (exteriorTrim.image.secure_url = cropCloudlinaryImage(exteriorTrim.image, 100, 100, supportWebP)));
 				}
+				// Add selected
+				if (product.RelatedProducts && product.RelatedProducts.length) {
+					locals.data.relatedproducts = [...locals.data.relatedproducts, ...product.RelatedProducts];
+				}
 
 				// Check if product doesn't have it's own discount and only then put the discount from productType
 				if (!product.Discount) {
@@ -90,7 +117,7 @@ exports = module.exports = function(req, res) {
 			// .where('price').gt(locals.data.product.price-500).lt(locals.data.product.price+500)
 			.populate('Manufacturer ProductType')
 			.exec(function(err, result) {
-				locals.data.relatedproducts = getRidOfMetadata(result, true, 250, 250, supportWebP);
+				locals.data.relatedproducts = [...locals.data.relatedproducts, ...getRidOfMetadata(result, true, 250, 250, supportWebP)];
 				next(err);
 			});
 	});
