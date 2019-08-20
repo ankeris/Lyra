@@ -2,7 +2,7 @@ const keystone = require('keystone');
 const Types = keystone.Field.Types;
 const { redis } = require('../redis');
 
-let Product = new keystone.List('Product', {
+const Product = new keystone.List('Product', {
 	map: {
 		name: 'title'
 	},
@@ -15,21 +15,17 @@ let Product = new keystone.List('Product', {
 	}
 });
 
-var storage = new keystone.Storage({
-	adapter: keystone.Storage.Adapters.FS,
-	file: 'remove',
-	fs: {
-		size: true,
-		mimetype: true,
-		path: 'public/vid',
-		publicPath: '/public/vid/'
-	}
-});
-
 Product.add({
 	title: {
 		type: String,
 		required: true
+	},
+	CategoryNameForm: {
+		type: Types.Select, 
+		options: 'Plural, Singular',
+		default: 'Plural',
+		initial: 'Plural',
+		note: 'Pasirinkti ar produkto pavadinimo naudoti kategorijos DAUGISKAITOS ar VIENASKAITOS forma'
 	},
 	price: {
 		type: Number

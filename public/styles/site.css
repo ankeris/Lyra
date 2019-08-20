@@ -1411,8 +1411,7 @@ figure {
     flex-direction: column;
     align-items: center; }
     .product .product-awards .award-image {
-      width: 80px;
-      margin-right: 10px; }
+      width: 80px; }
   .product .trim-image {
     width: 45px;
     height: 45px;

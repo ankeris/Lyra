@@ -32,19 +32,11 @@
 <section class="product content-section">
     {% if product.images.length >= 1 %}
     <section class="product-gallery">
-        {% if product.Video.filename %}
-        <div class="video-player-wrapper">
-        <video class="vid-player" controls muted style="width: 100%" autoplay poster="{{product.images[0].secure_url}}">
-            <source class="player-src" src="/vid/{{product.Video.filename}}" type="video/mp4">
-        </video>
-        </div>
-        {% endif %}
         {# Highlighted image #}
         {% set hideHighlightedImage = ( "hidden" if product.Video.filename else "" ) %}
         <div id="currentHighlight" class="items-box__item--main-image {{hideHighlightedImage}}" style="background-image: url('{{product.images[0].secure_url}}')"
         data-images="{{data.productImages | dump}}" data-current-image="{{product.images[0].secure_url}}"></div>
         {# Extra image collection #}
-
         <figure class="items-box__item-images content-center">
         {% for image in product.images %}
             <img class="items-box__item-images--item" src="{{image.secure_url}}" alt="">
@@ -66,7 +58,11 @@
 
             <div class="description__top--title description-item">
                 <h4>{{product.title | upper}}</h4>
-                <h4>{{product.ProductType[0].nameSingular}}</h4>
+                {% if product.CategoryNameForm == 'Plural' %}
+                    <h4>{{product.ProductType[0].name}}</h4>
+                {% elif product.CategoryNameForm == 'Singular' %}
+                    <h4>{{product.ProductType[0].nameSingular}}</h4>
+                {% endif %}
             </div>
 
             <div class="description__top--price push-vertical--small description-item">
