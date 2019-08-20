@@ -219,6 +219,8 @@ p {
     margin: 50px auto; }
     .push-vertical--small {
       margin: 15px 0; }
+    .push-vertical--medium {
+      margin: 30px auto; }
   .push-horizontal {
     margin: auto 50px; }
     .push-horizontal--small {
@@ -1420,7 +1422,6 @@ figure {
 
 .triple-flex {
   display: flex;
-  margin: 30px auto;
   flex-basis: 100%;
   justify-content: space-between;
   padding: 35px; }

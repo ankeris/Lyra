@@ -62,10 +62,9 @@ Product.add({
 		type: Types.Url,
 		note: 'Vartotojo vadovas'
 	},
-	Video: {
-		type: Types.File,
-		storage: storage,
-		collapse: true
+	YoutubeVideoLink: {
+		type: Types.Url,
+		note: 'pvz: https://www.youtube.com/embed/mlHklH5VBtI'
 	},
 	images: {
 		type: Types.CloudinaryImages
