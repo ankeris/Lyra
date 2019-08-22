@@ -18,13 +18,13 @@ const Product = new keystone.List('Product', {
 Product.add({
 	title: {
 		type: String,
-		required: true
+		required: true,
+		initial: true
 	},
 	CategoryNameForm: {
 		type: Types.Select, 
 		options: 'Plural, Singular',
 		default: 'Plural',
-		initial: 'Plural',
 		note: 'Pasirinkti ar produkto pavadinimo naudoti kategorijos DAUGISKAITOS ar VIENASKAITOS forma'
 	},
 	price: {
@@ -80,14 +80,14 @@ Product.add({
 		ref: 'ProductCategory',
 		many: true,
 		required: true,
-		initial: false
+		initial: true
 	},
 	Manufacturer: {
 		type: Types.Relationship,
 		ref: 'ProductManufacturer',
 		many: false,
 		required: true,
-		initial: false
+		initial: true
 	},
 	RelatedProducts: {
 		type: Types.Relationship,
