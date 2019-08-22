@@ -1,32 +1,27 @@
-const Instafeed = require('instafeed.js');
+import {lazyLoadInstance} from '../global/lazyload';
 const $ = require('jquery');
 const slick = require('slick-carousel');
-import {lazyLoadInstance} from '../global/lazyload';
 
-const userFeed = new Instafeed({
-	get: 'user',
-	userId: '7012478136',
-	limit: 10,
-	resolution: 'standard_resolution',
-	accessToken: '7012478136.1677ed0.5376c43243c642f2af5fe2b9d6712770',
-	sortBy: 'most-recent',
-	template: `
-    <div class="items-box__instagram-item">
-        <a href="{{link}}" rel="noreferrer" target="_blank" aria-label="{{likes}} likes">
-            <div class="items-box__item--main-image lazy" data-bg="url('{{image}}')">
-                <div class="items-box__item--text">{{caption}}</div>
-            </div>
-        </a>
-    </div>`,
-	after: () => {
-		checkContainer();
-		lazyLoadInstance.update();
+const token = '8129295075.1677ed0.3631b27a997a44d6ba8cf5383a3966f6',
+	num_photos = 10,
+	container = document.getElementById( 'instafeed' ),
+	scrElement = document.createElement( 'script' );
+ 
+scrElement.setAttribute( 'src', 'https://api.instagram.com/v1/users/self/media/recent?access_token=' + token + '&callback=instaLoaded' );
+window.instaLoaded = function({data}) {
+	console.log(data);
+	for(var x in data ){
+		const currentImage = data[x];
+		container.innerHTML += `<div class="items-box__instagram-item">
+				<a href="${currentImage.link}" rel="noreferrer" target="_blank" aria-label="${currentImage.likes.count} likes">
+					<div class="items-box__item--main-image lazy" data-bg="url('${currentImage.images.low_resolution.url}')">
+						<div class="items-box__item--text">${currentImage.caption ? currentImage.caption.text : null}</div>
+					</div>
+				</a>
+			</div>`;
 	}
-});
+	lazyLoadInstance.update();
 
-userFeed.run();
-
-function checkContainer() {
 	$('#instafeed').slick({
 		infinite: true,
 		autoplay: false,
@@ -79,24 +74,13 @@ function checkContainer() {
 			}
 		]
 	});
-
+		
 	$('.items-box__item--text').each((index, value) => {
 		const array = value.innerText.split(' ');
-
+		
 		value.innerText = array.filter(word => !word.startsWith('#')).join(' ');
 		value.innerText.length > 280 ? (value.innerText = value.innerText.substring(0, 280) + '...') : null;
 	});
 }
-
-// {{type}} - the image's type, can be image or video.
-// {{width}} - the image's width, in pixels.
-// {{height}} - the image's height, in pixels.
-// {{orientation}} - the image's orientation, can be square, portrait, or landscape.
-// {{link}} - URL to view the image on Instagram's website.
-// {{image}} - URL of the image source. The size is inherited from the resolution option.
-// {{caption}} - Image's caption text. Defaults to empty string if there isn't one.
-// {{likes}} - Number of likes the image has.
-// {{comments}} - Number of comments the image has.
-// {{location}} - Name of the location associated with the image. Defaults to empty string.
-// {{id}} - Unique ID of the image. Useful if you want to use iPhone hooks to open the images directly in the Instagram app.
-// {{model}} - Full JSON object of the image. If you want to get a property of the image that isn't listed above you access it using dot-notation. (ex: {{model.filter}} would get the filter used)
+document.body.appendChild( scrElement );
+ 
