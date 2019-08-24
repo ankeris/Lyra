@@ -2,7 +2,7 @@ import {lazyLoadInstance} from '../global/lazyload';
 const $ = require('jquery');
 const slick = require('slick-carousel');
 
-const token = '8129295075.1677ed0.3631b27a997a44d6ba8cf5383a3966f6',
+const token = '7012478136.1677ed0.a70b84b80d2740838366a2c010e97662',
 	num_photos = 10,
 	container = document.getElementById( 'instafeed' ),
 	scrElement = document.createElement( 'script' );
@@ -14,7 +14,7 @@ window.instaLoaded = function({data}) {
 		const currentImage = data[x];
 		container.innerHTML += `<div class="items-box__instagram-item">
 				<a href="${currentImage.link}" rel="noreferrer" target="_blank" aria-label="${currentImage.likes.count} likes">
-					<div class="items-box__item--main-image lazy" data-bg="url('${currentImage.images.low_resolution.url}')">
+					<div class="items-box__item--main-image lazy" style="background: url('${currentImage.images.low_resolution.url}')">
 						<div class="items-box__item--text">${currentImage.caption ? currentImage.caption.text : null}</div>
 					</div>
 				</a>
