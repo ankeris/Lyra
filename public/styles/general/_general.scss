@@ -37,12 +37,15 @@ a {
 			flex-basis: 100%;
 		}
 	}
+	&-start {
+		display: flex;
+	}
 }
 
 .media-icons {
 	flex-direction: row;
 	&__icon {
-		margin: 0 7px;
+		margin-right: 7px;
 		&:hover {
 			opacity: 0.6;
 			transition: ease-out 0.2s;

@@ -13,12 +13,12 @@
 	flex-direction: row;
 	font-weight: 300;
 	.section-description__left {
-		align-self: center;
+		align-self: flex-start;
 		text-align: center;
 		flex-basis: 30%;
 	}
 	.section-description__right {
-		flex-basis: 70%;
+		flex-basis: 75%;
 		text-align: justify;
 	}
 }

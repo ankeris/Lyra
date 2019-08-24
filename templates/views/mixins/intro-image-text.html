@@ -9,13 +9,12 @@
     <figure id="slider" class="fullwidth-image" style="background-image: url({{img}}); background-position: top;" data-type="background" data-speed="-3"></figure>
     <section class="content-section section-description push-vertical">
         <div class="section-description__left">
-            <div class="content-center">
+            <div class="content-start">
                 {% if CountryFlag.secure_url %}
                     <img title="{{CountryName}}" aria-label="{{CountryName}}" src="{{CountryFlag.secure_url}}" alt="{{CountryName}}">
                 {% endif %}
-                <span class="text--medium push-horizontal--small">{{ CountryName | upper}}</span>
             </div>
-            <div class="push-vertical--small">
+            <div class="push-vertical--small content-start">
                 {{socialIcons(mediaIconsArr)}}
             </div>
         </div>

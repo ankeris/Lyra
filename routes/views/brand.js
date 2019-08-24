@@ -60,7 +60,7 @@ exports = module.exports = function (req, res) {
 					const exists = result.hasOwnProperty('CountryFlag');
 
 					if (exists) {
-						result.CountryFlag.secure_url = cropCloudlinaryImage(result.CountryFlag, 40, 40, supportWebP);
+						result.CountryFlag.secure_url = cropCloudlinaryImage(result.CountryFlag, 35, 35, supportWebP);
 					}
 					locals.data.socialMedias = generateSocialMediasArr(result);
 					locals.data.brand = result;
