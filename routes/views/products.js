@@ -28,7 +28,7 @@ exports = module.exports = function(req, res) {
 	view.on('init', function(next) {
 		const loadAllCategoriesQuery = {
 			dbCollection: keystone.list('ProductCategory'),
-			sort: 'name',
+			sort: 'Priority',
 			redisKeyName: 'all-categories',
 			populateBy: 'ChildCategoryOf',
 			callback: (cats, err) => {
@@ -64,7 +64,7 @@ exports = module.exports = function(req, res) {
 	view.on('init', function(next) {
 		const loadAllManufacturersQuery = {
 			dbCollection: keystone.list('ProductManufacturer'),
-			sort: 'name',
+			sort: 'Priority',
 			redisKeyName: 'all-brands',
 			callback: (result, err) => {
 				locals.data.manufacturers = result;

@@ -19,6 +19,7 @@ exports = module.exports = function(req, res) {
 			populateBy: 'Manufacturer ProductType',
 			sort: 'publishedDate',
 			callback: (hlts, err) => {
+				if (err) throw err;
 				locals.products = getRidOfMetadata(hlts, true, 300, 300, locals.supportWebP);
 				next();
 			}
