@@ -18,7 +18,7 @@
 
 		.newsletter {
 			.newsletter__box--input {
-				width: 85%;
+				flex-basis: 85%;
 				input {
 					width: 95%;
 					height: 30px;
@@ -36,7 +36,7 @@
 			}
 			.newsletter__box--button {
 				height: 35px;
-				width: 15%;
+				flex-basis: 15%;
 				text-align: center;
 				cursor: pointer;
 			}

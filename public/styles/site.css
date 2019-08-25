@@ -338,7 +338,7 @@ figure {
     align-self: flex-start;
     flex-basis: 40%; }
   .footer .newsletter .newsletter__box--input {
-    width: 85%; }
+    flex-basis: 85%; }
     .footer .newsletter .newsletter__box--input input {
       width: 95%;
       height: 30px;
@@ -352,7 +352,7 @@ figure {
         color: #fff; }
   .footer .newsletter .newsletter__box--button {
     height: 35px;
-    width: 15%;
+    flex-basis: 15%;
     text-align: center;
     cursor: pointer; }
   .footer .newsletter input[type='submit'] {

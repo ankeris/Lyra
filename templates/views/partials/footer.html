@@ -8,9 +8,6 @@
                 <p>SALONAS „LYRA“<br>
                 KĘSTUČIO G. 26<br>
                 LT-08115 VILNIUS</p>
-
-                <p class="push-top--small"><a href="tel:+37052623596">(+370 5) 262 35 96</a><br>
-                <a href="mailto:info@lyra.lt">INFO@LYRA.LT</a></p>
             </div>
 
             <div class="footer__box footer__box--middle">
@@ -54,7 +51,7 @@
                 </div>
                 {% else %}
                     <form class="newsletter" method="post">
-                        <p class="newsletter__box--text">Naujienlaiškis</p>
+                        <p class="newsletter__box--text">naujienlaiškis</p>
                         <div class="content-center">
                             <div class="newsletter__box--input">
                                 <input type="hidden" name="action" value="index">
@@ -65,22 +62,29 @@
                                 {{ checkBox("#1f1f1f", "#448AA6") }}
                             </label>
                         </div>
-                        <div class="media-icons content-center push-top--small">
-                            <a class="media-icons__icon" aria-label="facebook" rel="noreferrer" href="https://www.facebook.com/SalonasLyra/" target="_blank">
-                                {{ facebook("#1f1f1f", "#448AA6") }}
-                            </a>
-                            <a class="media-icons__icon" aria-label="instagram" rel="noreferrer" href="https://www.instagram.com/salonas_lyra/" target="_blank">
-                                {{ instagram("#1f1f1f", "#448AA6") }}
-                            </a>
-                            <a class="media-icons__icon" aria-label="tidal" rel="noreferrer" href="https://tidal.com/playlist/b82d9073-c0e7-4862-97c4-814c8515a2f7" target="_blank">
-                                {{ tidal("#1f1f1f", "#448AA6") }}
-                            </a>
-                            <a class="media-icons__icon" aria-label="spotify" rel="noreferrer" href="https://open.spotify.com/user/lyra26?si=KmJGXnamTpKBMtcaHZE5KQ" target="_blank">
-                                {{ spotify("#1f1f1f", "#448AA6") }}
-                            </a>
-                        </div>
                     </form>
                 {% endif %}
+            </div>
+            <div class="footer__box footer__box--left">
+                <p class="push-top--small"><a href="tel:+37052623596">(+370 5) 262 35 96</a><br>
+                <a href="mailto:info@lyra.lt">INFO@LYRA.LT</a></p>
+            </div>
+            <div class="footer__box footer__box--middle"></div>
+            <div class="footer__box footer__box--right">
+                <div class="media-icons content-center push-top--small">
+                    <a class="media-icons__icon" aria-label="facebook" rel="noreferrer" href="https://www.facebook.com/SalonasLyra/" target="_blank">
+                        {{ facebook("#1f1f1f", "#448AA6") }}
+                    </a>
+                    <a class="media-icons__icon" aria-label="instagram" rel="noreferrer" href="https://www.instagram.com/salonas_lyra/" target="_blank">
+                        {{ instagram("#1f1f1f", "#448AA6") }}
+                    </a>
+                    <a class="media-icons__icon" aria-label="tidal" rel="noreferrer" href="https://tidal.com/playlist/b82d9073-c0e7-4862-97c4-814c8515a2f7" target="_blank">
+                        {{ tidal("#1f1f1f", "#448AA6") }}
+                    </a>
+                    <a class="media-icons__icon" aria-label="spotify" rel="noreferrer" href="https://open.spotify.com/user/lyra26?si=KmJGXnamTpKBMtcaHZE5KQ" target="_blank">
+                        {{ spotify("#1f1f1f", "#448AA6") }}
+                    </a>
+                </div>
             </div>
         </div>
     </section>
