@@ -7,7 +7,7 @@ const { redis } = require('../redis');
  * ==================
  */
 
-let ProductCategory = new keystone.List('ProductCategory', {
+const ProductCategory = new keystone.List('ProductCategory', {
 	autokey: {
 		from: 'name',
 		path: 'key',
@@ -32,6 +32,10 @@ ProductCategory.add({
 	},
 	CoverImage: {
 		type: Types.CloudinaryImage
+	},
+	description: {
+		type: Types.Html,
+		wysiwyg: true,
 	},
 	ChildCategoryOf: {
 		type: Types.Relationship,
