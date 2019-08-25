@@ -13,7 +13,7 @@
     {% set title = ( data.category.name if data.category else "Specialūs pasiūlymai" ) %}
 	{% set text = ( data.category.description if data.category.description else "" ) %}
     {% set fileExtension = ( "webp" if supportWebP else "jpg" ) %}
-    {{ textOnImage(title, text, "/images/products-page." + fileExtension) }}
+    {{ textOnImage(title, specialOffersMainText, specialOffersMainImage) }}
 {% endblock %}
 
 {% block content %}

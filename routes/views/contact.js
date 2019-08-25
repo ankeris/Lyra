@@ -18,7 +18,8 @@ exports = module.exports = function (req, res) {
 		locals.validationErrors = {};
 	locals.formData = req.body || {};
 	locals.enquirySubmitted = false;
-
+	
+	// Images and text
 	// Get text for "Contacts" page
 	view.on('init', function (next) {
 		findOneByKey({

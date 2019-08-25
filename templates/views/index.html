@@ -10,22 +10,21 @@
 
 {% block content %}
     {% set fileExtension = ( "webp" if supportWebP else "jpg" ) %}
-    <section class="manifesto content-center lazy" data-bg="url('/images/newmanifesto.{{fileExtension}}')">
+    <section class="manifesto content-center lazy" data-bg="url('{{mainPageIntroImage}}')">
         <h3 class="message__square message--huge" style="transition: all 0.5s ease;">
-        <span class="invisible">Kruopščiai</span> 
-        <span class="invisible">atrinkta</span> 
-        <span class="invisible">audio</span> 
-        <span class="invisible">aparatūra</span> 
+        {% for word in mainPageIntroSentence %}
+            <span class="invisible">{{word | safe}}</span> 
+        {% endfor %}
         </h3>
     </section>
 
     <figure class="mini-navigation">
-        <a href="/produktai/" class="mini-navigation__button lazy" data-bg="url(/images/mini-nav1.{{fileExtension}})"><span>{{globaldata.mini_nav.button1}}</span></a>
-        <a href="" class="mini-navigation__button lazy" data-bg="url(/images/mini-nav2.{{fileExtension}})"><span>{{globaldata.mini_nav.button2}}</span></a>
-        <a href="" class="mini-navigation__button lazy" data-bg="url(/images/mini-nav3.{{fileExtension}})"><span>{{globaldata.mini_nav.button3}}</span></a>
+        <a href="/produktai/" class="mini-navigation__button lazy" data-bg="url({{mainPage3NavigationImages[0].secure_url}})"><span>{{globaldata.mini_nav.button1}}</span></a>
+        <a href="" class="mini-navigation__button lazy" data-bg="url({{mainPage3NavigationImages[1].secure_url}})"><span>{{globaldata.mini_nav.button2}}</span></a>
+        <a href="" class="mini-navigation__button lazy" data-bg="url({{mainPage3NavigationImages[2].secure_url}})"><span>{{globaldata.mini_nav.button3}}</span></a>
     </figure>
 
-    {{movingBackground(['L', 'y', 'r', 'a'], globaldata.about.description1, '/images/contact2.' + fileExtension)}}
+    {{movingBackground(['L', 'y', 'r', 'a'], mainPageLyraDescription, mainPageDescriptionImage)}}
 
     {% include 'partials/googlemaps.html' %}
     

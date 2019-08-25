@@ -3,7 +3,7 @@
         <div class="message__square">
             <h3>{{ title }}</h3>
             {% if text %}
-                <p>{{ text }}</p>
+                <p>{{ text | safe}}</p>
             {% endif %}
         </div>
     </section>

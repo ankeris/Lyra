@@ -1,7 +1,8 @@
-var keystone = require('keystone');
-var Types = keystone.Field.Types;
+const keystone = require('keystone');
+const Types = keystone.Field.Types;
+const { redis } = require('../redis');
 
-var Images = new keystone.List('Images', {
+const Images = new keystone.List('Images', {
 	nocreate: false,
 	noedit: false,
 	autokey: {
@@ -28,5 +29,9 @@ Images.add({
 	}
 });
 
-Images.defaultSort = 'Title, Image, Images';
+Images.schema.post('save', ({key}) => {
+	if (redis.exists(key)) redis.del(key);
+});
+
+Images.defaultColumns = 'Title, Image, Images';
 Images.register();

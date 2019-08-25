@@ -1,5 +1,6 @@
 const keystone = require('keystone');
 const Types = keystone.Field.Types;
+const { redis } = require('../redis');
 
 /**
  * Texts Model
@@ -30,6 +31,10 @@ Texts.add({
 		wysiwyg: true,
 		height: 400
 	}
+});
+
+Texts.schema.post('save', ({key}) => {
+	if (redis.exists(key)) redis.del(key);
 });
 
 Texts.defaultColumns = 'Title, Text';

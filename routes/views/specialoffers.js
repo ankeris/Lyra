@@ -1,9 +1,9 @@
 const keystone = require('keystone');
 // redis
-const {loadAll} = require('../redis-queries/redisQueries');
+const {loadAll, findOneByKey} = require('../redis-queries/redisQueries');
 
 // helpers
-const {getSort, isWebP, getRidOfMetadata} = require('../helpers');
+const {getSort, isWebP, getRidOfMetadata, cropCloudlinaryImage} = require('../helpers');
 
 exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
@@ -32,14 +32,33 @@ exports = module.exports = function(req, res) {
 				if (err || !result.length) {
 					return next(err);
 				}
-				console.log(result.filter(cat => cat.discount || cat.discount > 0));
-				
 				locals.filters.categoriesWithDiscount = result.filter(cat => cat.discount || cat.discount > 0);
 				next();
 			}
 		};
-
 		loadAll(loadAllCategoriesQuery);
+	});
+
+	view.on('init', function(next) {
+		findOneByKey({
+			dbCollection: keystone.list('Texts'),
+			keyName: 'special-offers-main-text',
+			callback: ({Text}, err) => {
+				locals.specialOffersMainText = Text;
+				next(err);
+			}
+		});
+	});
+
+	view.on('init', function(next) {
+		findOneByKey({
+			dbCollection: keystone.list('Images'),
+			keyName: 'special-offers-main-image',
+			callback: ({Image}, err) => {
+				locals.specialOffersMainImage = cropCloudlinaryImage(Image, 1600, 1600, supportWebP);
+				next(err);
+			}
+		});
 	});
 
 	// Load products
@@ -66,6 +85,7 @@ exports = module.exports = function(req, res) {
 				next(err);
 			});
 	});
+
 	// Render the view
 	view.render('specialoffers');
 };

@@ -60,7 +60,7 @@ exports = module.exports = function(req, res) {
 		}
 	});
 
-	// Additionally query manufacturers for sidenav
+	// Additionally query manufacturers for side navigation
 	view.on('init', function(next) {
 		const loadAllManufacturersQuery = {
 			dbCollection: keystone.list('ProductManufacturer'),
@@ -77,6 +77,26 @@ exports = module.exports = function(req, res) {
 
 		loadAll(loadAllManufacturersQuery);
 	});
+	
+	// Images and text
+	// Get text for "Contacts" page
+	if (!locals.filters.category) {
+		view.on('init', function (next) {
+			findOneByKey({
+				dbCollection: keystone.list('Texts'),
+				keyName: 'product-catalogue-intro',
+				callback: ({Text}, err) => {
+					locals.data.productCatalogueIntro = Text;
+					next(err);
+				}
+			});
+		});
+	
+		// Get Images for "Contacts" page
+		// view.on('init', function (next) {
+		// });
+	}
+
 	// Load ALL products
 	view.on('init', function(next) {
 		let q = keystone.list('Product').paginate({

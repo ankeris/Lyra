@@ -941,7 +941,9 @@ figure {
   position: relative; }
   #instafeed .items-box__instagram-item {
     margin: 0;
-    text-align: center; }
+    text-align: center;
+    position: relative;
+    overflow: hidden; }
     #instafeed .items-box__instagram-item .items-box__item--main-image {
       background-repeat: no-repeat;
       background-position: center;
@@ -951,22 +953,22 @@ figure {
       overflow-x: hidden;
       overflow-y: auto;
       position: relative; }
-      #instafeed .items-box__instagram-item .items-box__item--main-image:hover > .items-box__item--text {
-        color: #fff;
-        font-size: 0.87em;
-        width: 95%;
-        height: 100%;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        padding: 0 5%;
-        transform: translate(-50%, -50%);
-        background-color: rgba(0, 0, 0, 0.75);
-        text-align: start;
-        display: flex;
-        align-self: stretch;
-        align-items: center;
-        animation: fadeIn 0.2s ease 1 forwards; }
+    #instafeed .items-box__instagram-item:hover > .items-box__item--text {
+      color: #fff;
+      font-size: 0.87em;
+      width: 95%;
+      height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      padding: 0 5%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.75);
+      text-align: start;
+      display: flex;
+      align-self: stretch;
+      align-items: center;
+      animation: fadeIn 0.2s ease 1 forwards; }
     #instafeed .items-box__instagram-item .items-box__item--text {
       display: none;
       background-color: #fff;

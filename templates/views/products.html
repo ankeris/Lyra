@@ -20,7 +20,11 @@
 	{% set text = ( data.category.description if data.category.description else "" ) %}
     {% set fileExtension = ( "webp" if supportWebP else "jpg" ) %}
 	{% set img = ( data.category.CoverImage.secure_url if data.category else "/images/products-page." + fileExtension ) %}
-    {{textOnImage(title, text, img)}}
+    {% if data.category %} 
+        {{textOnImage(title, text, img)}}
+    {% else %}
+        {{textOnImage(title, data.productCatalogueIntro, img)}}
+    {% endif %}
 {% endblock %}
 
 {% block content %}
