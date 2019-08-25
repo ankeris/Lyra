@@ -5,6 +5,7 @@ $('.items-box__item-images').slick({
 	variableWidth: false,
 	infinite: false,
 	slidesToShow: 4,
+	lazyLoad: 'ondemand',
 	prevArrow: '<figure class="slick-prev" aria-label="slide previous"></figure>',
 	nextArrow: '<figure class="slick-next" aria-label="slide next"></figure>',
 	responsive: [

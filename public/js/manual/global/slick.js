@@ -6,6 +6,7 @@ $('.highlighted-products').slick({
 	autoplay: true,
 	slidesToShow: 4,
 	slidesToScroll: 1,
+	lazyLoad: 'ondemand',
 	prevArrow: '<figure class="slick-prev" aria-label="slide previous"></figure>',
 	nextArrow: '<figure class="slick-next" aria-label="slide next"></figure>',
 	responsive: [
