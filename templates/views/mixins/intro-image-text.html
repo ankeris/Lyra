@@ -6,7 +6,7 @@
     {% set text = ( body.description | safe if body.description else "Šiai kategorijai trūksta aprašymo" ) %}
     {% set img = ( body.CoverImage.secure_url if body.CoverImage.secure_url else "/images/products-page.jpg" ) %}
     
-    <figure id="slider" class="fullwidth-image" style="background-image: url({{img}}); background-position: top;" data-type="background" data-speed="-3"></figure>
+    <figure id="slider" class="fullwidth-image" style="background-image: url({{img}});" data-type="background" data-speed="-3"></figure>
     <section class="content-section section-description push-vertical">
         <div class="section-description__left">
             <div class="content-start">

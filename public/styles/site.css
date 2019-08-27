@@ -164,6 +164,9 @@ a {
   color: #5f4ef0;
   font-weight: 300; }
 
+#slider {
+  background-position: 0% 0px; }
+
 .content-center {
   display: flex;
   align-items: center;
@@ -1259,17 +1262,17 @@ figure {
   background-position: center; }
 
 .message--huge {
-  max-width: 750px;
   word-spacing: 0.1em;
-  font-weight: thin;
   font-size: 4em;
   text-align: center !important;
   max-width: 800px !important;
-  padding: 2% !important;
+  padding: 30px 15px !important;
   line-height: 1em; }
+  @media (max-width: 800px) {
+    .message--huge {
+      font-size: 2em; } }
 
 .message__square {
-  text-align: justify;
   max-width: 600px;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.7);

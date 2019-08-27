@@ -20,7 +20,7 @@ exports = module.exports = function (req, res) {
 			callback: (result, err) => {
 				result.forEach((post, index) => {
 					if (post.hasOwnProperty('image') && post.image.hasOwnProperty('secure_url')) {
-						post.image.secure_url = cropCloudlinaryImage(post.image, 1000, 1000, supportWebP);
+						post.image.secure_url = cropCloudlinaryImage(post.image, 1400, 1400, supportWebP);
 					}
 					if (post.hasOwnProperty('hidden')) {
 						if (post.hidden) {

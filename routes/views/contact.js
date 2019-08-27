@@ -15,7 +15,7 @@ exports = module.exports = function (req, res) {
 		description: '',
 		images: []
 	},
-		locals.validationErrors = {};
+	locals.validationErrors = {};
 	locals.formData = req.body || {};
 	locals.enquirySubmitted = false;
 	
@@ -38,8 +38,7 @@ exports = module.exports = function (req, res) {
 			dbCollection: keystone.list('Images'),
 			keyName: 'contact-page-switching-images',
 			callback: (result, err) => {
-				const images = result.Images.map(image => cropCloudlinaryImage(image, 1000, 1000, locals.supportWebP));
-				locals.data.images = images;
+				locals.data.images = result.Images.map(image => cropCloudlinaryImage(image, 1600, 1600, locals.supportWebP));
 				next(err);
 			}
 		});

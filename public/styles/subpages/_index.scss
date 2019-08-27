@@ -7,18 +7,18 @@
 }
 
 .message--huge {
-	max-width: 750px;
 	word-spacing: 0.1em;
-	font-weight: thin;
 	font-size: 4em;
 	text-align: center !important;
 	max-width: $window-medium !important;
-	padding: 2% !important;
+	padding: 30px 15px !important;
 	line-height: 1em;
+	@media (max-width: $window-medium) {
+		font-size: 2em;
+	}
 }
 
 .message__square {
-	text-align: justify;
 	max-width: $window-small-medium;
 	color: map-get($color, white);
 	background-color: rgba(0, 0, 0, 0.7);
