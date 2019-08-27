@@ -4,7 +4,7 @@ function parallax() {
 	let yPos = window.pageYOffset / $slider.dataset.speed;
 	yPos = -yPos;
 
-	let coords = '0% ' + yPos + 'px';
+	let coords = '50% ' + yPos + 'px';
 
 	$slider.style.backgroundPosition = coords;
 }
