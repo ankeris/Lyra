@@ -2,6 +2,10 @@
 	border-top: 1px solid #eeeeee;
 	background-color: map-get($color, white);
 	font-weight: 300;
+		.work-time {
+			width: 90px;
+    		text-align: right;
+		}
 		.footer__box--left {
 			text-align: left;
 			flex-basis: 23%;
@@ -13,7 +17,7 @@
 		}
 		.footer__box--right {
 			align-self: flex-start;
-			flex-basis: 40%;
+			flex-basis: 42%;
 		}
 
 		.newsletter {

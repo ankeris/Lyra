@@ -1,7 +1,7 @@
 {% macro textOnImage(title, text, image_url) %}
     <section id="slider" class="fullwidth-image content-center" style="background-image: url({{image_url}});" data-speed="-3">
         <div class="message__square">
-            <h3>{{ title }}</h3>
+            <h3>{{ title | upper }}</h3>
             {% if text %}
                 <p>{{ text | safe}}</p>
             {% endif %}
