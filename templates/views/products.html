@@ -18,12 +18,10 @@
 {% block intro %}
 	{% set title = ( data.category.name if data.category else "Produktų katalogas" ) %}
 	{% set text = ( data.category.description if data.category.description else "" ) %}
-    {% set fileExtension = ( "webp" if supportWebP else "jpg" ) %}
-	{% set img = ( data.category.CoverImage.secure_url if data.category else "/images/products-page." + fileExtension ) %}
-    {% if data.category %} 
-        {{textOnImage(title, text, img)}}
+    {% if not data.category %}
+        {{textOnImage(title, text, data.productsPageIntroImage.secure_url)}}
     {% else %}
-        {{textOnImage(title, data.productCatalogueIntro, img)}}
+        {{textOnImage(title, data.productCatalogueIntro, data.category.CoverImage.secure_url)}}
     {% endif %}
 {% endblock %}
 
@@ -31,16 +29,7 @@
 <div class="products-wrapper content-section">
 <figure class="sort-bar__box push-vertical content-section">
     {% if data.category %}
-    {{dynamicLink(
-        [{
-            name: "produktai",
-            url: "/produktai/"
-        },
-        {
-            name: data.category.name,
-            url: "/produktai/" + data.category.key
-        }]
-    )}}
+    {{dynamicLink(data.dynamicLinkArr)}}
     {% endif %}
     {% if data.category and not data.discounts %}
         {# data.sort is here to track the current sort #}

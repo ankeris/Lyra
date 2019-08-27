@@ -1,5 +1,5 @@
 const keystone = require('keystone');
-const {getRidOfMetadata, isWebP, getSort} = require('../helpers');
+const {getRidOfMetadata, cropCloudlinaryImage, isWebP, getSort} = require('../helpers');
 
 // redis
 const redisQueries = require('../redis-queries/redisQueries');
@@ -16,7 +16,8 @@ exports = module.exports = function(req, res) {
 		products: [],
 		categories: [],
 		subcategories: [],
-		sort: req.query.filterlist
+		sort: req.query.filterlist,
+		dynamicLinkArr: []
 	};
 
 	locals.filters = {
@@ -39,7 +40,6 @@ exports = module.exports = function(req, res) {
 				next();
 			}
 		};
-
 		loadAll(loadAllCategoriesQuery);
 	});
 	// load current category
@@ -51,8 +51,26 @@ exports = module.exports = function(req, res) {
 				prefix: 'category-',
 				callback: (result, err) => {
 					if (err) throw err;
-					else locals.data.category = result;
-					next(err);
+					else {
+						result.CoverImage.secure_url = cropCloudlinaryImage(result.CoverImage, 1600, 1600, supportWebP);
+						locals.data.category = result;
+						// Create dynamic links for router
+						locals.data.dynamicLinkArr = [{
+							name: 'produktai',
+							url: '/produktai/'
+						},
+						result && result.ChildCategoryOf ? {
+							name: result.ChildCategoryOf.name,
+							url: '/produktai/' + result.ChildCategoryOf.key
+						} : null,
+						{
+							name: result.name,
+							url: '/produktai/' + result.key
+						}];
+
+						next(err);
+					} 
+					
 				}
 			});
 		} else {
@@ -91,10 +109,18 @@ exports = module.exports = function(req, res) {
 				}
 			});
 		});
-	
-		// Get Images for "Contacts" page
-		// view.on('init', function (next) {
-		// });
+
+		view.on('init', (next) => {
+			findOneByKey({
+				dbCollection: keystone.list('Images'),
+				keyName: 'products-page-intro-image',
+				callback: ({Image}, err) => {
+					Image.secure_url = cropCloudlinaryImage(Image, 1600, 1600, supportWebP);
+					locals.data.productsPageIntroImage = Image;
+					next(err);
+				}
+			});
+		});
 	}
 
 	// Load ALL products

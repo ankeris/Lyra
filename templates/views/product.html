@@ -13,20 +13,7 @@
 
 {% block content %}
 <div class="router-links content-section push-vertical">
-    {{dynamicLink(
-        [{
-            name: "produktai",
-            url: "/produktai/"
-        },
-        {
-            name: product.ProductType[0].name,
-            url: "/produktai/" + product.ProductType[0].key
-        },
-        {
-            name: product.title,
-            url: ""
-        }]
-    )}}
+    {{dynamicLink(data.dynamicLinkArr)}}
 </div>
 
 <section class="product content-section">

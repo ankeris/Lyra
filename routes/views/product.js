@@ -18,7 +18,9 @@ exports = module.exports = function(req, res) {
 		productImages: [],
 		products: [],
 		relatedproducts: [],
-		awards: []
+		awards: [],
+		product: null,
+		dynamicLinkArr: []
 	};
 
 	view.on('init', function(next) {
@@ -97,6 +99,24 @@ exports = module.exports = function(req, res) {
 					}
 				}
 				locals.data.product = product;
+				locals.data.dynamicLinkArr = [
+					{
+						name: 'produktai',
+						url: '/produktai/'
+					},
+					locals.data.category && locals.data.category.ChildCategoryOf ? {
+						name: locals.data.category.ChildCategoryOf.name,
+						url: '/produktai/' + locals.data.category.ChildCategoryOf.key
+					} : null,
+					{
+						name: product.ProductType[0].name,
+						url: '/produktai/' + product.ProductType[0].key
+					},
+					{
+						name: product.title,
+						url: ''
+					}
+				];
 				next();
 			} else {
 				throw err;
