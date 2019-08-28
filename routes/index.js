@@ -27,8 +27,8 @@ keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
 
 // Import Route Controllers
-var routes = {
-	views: importRoutes('./views')
+const routes = {
+	views: importRoutes('./views'),
 };
 
 // Setup Route Bindings
@@ -44,8 +44,8 @@ exports = module.exports = function(app) {
 	app.get('/apie-mus', routes.views.aboutus);
 	app.get('/produktai/:category?', routes.views.products);
 	app.get('/produktai/:Manufacturer?/:category?/:product', routes.views.product);
-	app.all('*', routes.views.subscription);
-
+	app.get('*', routes.views['404']);
+	app.post('*', routes.views.subscription);
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
 };

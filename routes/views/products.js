@@ -52,22 +52,23 @@ exports = module.exports = function(req, res) {
 				callback: (result, err) => {
 					if (err) throw err;
 					else {
-						result.CoverImage.secure_url = cropCloudlinaryImage(result.CoverImage, 1600, 1600, supportWebP);
-						locals.data.category = result;
-						// Create dynamic links for router
-						locals.data.dynamicLinkArr = [{
-							name: 'produktai',
-							url: '/produktai/'
-						},
-						result && result.ChildCategoryOf ? {
-							name: result.ChildCategoryOf.name,
-							url: '/produktai/' + result.ChildCategoryOf.key
-						} : null,
-						{
-							name: result.name,
-							url: '/produktai/' + result.key
-						}];
-
+						if (result) {
+							result.CoverImage.secure_url = cropCloudlinaryImage(result.CoverImage, 1600, 1600, supportWebP);
+							locals.data.category = result;
+							// Create dynamic links for router
+							locals.data.dynamicLinkArr = [{
+								name: 'produktai',
+								url: '/produktai/'
+							},
+							result && result.ChildCategoryOf ? {
+								name: result.ChildCategoryOf.name,
+								url: '/produktai/' + result.ChildCategoryOf.key
+							} : null,
+							{
+								name: result.name,
+								url: '/produktai/' + result.key
+							}];
+						}
 						next(err);
 					} 
 					

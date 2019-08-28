@@ -1,8 +1,12 @@
 {% extends "layouts/default.html" %}
+{% from "mixins/macros.html" import loadingSpeakers %}
 
 {% block content %}
-	<div class="container">
-		<h1>404</h1>
-		<p class="lead">Sorry, the page you requested can"t be found.</p>
+<div class="bg-dark expand">
+	<div class="content-section center">
+		<h1>...404...</h1>
+		<p class="lead">Atsiprašome, puslapis kurio ieškote neegzistuoja!</p>
+		{{ loadingSpeakers("#ffffff", "#ffffff") }}
 	</div>
+</div>
 {% endblock %}

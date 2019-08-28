@@ -28,6 +28,10 @@ ProductManufacturer.add({
 	Logo: {
 		type: Types.CloudinaryImage
 	},
+	LogoWhite: {
+		type: Types.CloudinaryImage,
+		note: 'Baltas logotipas (be fono!) bus rodomas juodame fone'
+	},
 	SmallPreviewImage: {
 		type: Types.CloudinaryImage,
 		required: true,
@@ -95,4 +99,5 @@ ProductManufacturer.schema.post('remove', brand => {
 	if (redis.exists('brand-' + brand.key)) redis.del('brand-' + brand.key);
 });
 
+ProductManufacturer.defaultColumns = 'name, Logo';
 ProductManufacturer.register();
