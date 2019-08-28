@@ -2,8 +2,6 @@
 	list-style: none;
 	transition-duration: 1s;
 	.manufacturers__listbox--item {
-		flex-basis: 22.5%;
-		margin: 15px 5px;
 		-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
 		filter: grayscale(100%);
 		transition-duration: 1s;
@@ -15,11 +13,23 @@
 			height: auto;
 			transition-duration: 1s;
 		}
+	}
+	.logo {
+		flex-basis: 22.5%;
+		margin: 15px 5px;
 		&:hover {
 			transition-duration: 1s;
 			-webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
 			filter: grayscale(0%);
 			filter: saturate(1);
+		}
+	}
+	.white-logo {
+		flex-basis: 16%;
+		margin: 1% 4%;
+		&:hover {
+			transition-duration: 0.2s;
+			opacity: 0.5;
 		}
 	}
 }
@@ -37,6 +47,10 @@
 		.manufacturers__listbox--item {
 			flex-basis: 48%;
 			margin: 1% 1%;
+		}
+		.white-logo {
+			flex-basis: 40%;
+			margin: 20px 5%;
 		}
 	}
 }

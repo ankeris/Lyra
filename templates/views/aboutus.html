@@ -27,4 +27,18 @@
             </div>
         </article>
     {% endfor %}
+        <section class="bg-black">
+            <ul class="manufacturers__listbox content-section content-center content-wrap content-space-between">
+                {% for manufacturer in manufacturers %}
+                    {% if manufacturer.LogoWhite %}
+                        <li class="manufacturers__listbox--item white-logo">
+                            {# {{manufacturer}} #}
+                            <a aria-label="{{manufacturer.name}}" href="/prekiu-zenklai/{{manufacturer.key}}" >
+                                <img class="manufacturers__listbox--image lazy" data-src="{{manufacturer.LogoWhite.secure_url}}" height="250px">
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </section>
 {% endblock %}

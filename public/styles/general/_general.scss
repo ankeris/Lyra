@@ -213,6 +213,10 @@ button:active {
 	color: white;
 }
 
+.bg-black {
+	background-color: map-get($color, black);
+}
+
 figure {
 	margin: 0;
 }

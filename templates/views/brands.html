@@ -14,9 +14,9 @@
 {% block content %}
 	<section class="manufacturers push-vertical content-section">
     {# Manufacturers are hidden default #}
-    <ul class="manufacturers__listbox">
+    <ul class="manufacturers__listbox content-center content-wrap content-space-between">
         {% for manufacturer in manufacturers %}
-        <li class="manufacturers__listbox--item">
+        <li class="manufacturers__listbox--item logo">
             {# {{manufacturer}} #}
             <a aria-label="{{manufacturer.name}}" href="/prekiu-zenklai/{{manufacturer.key}}" >
                 <img class="manufacturers__listbox--image lazy" data-src="{{manufacturer.SmallPreviewImage.secure_url}}" height="250px">

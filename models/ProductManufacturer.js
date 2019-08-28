@@ -99,5 +99,5 @@ ProductManufacturer.schema.post('remove', brand => {
 	if (redis.exists('brand-' + brand.key)) redis.del('brand-' + brand.key);
 });
 
-ProductManufacturer.defaultColumns = 'name, Logo';
+ProductManufacturer.defaultColumns = 'name, Priority, Logo';
 ProductManufacturer.register();

@@ -9,8 +9,9 @@ exports = module.exports = function (req, res) {
 
 	locals.section = 'Apie Lyra';
 	locals.data = {
-		paragraphs: []
-	}
+		paragraphs: [],
+		manufacturers: []
+	};
 
 	view.on('init', function (next) {
 		const loadAllParagraphs = {
@@ -22,9 +23,8 @@ exports = module.exports = function (req, res) {
 					paragraph.images.forEach(image => {
 						image.secure_url = cropCloudlinaryImage(image, 1250, 1250, supportWebP);
 					});
-				})
+				});
 				locals.data.paragraphs = result;
-
 				if (err || !result.length) {
 					return next(err);
 				}
@@ -32,6 +32,27 @@ exports = module.exports = function (req, res) {
 			}
 		};
 		loadAll(loadAllParagraphs);
+	});
+	
+	view.on('init', function (next) {
+		const loadAllManufacturersQuery = {
+			dbCollection: keystone.list('ProductManufacturer'),
+			sort: 'Priority',
+			redisKeyName: 'all-brands',
+			callback: (result, err) => {
+				result.forEach(
+					manufacturer => (manufacturer.LogoWhite ? manufacturer.LogoWhite.secure_url = cropCloudlinaryImage(manufacturer.LogoWhite, 250, 250, supportWebP) : manufacturer)
+				);
+				console.log(result[0]);
+				locals.manufacturers = result;
+				if (err || !result.length) {
+					return next(err);
+				}
+				next();
+			}
+		};
+
+		loadAll(loadAllManufacturersQuery);
 	});
 
 	// Render the view
