@@ -46,9 +46,9 @@
             <div class="description__top--title description-item">
                 <h4>{{product.title | upper}}</h4>
                 {% if product.CategoryNameForm == 'Plural' %}
-                    <h4>{{product.ProductType[0].name}}</h4>
+                    <h4>{{product.ProductType.name}}</h4>
                 {% elif product.CategoryNameForm == 'Singular' %}
-                    <h4>{{product.ProductType[0].nameSingular}}</h4>
+                    <h4>{{product.ProductType.nameSingular}}</h4>
                 {% endif %}
             </div>
 

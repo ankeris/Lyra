@@ -46,8 +46,8 @@ function getRidOfMetadata(data, cropImages, width, height, supportWebP) {
 				img.secure_url = cropCloudlinaryImage(img, height, width, supportWebP);
 			});
 			if (!r.Discount) {
-				if (r.ProductType[0].discount > 0) {
-					const discount = setDiscountedPrice(r.ProductType[0].discount, r.price);
+				if (r.ProductType && r.ProductType.discount > 0) {
+					const discount = setDiscountedPrice(r.ProductType.discount, r.price);
 					r.Discount = discount;
 				}
 			}
@@ -63,18 +63,18 @@ function isWebP(request) {
 	const browserVersion = browser.versionNumber;
 
 	switch (browserName) {
-		case 'chrome':
-			return browserVersion >= 32;
-		case 'firefox':
-			return browserVersion >= 65;
-		case 'opera':
-			return browserVersion >= 19;
-		case 'edge':
-			return browserVersion >= 18;
-		case 'android':
-			return browserVersion >= 4;
-		default:
-			return false;
+	case 'chrome':
+		return browserVersion >= 32;
+	case 'firefox':
+		return browserVersion >= 65;
+	case 'opera':
+		return browserVersion >= 19;
+	case 'edge':
+		return browserVersion >= 18;
+	case 'android':
+		return browserVersion >= 4;
+	default:
+		return false;
 	}
 }
 

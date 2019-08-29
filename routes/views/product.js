@@ -93,8 +93,8 @@ exports = module.exports = function(req, res) {
 
 				// Check if product doesn't have it's own discount and only then put the discount from productType
 				if (!product.Discount) {
-					if (product.ProductType[0].discount > 0) {
-						const discount = setDiscountedPrice(product.ProductType[0].discount, product.price);
+					if (product.ProductType.discount > 0) {
+						const discount = setDiscountedPrice(product.ProductType.discount, product.price);
 						product.Discount = discount;
 					}
 				}
@@ -109,8 +109,8 @@ exports = module.exports = function(req, res) {
 						url: '/produktai/' + locals.data.category.ChildCategoryOf.key
 					} : null,
 					{
-						name: product.ProductType[0].name,
-						url: '/produktai/' + product.ProductType[0].key
+						name: product.ProductType.name,
+						url: '/produktai/' + product.ProductType.key
 					},
 					{
 						name: product.title,

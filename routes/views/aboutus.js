@@ -1,6 +1,6 @@
 const keystone = require('keystone');
 const { loadAll } = require('../redis-queries/redisQueries');
-const { getRidOfMetadata, cropCloudlinaryImage, isWebP } = require('../helpers');
+const { cropCloudlinaryImage, isWebP } = require('../helpers');
 
 exports = module.exports = function (req, res) {
 	const supportWebP = isWebP(req);
@@ -43,7 +43,6 @@ exports = module.exports = function (req, res) {
 				result.forEach(
 					manufacturer => (manufacturer.LogoWhite ? manufacturer.LogoWhite.secure_url = cropCloudlinaryImage(manufacturer.LogoWhite, 250, 250, supportWebP) : manufacturer)
 				);
-				console.log(result[0]);
 				locals.manufacturers = result;
 				if (err || !result.length) {
 					return next(err);

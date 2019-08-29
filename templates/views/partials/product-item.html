@@ -1,8 +1,8 @@
 {% set manufacturerKey = product.Manufacturer.key %}
 {% set manufacturerName = product.Manufacturer.name %}
-{% set productTypeKey = product.ProductType[0].key %}
-{% set productType = product.ProductType[0].name %}
-{% set productTypeSingular = product.ProductType[0].nameSingular %}
+{% set productTypeKey = product.ProductType.key %}
+{% set productType = product.ProductType.name %}
+{% set productTypeSingular = product.ProductType.nameSingular %}
 
 <a class="items-box__item content-center fade-in" aria-label="{{product.title}}" title="{{product.title}}" href="/produktai/{{manufacturerKey}}/{{productTypeKey}}/{{product.slug}}">
     {% if product.images[0] %}
