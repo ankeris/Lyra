@@ -30,6 +30,26 @@ Product.add({
 	price: {
 		type: Number
 	},
+	isProductCable: {
+		type: Boolean,
+		default: false,
+		note: 'Pazymeti, jei produkas - laidas'
+	},
+	cableLength: {
+		type: Types.Code,
+		dependsOn: { isProductCable: true },
+		language: 'json',
+		default: '[]',
+		required: true,
+		note: `[{
+	"ilgis": 0.5,
+	"kaina": 40
+},
+{
+	"ilgis": 1,
+	"kaina": 70
+}]`
+	},
 	Discount: {
 		type: Number,
 		collapse: true,
@@ -78,7 +98,7 @@ Product.add({
 	ProductType: {
 		type: Types.Relationship,
 		ref: 'ProductCategory',
-		many: true,
+		many: false,
 		required: true,
 		initial: true
 	},
@@ -99,6 +119,17 @@ Product.add({
 	Highlight: {
 		type: Types.Boolean,
 		note: 'Jei pasirinkta, produktas rodomas pagrindiniame puslapyje apacioje'
+	}
+});
+
+Product.schema.pre('validate', function(next) {
+	if (this.isProductCable && !Array.isArray(JSON.parse(this.cableLength))) {
+		next(Error('"cableLength" - make sure objects are wrapped in [ ]'));
+	}
+	if (this.isProductCable && this.cableLength && JSON.parse(this.cableLength).length == 0) {
+		next(Error('"cableLength" - field is missing objects! Example: [{ ilgis: 0.5, kaina: 40 }, { ilgis: 1, kaina: 70 }]'));
+	} else {
+		next();
 	}
 });
 

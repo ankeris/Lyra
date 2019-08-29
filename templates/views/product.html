@@ -53,11 +53,21 @@
             </div>
 
             <div class="description__top--price push-vertical--small description-item">
+            {% if product.isProductCable %}
+                <select id="cablePriceSelect" class="form__input">
+                    <option value="" selected disabled>Pasirinkite ilgi</option>
+                    {% for cableLengthOption in product.cableLength %}
+                        <option value="{{cableLengthOption.kaina}}">{{cableLengthOption.ilgis}} m</option>
+                    {% endfor %}
+                </select>
+                <h4 id="cablePrice" class="description__top--price push-top--small"></h4>
+            {% else %}
                 {% if product.Discount %}
                 <h4 class="description__top--price"><b class="price-discount">{{product.Discount}}€</b> &nbsp<strike>{{product.price}}€</strike></h4>
                 {% elif product.price > 0 %}
                 <h4 class="description__top--price">{{product.price}}€</h4>
                 {% endif %}
+            {% endif %}
             </div>
         </div>
 

@@ -79,6 +79,10 @@ exports = module.exports = function(req, res) {
 					});
 				});
 
+				if(product.isProductCable && JSON.parse(product.cableLength).length) {
+					product.cableLength = JSON.parse(product.cableLength);
+				}
+
 				if (product.awards && product.awards.length > 0) {
 					product.awards.forEach(award => (award.CoverImage.secure_url = cropCloudlinaryImage(award.CoverImage, 150, 150, supportWebP)));
 				}
@@ -98,6 +102,7 @@ exports = module.exports = function(req, res) {
 						product.Discount = discount;
 					}
 				}
+				
 				locals.data.product = product;
 				locals.data.dynamicLinkArr = [
 					{

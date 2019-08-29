@@ -104,7 +104,7 @@ module.exports.loadAll = function ({ dbCollection, populateBy = '', redisKeyName
 			dbCollection.model
 				.find()
 				.lean()
-				.sort({ [sort]: -1 })
+				.sort({ [sort]: 1 })
 				.populate(populateBy)
 				.exec(function (err, doc) {
 					if (err || !doc) callback(null, err);

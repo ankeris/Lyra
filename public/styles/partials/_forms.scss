@@ -3,25 +3,26 @@
 	flex-direction: column;
 	flex-wrap: wrap; // flex-direction: column;
 	justify-content: space-between;
-	.form__textarea {
-		flex-basis: 100%;
-		padding: 10px;
-		font-weight: 200;
-		border-style: solid;
-		border-color: map-get($color, darkgrey);
-		border-width: 0 0 1px 0;
-		outline: none;
-		resize: none;
-	}
-	.form__input {
-		flex-basis: 100%;
-		padding: 10px;
-		font-weight: 200;
-		border: none;
-		text-transform: uppercase;
-		border-bottom: 2px solid rgba(map-get($color, darkgrey), 0.2);// border-radius: 8px;
-	}
-	.confirm-button {
-		margin: 20px auto;
-	}
+}
+.form__textarea {
+	flex-basis: 100%;
+	padding: 10px;
+	font-weight: 200;
+	border-style: solid;
+	border-color: map-get($color, darkgrey);
+	border-width: 0 0 1px 0;
+	outline: none;
+	resize: none;
+}
+.form__input {
+	outline: none;
+	flex-basis: 100%;
+	padding: 10px;
+	font-weight: 200;
+	border: none;
+	text-transform: uppercase;
+	border-bottom: 2px solid rgba(map-get($color, darkgrey), 0.2);// border-radius: 8px;
+}
+.confirm-button {
+	margin: 20px auto;
 }
