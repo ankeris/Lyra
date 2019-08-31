@@ -2,7 +2,7 @@
 {% from "mixins/moving-background.html" import movingBackground %}
 {% from 'mixins/media-icons.html' import facebook, instagram %}
 {% from 'mixins/changing-images.html' import changingImages %}
-{% from 'mixins/macros.html' import blackLogo %}
+{% from 'mixins/macros.html' import logoFull %}
 
 {% block head %}
 	<title>Kontaktai</title>
@@ -32,7 +32,7 @@
 		<section class="content-section content-center content-row content-wrap content-space-between push-bottom">
 			<div class="expand content-half content-center content-wrap">
 				<div class="content-half center push-bottom">
-					{{blackLogo()}}
+					{{logoFull('black', '90px')}}
 				</div>
 				<div class="content-half center push-bottom">
 					<p>KĘSTUČIO G. 26<br>

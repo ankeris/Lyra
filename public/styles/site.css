@@ -37,6 +37,11 @@
   animation: fadeIn 0.5s ease-in 1 forwards;
   transition-duration: 0.5s; }
 
+.fade-out {
+  opacity: 1;
+  animation: fadeOut 0.4s ease-in 1 forwards;
+  transition-duration: 0.4s; }
+
 #changing-container {
   height: 45vh;
   display: flex;
@@ -1263,7 +1268,9 @@ figure {
       font-size: 2em; } }
 
 .message__square {
+  overflow: hidden;
   max-width: 600px;
+  transition: all 0.5s ease;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.7);
   padding: 15px; }

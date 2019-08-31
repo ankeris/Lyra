@@ -1,6 +1,7 @@
 {% extends "layouts/default.html" %}
 {% from "mixins/highlighted-products.html" import highlightedProducts %}
 {% from "mixins/moving-background.html" import movingBackground %}
+{% from 'mixins/macros.html' import logoFull %}
 
 {% block head %}
     <meta name="Description" content="Kokybiškos garso aparatūros parduotuvė. Stereo sistemos, namų kino ir multiroom įranga.">
@@ -11,7 +12,10 @@
 {% block content %}
     {% set fileExtension = ( "webp" if supportWebP else "jpg" ) %}
     <section class="manifesto content-center lazy" data-bg="url('{{mainPageIntroImage}}')">
-        <h3 class="message__square message--huge" style="transition: all 0.5s ease;">
+        <div id="logoDissapear" class="message__square">
+            {{logoFull('white', '239px')}}
+        </div>
+        <h3 class="hidden message__square message--huge">
         {% for word in mainPageIntroSentence %}
             <span class="invisible">{{word | safe}}</span> 
         {% endfor %}
