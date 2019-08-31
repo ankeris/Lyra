@@ -9,26 +9,10 @@
 	flex-direction: column;
 }
 
-.loop-box__title {
-	width: 500px;
-	margin: 5px;
-	display: flex;
-	flex-flow: row nowrap;
-	justify-content: space-between;
-	font-size: 4em;
-	z-index: 1;
-	div {
-		font-weight: thin;
-	}
-}
-
 @media screen and (max-width: $window-small-medium) {
 	.loop-box {
 		flex-wrap: wrap-reverse;
 		height: 80vh;
-		.loop-box__title {
-			max-width: 90%;
-		}
 		.loop-box__item--text {
 			max-width: 90%;
 		}

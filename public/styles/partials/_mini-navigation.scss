@@ -1,30 +1,23 @@
 .mini-navigation {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	overflow: hidden;
 	.mini-navigation__button {
 		flex-basis: 33.33%;
-		text-align: center;
-		background-position: bottom;
-		background-repeat: no-repeat; // background-size: cover;
-		background-size: 120%;
+		background-size: cover;
 		background-position: center;
-		color: white;
-		padding-top: 10vw;
-		padding-bottom: 10vw;
-		font-size: 16pt;
-		letter-spacing: 0.2em;
+		height: 30vh;
 		transition-duration: 90ms;
-		span {
+		&--text {
+			font-size: 16pt;
+			text-align: center;
+			letter-spacing: 0.2em;
 			background-color: rgba($color: #000000, $alpha: 0.5);
+			color: white;
 			padding: 10px;
 			border-radius: 5px;
+			display: inline-block;
 		}
 		&:hover {
-			// @include hover(darkgrey);
-			opacity: 0.9;
-			background-size: 123%;
-			transition-duration: 90ms;
+			transform: scale(1.05);
 		}
 	}
 }
@@ -33,6 +26,7 @@
 	.mini-navigation {
 		flex-wrap: wrap;
 		.mini-navigation__button {
+			height: 15vh;
 			flex-basis: 100%;
 			font-size: 14pt;
 			letter-spacing: 0.2em;
