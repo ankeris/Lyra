@@ -1,59 +1,14 @@
-{% from "mixins/macros.html" import loadingSpeakers %}
-{% from "mixins/sideNavigation.html" import sideNavigation %}
-{% from "mixins/section-text-on-image.html" import textOnImage %}
-{% from "mixins/dynamic-link.html" import dynamicLink %}
-{% from "mixins/sort-by-form.html" import sortByForm %}
-
 {% extends "layouts/default.html" %}
 
 {% block head %}
-    {% if data.category %}
-    <title>Lyra | {{data.category.name}}</title>
-    {% else %}
-	<title>{{globaldata.titles.products}}</title>
-    {% endif %}
     <meta name="Description" content="Garso aparatūros asortimentas, kruopščiai atrinkti kokybiški produktai">
 {% endblock %}
 
 {% block intro %}
-	{% set title = ( data.category.name if data.category else "Produktų katalogas" ) %}
-    {% if not data.category %}
-        {{textOnImage(title, data.productCatalogueIntro, data.productsPageIntroImage.secure_url)}}
-    {% else %}
-        {{textOnImage(title, data.category.description, data.category.CoverImage.secure_url)}}
-    {% endif %}
 {% endblock %}
 
 {% block content %}
-<div class="products-wrapper content-section">
-<figure class="sort-bar__box push-vertical content-section">
-    {% if data.category %}
-    {{dynamicLink(data.dynamicLinkArr)}}
-    {% endif %}
-    {% if data.category and not data.discounts %}
-        {# data.sort is here to track the current sort #}
-        {{sortByForm('/produktai/' + data.category.key, data.sort)}}
-    {% elif filters.search %}
-        {{sortByForm('/produktai/?search=' + filters.search, data.sort)}}
-    {% else %}
-        {{sortByForm('/produktai/', data.sort)}}
-    {% endif %}
-</figure>
-    {{sideNavigation("products-page", data)}}
-
-    {# items box wrapper #}
-    <section class="products products--threequarters">
-            {# looping through products #}
-            {% for product in data.products %}
-            {% include 'partials/product-item.html' %}
-            {% endfor %}
-    </section>
-</div>
-{# Loading screen for products #}
-{{ loadingSpeakers("#1f1f1f", "#448AA6") }}
-
-<div class="variables" data-sort="{{data.sort}}" data-category="{{data.category.key}}" data-count="{{data.products.results.length}}" data-search="{{filters.search}}"></div>
-
+<div id="app"></div>
 {% endblock %}
 
 {% block js %}

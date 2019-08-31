@@ -42,8 +42,12 @@ exports = module.exports = function(app) {
 	app.get('/naujienos', routes.views.news);
 	app.get('/naujienos/:newsItem', routes.views.new);
 	app.get('/apie-mus', routes.views.aboutus);
-	app.get('/produktai/:category?', routes.views.products);
+	app.get('/produktai/:category?', routes.views.productsPage);
 	app.get('/produktai/:Manufacturer?/:category?/:product', routes.views.product);
+	// Headless responses
+	app.get('/api/product/getAll', routes.views.api.getAllProducts);
+	app.get('/api/category/getAll', routes.views.api.getAllCategories);
+	// Additional
 	app.get('*', routes.views['404']);
 	app.post('*', routes.views.subscription);
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
