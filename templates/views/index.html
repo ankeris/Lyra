@@ -11,8 +11,8 @@
 
 {% block content %}
     {% set fileExtension = ( "webp" if supportWebP else "jpg" ) %}
-    <section class="manifesto content-center lazy" data-bg="url('{{mainPageIntroImage}}')">
-        <div id="logoDissapear" class="message__square">
+    <section id="slider" data-type="background" data-speed="-3" class="manifesto content-center lazy" data-bg="url('{{mainPageIntroImage}}')">
+        <div id="logoDissapear" class="message__square fall">
             {{logoFull('white', '239px')}}
         </div>
         <h3 class="hidden message__square message--huge">

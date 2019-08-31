@@ -3,6 +3,7 @@ const allSpans = document.querySelectorAll('.manifesto .message--huge span');
 const logo = document.getElementById('logoDissapear');
 document.addEventListener('DOMContentLoaded', function() {
 	setTimeout(() => {
+		logo.classList.remove('fall');
 		logo.classList.add('fade-out');
 		setTimeout(() => {
 			logo.classList.add('hidden');
@@ -14,5 +15,5 @@ document.addEventListener('DOMContentLoaded', function() {
 				}, i * 300);
 			}
 		}, 400);
-	}, 1500);
+	}, 1000);
 }, false);
