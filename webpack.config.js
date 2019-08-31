@@ -16,10 +16,6 @@ module.exports = {
 	},
 	module: {
 		rules: [
-			// {
-			// 	test: /\.css$/,
-			// 	use: ['style-loader', 'css-loader']
-			// },
 			{
 				test: /\.m?js$/,
 				exclude: /(node_modules|bower_components)/,
@@ -29,7 +25,23 @@ module.exports = {
 						presets: ['@babel/preset-env']
 					}
 				}
-			}
+			},
+			{
+				test: /\.jsx?$/,
+				exclude: /node_modules/,
+				use: 'babel-loader',
+			},
 		]
-	}
+	},
+	resolve: {
+		extensions: ['.jsx', '.js', '.json', '.less'],
+		modules: [
+			path.resolve(__dirname, "node_modules"),
+			'node_modules'
+		],
+		alias: {
+			'react': 'preact-compat',
+			'react-dom': 'preact-compat'
+		}
+	},
 };
