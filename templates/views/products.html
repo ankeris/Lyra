@@ -17,11 +17,10 @@
 
 {% block intro %}
 	{% set title = ( data.category.name if data.category else "Produktų katalogas" ) %}
-	{% set text = ( data.category.description if data.category.description else "" ) %}
     {% if not data.category %}
-        {{textOnImage(title, text, data.productsPageIntroImage.secure_url)}}
+        {{textOnImage(title, data.productCatalogueIntro, data.productsPageIntroImage.secure_url)}}
     {% else %}
-        {{textOnImage(title, data.productCatalogueIntro, data.category.CoverImage.secure_url)}}
+        {{textOnImage(title, data.category.description, data.category.CoverImage.secure_url)}}
     {% endif %}
 {% endblock %}
 
