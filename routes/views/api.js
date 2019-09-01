@@ -228,6 +228,59 @@ exports.getAllProducts = function (req, res) {
 	});
 };
 
+exports.getProductsForCategory = function(req, res) {
+	const supportWebP = isWebP(req);
+	keystone.list('Product').paginate({
+		page: req.query.page || 1,
+		perPage: 9,
+		maxPages: 10
+	}).find({
+		ProductType: req.params.id
+	})
+		.lean().populate('Manufacturer ProductType')
+		.exec((err, result) => {
+			if (err) throw err;
+			res.json(getRidOfMetadata(result, true, 300, 300, supportWebP));
+		});
+
+	// if (locals.data.category) {
+	// 	// Load products for basic categories (without subcategories)
+	// 	if (!locals.data.category.IsParentCategory) {
+	// 		q.find({
+	// 			ProductType: locals.data.category
+	// 		})
+	// 			.lean()
+	// 			.exec(function(err, result) {
+	// 				if (err) {
+	// 					next(err);
+	// 				} else {
+	// 					locals.data.products = getRidOfMetadata(result, true, 300, 300, supportWebP);
+	// 					next(err);
+	// 				}
+	// 			});
+	// 	} // Load products of all children categories of parent category
+	// 	else if (locals.data.category.IsParentCategory) {
+	// 		keystone
+	// 			.list('ProductCategory')
+	// 			.model.find({$or: [{ChildCategoryOf: locals.data.category}, {_id: locals.data.category}]})
+	// 			.exec(function(err, result) {
+	// 				q.find({
+	// 					ProductType: {$in: result}
+	// 				})
+	// 					.lean()
+	// 					.exec(function(err, result) {
+	// 						if (err) {
+	// 							next(err);
+	// 						} else {
+	// 							locals.data.products = getRidOfMetadata(result, true, 300, 300, supportWebP);
+	// 							next(err);
+	// 						}
+	// 					});
+	// 			});
+	// 	}
+	// }
+}
+
 exports.getAllCategories = function (req, res, next) {
 	const loadAllCategoriesQuery = {
 		dbCollection: keystone.list('ProductCategory'),
@@ -242,4 +295,9 @@ exports.getAllCategories = function (req, res, next) {
 		}
 	};
 	loadAll(loadAllCategoriesQuery);
+}
+
+exports.getCurrentCategory = function (req, res) {
+	console.log(req.params);
+	res.json({category: req.params.category});
 }

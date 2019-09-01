@@ -48,13 +48,13 @@ function ajaxCall(link, variable, parameters) {
 	}
 }
 
-const scrollNews = _.throttle(function (e) {
-	// if statement finds if user screen has scrolled to the bottom of products-wrapper box
-	if ($(window).scrollTop() + $(window).height() > $('.products-wrapper').offset().top + $('.products-wrapper').outerHeight(true)) {
-		addNextPage();
-	}
-}, 1000);
+// const scrollNews = _.throttle(function (e) {
+// 	// if statement finds if user screen has scrolled to the bottom of products-wrapper box
+// 	if ($(window).scrollTop() + $(window).height() > $('.products-wrapper').offset().top + $('.products-wrapper').outerHeight(true)) {
+// 		addNextPage();
+// 	}
+// }, 1000);
 
-window.addEventListener('scroll', scrollNews, false);
+// window.addEventListener('scroll', scrollNews, false);
 
 //	if ($(window).scrollTop() + $(window).height() > $(document).height() - 300) {

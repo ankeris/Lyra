@@ -1,16 +1,36 @@
 {% extends "layouts/default.html" %}
+{% from "mixins/dynamic-link.html" import dynamicLink %}
+{% from "mixins/section-text-on-image.html" import textOnImage %}
 
 {% block head %}
     <meta name="Description" content="Garso aparatūros asortimentas, kruopščiai atrinkti kokybiški produktai">
 {% endblock %}
 
 {% block intro %}
+    {% set title = ( data.category.name if data.category else "Produktų katalogas" ) %}	
+    {% if not data.category %}	
+        {{textOnImage(title, data.productCatalogueIntro, data.productsPageIntroImage.secure_url)}}	
+    {% else %}
+        {{textOnImage(title, data.category.description, data.category.CoverImage.secure_url)}}	
+    {% endif %}
 {% endblock %}
 
 {% block content %}
+<figure class="sort-bar__box push-vertical content-section">	
+    {% if data.category %}	
+    {{dynamicLink(data.dynamicLinkArr)}}	
+    {% endif %}
+</figure>
+
 <div id="app"></div>
+<input type="hidden" id="category" data-key="{{categoryKey}}" data-id="{{categoryId}}">
 {% endblock %}
 
 {% block js %}
+    <script>
+    var data = document.getElementById('category').dataset.value;
+    window.categoryId = document.getElementById('category').dataset.id
+    window.categoryKey = document.getElementById('category').dataset.key
+    </script>
     <script src="/js/dist/products.bundle.js"></script>
 {% endblock %}

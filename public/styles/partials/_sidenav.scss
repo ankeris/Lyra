@@ -28,61 +28,44 @@
 				@include NavigationItemHover();
 			}
 		}
-		#manufacturers-dropdown {
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			justify-content: flex-start;
-			line-height: 1;
-			.subcategory-box__item--text {
-				color: map-get($color, darkgrey);
-				margin: 0;
-				padding: 11px 0;
-				&:hover {
-					@include NavigationItemHover();
-				}
-			}
-			.subcategory-box__item--svg {
-				width: 14px;
-				height: 8px;
-				padding: 10px 7px;
-				transition-duration: 400ms;
-				cursor: pointer;
-				&:hover {
-					transform: rotate(90deg);
-				}
+		.subcategory-box__item--text {
+			color: map-get($color, darkgrey);
+			padding: 11px 0;
+			&:hover {
+				@include NavigationItemHover();
 			}
 		}
 		.navigation-dropdown {
 			display: flex;
 			flex-direction: row;
+			flex-wrap: wrap;
 			align-items: center;
 			justify-content: flex-start;
 			line-height: 1;
-			.subcategory-box__item--text {
-				margin: 0;
-				padding: 11px 0;
-				color: map-get($color, black);
-				&:hover {
-					@include NavigationItemHover();
-				}
-			}
+			height: 35px;
+			transition: height 0.2s ease;
+  			overflow: hidden;
 			.subcategory-box__item--svg {
 				box-sizing: content-box;
 				min-width: 14px;
 				height: 8px;
 				padding: 10px 7px;
 				transition-duration: 400ms;
+				user-select: none;
 				cursor: pointer;
 				&:hover {
 					transform: rotate(90deg);
 				}
 			}
+			.side-nav__list-box--item {
+				padding: 8px 0;
+			}
 		}
 		.subcategory-box {
 			margin-bottom: 12px;
 			font-size: 0.9em;
-			opacity: 1;
+			flex-basis: 90%;
+			margin-left: 5%;
 			.subcategory-box__item {
 				width: 90%;
 				color: map-get($color, darkgrey);
@@ -108,6 +91,24 @@
 		-moz-transition: all 0.5s;
 		-o-transition: all 0.5s;
 		transition: all ease 0.5s;
+	}
+	#manufacturers-dropdown {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start;
+		line-height: 1;
+		.subcategory-box__item--svg {
+			user-select: none;
+			width: 14px;
+			height: 8px;
+			padding: 10px 7px;
+			transition-duration: 400ms;
+			cursor: pointer;
+			&:hover {
+				transform: rotate(90deg);
+			}
+		}
 	}
 }
 

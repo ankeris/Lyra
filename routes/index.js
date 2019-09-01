@@ -47,6 +47,7 @@ exports = module.exports = function(app) {
 	// Headless responses
 	app.get('/api/product/getAll', routes.views.api.getAllProducts);
 	app.get('/api/category/getAll', routes.views.api.getAllCategories);
+	app.get('/api/product/getAll/:id', routes.views.api.getProductsForCategory);
 	// Additional
 	app.get('*', routes.views['404']);
 	app.post('*', routes.views.subscription);
