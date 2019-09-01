@@ -21,6 +21,7 @@ exports = module.exports = function(req, res) {
 						if (result) {
 							locals.categoryId = result._id;
 							locals.categoryKey = result.key;
+							locals.categoryIsParent = result.IsParentCategory;
 
 							result.CoverImage.secure_url = cropCloudlinaryImage(result.CoverImage, 1600, 1600, isWebP(req));	
 							locals.data.category = result;	
@@ -49,8 +50,8 @@ exports = module.exports = function(req, res) {
 
 	// Images and text	
 	if (!req.params.category) {	
-		view.on('init', function (next) {	
-			findOneByKey({	
+		view.on('init', function (next) {
+			findOneByKey({
 				dbCollection: keystone.list('Texts'),	
 				keyName: 'product-catalogue-intro',	
 				callback: ({Text}, err) => {	

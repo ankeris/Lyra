@@ -23,14 +23,16 @@
 </figure>
 
 <div id="app"></div>
-<input type="hidden" id="category" data-key="{{categoryKey}}" data-id="{{categoryId}}">
+<input type="hidden" id="category" data-key="{{categoryKey}}" data-id="{{categoryId}}" data-categoryisparent="{{categoryIsParent}}">
 {% endblock %}
 
 {% block js %}
     <script>
-    var data = document.getElementById('category').dataset.value;
-    window.categoryId = document.getElementById('category').dataset.id
-    window.categoryKey = document.getElementById('category').dataset.key
+    const dataItem = document.getElementById('category');
+    window.categoryId = dataItem.dataset.id
+    window.categoryKey = dataItem.dataset.key
+    var isTrueSet = (dataItem.dataset.categoryisparent == 'true');
+    window.categoryIsParent = isTrueSet;
     </script>
     <script src="/js/dist/products.bundle.js"></script>
 {% endblock %}

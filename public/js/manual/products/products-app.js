@@ -16,9 +16,10 @@ class Products extends Component {
 
 	componentDidMount() {
 		const currentCategoryId = window.categoryId;
-		
+		const categoryIsParent = window.categoryIsParent;
+
         if (currentCategoryId) {
-			fetch('/api/product/getAll/' + currentCategoryId).then((response) => {
+			fetch(`/api/product/getAll/${currentCategoryId}${categoryIsParent ? '?categoryIsParent=true' : ''}`).then((response) => {
 				response.json().then(products => {
 					console.log(products);
 					
