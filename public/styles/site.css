@@ -830,6 +830,7 @@ figure {
     margin-left: auto; }
     .sort-bar__box .form_box .sort-bar__box--button {
       box-sizing: border-box;
+      outline: none;
       height: 35px;
       width: 175px;
       text-align: center;
@@ -1265,6 +1266,10 @@ figure {
 .products-wrapper {
   display: flex;
   flex-wrap: wrap; }
+
+#loader {
+  flex-basis: 100%;
+  order: 4; }
 
 .products--fullwidth {
   flex-basis: 100%; }

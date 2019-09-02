@@ -216,13 +216,15 @@ const {loadAll, findOneByKey} = redisQueries;
 exports.getAllProducts = function (req, res) {
 	const supportWebP = isWebP(req);
 	const page = req.query.page || 0;
+	const sort = getSort(req.query.sort) || { title: 1 };
 	const limit = 9;
 	const query = keystone.list('Product').model;
 
 	query
 		.find()
 		.skip(page * limit)
-    	.limit(limit)
+		.limit(limit)
+		.sort(sort)
 		.populate('Manufacturer ProductType')
 		.exec(function(err, result) {
 			if (err) throw err;
@@ -240,6 +242,7 @@ exports.getProductsForCategory = function(req, res) {
 	const supportWebP = isWebP(req);
 	const categoryIsParent = req.query.categoryIsParent;
 	const page = req.query.page || 0;
+	const sort = getSort(req.query.sort) || { title: 1 };
 	const limit = 9;
 	const query = keystone.list('Product').model;
 	
@@ -253,7 +256,8 @@ exports.getProductsForCategory = function(req, res) {
 						ProductType: {$in: result}
 					})
 						.skip(page * limit)
-    					.limit(limit)
+						.limit(limit)
+						.sort(sort)
 						.populate('Manufacturer ProductType')
 						.lean()
 						.exec((err, result) => {
@@ -270,7 +274,8 @@ exports.getProductsForCategory = function(req, res) {
 			ProductType: req.params.id
 		})
 			.skip(page * limit)
-    		.limit(limit)
+			.limit(limit)
+			.sort(sort)
 			.populate('Manufacturer ProductType')
 			.lean()
 			.exec((err, result) => {
@@ -279,7 +284,7 @@ exports.getProductsForCategory = function(req, res) {
 						data: getRidOfMetadata(result, true, 300, 300, supportWebP),
 						totalPages: Math.ceil(count / limit)
 					});
-				})
+				});
 				if (err) throw err;
 			});
 	}

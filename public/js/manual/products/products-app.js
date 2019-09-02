@@ -2,6 +2,8 @@ import { h, render, Component } from 'preact';
 import Product from '../components/Product';
 import CategoriesNavigation from '../components/CategoriesNavigation';
 import Loading from '../components/Loading';
+import Select from '../components/Select';
+
 require('preact/debug');
 class Products extends Component {
 	constructor() {
@@ -13,9 +15,11 @@ class Products extends Component {
 			productsLoaded: false,
 			infiniteScrollCount: 0,
 			totalPages: null,
-			isLoading: false
+			isLoading: false,
+			sortBy: null
 		};
 		this.checkLoad = this.checkLoad.bind(this);
+		this.setSort = this.setSort.bind(this);
 	}
 
 	componentDidMount() {
@@ -108,7 +112,8 @@ class Products extends Component {
 		return fetch(`/api/products/getAll/${currentCategoryId}
 		${categoryIsParent ? 
 		'?categoryIsParent=true' : '?categoryIsParent=false'}
-		&page=${this.state.infiniteScrollCount}`)
+		&page=${this.state.infiniteScrollCount}
+		${this.state.sortBy ? '&sort='+this.state.sortBy : '&sort=false'}`)
 		.then((response) => {
 			return response.json().then(({data, totalPages}) => {
 				this.setState({
@@ -124,7 +129,8 @@ class Products extends Component {
 
 	getAllProducts() {
 		this.setState({isLoading: true});
-		return fetch(`/api/products/getAll?page=${this.state.infiniteScrollCount}`)
+		return fetch(`/api/products/getAll?page=${this.state.infiniteScrollCount}
+		${this.state.sortBy ? '&sort='+this.state.sortBy : '&sort=false'}`)
 		.then((response) => {
 			return response.json().then(({data, totalPages}) => {
 				this.setState({
@@ -138,22 +144,38 @@ class Products extends Component {
 		})
 	}
 
+	setSort(sortValue) {
+		const currentCategoryId = window.categoryId;
+		// Wipe out products
+		this.setState({
+			products: [],
+			sortBy: sortValue,
+			infiniteScrollCount: 0,
+			productsLoaded: false
+		})
+        if (currentCategoryId) {
+			this.getProductsForCategory();
+		} else {
+			this.getAllProducts();
+		}
+	}
+
 	render(props, {products, categories, manufacturers, productsLoaded, isLoading}) {
-		return productsLoaded && categories.length ? 
+		return categories.length ? 
 		<div className="products-wrapper content-section">
+			<Select onChange={this.setSort}/>
 			<CategoriesNavigation categories={categories} manufacturers={manufacturers} page={'products-page'}/>
-			<section className="products products--threequarters">
-				{products.map(product => {
-					return <Product data={product} />
-				})}
-				{!products.length ? <h3>Atsiprašome, šiuo metu ši kategorija neturi produktų</h3> : null}
-			{isLoading ? <Loading/> : null}
-			</section>
-			<div ref={elementToTriggerLoad => this.elementToTriggerLoad = elementToTriggerLoad}></div>
+				<section className="products products--threequarters">
+					{products.map(product => {
+						return <Product data={product} />
+					})}
+					{productsLoaded && !products.length ? <h3>Atsiprašome, šiuo metu ši kategorija neturi produktų</h3> : null}
+				{isLoading ? <Loading/> : null}
+				</section>
+			<div id="loader" ref={elementToTriggerLoad => this.elementToTriggerLoad = elementToTriggerLoad}></div>
 		</div>
 		:
 		<div style="margin-bottom: 2000px;">
-			<Loading />
 		</div>
 	}
 }

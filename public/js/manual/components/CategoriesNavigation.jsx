@@ -20,12 +20,12 @@ export default class extends Component {
                 <div id="manufacturers-dropdown" className="navigation-dropdown">
                     <a href="/prekiu-zenklai" className="subcategory-box__item--text">Gamintojai</a>
                     <DropdownSVG clicked={accordionate} />
-                    {manufacturers.length ? 
+                    {manufacturers && manufacturers.length ? 
                         <div className="subcategory-box js-accordion">
                             {
                                 manufacturers.map((manufacturer) => 
                                 <NavigationItem link={`/prekiu-zenklai/${manufacturer.key}`} navigationItem={manufacturer} />)
-                                }
+                            }
                         </div>
                     : null}
                 </div>
