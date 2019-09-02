@@ -1,6 +1,8 @@
 import { h, render, Fragment, Component } from 'preact';
 import CategoryParent from './CategoryParent';
-import Category from './Category';
+import NavigationItem from './NavigationItem';
+import DropdownSVG from './DropdownSVG';
+import { accordionate } from './helpers';
 
 export default class extends Component {
 	constructor(props) {
@@ -12,17 +14,30 @@ export default class extends Component {
         return category.key == window.categoryKey || category.children.find(x => x.key == window.categoryKey);
     }
     
-	render({categories}, state) {
+	render({categories, manufacturers}, state) {
 		return <aside className="side-nav">
             <div className="side-nav__box">
-                <div id="manufacturers-dropdown">
+                <div id="manufacturers-dropdown" className="navigation-dropdown">
                     <a href="/prekiu-zenklai" className="subcategory-box__item--text">Gamintojai</a>
+                    <DropdownSVG clicked={accordionate} />
+                    {manufacturers.length ? 
+                        <div className="subcategory-box js-accordion">
+                            {
+                                manufacturers.map((manufacturer) => 
+                                <NavigationItem link={`/prekiu-zenklai/${manufacturer.key}`} navigationItem={manufacturer} />)
+                                }
+                        </div>
+                    : null}
                 </div>
                 {categories.map(category => {
                     return category.children && category.children.length ?
-                    <CategoryParent isOpen={this.getOpenStatus(category)} link={`/produktai/${category.key}`} category={category}/> 
+                    <CategoryParent 
+                    isOpen={this.getOpenStatus(category)} 
+                    link={`/produktai/${category.key}`}
+                    childLink='/produktai/' 
+                    category={category}/>
                     :
-                    <Category link={`/produktai/${category.key}`} category={category} />
+                    <NavigationItem link={`/produktai/${category.key}`} navigationItem={category} />
                 })}
             </div>
         </aside>

@@ -63,8 +63,8 @@
 
 @keyframes getBigger {
   to {
-    margin: 35px auto;
-    opacity: 1; } }
+    opacity: 1;
+    height: 150px; } }
 
 @keyframes fall {
   0% {
@@ -1109,7 +1109,9 @@ figure {
 .loading-speakers-box {
   opacity: 0;
   text-align: center;
-  animation: getBigger 0.5s ease-in 1 forwards; }
+  margin: 30px auto;
+  height: 0;
+  animation: getBigger 0.2s ease-in 1 forwards; }
   .loading-speakers-box #mids-inner path,
   .loading-speakers-box #mids-inner-2 path,
   .loading-speakers-box #mids-inner-3 path {
@@ -1277,6 +1279,7 @@ figure {
 .products {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   order: 3; }
   .products .items-box__item {
     flex-direction: column;

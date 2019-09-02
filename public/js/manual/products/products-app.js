@@ -2,7 +2,7 @@ import { h, render, Component } from 'preact';
 import Product from '../components/Product';
 import CategoriesNavigation from '../components/CategoriesNavigation';
 import Loading from '../components/Loading';
-
+require('preact/debug');
 class Products extends Component {
 	constructor() {
 		super();
@@ -10,36 +10,63 @@ class Products extends Component {
 		this.state = {
 			products: [],
 			categories: [],
-			productsLoaded: false
+			productsLoaded: false,
+			infiniteScrollCount: 0,
+			totalPages: null,
+			isLoading: false
 		};
+		this.checkLoad = this.checkLoad.bind(this);
 	}
 
 	componentDidMount() {
 		const currentCategoryId = window.categoryId;
-		const categoryIsParent = window.categoryIsParent;
-
+		// If category selected:
         if (currentCategoryId) {
-			fetch(`/api/product/getAll/${currentCategoryId}${categoryIsParent ? '?categoryIsParent=true' : ''}`).then((response) => {
-				response.json().then(products => {
-					console.log(products);
-					
-					this.setState({
-						products,
-						productsLoaded: true
-					})
-				})
-			})
+			this.getProductsForCategory();
+		// No category - main products page
 		} else {
-			fetch('/api/product/getAll').then((response) => {
-				response.json().then(products => {
-					this.setState({
-						products,
-						productsLoaded: true
-					})
-				})
-			})
+			this.getAllProducts();
 		}
-		fetch('/api/category/getAll').then((response) => {
+		
+		this.getAllCategories();
+		this.getAllManufacturers();
+
+		this.checkLoad();
+	}
+
+	checkLoad() {
+		let allowNewLoad = true;
+		const currentCategoryId = window.categoryId;
+		window.addEventListener('scroll', (event) => {
+			const bounding = this.elementToTriggerLoad ? this.elementToTriggerLoad.getBoundingClientRect() : null;
+			if (bounding) {
+				const distanceToBottom = bounding.bottom - window.innerHeight;
+				if (distanceToBottom < 30 && allowNewLoad) {
+					allowNewLoad = false;
+					// If category selected:
+					if (currentCategoryId) {
+						if (this.state.infiniteScrollCount < this.state.totalPages) {
+							
+							this.getProductsForCategory().then(() => {
+									allowNewLoad = true;
+							});
+						}
+					// No category - main products page
+					} else {
+						if (this.state.infiniteScrollCount < this.state.totalPages) {
+							this.getAllProducts().then(() => {
+								allowNewLoad = true;
+							});
+						}
+					}
+				}
+			}
+		})
+	}
+
+	getAllCategories() {
+		// Always have all categories
+		fetch('/api/categories/getAll').then((response) => {
 			response.json().then(categories => {
 				const sortedCategories = categories.reduce((accumulator, currentValue) => {
 					if (currentValue.IsParentCategory) {
@@ -64,17 +91,66 @@ class Products extends Component {
 		})
 	}
 
-	render(props, {products, categories, productsLoaded}) {
+	getAllManufacturers() {
+		fetch('/api/manufacturers/getAll').then((response) => {
+			response.json().then(manufacturers => {
+				this.setState({
+					manufacturers
+				})
+			})
+		})
+	}
+
+	getProductsForCategory() {
+		const currentCategoryId = window.categoryId;
+		const categoryIsParent = window.categoryIsParent;
+		this.setState({isLoading: true});
+		return fetch(`/api/products/getAll/${currentCategoryId}
+		${categoryIsParent ? 
+		'?categoryIsParent=true' : '?categoryIsParent=false'}
+		&page=${this.state.infiniteScrollCount}`)
+		.then((response) => {
+			return response.json().then(({data, totalPages}) => {
+				this.setState({
+					products: [...this.state.products, ...data],
+					productsLoaded: true,
+					infiniteScrollCount: this.state.infiniteScrollCount + 1,
+					totalPages,
+					isLoading: false
+				})
+			})
+		})
+	}
+
+	getAllProducts() {
+		this.setState({isLoading: true});
+		return fetch(`/api/products/getAll?page=${this.state.infiniteScrollCount}`)
+		.then((response) => {
+			return response.json().then(({data, totalPages}) => {
+				this.setState({
+					products: [...this.state.products, ...data],
+					productsLoaded: true,
+					infiniteScrollCount: this.state.infiniteScrollCount + 1,
+					totalPages,
+					isLoading: false
+				})
+			})
+		})
+	}
+
+	render(props, {products, categories, manufacturers, productsLoaded, isLoading}) {
 		return productsLoaded && categories.length ? 
-		<div class="products-wrapper content-section">
-			<CategoriesNavigation categories={categories} page={'products-page'}/>
-			<section class="products products--threequarters">
+		<div className="products-wrapper content-section">
+			<CategoriesNavigation categories={categories} manufacturers={manufacturers} page={'products-page'}/>
+			<section className="products products--threequarters">
 				{products.map(product => {
 					return <Product data={product} />
 				})}
 				{!products.length ? <h3>Atsiprašome, šiuo metu ši kategorija neturi produktų</h3> : null}
+			{isLoading ? <Loading/> : null}
 			</section>
-		</div> 
+			<div ref={elementToTriggerLoad => this.elementToTriggerLoad = elementToTriggerLoad}></div>
+		</div>
 		:
 		<div style="margin-bottom: 2000px;">
 			<Loading />

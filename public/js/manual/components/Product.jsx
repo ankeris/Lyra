@@ -1,6 +1,6 @@
 import { h, render, Component } from 'preact';
 
-export default class Clock extends Component {
+export default class Product extends Component {
     constructor(props) {
         super(props);
         // set initial time:
@@ -61,11 +61,14 @@ export default class Clock extends Component {
         <p className="items-box__item--description">
             <span className="items-box__item--description-title">{data.Manufacturer ? data.Manufacturer.name.toUpperCase() : null} - {data.title.toUpperCase()}</span>
             <br />
-                { data.ProductType && data.ProductType.nameSingular ?
+            { data.ProductType ?
+                data.ProductType.nameSingular ?
                     <span className="items-box__item--description-type">{data.ProductType.nameSingular.toLowerCase()}</span>
                     :
                     <span className="items-box__item--description-type">{data.ProductType.name.toLowerCase()}</span>
-                }
+                :
+                null
+            }
                 <br />
                 {data.Discount ?
                     <span className="items-box__item--description-price"><b className="price-discount">{data.Discount}€</b> &nbsp;<strike>{data.price}€</strike></span>

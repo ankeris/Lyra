@@ -18,6 +18,7 @@
 .products {
 	display: flex;
 	flex-wrap: wrap;
+	align-items: flex-start;
 	order: 3;
 	.items-box__item {
 		flex-direction: column;

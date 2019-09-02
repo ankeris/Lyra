@@ -215,50 +215,72 @@ const {loadAll, findOneByKey} = redisQueries;
 
 exports.getAllProducts = function (req, res) {
 	const supportWebP = isWebP(req);
-	const q = keystone.list('Product').paginate({
-		page: req.query.page || 1,
-		perPage: 9,
-		maxPages: 10
-	});
+	const page = req.query.page || 0;
+	const limit = 9;
+	const query = keystone.list('Product').model;
 
-	q.lean().populate('Manufacturer ProductType');
-	q.exec(function(err, result) {
-		const products = getRidOfMetadata(result, true, 300, 300, supportWebP);
-		res.json(products);
-	});
+	query
+		.find()
+		.skip(page * limit)
+    	.limit(limit)
+		.populate('Manufacturer ProductType')
+		.exec(function(err, result) {
+			if (err) throw err;
+			query.count({}, (err, count) => {
+				const products = getRidOfMetadata(result, true, 300, 300, supportWebP);
+				res.json({
+					data: products,
+					totalPages: Math.ceil(count / limit)
+				});
+			});
+		});
 };
 
 exports.getProductsForCategory = function(req, res) {
 	const supportWebP = isWebP(req);
 	const categoryIsParent = req.query.categoryIsParent;
-	const query = keystone.list('Product').paginate({
-		page: req.query.page || 1,
-		perPage: 9,
-		maxPages: 10
-	});
-
+	const page = req.query.page || 0;
+	const limit = 9;
+	const query = keystone.list('Product').model;
+	
 	if (categoryIsParent) {
 		keystone
 			.list('ProductCategory')
 			.model.find({$or: [{ChildCategoryOf: req.params.id}, {_id: req.params.id}]})
 			.exec(function(err, result) {
-				query.find({
-					ProductType: {$in: result}
-				}).populate('Manufacturer ProductType')
-					.lean()
-					.exec((err, result) => {
-						if (err) throw err;
-						res.json(getRidOfMetadata(result, true, 300, 300, supportWebP));
-					});
+				query.count({ProductType: {$in: result}}, (err, count) => {
+					query.find({
+						ProductType: {$in: result}
+					})
+						.skip(page * limit)
+    					.limit(limit)
+						.populate('Manufacturer ProductType')
+						.lean()
+						.exec((err, result) => {
+							if (err) throw err;
+							res.json({
+								data: getRidOfMetadata(result, true, 300, 300, supportWebP),
+								totalPages: Math.ceil(count / limit)
+							});
+						});
+				});
 			});
 	} else {
 		query.find({
 			ProductType: req.params.id
-		}).populate('Manufacturer ProductType')
+		})
+			.skip(page * limit)
+    		.limit(limit)
+			.populate('Manufacturer ProductType')
 			.lean()
 			.exec((err, result) => {
+				query.count({}, (err, count) => {
+					res.json({
+						data: getRidOfMetadata(result, true, 300, 300, supportWebP),
+						totalPages: Math.ceil(count / limit)
+					});
+				})
 				if (err) throw err;
-				res.json(getRidOfMetadata(result, true, 300, 300, supportWebP));
 			});
 	}
 };
@@ -277,9 +299,19 @@ exports.getAllCategories = function (req, res, next) {
 		}
 	};
 	loadAll(loadAllCategoriesQuery);
-}
+};
 
-exports.getCurrentCategory = function (req, res) {
-	console.log(req.params);
-	res.json({category: req.params.category});
-}
+exports.getAllManufacturers = function (req, res, next) {
+	const loadAllManufacturersQuery = {
+		dbCollection: keystone.list('ProductManufacturer'),
+		sort: 'Priority',
+		redisKeyName: 'all-brands',
+		callback: (result, err) => {
+			if (err || !result.length) {
+				return next(err);
+			}
+			res.json(result);
+		}
+	};
+	loadAll(loadAllManufacturersQuery);
+};
