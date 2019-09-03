@@ -24,8 +24,11 @@ class Products extends Component {
 
 	componentDidMount() {
 		const currentCategoryId = window.categoryId;
+		const isSearch = window.searchHint;
 		// If category selected:
-        if (currentCategoryId) {
+		if (isSearch) {
+			this.searchProducts(isSearch);
+		} else if (currentCategoryId) {
 			this.getProductsForCategory();
 		// No category - main products page
 		} else {
@@ -50,9 +53,8 @@ class Products extends Component {
 					// If category selected:
 					if (currentCategoryId) {
 						if (this.state.infiniteScrollCount < this.state.totalPages) {
-							
 							this.getProductsForCategory().then(() => {
-									allowNewLoad = true;
+								allowNewLoad = true;
 							});
 						}
 					// No category - main products page
@@ -121,6 +123,19 @@ class Products extends Component {
 					productsLoaded: true,
 					infiniteScrollCount: this.state.infiniteScrollCount + 1,
 					totalPages,
+					isLoading: false
+				})
+			})
+		})
+	}
+
+	searchProducts(hint) {
+		fetch('/api/products/getSearched/?search=' + hint).then((response) => {
+			response.json().then(({data}) => {
+				console.log(data);
+				this.setState({
+					products: [...this.state.products, ...data],
+					productsLoaded: true,
 					isLoading: false
 				})
 			})

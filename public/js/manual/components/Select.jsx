@@ -21,4 +21,3 @@ export default class extends Component {
         </figure>
 	}
 }
-            

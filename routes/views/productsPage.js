@@ -9,8 +9,12 @@ exports = module.exports = function(req, res) {
 	const locals = res.locals;
 	locals.data = {};
 	
-	view.on('init', next => {	
-		if (req.params.category) {	
+	view.on('init', next => {
+		if (req.query.search) {
+			locals.searchHint = req.query.search;
+		}
+		
+		if (req.params.category) {
 			findOneByKey({	
 				dbCollection: keystone.list('ProductCategory'),	
 				keyName: req.params.category,	
@@ -43,13 +47,13 @@ exports = module.exports = function(req, res) {
 					}
  				}	
 			});	
-		} else {	
+		} else {
 			next();	
 		}	
 	});
 
 	// Images and text	
-	if (!req.params.category) {	
+	if (!req.params.category) {
 		view.on('init', function (next) {
 			findOneByKey({
 				dbCollection: keystone.list('Texts'),	
@@ -57,9 +61,9 @@ exports = module.exports = function(req, res) {
 				callback: ({Text}, err) => {	
 					locals.data.productCatalogueIntro = Text;	
 					next(err);	
-				}	
-			});	
-		});	
+				}
+			});
+		});
 
  		view.on('init', (next) => {	
 			findOneByKey({	

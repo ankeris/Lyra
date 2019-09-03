@@ -209,9 +209,34 @@ const {loadAll, findOneByKey} = redisQueries;
 // 	// view.render('products');
 // };
 
-// function escapeRegex(text) {
-// 	return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-// }
+exports.getSearchProducts = function(req, res) {
+	const supportWebP = isWebP(req);
+	const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+	const query = keystone.list('Product').model;
+
+	query.find({
+		$or: [
+			{
+				slug: regex
+			},
+			{
+				title: regex
+			}
+		]
+	})
+		.populate('Manufacturer ProductType')
+		.lean()
+		.limit(20)
+		.exec(
+			function(err, result) {
+				if (err) throw err;
+				const products = getRidOfMetadata(result, true, 300, 300, supportWebP);
+				res.json({
+					data: products
+				});
+			}
+		);
+};
 
 exports.getAllProducts = function (req, res) {
 	const supportWebP = isWebP(req);
@@ -320,3 +345,7 @@ exports.getAllManufacturers = function (req, res, next) {
 	};
 	loadAll(loadAllManufacturersQuery);
 };
+
+function escapeRegex(text) {
+	return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+}

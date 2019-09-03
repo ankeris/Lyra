@@ -250,7 +250,8 @@ p {
 
 .router-links {
   font-size: 0.9em;
-  font-weight: 300; }
+  font-weight: 300;
+  width: 100%; }
 
 .link {
   color: #1f1f1f; }
