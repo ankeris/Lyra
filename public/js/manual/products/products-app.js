@@ -74,24 +74,21 @@ class Products extends Component {
 		// Always have all categories
 		fetch('/api/categories/getAll').then((response) => {
 			response.json().then(categories => {
-				const sortedCategories = categories.reduce((accumulator, currentValue) => {
-					if (currentValue.IsParentCategory) {
-					// Push this as a new parent
-					accumulator.push({ ...currentValue, children: [] });
-					} else if (currentValue.ChildCategoryOf && currentValue.ChildCategoryOf._id) {
-						const parent = accumulator.find(category => category._id === currentValue.ChildCategoryOf._id)	
-						// add as children to parent
-						if (parent) {
-							parent.children.push(currentValue);
+				for (let index = 0; index < categories.length; index++) {
+					const currentValue = categories[index];
+					if (currentValue.ChildCategoryOf) {
+						const parent = categories.find(x => x._id == currentValue.ChildCategoryOf._id);
+						if (!parent.children) {
+							parent.children = [];
 						}
-					} else {
-						accumulator.push(currentValue);
+						parent.children = [...parent.children, currentValue];
+						categories[index] = 0;
 					}
-					return accumulator;
-				}, []);
+				}
+				categories = categories.filter(x => x !== 0);
 				
 				this.setState({
-					categories: sortedCategories
+					categories
 				})
 			})
 		})
@@ -179,7 +176,7 @@ class Products extends Component {
 		return categories.length ? 
 		<div className="products-wrapper content-section">
 			<Select onChange={this.setSort}/>
-			<CategoriesNavigation categories={categories} manufacturers={manufacturers} page={'products-page'}/>
+			<CategoriesNavigation categories={categories} manufacturers={manufacturers} link={'/produktai'}/>
 				<section className="products products--threequarters">
 					{products.map(product => {
 						return <Product data={product} />
