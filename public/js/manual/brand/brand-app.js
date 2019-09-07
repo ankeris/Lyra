@@ -4,19 +4,19 @@ import CategoriesNavigation from '../components/CategoriesNavigation';
 import Loading from '../components/Loading';
 import Select from '../components/Select';
 
-require('preact/debug');
 class Products extends Component {
 	constructor() {
 		super();
 		// set initial time:
 		this.state = {
+            currentBrandKey: null,
 			products: [],
 			categories: [],
 			productsLoaded: false,
 			infiniteScrollCount: 0,
 			totalPages: null,
 			isLoading: false,
-			sortBy: null
+            sortBy: null,
 		};
 		this.checkLoad = this.checkLoad.bind(this);
 		this.setSort = this.setSort.bind(this);
@@ -24,11 +24,14 @@ class Products extends Component {
 
 	componentDidMount() {
 		const currentCategoryId = window.categoryId;
-		const isSearch = window.searchHint;
+        const currentBrandId = window.currentBrandId;
+        const currentBrandKey = window.currentBrandKey;
+
+        this.setState({
+            currentBrandKey
+        })
 		// If category selected:
-		if (isSearch) {
-			this.searchProducts(isSearch);
-		} else if (currentCategoryId) {
+		if (currentCategoryId) {
 			this.getProductsForCategory();
 		// No category - main products page
 		} else {
@@ -46,8 +49,10 @@ class Products extends Component {
 		const currentCategoryId = window.categoryId;
 		window.addEventListener('scroll', (event) => {
 			const bounding = this.elementToTriggerLoad ? this.elementToTriggerLoad.getBoundingClientRect() : null;
+			
 			if (bounding) {
 				const distanceToBottom = bounding.bottom - window.innerHeight;
+				
 				if (distanceToBottom < 30 && allowNewLoad) {
 					allowNewLoad = false;
 					// If category selected:
@@ -71,8 +76,9 @@ class Products extends Component {
 	}
 
 	getAllCategories() {
+        const currentBrandId = window.currentBrandId;
 		// Always have all categories
-		fetch('/api/categories/getAll').then((response) => {
+		fetch(`/api/categories/getAll/manufacturer/${currentBrandId}`).then((response) => {
 			response.json().then(categories => {
 				for (let index = 0; index < categories.length; index++) {
 					const currentValue = categories[index];
@@ -85,7 +91,6 @@ class Products extends Component {
 							parent.children = [...parent.children, currentValue];
 						}
 						
-						parent.children = [...parent.children, currentValue];
 						categories[index] = 0;
 					}
 				}
@@ -109,10 +114,12 @@ class Products extends Component {
 	}
 
 	getProductsForCategory() {
+		///api
 		const currentCategoryId = window.categoryId;
+        const currentBrandId = window.currentBrandId;
 		const categoryIsParent = window.categoryIsParent;
 		this.setState({isLoading: true});
-		return fetch(`/api/products/getAll/${currentCategoryId}
+		return fetch(`/api/products/getAll/manufacturer/${currentBrandId}/category/${currentCategoryId}
 		${categoryIsParent ? 
 		'?categoryIsParent=true' : '?categoryIsParent=false'}
 		&page=${this.state.infiniteScrollCount}
@@ -130,25 +137,14 @@ class Products extends Component {
 		})
 	}
 
-	searchProducts(hint) {
-		fetch('/api/products/getSearched/?search=' + hint).then((response) => {
-			response.json().then(({data}) => {
-				console.log(data);
-				this.setState({
-					products: [...this.state.products, ...data],
-					productsLoaded: true,
-					isLoading: false
-				})
-			})
-		})
-	}
-
 	getAllProducts() {
+        const currentBrandId = window.currentBrandId;
 		this.setState({isLoading: true});
-		return fetch(`/api/products/getAll?page=${this.state.infiniteScrollCount}
+		return fetch(`/api/products/getAll/manufacturer/${currentBrandId}?page=${this.state.infiniteScrollCount}
 		${this.state.sortBy ? '&sort='+this.state.sortBy : '&sort=false'}`)
 		.then((response) => {
 			return response.json().then(({data, totalPages}) => {
+                console.log(data);
 				this.setState({
 					products: [...this.state.products, ...data],
 					productsLoaded: true,
@@ -176,11 +172,11 @@ class Products extends Component {
 		}
 	}
 
-	render(props, {products, categories, manufacturers, productsLoaded, isLoading}) {
-		return categories.length ? 
+	render(props, {products, categories, manufacturers, productsLoaded, isLoading, currentBrandKey}) {
+		return currentBrandKey && categories.length ? 
 		<div className="products-wrapper content-section">
 			<Select onChange={this.setSort}/>
-			<CategoriesNavigation categories={categories} manufacturers={manufacturers} link={'/produktai'}/>
+			<CategoriesNavigation categories={categories} manufacturers={manufacturers} link={`/prekiu-zenklai/${currentBrandKey}`}/>
 				<section className="products products--threequarters">
 					{products.map(product => {
 						return <Product data={product} />

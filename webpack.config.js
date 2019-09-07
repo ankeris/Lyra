@@ -2,7 +2,7 @@ let path = require('path');
 const glob = require('glob');
 
 module.exports = {
-	mode: 'production', //add 'production' when deploy
+	mode: 'development', //add 'production' when deploy
 	// watch: true,
 	entry: {
 		global: glob.sync('./public/js/manual/global/*.js'),

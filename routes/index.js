@@ -47,8 +47,11 @@ exports = module.exports = function(app) {
 	// Headless responses
 	app.get('/api/products/getAll', routes.views.api.getAllProducts);
 	app.get('/api/products/getAll/:id', routes.views.api.getProductsForCategory);
+	app.get('/api/products/getAll/manufacturer/:id', routes.views.api.getAllProductsForManufacturer);
+	app.get('/api/products/getAll/manufacturer/:brandId/category/:categoryId', routes.views.api.getProductsForCategoryInBrand);
 	app.get('/api/products/getSearched', routes.views.api.getSearchProducts);
 	app.get('/api/categories/getAll', routes.views.api.getAllCategories);
+	app.get('/api/categories/getAll/manufacturer/:id', routes.views.api.getAllCategoriesForManufacturer);
 	app.get('/api/manufacturers/getAll', routes.views.api.getAllManufacturers);
 	// Additional
 	app.get('*', routes.views['404']);

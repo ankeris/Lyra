@@ -3,7 +3,6 @@
 {% from "mixins/intro-image-text.html" import introImageText %}
 {% from "mixins/dynamic-link.html" import dynamicLink %}
 {% from "mixins/macros.html" import dropdownSvg %}
-{% from "mixins/sort-by-form.html" import sortByForm %}
 
 {% block head %}
 	<title>Lyra | {{data.brand.name}}</title>
@@ -15,37 +14,38 @@
 {% endblock %}
 
 {% block content %}
-<div class="products-wrapper content-section">
-    <figure class="sort-bar__box push-vertical content-section">
+    <figure class="push-vertical content-section">
     {% if data.brand %}
     {{dynamicLink(
-        [{
-            name: "Prekių ženklai",
-            url: "/prekiu-zenklai/"
-        },
-        {
-            name: data.brand.name,
-            url: "/prekiu-zenklai/" + data.brand.key
-        }]
+        [{name: "Prekių ženklai",url: "/prekiu-zenklai/"},
+        {name: data.brand.name,url: "/prekiu-zenklai/" + data.brand.key}]
     )}}
     {% endif %}
-    {% if data.brand %}
-        {# data.sort is here to track the current sort #}
-        {{sortByForm('/prekiu-zenklai/' + data.brand.key, data.sort)}}
-    {% endif%}
-</figure>
-    {{sideNavigation("brand-page", data)}}
-    <section class="products products--threequarters">
-        {# looping through products #}
-        {% for product in data.products %}
-            {% include 'partials/product-item.html' %}
-        {% endfor %}
-    </section>
+    </figure>
+
+    <div id="app"></div>
+
+    <input type="hidden" 
+    id="category" 
+    data-key="{{categoryKey}}" 
+    data-id="{{categoryId}}" 
+    data-categoryisparent="{{categoryIsParent}}"
+    data-currentbrandid="{{currentBrandId}}"
+    data-currentbrandkey="{{currentBrandKey}}"
+    >
 </div>
 {# Variables stored so they could be used in server-side #}
-<div class="variables" data-sort="{{data.sort}}" data-category="{{data.category.key}}" data-count="{{data.products.results.length}}" data-brand="{{data.brand.key}}"></div>
 {% endblock %}
 
 {% block js %}
-    <script src="/js/dist/products.bundle.js"></script>
+    <script>
+    var dataItem = document.getElementById('category');
+    window.categoryId = dataItem.dataset.id
+    window.categoryKey = dataItem.dataset.key
+    var isTrueSet = (dataItem.dataset.categoryisparent == 'true');
+    window.categoryIsParent = isTrueSet;
+    window.currentBrandId = dataItem.dataset.currentbrandid;
+    window.currentBrandKey = dataItem.dataset.currentbrandkey;
+    </script>
+    <script src="/js/dist/brand.bundle.js"></script>
 {% endblock %}

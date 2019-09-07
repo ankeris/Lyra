@@ -3,6 +3,8 @@
 {% from "mixins/section-text-on-image.html" import textOnImage %}
 
 {% block head %}
+    {% set title = ( data.title if data.title else "Produktų katalogas" ) %}	
+	<title>Lyra | {{title}}</title>
     <meta name="Description" content="Garso aparatūros asortimentas, kruopščiai atrinkti kokybiški produktai">
 {% endblock %}
 
@@ -23,7 +25,8 @@
 </figure>
 
 <div id="app"></div>
-<input type="hidden" id="category" 
+<input type="hidden" 
+id="category" 
 data-key="{{categoryKey}}" 
 data-id="{{categoryId}}" 
 data-categoryisparent="{{categoryIsParent}}"

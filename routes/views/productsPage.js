@@ -23,12 +23,13 @@ exports = module.exports = function(req, res) {
 					if (err) throw err;	
 					else {	
 						if (result) {
+							locals.data.title = result.name;
 							locals.categoryId = result._id;
 							locals.categoryKey = result.key;
 							locals.categoryIsParent = result.IsParentCategory;
 
 							result.CoverImage.secure_url = cropCloudlinaryImage(result.CoverImage, 1600, 1600, isWebP(req));	
-							locals.data.category = result;	
+							locals.data.category = result;
 							// Create dynamic links for router	
 							locals.data.dynamicLinkArr = [{	
 								name: 'produktai',	

@@ -14,7 +14,7 @@ export default class extends Component {
         return category.key == window.categoryKey || category.children.find(x => x.key == window.categoryKey);
     }
     
-	render({categories, manufacturers}, state) {
+	render({categories, manufacturers, link}, state) {
 		return <aside className="side-nav">
             <div className="side-nav__box">
                 <div id="manufacturers-dropdown" className="navigation-dropdown">
@@ -33,11 +33,11 @@ export default class extends Component {
                     return category.children && category.children.length ?
                     <CategoryParent 
                     isOpen={this.getOpenStatus(category)} 
-                    link={`/produktai/${category.key}`}
-                    childLink='/produktai/' 
+                    link={`${link}/${category.key}`}
+                    childLink={`${link}/`}
                     category={category}/>
                     :
-                    <NavigationItem link={`/produktai/${category.key}`} navigationItem={category} />
+                    <NavigationItem link={`${link}/${category.key}`} navigationItem={category} />
                 })}
             </div>
         </aside>
