@@ -14,7 +14,7 @@ class Products extends Component {
 			filteredProducts: [],
 			categories: [],
 			currentPage: 1,
-			pageSize: 3,
+			pageSize: 9,
 			productsLoaded: false,
 			infiniteScrollCount: 0,
 			totalPages: null,
