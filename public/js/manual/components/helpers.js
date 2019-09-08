@@ -42,3 +42,24 @@ export function slidetoggle(EL) {
 		EL.previousElementSibling.querySelector('.subcategory-box__item--svg').classList.remove('rotate');
 	}
 }
+
+export function constructMenuCategories(categories) {
+	for (let index = 0; index < categories.length; index++) {
+		const currentValue = categories[index];
+		if (currentValue.ChildCategoryOf) {
+			if (!categories.some(x => x._id == currentValue.ChildCategoryOf._id)) {
+				categories.push(currentValue.ChildCategoryOf);
+			}
+			const parent = categories.find(x => x._id == currentValue.ChildCategoryOf._id);
+			if (parent) {
+				if (!parent.children) {
+					parent.children = [];
+				}
+				parent.children = [...parent.children, currentValue];
+			}
+			
+			categories[index] = 0;
+		}
+	}
+	return categories.filter(x => x !== 0);
+}
