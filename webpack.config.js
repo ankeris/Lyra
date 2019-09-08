@@ -8,6 +8,7 @@ module.exports = {
 		global: glob.sync('./public/js/manual/global/*.js'),
 		index: glob.sync('./public/js/manual/index/*.js'),
 		products: glob.sync('./public/js/manual/products/*.js'),
+		discounts: glob.sync('./public/js/manual/discounts/*.js'),
 		product: glob.sync('./public/js/manual/product/*.js'),
 		brand: glob.sync('./public/js/manual/brand/*.js')
 	},

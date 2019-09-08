@@ -46,6 +46,7 @@ exports = module.exports = function(app) {
 	app.get('/produktai/:Manufacturer?/:category?/:product', routes.views.product);
 	// Headless responses
 	app.get('/api/products/getAll', routes.views.api.getAllProducts);
+	app.get('/api/products/getAll/discounted', routes.views.api.getAllDiscountedProducts);
 	app.get('/api/products/getAll/:id', routes.views.api.getProductsForCategory);
 	app.get('/api/products/getAll/manufacturer/:id', routes.views.api.getAllProductsForManufacturer);
 	app.get('/api/products/getAll/manufacturer/:brandId/category/:categoryId', routes.views.api.getProductsForCategoryInBrand);

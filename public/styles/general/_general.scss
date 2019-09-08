@@ -148,6 +148,9 @@ p {
 		font-weight: 200;
 		color: map-get($color, darkgrey);
 	}
+	&--small {
+		padding: 5px 10px;
+	}
 }
 
 

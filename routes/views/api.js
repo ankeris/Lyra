@@ -191,6 +191,29 @@ exports.getAllProductsForManufacturer = function(req, res) {
 		});
 };
 
+exports.getAllDiscountedProducts = function(req, res) {
+	const supportWebP = isWebP(req);
+	const loadAllCategoriesQuery = {
+		dbCollection: keystone.list('ProductCategory'),
+		redisKeyName: 'all-categories',
+		populateBy: 'ChildCategoryOf',
+		callback: (result, err) => {
+			if (err || !result.length) throw err;
+			const categoriesWithDiscount = result.filter(cat => cat.discount || cat.discount > 0);
+			keystone.list('Product').model
+				.find({$or: [{Discount: {$gt: 0}}, {ProductType: {$in: categoriesWithDiscount}}]})
+				.populate([
+					{path: 'Manufacturer'},
+					{path: 'ProductType', populate: [{path: 'ChildCategoryOf'}]}
+				])
+				.exec(function(err, prods) {
+					res.json(getRidOfMetadata(prods, true, 300, 300, supportWebP));
+				});
+		}
+	};
+	loadAll(loadAllCategoriesQuery);
+};
+
 exports.getAllCategories = function (req, res, next) {
 	const loadAllCategoriesQuery = {
 		dbCollection: keystone.list('ProductCategory'),
@@ -256,9 +279,7 @@ exports.getAllManufacturers = function (req, res, next) {
 		sort: 'Priority',
 		redisKeyName: 'all-brands',
 		callback: (result, err) => {
-			if (err || !result.length) {
-				return next(err);
-			}
+			if (err || !result.length) throw err;
 			res.json(result);
 		}
 	};

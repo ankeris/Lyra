@@ -3,6 +3,7 @@ import Product from '../components/Product';
 import CategoriesNavigation from '../components/CategoriesNavigation';
 import Loading from '../components/Loading';
 import Select from '../components/Select';
+import {constructMenuCategories} from '../components/helpers';
 
 class Products extends Component {
 	constructor() {
@@ -77,30 +78,10 @@ class Products extends Component {
 	getAllCategories() {
         const currentBrandId = window.currentBrandId;
 		// Always have all categories
-		
 		fetch(`/api/categories/getAll/manufacturer/${currentBrandId}`).then((response) => {
 			response.json().then(categories => {
-				for (let index = 0; index < categories.length; index++) {
-					const currentValue = categories[index];
-					if (currentValue.ChildCategoryOf) {
-						if (!categories.some(x => x._id == currentValue.ChildCategoryOf._id)) {
-							categories.push(currentValue.ChildCategoryOf);
-						}
-						const parent = categories.find(x => x._id == currentValue.ChildCategoryOf._id);
-						if (parent) {
-							if (!parent.children) {
-								parent.children = [];
-							}
-							parent.children = [...parent.children, currentValue];
-						}
-						
-						categories[index] = 0;
-					}
-				}
-				categories = categories.filter(x => x !== 0);
-				
 				this.setState({
-					categories
+					categories: constructMenuCategories(categories)
 				})
 			})
 		})
@@ -147,7 +128,6 @@ class Products extends Component {
 		${this.state.sortBy ? '&sort='+this.state.sortBy : '&sort=false'}`)
 		.then((response) => {
 			return response.json().then(({data, totalPages}) => {
-                console.log(data);
 				this.setState({
 					products: [...this.state.products, ...data],
 					productsLoaded: true,

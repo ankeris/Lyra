@@ -5,8 +5,9 @@ export default class extends Component {
 		super(props);
 	}
 
-	render({onChange}, state) {
+	render({onChange, currentCategory, onButtonClick}, state) {
 		return <figure class="sort-bar__box push-bottom content-section">
+            {currentCategory ? <button className="button button--dark button--small" onClick={onButtonClick}>✕ {'panaikinti kategorija'.toUpperCase()}</button> : null}
             <div className="form_box">
                 <select 
                 onChange={e => onChange(e.target.value)}

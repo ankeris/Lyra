@@ -280,6 +280,8 @@ p {
     background-color: transparent;
     font-weight: 200;
     color: #1f1f1f; }
+  .button--small {
+    padding: 5px 10px; }
 
 .space-button {
   margin: 30px;
