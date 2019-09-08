@@ -513,14 +513,15 @@ figure {
         transition: all ease .5s; }
     .side-nav .side-nav__box .navigation-dropdown {
       display: flex;
-      flex-direction: row;
       flex-wrap: wrap;
-      align-items: center;
-      justify-content: flex-start;
       line-height: 1;
-      height: 35px;
       transition: height 0.2s ease;
       overflow: hidden; }
+      .side-nav .side-nav__box .navigation-dropdown--button {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start; }
       .side-nav .side-nav__box .navigation-dropdown .subcategory-box__item--svg {
         box-sizing: content-box;
         min-width: 14px;
@@ -534,10 +535,11 @@ figure {
       .side-nav .side-nav__box .navigation-dropdown .side-nav__list-box--item {
         padding: 8px 0; }
     .side-nav .side-nav__box .subcategory-box {
-      margin-bottom: 12px;
       font-size: 0.9em;
       flex-basis: 90%;
-      margin-left: 5%; }
+      height: 0;
+      margin-left: 5%;
+      transition: height 0.2s ease; }
       .side-nav .side-nav__box .subcategory-box .subcategory-box__item {
         width: 90%;
         color: #1f1f1f;

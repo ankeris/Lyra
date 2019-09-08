@@ -43,9 +43,10 @@ function openPhotoSwipe(imagesArr, currentHighlight) {
 }
 
 const imgPressed = document.getElementById('currentHighlight');
-const arrayOfImages = imgPressed.getAttribute('data-images');
-
-imgPressed.addEventListener('click', e => {
-	const currentHighlightImage = e.target.getAttribute('data-current-image');
-	openPhotoSwipe(arrayOfImages, currentHighlightImage);
-});
+if (imgPressed) {
+	const arrayOfImages = imgPressed.getAttribute('data-images');
+	imgPressed.addEventListener('click', e => {
+		const currentHighlightImage = e.target.getAttribute('data-current-image');
+		openPhotoSwipe(arrayOfImages, currentHighlightImage);
+	});
+}

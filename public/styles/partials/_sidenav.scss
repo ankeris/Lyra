@@ -37,14 +37,16 @@
 		}
 		.navigation-dropdown {
 			display: flex;
-			flex-direction: row;
 			flex-wrap: wrap;
-			align-items: center;
-			justify-content: flex-start;
 			line-height: 1;
-			height: 35px;
 			transition: height 0.2s ease;
-  			overflow: hidden;
+			overflow: hidden;
+			&--button {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+    			justify-content: flex-start;
+			}
 			.subcategory-box__item--svg {
 				box-sizing: content-box;
 				min-width: 14px;
@@ -62,10 +64,11 @@
 			}
 		}
 		.subcategory-box {
-			margin-bottom: 12px;
 			font-size: 0.9em;
 			flex-basis: 90%;
+			height: 0;
 			margin-left: 5%;
+			transition: height 0.2s ease;
 			.subcategory-box__item {
 				width: 90%;
 				color: map-get($color, darkgrey);

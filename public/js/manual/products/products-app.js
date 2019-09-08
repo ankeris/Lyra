@@ -77,6 +77,9 @@ class Products extends Component {
 				for (let index = 0; index < categories.length; index++) {
 					const currentValue = categories[index];
 					if (currentValue.ChildCategoryOf) {
+						if (!categories.some(x => x._id == currentValue.ChildCategoryOf._id)) {
+							categories.push(currentValue.ChildCategoryOf);
+						}
 						const parent = categories.find(x => x._id == currentValue.ChildCategoryOf._id);
 						if (parent) {
 							if (!parent.children) {
@@ -84,8 +87,7 @@ class Products extends Component {
 							}
 							parent.children = [...parent.children, currentValue];
 						}
-						
-						parent.children = [...parent.children, currentValue];
+
 						categories[index] = 0;
 					}
 				}

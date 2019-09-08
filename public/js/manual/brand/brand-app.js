@@ -24,7 +24,6 @@ class Products extends Component {
 
 	componentDidMount() {
 		const currentCategoryId = window.categoryId;
-        const currentBrandId = window.currentBrandId;
         const currentBrandKey = window.currentBrandKey;
 
         this.setState({
@@ -78,11 +77,15 @@ class Products extends Component {
 	getAllCategories() {
         const currentBrandId = window.currentBrandId;
 		// Always have all categories
+		
 		fetch(`/api/categories/getAll/manufacturer/${currentBrandId}`).then((response) => {
 			response.json().then(categories => {
 				for (let index = 0; index < categories.length; index++) {
 					const currentValue = categories[index];
 					if (currentValue.ChildCategoryOf) {
+						if (!categories.some(x => x._id == currentValue.ChildCategoryOf._id)) {
+							categories.push(currentValue.ChildCategoryOf);
+						}
 						const parent = categories.find(x => x._id == currentValue.ChildCategoryOf._id);
 						if (parent) {
 							if (!parent.children) {

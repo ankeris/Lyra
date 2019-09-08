@@ -4,7 +4,9 @@ const opacity = 0.5;
 // Image variables
 const highlighted = document.querySelector('#currentHighlight');
 const images = document.querySelectorAll('.items-box__item-images--item');
-images[0].style.opacity = opacity;
+if (images.length) {
+	images[0].style.opacity = opacity;
+}
 
 // Events
 images.forEach(img => img.addEventListener('click', changeImage));
