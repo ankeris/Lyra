@@ -65,7 +65,7 @@ export default class Product extends Component {
                 data.ProductType.nameSingular ?
                     <span className="items-box__item--description-type">{data.ProductType.nameSingular.toLowerCase()}</span>
                     :
-                    <span className="items-box__item--description-type">{data.ProductType.name.toLowerCase()}</span>
+                    <span className="items-box__item--description-type">{data.ProductType.name ? data.ProductType.name.toLowerCase() : null}</span>
                 :
                 null
             }

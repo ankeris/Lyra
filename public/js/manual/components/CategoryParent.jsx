@@ -12,11 +12,11 @@ export default class extends Component {
 	slidetoggleEl() {
         slidetoggle(this.wrapper)
     }
-	render({category, link, childLink, isOpen, exposeSelection}, state) {
+	render({activeItem, category, link, childLink, isOpen, exposeSelection}, state) {
 		return <div className="navigation-dropdown">
 				<div className="navigation-dropdown--button">
 					{	exposeSelection ? 
-						<div onClick={() => exposeSelection(category)} className={`subcategory-box__item--text ${window.categoryKey == category.key ? 'active' : ''}`}>{ category.name }</div>
+						<div onClick={() => exposeSelection(category)} className={`subcategory-box__item--text ${window.categoryKey == category.key ? 'active' : ''} ${activeItem == category.key ? 'active' : null}`}>{ category.name }</div>
 						:
 						<a href={link} className={`subcategory-box__item--text ${window.categoryKey == category.key ? 'active' : ''}`}>{ category.name }</a>
 					}
@@ -26,7 +26,7 @@ export default class extends Component {
 					{category.children.length ? 
 						category.children.map(x => 
 							!!exposeSelection ?
-							<NavigationExposerItem clicked={(e) => exposeSelection(e)} navigationItem={x}/> :
+							<NavigationExposerItem activeItem={activeItem} clicked={(e) => exposeSelection(e)} navigationItem={x}/> :
 							<NavigationItem link={`${childLink}${x.key}`} navigationItem={x} />
 						)
 					: null}

@@ -18,13 +18,15 @@ export default class extends Component {
         slidetoggle(this.wrapper)
     }
     
-	render({hideManufacturers, categories, manufacturers, link, exposeSelection}, state) {
+	render({activeItem, hideManufacturers, categories, manufacturers, link, exposeSelection}, state) {
 		return <aside className="side-nav">
             <div className="side-nav__box">
                 {hideManufacturers ? null : 
                     <div id="manufacturers-dropdown" className="navigation-dropdown">
-                        <a href="/prekiu-zenklai" className="subcategory-box__item--text">Gamintojai</a>
-                        <DropdownSVG clicked={this.slidetoggleEl} />
+                        <div className="navigation-dropdown--button">
+                            <a href="/prekiu-zenklai" className="subcategory-box__item--text">Gamintojai</a>
+                            <DropdownSVG clicked={this.slidetoggleEl} />
+                        </div>
                         {manufacturers && manufacturers.length ? 
                             <div className="subcategory-box js-accordion" ref={wrapper => this.wrapper = wrapper}>
                                 {
@@ -38,7 +40,8 @@ export default class extends Component {
                 {categories.map(category => {
                     return category.children && category.children.length ?
                     <CategoryParent 
-                        exposeSelection={(e) => exposeSelection(e)}
+                        activeItem={activeItem}
+                        exposeSelection={exposeSelection ? (e) => exposeSelection(e) : null}
                         isOpen={this.getOpenStatus(category)} 
                         link={`${link}/${category.key}`}
                         childLink={`${link}/`}
@@ -46,7 +49,7 @@ export default class extends Component {
                     />
                     :
                     !!exposeSelection ?
-                    <NavigationExposerItem clicked={(e) => exposeSelection(e)} navigationItem={category}/> :
+                    <NavigationExposerItem activeItem={activeItem} clicked={(e) => exposeSelection(e)} navigationItem={category}/> :
                     <NavigationItem link={`${link}/${category.key}`} navigationItem={category} />
                 })}
             </div>

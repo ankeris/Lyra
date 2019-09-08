@@ -5,8 +5,8 @@ export default class extends Component {
 		super(props);
 	}
 
-	render({navigationItem, clicked}, state) {
-		return <div onClick={() => clicked(navigationItem)} className={`side-nav__list-box--item ${window.categoryKey == navigationItem.key ? 'active' : null}`}>
+	render({activeItem, navigationItem, clicked}, state) {
+		return <div onClick={() => clicked(navigationItem)} className={`side-nav__list-box--item ${window.categoryKey == navigationItem.key ? 'active' : ''} ${activeItem == navigationItem.key ? 'active' : '' }`}>
             <span className="subcategory-box__item--text">{ navigationItem.name }</span>
         </div>
 	}

@@ -30,47 +30,59 @@ class Products extends Component {
 	componentDidMount() {
 		// If category selected:
 		this.getAllDiscountedProducts();
-		this.getAllManufacturers();
 		this.checkLoad();
 	}
 
 	checkLoad() {
 		window.addEventListener('scroll', (event) => {
 			const bounding = this.elementToTriggerLoad ? this.elementToTriggerLoad.getBoundingClientRect() : null;
+			const currentCategory = this.state.currentCategory;
+			const pageSize = this.state.pageSize;
+			const currentPage = this.state.currentPage;
+
+			// Parent category product filtering
+			let productsForParentCategory = [];
+			productsForParentCategory = this.state.allProducts.filter(x => x.ProductType.key == currentCategory.key);
+			if (currentCategory.children) {
+				currentCategory.children.forEach(x => {
+					productsForParentCategory = [...productsForParentCategory, ...this.state.allProducts.filter(y => y.ProductType.key == x.key)];
+				});
+			}
+			// simple category product filtering
+			const productsForCategory = this.state.allProducts.filter(x => x.ProductType.key == currentCategory.key);
+
 			if (bounding) {
 				const distanceToBottom = bounding.bottom - window.innerHeight;
-				if (!this.state.currentCategory) {
+				// no category
+				if (!currentCategory) {
 					if (distanceToBottom < 30) {
-						if (this.state.allProducts.length > this.state.pageSize * (this.state.currentPage)) {
+						if (this.state.allProducts.length > pageSize * (currentPage)) {
 							this.setState({
-								currentPage: this.state.currentPage + 1,
-								filteredProducts: this.state.allProducts.slice(0, this.state.pageSize * (this.state.currentPage + 1)),
+								currentPage: currentPage + 1,
+								filteredProducts: this.state.allProducts.slice(0, pageSize * (currentPage + 1)),
 							});
 						}
 					}
-				} else {
-					// for category:
-					const filteredByCat = this.state.allProducts.filter(x => x.ProductType.key == this.state.currentCategory.key);
+				// parent category:
+				} else if (currentCategory.IsParentCategory && currentCategory.children && currentCategory.children.length) {
 					if (distanceToBottom < 30) {
-						if (filteredByCat.length >= this.state.pageSize * (this.state.currentPage)) {
+						this.setState({
+							filteredProducts: productsForParentCategory.slice(0, pageSize * (currentPage + 1)),
+							currentPage: currentPage + 1,
+						})
+					}
+				// if simple category
+				} else {
+					if (distanceToBottom < 30) {
+						if (productsForCategory.length >= pageSize * (currentPage)) {
 							this.setState({
-								currentPage: this.state.currentPage + 1,
-								filteredProducts: filteredByCat.slice(0, this.state.pageSize * (this.state.currentPage + 1)),
+								currentPage: currentPage + 1,
+								filteredProducts: productsForCategory.slice(0, pageSize * (currentPage + 1)),
 							});
 						}
 					}
 				}
 			}
-		})
-	}
-
-	getAllManufacturers() {
-		fetch('/api/manufacturers/getAll').then((response) => {
-			response.json().then(manufacturers => {
-				this.setState({
-					manufacturers
-				})
-			})
 		})
 	}
 
@@ -91,24 +103,55 @@ class Products extends Component {
 	};
 
 	setFilteredProducts() {
-		if (this.state.currentCategory) {
-			const filteredByCat = this.state.allProducts.filter(x => x.ProductType.key == this.state.currentCategory.key);
+		const currentCategory = this.state.currentCategory;
+		const pageSize = this.state.pageSize;
+		const currentPage = this.state.currentPage;
+
+		if (currentCategory.IsParentCategory && currentCategory.children && currentCategory.children.length) {
+			let filtered = [];
+			filtered = this.state.allProducts.filter(x => x.ProductType.key == currentCategory.key);
+			currentCategory.children.forEach(x => {
+				filtered = [...filtered, ...this.state.allProducts.filter(y => y.ProductType.key == x.key)];
+			});
 			this.setState({
-				filteredProducts: filteredByCat.slice(0, this.state.pageSize * this.state.currentPage),
+				filteredProducts: filtered.slice(0, pageSize * currentPage),
+			})
+		// if simple category
+		} else if (currentCategory) {
+			const filteredByCat = this.state.allProducts.filter(x => x.ProductType.key == currentCategory.key);
+			this.setState({
+				filteredProducts: filteredByCat.slice(0, pageSize * currentPage),
 			})
 		} else {
 			this.setState({
-				filteredProducts: this.state.allProducts.slice(0, this.state.pageSize * this.state.currentPage),
+				filteredProducts: this.state.allProducts.slice(0, pageSize * currentPage),
 			})
 		}
 	}
 	
 	setCategory(currentCategory) {
-		this.setState({
-			currentCategory,
-			filteredProducts: this.state.allProducts.filter(x => x.ProductType.key == currentCategory.key).slice(0, this.state.pageSize),
-			currentPage: 1
-		})
+		// If parent category
+		if (currentCategory.IsParentCategory && currentCategory.children && currentCategory.children.length) {
+			let filtered = [];
+			filtered = [...this.state.allProducts.filter(x => x.ProductType.key == currentCategory.key)];
+			currentCategory.children.forEach(x => {
+				filtered = [...filtered, ...this.state.allProducts.filter(y => y.ProductType.key == x.key)];
+			});
+			
+			this.setState({
+				currentCategory,
+				filteredProducts: filtered.slice(0, this.state.pageSize),
+				currentPage: 1
+			})
+		// if simple category
+		} else {
+			this.setState({
+				currentCategory,
+				filteredProducts: this.state.allProducts.filter(x => x.ProductType.key == currentCategory.key).slice(0, this.state.pageSize),
+				currentPage: 1
+			})
+		}
+
 	}
 
 	unifyConstructCategories(categories) {
@@ -153,11 +196,11 @@ class Products extends Component {
 		this.setFilteredProducts();
 	}
 
-	render(props, {currentCategory, filteredProducts, allProducts, categories, manufacturers, isLoading, currentBrandKey}) {
+	render(props, {currentCategory, filteredProducts, allProducts, categories, isLoading, currentBrandKey}) {
 		return allProducts.length ? 
 		<div className="products-wrapper content-section">
 			<Select currentCategory={currentCategory} onButtonClick={this.resetFilters} onChange={this.setSort}/>
-			<CategoriesNavigation hideManufacturers={true} categories={categories} manufacturers={manufacturers} exposeSelection={(cat) => this.setCategory(cat)} link={`/prekiu-zenklai/${currentBrandKey}`}/>
+			<CategoriesNavigation activeItem={currentCategory.key} hideManufacturers={true} categories={categories} exposeSelection={(cat) => this.setCategory(cat)} link={`/prekiu-zenklai/${currentBrandKey}`}/>
 				<section className="products products--threequarters">
 					{filteredProducts.map(product => {
 						return <Product data={product} />
