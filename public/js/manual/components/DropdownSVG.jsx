@@ -16,13 +16,15 @@ export default class extends Component {
 		this.props.clicked(this.svg)
 	}
 
-	render(props, state) {
+	render({color = 'black', extraclass = '', width = '25px'}, state) {
 		return <svg 
 		ref={svg => this.svg = svg}
 		onClick={this.svgWasClicked} 
-		className="subcategory-box__item--svg" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3.7 1.82">
+		className={"subcategory-box__item--svg " + extraclass} 
+		style={`width: ${width}`}
+		data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3.7 1.82">
         <title>Dropdown</title>
-        <path className="cls-1" d="M.22.48H0l1.79,1.8a.07.07,0,0,0,.1,0L3.7.48H3.48L1.89,2.06a0,0,0,0,1-.07,0L.22.48" transform="translate(0 -0.48)"/>
+        <path style={`fill: ${color};`} className="cls-1" d="M.22.48H0l1.79,1.8a.07.07,0,0,0,.1,0L3.7.48H3.48L1.89,2.06a0,0,0,0,1-.07,0L.22.48" transform="translate(0 -0.48)"/>
         </svg>
 	}
 }
