@@ -80,6 +80,10 @@ ProductCategory.schema.pre('validate', function(next) {
 });
 
 ProductCategory.schema.post('save', cat => {
+	redis.keys('product-*', (err, reply) => {
+		if (err) throw err;
+		redis.del(reply);
+	});
 	if (redis.exists('all-categories')) redis.del('all-categories');
 	if (redis.exists('category-' + cat.key)) redis.del('category-' + cat.key);
 });

@@ -58,7 +58,7 @@ exports = module.exports = function(req, res) {
 		view.on('init', function (next) {
 			findOneByKey({
 				dbCollection: keystone.list('Texts'),	
-				keyName: 'product-catalogue-intro',	
+				keyName: 'products-catalogue-intro',	
 				callback: ({Text}, err) => {	
 					locals.data.productCatalogueIntro = Text;	
 					next(err);	

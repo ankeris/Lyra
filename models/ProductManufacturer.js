@@ -90,6 +90,10 @@ ProductManufacturer.relationship({
 });
 
 ProductManufacturer.schema.post('save', brand => {
+	redis.keys('product-*', (err, reply) => {
+		if (err) throw err;
+		redis.del(reply);
+	});
 	if (redis.exists('all-brands')) redis.del('all-brands');
 	if (redis.exists('brand-' + brand.key)) redis.del('brand-' + brand.key);
 });
