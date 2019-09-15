@@ -63,3 +63,44 @@ export function constructMenuCategories(categories) {
 	}
 	return categories.filter(x => x !== 0);
 }
+
+export const isInScreen = (element) => {
+	const bounding = element ? element.getBoundingClientRect() : null;
+	if (bounding) {
+		const distanceToBottom = bounding.top - window.innerHeight;
+		return distanceToBottom < 10;
+	}
+};
+
+export const scrollToItem = (idOrClass) => {
+	const item = document.querySelector(idOrClass);
+	const pos = item.getBoundingClientRect().top - 35;
+	let time = 350;
+	if (isNaN(pos)) {
+		throw 'Position must be a number';
+	}
+	if (pos < 0) {
+		throw 'Position can not be negative';
+	}
+	let currentPos = window.scrollY || window.screenTop;
+	if (currentPos < pos) {
+		let t = 10;
+		for (let i = currentPos; i <= pos; i += 25) {
+			t += 10;
+			setTimeout(function() {
+				window.scrollTo(0, i);
+			}, t / 2);
+		}
+	} else {
+		time = time || 2;
+		let i = currentPos;
+		let x;
+		x = setInterval(function() {
+			window.scrollTo(0, i);
+			i -= 10;
+			if (i <= pos) {
+				clearInterval(x);
+			}
+		}, time);
+	}
+};

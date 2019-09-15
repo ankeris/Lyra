@@ -18,11 +18,11 @@
 {% endblock %}
 
 {% block content %}
-<figure class="push-top content-section">	
-    {% if data.category %}	
-    {{dynamicLink(data.dynamicLinkArr)}}	
-    {% endif %}
-</figure>
+{% if data.category %}	
+    <figure class="push-top content-section">	
+        {{dynamicLink(data.dynamicLinkArr)}}	
+    </figure>
+{% endif %}
 
 <div id="app"></div>
 <input type="hidden" 

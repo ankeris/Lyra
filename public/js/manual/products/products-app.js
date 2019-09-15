@@ -3,7 +3,8 @@ import Product from '../components/Product';
 import CategoriesNavigation from '../components/CategoriesNavigation';
 import Loading from '../components/Loading';
 import Select from '../components/Select';
-import {constructMenuCategories} from '../components/helpers';
+import FloatingButton from '../components/FloatingButton';
+import {constructMenuCategories, isInScreen, scrollToItem} from '../components/helpers';
 
 require('preact/debug');
 class Products extends Component {
@@ -17,10 +18,12 @@ class Products extends Component {
 			infiniteScrollCount: 0,
 			totalPages: null,
 			isLoading: false,
-			sortBy: null
+			sortBy: null,
+			isProductListInScreen: true
 		};
 		this.checkLoad = this.checkLoad.bind(this);
 		this.setSort = this.setSort.bind(this);
+		this.checkProductsVisible = this.checkProductsVisible.bind(this);
 	}
 
 	componentDidMount() {
@@ -45,6 +48,7 @@ class Products extends Component {
 	checkLoad() {
 		let allowNewLoad = true;
 		const currentCategoryId = window.categoryId;
+		
 		window.addEventListener('scroll', (event) => {
 			const bounding = this.elementToTriggerLoad ? this.elementToTriggerLoad.getBoundingClientRect() : null;
 			if (bounding) {
@@ -67,6 +71,16 @@ class Products extends Component {
 						}
 					}
 				}
+			}
+			if (window.innerWidth <= 700) {
+				const productSection = document.querySelector('.products');
+				this.setState({
+					isProductListInScreen: isInScreen(productSection)
+				})
+			} else {
+				this.setState({
+					isProductListInScreen: true
+				})
 			}
 		})
 	}
@@ -160,18 +174,31 @@ class Products extends Component {
 		}
 	}
 
-	render(props, {products, categories, manufacturers, productsLoaded, isLoading}) {
-		return categories.length ? 
+	checkProductsVisible(el) {
+		setTimeout(() => {
+			if (window.innerWidth <= 700) {
+				this.setState({
+					isProductListInScreen: isInScreen(el)
+				});
+			}
+		}, 100);
+	}
+
+	render(props, {products, categories, manufacturers, productsLoaded, isLoading, isProductListInScreen}) {
+		return categories.length && products.length ? 
 		<div className="products-wrapper content-section">
 			<Select onChange={this.setSort}/>
+			{isProductListInScreen ? null : <FloatingButton clicked={() => scrollToItem('.sort-bar__box')} text={'Produktai'}/> }
 			<CategoriesNavigation categories={categories} manufacturers={manufacturers} link={'/produktai'}/>
-				<section className="products products--threequarters">
+			{categories.length ? 
+				<section ref={this.checkProductsVisible} className="products products--threequarters">
 					{products.map(product => {
 						return <Product data={product} />
 					})}
 					{productsLoaded && !products.length ? <h3>Atsiprašome, šiuo metu ši kategorija neturi produktų</h3> : null}
 				{isLoading ? <Loading/> : null}
 				</section>
+			: null }
 			<div id="loader" ref={elementToTriggerLoad => this.elementToTriggerLoad = elementToTriggerLoad}></div>
 		</div>
 		:

@@ -66,6 +66,26 @@
     opacity: 1;
     height: 150px; } }
 
+.bounce {
+  animation-name: bounce;
+  animation-timing-function: ease;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite; }
+
+@keyframes bounce {
+  0% {
+    transform: scale(1, 1) translateY(0); }
+  10% {
+    transform: scale(1.1, 0.9) translateY(0); }
+  30% {
+    transform: scale(0.9, 1.1) translateY(-10px); }
+  50% {
+    transform: scale(1, 1) translateY(1px); }
+  57% {
+    transform: scale(1, 1) translateY(-3px); }
+  100% {
+    transform: scale(1, 1) translateY(0); } }
+
 @keyframes fall {
   0% {
     transform: translateY(-15px); }
@@ -282,6 +302,14 @@ p {
     color: #1f1f1f; }
   .button--small {
     padding: 5px 10px; }
+  .button--floating {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    padding: 20px 0;
+    z-index: 10; }
 
 .space-button {
   margin: 30px;
@@ -293,12 +321,6 @@ b {
 
 .brown {
   color: #8c543f; }
-
-.dropdownSVG {
-  fill: white;
-  width: 50px;
-  margin: 10px;
-  transition-duration: 1s; }
 
 .rotate {
   transform: rotate(180deg);
@@ -468,14 +490,12 @@ figure {
 
 .side-nav {
   flex-basis: 24%;
-  flex-flow: column row;
   margin: 30px 0;
   order: 2;
   font-weight: 300;
   font-size: 10pt; }
   .side-nav .side-nav__box {
     overflow-y: scroll;
-    max-height: 85vh;
     margin-right: 13%; }
     .side-nav .side-nav__box::-webkit-scrollbar,
     .side-nav .side-nav__box ::-webkit-resizer {
@@ -561,45 +581,12 @@ figure {
     -moz-transition: all 0.5s;
     -o-transition: all 0.5s;
     transition: all ease 0.5s; }
-  .side-nav #manufacturers-dropdown {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    line-height: 1; }
-    .side-nav #manufacturers-dropdown .subcategory-box__item--svg {
-      user-select: none;
-      width: 14px;
-      height: 8px;
-      padding: 10px 7px;
-      transition-duration: 400ms;
-      cursor: pointer; }
-      .side-nav #manufacturers-dropdown .subcategory-box__item--svg:hover {
-        transform: rotate(90deg); }
 
 @media screen and (max-width: 700px) {
   .side-nav {
-    display: none;
     flex-basis: 80%;
     margin: 0 auto;
     order: 1; }
-    .side-nav .side-nav__box {
-      display: flex;
-      flex-flow: column;
-      max-height: unset;
-      margin-right: 0; }
-      .side-nav .side-nav__box .navigation-dropdown,
-      .side-nav .side-nav__box #manufacturers-dropdown {
-        padding-left: 10px; }
-      .side-nav .side-nav__box .side-nav__list-box--item {
-        flex-basis: 100%;
-        width: 100%;
-        padding: 15px 10px; }
-      .side-nav .side-nav__box .subcategory-box {
-        width: 50%;
-        flex-basis: 50%; }
-        .side-nav .side-nav__box .subcategory-box .subcategory-box__item {
-          flex-basis: 30%; }
   .mobile-side-nav {
     background-color: #1f1f1f;
     width: 80%;
@@ -1328,7 +1315,8 @@ figure {
 
 @media screen and (max-width: 700px) {
   .products-wrapper {
-    flex-direction: row-reverse; }
+    flex-direction: row-reverse;
+    margin-top: 50px; }
   .products {
     flex-basis: 100%; }
     .products .items-box__item {

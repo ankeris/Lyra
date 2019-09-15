@@ -151,6 +151,15 @@ p {
 	&--small {
 		padding: 5px 10px;
 	}
+	&--floating {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		text-align: center;
+		width: 100%;
+		padding: 20px 0;
+		z-index: 10;
+	}
 }
 
 
@@ -167,13 +176,6 @@ b {
 
 .brown {
 	color: map-get($color, brown);
-}
-
-.dropdownSVG {
-	fill: white;
-	width: 50px;
-	margin: 10px;
-	transition-duration: 1s;
 }
 
 .rotate {

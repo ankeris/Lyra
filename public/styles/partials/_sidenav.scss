@@ -5,14 +5,12 @@
 
 .side-nav {
 	flex-basis: 24%;
-	flex-flow: column row;
 	margin: 30px 0;
 	order: 2;
 	font-weight: 300;
 	font-size: 10pt;
 	.side-nav__box {
 		overflow-y: scroll;
-		max-height: 85vh;
 		margin-right: 13%;
 		&::-webkit-scrollbar,
 		::-webkit-resizer {
@@ -95,54 +93,13 @@
 		-o-transition: all 0.5s;
 		transition: all ease 0.5s;
 	}
-	#manufacturers-dropdown {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: flex-start;
-		line-height: 1;
-		.subcategory-box__item--svg {
-			user-select: none;
-			width: 14px;
-			height: 8px;
-			padding: 10px 7px;
-			transition-duration: 400ms;
-			cursor: pointer;
-			&:hover {
-				transform: rotate(90deg);
-			}
-		}
-	}
 }
 
 @media screen and (max-width: 700px) {
 	.side-nav {
-		display: none;
 		flex-basis: 80%;
 		margin: 0 auto;
 		order: 1;
-		.side-nav__box {
-			display: flex;
-			flex-flow: column;
-			max-height: unset;
-			margin-right: 0;
-			.navigation-dropdown,
-			#manufacturers-dropdown {
-				padding-left: 10px;
-			}
-			.side-nav__list-box--item {
-				flex-basis: 100%;
-				width: 100%;
-				padding: 15px 10px;
-			}
-			.subcategory-box {
-				width: 50%;
-				flex-basis: 50%;
-				.subcategory-box__item {
-					flex-basis: 30%;
-				}
-			}
-		}
 	}
 	.mobile-side-nav {
 		background-color: map-get($color, darkgrey);
