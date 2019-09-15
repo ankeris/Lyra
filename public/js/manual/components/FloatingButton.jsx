@@ -6,10 +6,10 @@ export default class extends Component {
         super(props);
 	}
     
-	render({text, clicked}, state) {
-        return <figure onClick={clicked} class="button button--dark button--floating content-center content-row">
+	render({text, clicked, extraclass}, state) {
+        return <figure onClick={clicked} className={`button button--floating ${extraclass} content-center content-row`}>
         <span>{text.toUpperCase()}</span>
-        <div><DropdownSVG clicked={() => {}} extraclass="bounce dropdownSVG push-horizontal--small" color="white"/></div>
+        <div><DropdownSVG clicked={() => {}} extraclass="bounce push-horizontal--small" color="black"/></div>
         </figure>
 	}
 }

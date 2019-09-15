@@ -188,7 +188,7 @@ class Products extends Component {
 		return categories.length && products.length ? 
 		<div className="products-wrapper push-top--medium content-section">
 			<Select onChange={this.setSort}/>
-			{isProductListInScreen ? null : <FloatingButton clicked={() => scrollToItem('.sort-bar__box')} text={'Produktai'}/> }
+			{isProductListInScreen ? null : <FloatingButton extraclass={'fade-in'} clicked={() => scrollToItem('.sort-bar__box')} text={'Produktai'}/> }
 			<CategoriesNavigation categories={categories} manufacturers={manufacturers} link={'/produktai'}/>
 			{categories.length ? 
 				<section ref={this.checkProductsVisible} className="products products--threequarters">
