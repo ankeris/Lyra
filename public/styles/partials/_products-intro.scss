@@ -1,5 +1,5 @@
 .fullwidth-image {
-	height: 57vh;
+	min-height: 57vh;
 	background-position: center;
 	background-size: cover;
 	overflow: hidden;
@@ -28,7 +28,7 @@
 
 @media screen and (max-width: $window-medium) {
 	.fullwidth-image {
-		height: 65vh;
+		min-height: 40vh;
 	}
 	.section-description {
 		flex-direction: column;
@@ -38,5 +38,11 @@
 		.section-description__right {
 			flex-basis: 100%;
 		}
+	}
+}
+
+@media screen and (max-width: $window-small) {
+	.fullwidth-image {
+		min-height: 30vh;
 	}
 }

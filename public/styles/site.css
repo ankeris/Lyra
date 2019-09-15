@@ -623,7 +623,7 @@ figure {
       transition-duration: 1s; } }
 
 .fullwidth-image {
-  height: 57vh;
+  min-height: 57vh;
   background-position: center;
   background-size: cover;
   overflow: hidden; }
@@ -648,13 +648,17 @@ figure {
 
 @media screen and (max-width: 800px) {
   .fullwidth-image {
-    height: 65vh; }
+    min-height: 40vh; }
   .section-description {
     flex-direction: column; }
     .section-description .section-description__left {
       flex-basis: 100%; }
     .section-description .section-description__right {
       flex-basis: 100%; } }
+
+@media screen and (max-width: 400px) {
+  .fullwidth-image {
+    min-height: 30vh; } }
 
 .main-navigation {
   width: 100%;
@@ -890,18 +894,17 @@ figure {
   margin: 20px auto; }
 
 .loop-box {
-  height: 70vh;
-  background-attachment: fixed;
+  min-height: 70vh;
   background-position: left bottom;
   background-size: 135%;
   animation: animatedBackground 30s linear infinite;
   color: #fff;
   flex-direction: column; }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .loop-box {
     flex-wrap: wrap-reverse;
-    height: 80vh; }
+    background-size: cover; }
     .loop-box .loop-box__item--text {
       max-width: 90%; } }
 
@@ -1382,6 +1385,7 @@ figure {
         display: inline-flex;
         flex-basis: 48%; }
         .product .product-description .description__top .description__top--logo .image {
+          width: 100%;
           max-width: 200px;
           max-height: 100px;
           object-fit: contain; }
@@ -1443,6 +1447,10 @@ figure {
     .product .product-description .description__top .description-item {
       flex-basis: 100%;
       text-align: center; }
+    .product .product-description .description__top .description__top--logo {
+      margin: 35px 0;
+      display: flex;
+      justify-content: center; }
     .product .product-awards {
       flex-direction: row;
       flex-wrap: wrap; }

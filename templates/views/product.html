@@ -136,15 +136,13 @@
     </section>
 {% endif %}
 
-
-<figure class="title push-vertical">
-    <h3>{{globaldata.product.relatedTitle}}</h3>
-</figure>
-{# looping through products #}
-{{highlightedProducts(data.relatedproducts)}}
-
-<div class="title push-vertical"></div>
-
+{% if data.relatedproducts.length %}
+    <figure class="title push-vertical">
+        <h3>{{globaldata.product.relatedTitle}}</h3>
+    </figure>
+    {# looping through products #}
+    {{highlightedProducts(data.relatedproducts)}}
+{% endif %}
 {% endblock %}
 
 {% block js %}
