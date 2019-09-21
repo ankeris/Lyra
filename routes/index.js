@@ -42,8 +42,19 @@ exports = module.exports = function(app) {
 	app.get('/naujienos', routes.views.news);
 	app.get('/naujienos/:newsItem', routes.views.new);
 	app.get('/apie-mus', routes.views.aboutus);
-	app.get('/produktai/:category?', routes.views.products);
+	app.get('/produktai/:category?', routes.views.productsPage);
 	app.get('/produktai/:Manufacturer?/:category?/:product', routes.views.product);
+	// Headless responses
+	app.get('/api/products/getAll', routes.views.api.getAllProducts);
+	app.get('/api/products/getAll/discounted', routes.views.api.getAllDiscountedProducts);
+	app.get('/api/products/getAll/:id', routes.views.api.getProductsForCategory);
+	app.get('/api/products/getAll/manufacturer/:id', routes.views.api.getAllProductsForManufacturer);
+	app.get('/api/products/getAll/manufacturer/:brandId/category/:categoryId', routes.views.api.getProductsForCategoryInBrand);
+	app.get('/api/products/getSearched', routes.views.api.getSearchProducts);
+	app.get('/api/categories/getAll', routes.views.api.getAllCategories);
+	app.get('/api/categories/getAll/manufacturer/:id', routes.views.api.getAllCategoriesForManufacturer);
+	app.get('/api/manufacturers/getAll', routes.views.api.getAllManufacturers);
+	// Additional
 	app.get('*', routes.views['404']);
 	app.post('*', routes.views.subscription);
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:

@@ -1,8 +1,6 @@
 {% extends "layouts/default.html" %}
-{% from "mixins/sideNavigation.html" import sideNavigation %}
 {% from "mixins/section-text-on-image.html" import textOnImage %}
 {% from "mixins/dynamic-link.html" import dynamicLink %}
-{% from "mixins/sort-by-form.html" import sortByForm %}
 
 {% block head %}
 	<title>{{section}}</title>
@@ -17,9 +15,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="products-wrapper content-section">
-
-<figure class="sort-bar__box push-vertical content-section">
+<figure class="push-top content-section">
     {% if data.category %}
     {{dynamicLink(
         [{
@@ -32,27 +28,12 @@
         }]
     )}}
     {% endif %}
-    {% if data %}
-        {# data.sort is here to track the current sort #}
-        {{sortByForm('/pasiulymai/', data.sort)}}
-    {% elif data.discounts and data.category %}
-        {{sortByForm('/pasiulymai/' + data.category.key, data.sort)}}
-    {% endif%}
+    
+    <div id="app"></div>
 </figure>
     
-    {{sideNavigation("special-offers-page", data)}}
-{# items box wrapper #}
-    <section class="products products--fullwidth">
-            {# looping through products #}
-            {% for product in data.products %}
-            {% include 'partials/product-item.html' %}
-            {% endfor %}
-    </section>
-</div>
-{# Variables stored so they could be used in server-side #}
-<div class="variables" data-sort="{{data.sort}}" data-category="{{data.category.key}}" data-count="{{data.products.results.length}}" data-brand="{{data.brand.key}}" data-discounts="true"></div>
 {% endblock %}
 
 {% block js %}
-    <script src="/js/dist/products.bundle.js"></script>
+    <script src="/js/dist/discounts.bundle.js"></script>
 {% endblock %}

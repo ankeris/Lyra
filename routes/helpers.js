@@ -18,15 +18,14 @@ function setDiscountedPrice(discount, currentPrice) {
 }
 
 function getSort(filter) {
-	if (filter == 'price-high') {
-		return {
-			price: -1
-		};
-	} else if (filter == 'price-low') {
-		return {
-			price: 1
-		};
-	} else {
+	switch (filter) {
+	case 'price-high':
+		return { price: -1 };
+	case 'price-low':
+		return { price: 1 };
+	case 'manufacturer':
+		return { Manufacturer: 1 };
+	default:
 		return { title: -1 };
 	}
 }

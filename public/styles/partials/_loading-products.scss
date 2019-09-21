@@ -2,7 +2,9 @@
 .loading-speakers-box {
 	opacity: 0;
 	text-align: center;
-	animation: getBigger 0.5s ease-in 1 forwards;
+	margin: 30px auto;
+	height: 0;
+	animation: getBigger 0.2s ease-in 1 forwards;
 	#mids-inner,
 	#mids-inner-2,
 	#mids-inner-3 {

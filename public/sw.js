@@ -2,8 +2,6 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox
 
 if (workbox) {
     console.log('workbox is working');
-
-
     /* Cache Font Files */
     workbox.routing.registerRoute(
         new RegExp(/(woff|woff2|ttf|otf)((\?.*)$|$)/),

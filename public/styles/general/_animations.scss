@@ -26,13 +26,13 @@
 
 .fade-in {
 	opacity: 0;
-	animation: fadeIn 0.5s ease-in 1 forwards;
-	transition-duration: 0.5s;
+	animation: fadeIn 0.3s ease-in 1 forwards;
+	transition-duration: 0.3s;
 }
 .fade-out {
 	opacity: 1;
-	animation: fadeOut 0.4s ease-in 1 forwards;
-	transition-duration: 0.4s;
+	animation: fadeOut 0.3s ease-in 1 forwards;
+	transition-duration: 0.3s;
 }
 .fall {
 	animation: dropdown 0.5s linear;
@@ -56,9 +56,23 @@
 
 @keyframes getBigger {
 	to {
-		margin: 35px auto;
 		opacity: 1;
+		height: 150px;
 	}
+}
+.bounce {
+	animation-name: bounce;
+	animation-timing-function: ease;
+	animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+@keyframes bounce {
+	0%   { transform: scale(1,1)    translateY(0); }
+	10%  { transform: scale(1.1,.9) translateY(0); }
+	30%  { transform: scale(.9,1.1) translateY(-10px); }
+	50%  { transform: scale(1,1)    translateY(1px); }
+	57%  { transform: scale(1,1)    translateY(-3px); }
+	100% { transform: scale(1,1)    translateY(0); }
 }
 
 @keyframes fall {

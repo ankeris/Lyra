@@ -72,7 +72,18 @@ ProductCategory.relationship({
 	refPath: 'ProductType'
 });
 
+
+ProductCategory.schema.pre('validate', function(next) {
+	if (this.IsParentCategory && this.ChildCategoryOf) {
+		next(Error('Cannot have both "Is Parent Category" and have "Child Category Of". Parent category is top level cant be a child.'));
+	} else next();
+});
+
 ProductCategory.schema.post('save', cat => {
+	redis.keys('product-*', (err, reply) => {
+		if (err) throw err;
+		redis.del(reply);
+	});
 	if (redis.exists('all-categories')) redis.del('all-categories');
 	if (redis.exists('category-' + cat.key)) redis.del('category-' + cat.key);
 });

@@ -5,14 +5,12 @@
 
 .side-nav {
 	flex-basis: 24%;
-	flex-flow: column row;
 	margin: 30px 0;
 	order: 2;
 	font-weight: 300;
 	font-size: 10pt;
 	.side-nav__box {
 		overflow-y: scroll;
-		max-height: 85vh;
 		margin-right: 13%;
 		&::-webkit-scrollbar,
 		::-webkit-resizer {
@@ -28,44 +26,24 @@
 				@include NavigationItemHover();
 			}
 		}
-		#manufacturers-dropdown {
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			justify-content: flex-start;
-			line-height: 1;
-			.subcategory-box__item--text {
-				color: map-get($color, darkgrey);
-				margin: 0;
-				padding: 11px 0;
-				&:hover {
-					@include NavigationItemHover();
-				}
-			}
-			.subcategory-box__item--svg {
-				width: 14px;
-				height: 8px;
-				padding: 10px 7px;
-				transition-duration: 400ms;
-				cursor: pointer;
-				&:hover {
-					transform: rotate(90deg);
-				}
+		.subcategory-box__item--text {
+			color: map-get($color, darkgrey);
+			padding: 11px 0;
+			&:hover {
+				@include NavigationItemHover();
 			}
 		}
 		.navigation-dropdown {
 			display: flex;
-			flex-direction: row;
-			align-items: center;
-			justify-content: flex-start;
+			flex-wrap: wrap;
 			line-height: 1;
-			.subcategory-box__item--text {
-				margin: 0;
-				padding: 11px 0;
-				color: map-get($color, black);
-				&:hover {
-					@include NavigationItemHover();
-				}
+			transition: height 0.2s ease;
+			overflow: hidden;
+			&--button {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+    			justify-content: flex-start;
 			}
 			.subcategory-box__item--svg {
 				box-sizing: content-box;
@@ -73,16 +51,22 @@
 				height: 8px;
 				padding: 10px 7px;
 				transition-duration: 400ms;
+				user-select: none;
 				cursor: pointer;
 				&:hover {
 					transform: rotate(90deg);
 				}
 			}
+			.side-nav__list-box--item {
+				padding: 8px 0;
+			}
 		}
 		.subcategory-box {
-			margin-bottom: 12px;
 			font-size: 0.9em;
-			opacity: 1;
+			flex-basis: 90%;
+			height: 0;
+			margin-left: 5%;
+			transition: height 0.2s ease;
 			.subcategory-box__item {
 				width: 90%;
 				color: map-get($color, darkgrey);
@@ -113,32 +97,9 @@
 
 @media screen and (max-width: 700px) {
 	.side-nav {
-		display: none;
 		flex-basis: 80%;
 		margin: 0 auto;
 		order: 1;
-		.side-nav__box {
-			display: flex;
-			flex-flow: column;
-			max-height: unset;
-			margin-right: 0;
-			.navigation-dropdown,
-			#manufacturers-dropdown {
-				padding-left: 10px;
-			}
-			.side-nav__list-box--item {
-				flex-basis: 100%;
-				width: 100%;
-				padding: 15px 10px;
-			}
-			.subcategory-box {
-				width: 50%;
-				flex-basis: 50%;
-				.subcategory-box__item {
-					flex-basis: 30%;
-				}
-			}
-		}
 	}
 	.mobile-side-nav {
 		background-color: map-get($color, darkgrey);

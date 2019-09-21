@@ -134,6 +134,14 @@ Product.schema.pre('validate', function(next) {
 });
 
 Product.defaultColumns = 'title, ProductType, Manufacturer, images, Highlight';
+
+Product.schema.pre('save', function (next) {
+	if (this.modifiedPaths().includes('Highlight')) {
+		if (redis.exists('homePageHighlights')) redis.del('homePageHighlights');
+	}
+	next();
+});
+
 Product.schema.post('save', doc => {
 	if (redis.exists(`product-${doc.slug}`)) redis.del(`product-${doc.slug}`);
 });

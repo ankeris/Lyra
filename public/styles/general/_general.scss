@@ -112,6 +112,7 @@ p {
 .router-links {
 	font-size: 0.9em;
 	font-weight: 300;
+	width: 100%;
 }
 
 .link {
@@ -147,6 +148,23 @@ p {
 		font-weight: 200;
 		color: map-get($color, darkgrey);
 	}
+	&--small {
+		padding: 5px 10px;
+	}
+	&--floating {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		text-align: center;
+		width: 100%;
+		padding: 20px 0;
+		z-index: 10;
+		box-shadow: 5px 7px 18px #888888;
+		font-size: 1.2em;
+		letter-spacing: 0.1em;
+		background-color: white;
+		color: map-get($color, darkgrey);
+	}
 }
 
 
@@ -163,13 +181,6 @@ b {
 
 .brown {
 	color: map-get($color, brown);
-}
-
-.dropdownSVG {
-	fill: white;
-	width: 50px;
-	margin: 10px;
-	transition-duration: 1s;
 }
 
 .rotate {

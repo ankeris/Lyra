@@ -1,18 +1,16 @@
 .loop-box {
-	height: 70vh;
-	background-attachment: fixed;
+	min-height: 70vh;
 	background-position: left bottom;
 	background-size: 135%;
 	animation: animatedBackground 30s linear infinite;
-
 	color: map-get($color, white);
 	flex-direction: column;
 }
 
-@media screen and (max-width: $window-small-medium) {
+@media screen and (max-width: $window-medium) {
 	.loop-box {
 		flex-wrap: wrap-reverse;
-		height: 80vh;
+		background-size: cover;
 		.loop-box__item--text {
 			max-width: 90%;
 		}
