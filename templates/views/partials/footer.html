@@ -3,14 +3,14 @@
 
 <footer class="footer" id="footer">
     <section class="content-section push-vertical">
-        <div class="content-center content-space-between content-wrap">
-            <div class="footer__box footer__box--left">
+        <div class="footer-container">
+            <div class="item-1">
                 <p>SALONAS „LYRA“<br>
                 KĘSTUČIO G. 26<br>
                 LT-08115 VILNIUS</p>
             </div>
 
-            <div class="footer__box footer__box--middle">
+            <div class="item-2">
                 <div class="work-time">
                     <div>I - V: 10 - 19</div>
                     <div>VI: 10 - 15</div>
@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <div class="footer__box footer__box--right">
+            <div class="item-3">
                 {% if formSubmitted %}
                 <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
                     <div class="modal__overlay" tabindex="-1" data-micromodal-close>
@@ -67,12 +67,15 @@
                     </form>
                 {% endif %}
             </div>
-            <div class="footer__box footer__box--left">
+
+            <div class="item-4">
                 <p class="push-top--small"><a href="tel:+37052623596">(+370 5) 262 35 96</a><br>
                 <a href="mailto:info@lyra.lt">INFO@LYRA.LT</a></p>
             </div>
-            <div class="footer__box footer__box--middle"></div>
-            <div class="footer__box footer__box--right">
+
+            <div class="item-5"></div>
+
+            <div class="item-6">
                 <div class="media-icons content-center push-top--small">
                     <a class="media-icons__icon" aria-label="facebook" rel="noreferrer" href="https://www.facebook.com/SalonasLyra/" target="_blank">
                         {{ facebook("#1f1f1f", "#448AA6") }}

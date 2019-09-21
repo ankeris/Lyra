@@ -6,23 +6,35 @@
 			width: 90px;
     		text-align: right;
 		}
-		.footer__box--left {
-			text-align: left;
-			flex-basis: 23%;
+		.footer-container {
+			display: grid;
+			grid-template-areas:
+			"address openhours newsletter"
+			"contact . socialmedia";
 		}
-		.footer__box--middle {
-			align-self: flex-start;
-			justify-content: left;
-			flex-basis: 20%;
+		.item-1 {
+			grid-area: address;
 		}
-		.footer__box--right {
-			align-self: flex-start;
-			flex-basis: 42%;
+
+		.item-2 {
+			grid-area: openhours;
+		}
+
+		.item-3 {
+			grid-area: newsletter;
+		}
+
+		.item-4 {
+			grid-area: contact;
+		}
+
+		.item-6 {
+			grid-area: socialmedia;
 		}
 
 		.newsletter {
 			.newsletter__box--input {
-				flex-basis: 85%;
+				flex-grow: 1;
 				input {
 					width: 95%;
 					height: 30px;
@@ -40,7 +52,7 @@
 			}
 			.newsletter__box--button {
 				height: 35px;
-				flex-basis: 15%;
+				flex-basis: 40px;
 				text-align: center;
 				cursor: pointer;
 			}
@@ -52,47 +64,44 @@
 
 @media screen and (max-width: $window-small-medium) {
 	.footer {
-		.footer__box--left {
-			text-align: left;
-			flex-basis: 50%;
+		.newsletter {
+			width: 100%;
+				.newsletter__box--text {
+					flex-basis: 100%;
+				}
+				.newsletter__box--input {
+					width: 85%;
+					// overflow: auto;
+					input {
+						padding: 0 5px;
+					}
+				}
+				input[type='submit'] {
+					display: none;
+				}
 		}
-		.footer__box--middle {
-			text-align: right;
-			flex-basis: 50%;
+		.footer-container {
+			grid-template-areas:
+			"address openhours"
+			"contact ." 
+			"newsletter newsletter" 
+			"socialmedia socialmedia";
 		}
-		.footer__box--right {
-			flex-basis: 100%;
-			.newsletter {
-				width: 100%;
-					.newsletter__box--text {
-						flex-basis: 100%;
-					}
-					.newsletter__box--input {
-						width: 85%;
-						// overflow: auto;
-						input {
-							width: 95%;
-							height: 30px;
-							padding: 0 5px;
-							margin: 0;
-							&::placeholder {
-								color: map-get($color, white);
-							}
-							&[type] {
-								color: map-get($color, white);
-							}
-						}
-					}
-					.newsletter__box--button {
-						height: 35px;
-						width: 15%;
-						text-align: center;
-						cursor: pointer;
-					}
-					input[type='submit'] {
-						display: none;
-					}
-			}
+		.item-2 {
+			grid-area: openhours;
+		}
+
+		.item-3 {
+			grid-area: newsletter;
+			margin-top: 25px;
+		}
+
+		.item-6 {
+			margin-top: 15px;
+		}
+		
+		.work-time {
+			width: auto;
 		}
 	}
 }

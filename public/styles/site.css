@@ -370,18 +370,21 @@ figure {
   .footer .work-time {
     width: 90px;
     text-align: right; }
-  .footer .footer__box--left {
-    text-align: left;
-    flex-basis: 23%; }
-  .footer .footer__box--middle {
-    align-self: flex-start;
-    justify-content: left;
-    flex-basis: 20%; }
-  .footer .footer__box--right {
-    align-self: flex-start;
-    flex-basis: 42%; }
+  .footer .footer-container {
+    display: grid;
+    grid-template-areas: "address openhours newsletter" "contact . socialmedia"; }
+  .footer .item-1 {
+    grid-area: address; }
+  .footer .item-2 {
+    grid-area: openhours; }
+  .footer .item-3 {
+    grid-area: newsletter; }
+  .footer .item-4 {
+    grid-area: contact; }
+  .footer .item-6 {
+    grid-area: socialmedia; }
   .footer .newsletter .newsletter__box--input {
-    flex-basis: 85%; }
+    flex-grow: 1; }
     .footer .newsletter .newsletter__box--input input {
       width: 95%;
       height: 30px;
@@ -395,43 +398,34 @@ figure {
         color: #fff; }
   .footer .newsletter .newsletter__box--button {
     height: 35px;
-    flex-basis: 15%;
+    flex-basis: 40px;
     text-align: center;
     cursor: pointer; }
   .footer .newsletter input[type='submit'] {
     display: none; }
 
 @media screen and (max-width: 600px) {
-  .footer .footer__box--left {
-    text-align: left;
-    flex-basis: 50%; }
-  .footer .footer__box--middle {
-    text-align: right;
-    flex-basis: 50%; }
-  .footer .footer__box--right {
-    flex-basis: 100%; }
-    .footer .footer__box--right .newsletter {
-      width: 100%; }
-      .footer .footer__box--right .newsletter .newsletter__box--text {
-        flex-basis: 100%; }
-      .footer .footer__box--right .newsletter .newsletter__box--input {
-        width: 85%; }
-        .footer .footer__box--right .newsletter .newsletter__box--input input {
-          width: 95%;
-          height: 30px;
-          padding: 0 5px;
-          margin: 0; }
-          .footer .footer__box--right .newsletter .newsletter__box--input input::placeholder {
-            color: #fff; }
-          .footer .footer__box--right .newsletter .newsletter__box--input input[type] {
-            color: #fff; }
-      .footer .footer__box--right .newsletter .newsletter__box--button {
-        height: 35px;
-        width: 15%;
-        text-align: center;
-        cursor: pointer; }
-      .footer .footer__box--right .newsletter input[type='submit'] {
-        display: none; } }
+  .footer .newsletter {
+    width: 100%; }
+    .footer .newsletter .newsletter__box--text {
+      flex-basis: 100%; }
+    .footer .newsletter .newsletter__box--input {
+      width: 85%; }
+      .footer .newsletter .newsletter__box--input input {
+        padding: 0 5px; }
+    .footer .newsletter input[type='submit'] {
+      display: none; }
+  .footer .footer-container {
+    grid-template-areas: "address openhours" "contact ."  "newsletter newsletter"  "socialmedia socialmedia"; }
+  .footer .item-2 {
+    grid-area: openhours; }
+  .footer .item-3 {
+    grid-area: newsletter;
+    margin-top: 25px; }
+  .footer .item-6 {
+    margin-top: 15px; }
+  .footer .work-time {
+    width: auto; } }
 
 .manufacturers__listbox {
   list-style: none;
