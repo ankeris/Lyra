@@ -57,6 +57,8 @@
 					transform: rotate(90deg);
 				}
 			}
+			@media (hover: none) {
+			}
 			.side-nav__list-box--item {
 				padding: 8px 0;
 			}

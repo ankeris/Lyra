@@ -2,11 +2,11 @@ import * as PhotoSwipe from 'photoswipe';
 import * as PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default';
 
 function openPhotoSwipe(imagesArr, currentHighlight) {
-	var pswpElement = document.querySelector('.pswp');
+	const pswpElement = document.querySelector('.pswp');
 	let parsed = JSON.parse(imagesArr);
 
 	// Find the index of highlighted item
-	var found = parsed.findIndex(function(img) {
+	const found = parsed.findIndex(function(img) {
 		return img.src == currentHighlight;
 	});
 
@@ -14,9 +14,9 @@ function openPhotoSwipe(imagesArr, currentHighlight) {
 	const highlight = parsed.splice(0, found);
 	parsed = [...parsed, ...highlight];
 
-	var items = parsed;
+	const items = parsed;
 	// define options (if needed)
-	var options = {
+	const options = {
 		// history & focus options are disabled on CodePen
 		history: false,
 		focus: false,
@@ -37,7 +37,7 @@ function openPhotoSwipe(imagesArr, currentHighlight) {
 		hideAnimationDuration: 200
 	};
 
-	var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+	const gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
 
 	gallery.init();
 }
