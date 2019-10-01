@@ -102,6 +102,9 @@ p {
 	padding: 50px;
 	&-vertical {
 		padding: 50px 0;
+		&--small {
+			padding: 15px 0;
+		}
 	}
 }
 

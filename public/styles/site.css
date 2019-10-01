@@ -156,13 +156,13 @@ h6 {
   line-height: 1.5; }
 
 h1 {
-  font-size: 3em; }
+  font-size: 1.5em; }
 
 h2 {
-  font-size: 2.25em; }
+  font-size: 1.5em; }
 
 h3 {
-  font-size: 1.75em; }
+  font-size: 1.5em; }
 
 h4 {
   font-size: 1.5em; }
@@ -264,6 +264,8 @@ p {
   padding: 50px; }
   .expand-vertical {
     padding: 50px 0; }
+    .expand-vertical--small {
+      padding: 15px 0; }
 
 .center {
   text-align: center; }
