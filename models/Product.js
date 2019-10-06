@@ -55,6 +55,11 @@ Product.add({
 		collapse: true,
 		note: 'What is the new price?'
 	},
+	seoDescription: { 
+		type: Types.Text,
+		min: 10,
+		max: 200
+	},
 	description: {
 		type: Types.Html,
 		wysiwyg: true,

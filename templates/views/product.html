@@ -7,8 +7,16 @@
 {% set product = data.product %}
 
 {% block head %}
-	<title>Lyra | {{product.title}}</title>
-    <meta name="Description" content="{{product.title}} produktas, susisiekite dėl daugiau informacijos">
+        {% if product.CategoryNameForm == 'Plural' %}
+	        <title>Lyra | {{product.title}} | {{product.ProductType.name}}</title>
+        {% elif product.CategoryNameForm == 'Singular' %}
+	        <title>Lyra | {{product.title}} | {{product.ProductType.nameSingular}}</title>
+        {% endif %}
+        {% if product.seoDescription.length %}
+            <meta name="description" content="{{product.seoDescription}}">
+        {% else %}
+            <meta name="description" content="{{product.title}} produktas, susisiekite dėl daugiau informacijos">
+        {% endif %}
 {% endblock %}
 
 {% block content %}
