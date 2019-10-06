@@ -9,7 +9,7 @@ exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
 	const supportWebP = isWebP(req);
-	locals.section = 'Nuolaidos';
+	locals.section = 'Lyra | Nuolaidos | Pasiūlymai';
 	locals.supportWebP = supportWebP;
 
 	view.on('init', function(next) {

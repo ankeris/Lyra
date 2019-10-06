@@ -3,7 +3,7 @@
 
 {% block head %}
 	<title>{{section}} | {{data.newsItem.title}}</title>
-    <meta name="Description" content="{{data.paragraph.title}}">
+    <meta name="description" content="{{data.paragraph.title}}">
 {% endblock %}
 
 {% block content %}
@@ -25,7 +25,7 @@
         {% set background = ( "bg-dark" if paragraph.style == "dark" ) %}
         <article class="{{background}}">
             <div class="content-section expand-vertical">
-                <h3>{{paragraph.paragraphTitle}}</h3>
+                <h1>{{paragraph.paragraphTitle}}</h1>
                 <p>{{ paragraph.text | safe}}</p>
             </div>
         </article>

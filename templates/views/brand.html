@@ -5,7 +5,7 @@
 
 {% block head %}
 	<title>Lyra | {{data.brand.name}}</title>
-    <meta name="Description" content="{{data.brand.name}} garso aparatūra, prekės">
+    <meta name="description" content="{{data.brand.name}} garso aparatūra, prekės">
 {% endblock %}
 
 {% block intro %}
@@ -16,7 +16,7 @@
     <figure class="push-vertical content-section">
     {% if data.brand %}
     {{dynamicLink(
-        [{name: "Prekių ženklai",url: "/prekiu-zenklai/"},
+        [{name: "Prekių ženklai",url: "/prekiu-zenklai"},
         {name: data.brand.name,url: "/prekiu-zenklai/" + data.brand.key}]
     )}}
     {% endif %}
