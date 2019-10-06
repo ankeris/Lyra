@@ -107,7 +107,7 @@ exports = module.exports = function(req, res) {
 				locals.data.dynamicLinkArr = [
 					{
 						name: 'produktai',
-						url: '/produktai/'
+						url: '/produktai'
 					},
 					locals.data.category && locals.data.category.ChildCategoryOf ? {
 						name: locals.data.category.ChildCategoryOf.name,

@@ -33,7 +33,7 @@ exports = module.exports = function(req, res) {
 							// Create dynamic links for router	
 							locals.data.dynamicLinkArr = [{	
 								name: 'produktai',	
-								url: '/produktai/'	
+								url: '/produktai'
 							},	
 							result && result.ChildCategoryOf ? {	
 								name: result.ChildCategoryOf.name,	
