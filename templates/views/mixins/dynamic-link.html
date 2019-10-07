@@ -3,7 +3,7 @@
         {% for link in arrOfLinks %}
             {% if link %}
                 {% if not loop.last %}
-                    <a class="link" href="{{link.url}}">{{ link.name | upper  }}</a><span> > </span>
+                    <a class="link" href="{{link.url}}">{{ link.name | upper  }}</a><span> &gt; </span>
                 {% else %}
                     <u><a class="link" href="{{link.url}}">{{ link.name | upper  }}</a></u>
                 {% endif %}
