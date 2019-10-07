@@ -23,6 +23,12 @@ NewsParagraph.add({
 		required: true,
 		default: ''
 	},
+	seoDescription: { 
+		type: Types.Text,
+		min: 100,
+		max: 320,
+		note: 'Nuo 100 iki 320 raidziu SEO aprasymas'
+	},
 	text: {
 		type: Types.Html,
 		wysiwyg: true,

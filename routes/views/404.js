@@ -6,7 +6,7 @@ exports = module.exports = function (req, res) {
 
 	locals.section = 'Toks puslapis neegzistuoja';
 	locals.data = {};
-
+	res.status(404);
 	// Render the view
 	view.render('errors/404');
 };

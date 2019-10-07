@@ -57,8 +57,9 @@ Product.add({
 	},
 	seoDescription: { 
 		type: Types.Text,
-		min: 10,
-		max: 200
+		min: 100,
+		max: 320,
+		note: 'Nuo 100 iki 320 raidziu SEO aprasymas'
 	},
 	description: {
 		type: Types.Html,
@@ -73,7 +74,7 @@ Product.add({
 	TechnicalDescription: {
 		type: Types.Html,
 		wysiwyg: true,
-		height: 300
+		height: 300,
 	},
 	ManufacturersDescriptionLink: {
 		type: Types.Url,

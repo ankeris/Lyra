@@ -3,7 +3,11 @@
 
 {% block head %}
 	<title>{{section}} | {{data.newsItem.title}}</title>
-    <meta name="description" content="{{data.paragraph.title}}">
+    {% if data.newsItem.seoDescription %}
+        <meta name="description" content="{{data.newsItem.seoDescription}}. Lyros puslapyje galite rasti ir daugiau naujienų bei aprašymų apie garso įrenginius ir susijusias temas">
+    {% else %}
+        <meta name="description" content="{{data.newsItem.title}}">
+    {% endif %}
 {% endblock %}
 
 {% block content %}
