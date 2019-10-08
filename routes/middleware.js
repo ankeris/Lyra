@@ -83,3 +83,8 @@ exports.requireUser = function(req, res, next) {
 		next();
 	}
 };
+
+exports.setHeaders = function (req,res,next) {
+	res.removeHeader('X-Powered-By');
+	next();
+};
