@@ -20,8 +20,12 @@
 
 const keystone = require('keystone');
 const middleware = require('./middleware');
-const helmet = require('helmet');
 const importRoutes = keystone.importer(__dirname);
+
+// extra opts
+const helmet = require('helmet');
+const Ddos = require('ddos');
+const ddos = new Ddos;
 
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
@@ -36,6 +40,7 @@ const routes = {
 // Setup Route Bindings
 exports = module.exports = function(app) {
 	app.use(helmet());
+	app.use(ddos.express);
 	// Views
 	app.get('/', routes.views.index);
 	app.get('/prekiu-zenklai', routes.views.brands);

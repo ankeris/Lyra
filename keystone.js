@@ -9,8 +9,8 @@ const cons = require('consolidate');
 // Initialise Keystone with your project's configuration. See
 // http://keystonejs.com/guide/config for available options and documentation.
 keystone.init({
-	name: 'acme',
-	brand: 'acme',
+	name: 'Lyra',
+	brand: 'Lyra',
 	sass: 'public',
 	static: 'public',
 	favicon: 'public/favicon.ico',

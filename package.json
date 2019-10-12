@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "async": "2.1.4",
+    "ddos": "^0.2.1",
     "helmet": "^3.21.1",
     "in-view": "^0.6.1",
     "jquery": "^3.3.1",
