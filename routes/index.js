@@ -18,9 +18,10 @@
  * http://expressjs.com/api.html#app.VERB
  */
 
-let keystone = require('keystone');
-let middleware = require('./middleware');
-let importRoutes = keystone.importer(__dirname);
+const keystone = require('keystone');
+const middleware = require('./middleware');
+const helmet = require('helmet');
+const importRoutes = keystone.importer(__dirname);
 
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
@@ -34,6 +35,7 @@ const routes = {
 
 // Setup Route Bindings
 exports = module.exports = function(app) {
+	app.use(helmet());
 	// Views
 	app.get('/', routes.views.index);
 	app.get('/prekiu-zenklai', routes.views.brands);

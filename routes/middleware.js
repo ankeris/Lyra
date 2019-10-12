@@ -84,7 +84,7 @@ exports.requireUser = function(req, res, next) {
 	}
 };
 
-exports.setHeaders = function (req,res,next) {
+exports.setHeaders = function (req, res, next) {
 	res.removeHeader('X-Powered-By');
 	res.setHeader('X-Content-Type-Options', 'nosniff');
 	next();
