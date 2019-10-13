@@ -75,7 +75,7 @@ ProductCategory.relationship({
 
 ProductCategory.schema.pre('validate', function(next) {
 	if (this.IsParentCategory && this.ChildCategoryOf) {
-		next(Error('Cannot have both "Is Parent Category" and have "Child Category Of". Parent category is top level cant be a child.'));
+		next(Error('Cannot have both "Is Parent Category" and "Child Category Of". Parent category cant be a child.'));
 	} else next();
 });
 

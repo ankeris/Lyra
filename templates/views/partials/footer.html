@@ -56,11 +56,11 @@
                         <p class="newsletter__box--text">naujienlaiškis</p>
                         <div class="content-center">
                             <div class="newsletter__box--input">
-                                <input type="hidden" name="action" value="index">
-                                <input type="email" name="email" value="{{ formData.email }}" required placeholder="įveskite savo el. pašto adresą">
+                                <label for="email" class="hidden">Prenumeruoti</label>
+                                <input type="email" id="email" name="email" value="{{ formData.email }}" required placeholder="įveskite savo el. pašto adresą">
                             </div>
                             <label class="newsletter__box--button">
-                                <input type="submit" />
+                                <input type="submit">
                                 {{ checkBox("#1f1f1f", "#448AA6") }}
                             </label>
                         </div>

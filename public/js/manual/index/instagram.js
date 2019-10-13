@@ -10,9 +10,10 @@ const token = '7012478136.1677ed0.a70b84b80d2740838366a2c010e97662',
 scrElement.setAttribute( 'src', 'https://api.instagram.com/v1/users/self/media/recent?access_token=' + token + '&callback=instaLoaded' );
 window.instaLoaded = function({data}) {
 	for(var x in data ){
+		console.log(data);
 		const currentImage = data[x];
 		container.innerHTML += `
-				<a class="items-box__instagram-item" href="${currentImage.link}" rel="noreferrer" target="_blank" aria-label="${currentImage.likes.count} likes">
+				<a class="items-box__instagram-item" href="${currentImage.link}" alt="Instagram nuotrauka" rel="noreferrer" target="_blank" aria-label="${currentImage.likes.count} likes">
 					<img class="items-box__item--main-image lazy" data-lazy="${currentImage.images.low_resolution.url}"/>
 					<div class="items-box__item--text">${currentImage.caption ? currentImage.caption.text : null}</div>
 				</a>`;
